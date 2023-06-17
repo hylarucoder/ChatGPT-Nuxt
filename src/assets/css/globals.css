@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    :root {
+        --theme: light;
+        --white: #fff;
+        --black: #303030;
+        --gray: #fafafa;
+        --primary: #42b883;
+        --second: #e7f8ff;
+        --hover-color: #f3f3f3;
+        --bar-color: rgba(0, 0, 0, .1);
+        --theme-color: var(--gray);
+        --shadow: 50px 50px 100px 10px rgba(0, 0, 0, .1);
+        --card-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .05);
+        --border-in-light: 1px solid #dedede;
+        --window-width: 90vw;
+        --window-height: 90vh;
+        --sidebar-width: 300px;
+        --window-content-width: calc(100% - var(--sidebar-width));
+        --message-max-width: 80%;
+        --full-height: 100%;
+    }
+}
