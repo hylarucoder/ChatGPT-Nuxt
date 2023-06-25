@@ -4,6 +4,7 @@ const online = useOnline()
 
 <template>
   <div>
+
     <Logos mb-6/>
     <Suspense>
       <ClientOnly>

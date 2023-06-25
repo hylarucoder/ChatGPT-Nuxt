@@ -1,5 +1,5 @@
 import type { ModuleOptions } from '@vite-pwa/nuxt'
-import { appDescription, appName } from '../src/constants/index'
+import { appDescription, appName } from '../constants'
 
 const scope = '/'
 

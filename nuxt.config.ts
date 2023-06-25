@@ -1,14 +1,24 @@
+import { appDescription } from './constants'
 import { pwa } from './config/pwa'
-import { appDescription } from './src/constants/index'
 
 export default defineNuxtConfig({
-  srcDir: 'src/',
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   build: {
     transpile: ['trpc-nuxt'],
   },
+  css: [
+    '@/assets/css/globals.css',
+  ],
+  runtimeConfig: {
+    API_BASE_URL: process.env.API_BASE_URL,
+  },
   modules: [
     '@vueuse/nuxt',
-    '@unocss/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
     '@vite-pwa/nuxt',
@@ -23,13 +33,9 @@ export default defineNuxtConfig({
     typedPages: true,
   },
 
-  css: [
-    '@unocss/reset/tailwind.css',
-  ],
-
-  colorMode: {
-    classSuffix: '',
-  },
+  // colorMode: {
+  //   classSuffix: '',
+  // },
 
   nitro: {
     esbuild: {
@@ -61,6 +67,10 @@ export default defineNuxtConfig({
         {
           rel: 'apple-touch-icon',
           href: '/apple-touch-icon.png',
+        },
+        {
+          rel: "stylesheet",
+          href: "https://rsms.me/inter/inter.css",
         },
       ],
       meta: [
