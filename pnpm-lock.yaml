@@ -85,6 +85,9 @@ devDependencies:
   nuxt:
     specifier: ^3.6.0
     version: registry.npmmirror.com/nuxt@3.6.0(@types/node@20.2.0)(eslint@8.43.0)(rollup@2.79.1)(typescript@5.0.4)(vue-tsc@1.8.1)
+  nuxt-icon:
+    specifier: ^0.4.1
+    version: registry.npmmirror.com/nuxt-icon@0.4.1(rollup@2.79.1)(vue@3.3.4)
   pinia:
     specifier: ^2.1.4
     version: registry.npmmirror.com/pinia@2.1.4(typescript@5.0.4)(vue@3.3.4)
@@ -94,6 +97,9 @@ devDependencies:
   typescript:
     specifier: ^5.0.4
     version: registry.npmmirror.com/typescript@5.0.4
+  vite-svg-loader:
+    specifier: ^4.0.0
+    version: registry.npmmirror.com/vite-svg-loader@4.0.0
   vue-tsc:
     specifier: ^1.8.1
     version: registry.npmmirror.com/vue-tsc@1.8.1(typescript@5.0.4)
@@ -203,11 +209,6 @@ packages:
       '@babel/highlight': 7.18.6
     dev: true
 
-  /@babel/helper-validator-identifier@7.19.1:
-    resolution: {integrity: sha512-awrNfaMtnHUr653GgGEs++LlAvW6w+DcPrOliSMXWCKo597CwL5Acf/wWdNkf/tfEQE3mjkeD1YOVZOUV/od1w==}
-    engines: {node: '>=6.9.0'}
-    dev: true
-
   /@babel/helper-validator-identifier@7.22.5:
     resolution: {integrity: sha512-aJXu+6lErq8ltp+JhkJUfk1MTGyuA4v7f3pA+BJ5HLfNC6nAQ0Cpi9uOquUj8Hehg0aUiHzWQbOVJGao6ztBAQ==}
     engines: {node: '>=6.9.0'}
@@ -217,7 +218,7 @@ packages:
     resolution: {integrity: sha512-u7stbOuYjaPezCuLj29hNW1v64M2Md2qupEKP1fHc7WdOA3DgLh37suiSrZYY7haUB7iBeQZ9P1uiRF359do3g==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/helper-validator-identifier': 7.19.1
+      '@babel/helper-validator-identifier': registry.npmmirror.com/@babel/helper-validator-identifier@7.22.5
       chalk: 2.4.2
       js-tokens: 4.0.0
     dev: true
@@ -657,14 +658,6 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /dom-serializer@2.0.0:
-    resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
-    dependencies:
-      domelementtype: 2.3.0
-      domhandler: 5.0.3
-      entities: 4.5.0
-    dev: true
-
   /domelementtype@2.3.0:
     resolution: {integrity: sha512-OLETBj6w0OsagBwdXnPdN0cnMfF9opN69co+7ZrbfPGrdpPVNBUj02spi6B1N7wChLQiPn4CSH/zJvXw56gmHw==}
     dev: true
@@ -673,15 +666,15 @@ packages:
     resolution: {integrity: sha512-cgwlv/1iFQiFnU96XXgROh8xTeetsnJiDsTc7TYCLFd9+/WNkIqPTxiM/8pSd8VIrhXGTf1Ny1q1hquVqDJB5w==}
     engines: {node: '>= 4'}
     dependencies:
-      domelementtype: 2.3.0
+      domelementtype: registry.npmmirror.com/domelementtype@2.3.0
     dev: true
 
   /domutils@3.1.0:
     resolution: {integrity: sha512-H78uMmQtI2AhgDJjWeQmHwJJ2bLPD3GMmO7Zja/ZZh84wkm+4ut+IUnUdRa8uCGX88DiVx1j6FRe1XfxEgjEZA==}
     dependencies:
-      dom-serializer: 2.0.0
-      domelementtype: 2.3.0
-      domhandler: 5.0.3
+      dom-serializer: registry.npmmirror.com/dom-serializer@2.0.0
+      domelementtype: registry.npmmirror.com/domelementtype@2.3.0
+      domhandler: registry.npmmirror.com/domhandler@5.0.3
     dev: true
 
   /entities@4.5.0:
@@ -4057,6 +4050,18 @@ packages:
       local-pkg: registry.npmmirror.com/local-pkg@0.4.3
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  registry.npmmirror.com/@iconify/vue@4.1.1(vue@3.3.4):
+    resolution: {integrity: sha512-RL85Bm/DAe8y6rT6pux7D2FJSiUEM/TPfyK7GrbAOfTSwrhvwJW+S5yijdGcmtXouA8MtuH9C7l4hiSE4mLMjg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@iconify/vue/-/vue-4.1.1.tgz}
+    id: registry.npmmirror.com/@iconify/vue/4.1.1
+    name: '@iconify/vue'
+    version: 4.1.1
+    peerDependencies:
+      vue: '>=3'
+    dependencies:
+      '@iconify/types': registry.npmmirror.com/@iconify/types@2.0.0
+      vue: registry.npmmirror.com/vue@3.3.4
     dev: true
 
   registry.npmmirror.com/@ioredis/commands@1.2.0:
@@ -11185,6 +11190,20 @@ packages:
       fsevents: registry.npmmirror.com/fsevents@2.3.2
     dev: true
 
+  registry.npmmirror.com/nuxt-icon@0.4.1(rollup@2.79.1)(vue@3.3.4):
+    resolution: {integrity: sha512-QTpxewOgLfdPx2uwHhoU5XQ4AtQ9N31ifbwnbn4Sx5NM+W2slNfGq1eEKmUl0CpSUAhGEdKbzd5CjA3c7dVa1Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/nuxt-icon/-/nuxt-icon-0.4.1.tgz}
+    id: registry.npmmirror.com/nuxt-icon/0.4.1
+    name: nuxt-icon
+    version: 0.4.1
+    dependencies:
+      '@iconify/vue': registry.npmmirror.com/@iconify/vue@4.1.1(vue@3.3.4)
+      '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.6.0(rollup@2.79.1)
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+      - vue
+    dev: true
+
   registry.npmmirror.com/nuxt@3.6.0(@types/node@20.2.0)(eslint@8.43.0)(rollup@2.79.1)(typescript@5.0.4)(vue-tsc@1.8.1):
     resolution: {integrity: sha512-/ZUnaPJHdBbE9KoiVduD87unRaRx7DuO9cfy7rQLcGMo2LWVLRJ7I4CIq2ruq21fO/4jddA3G36LFWVJAKhcXQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/nuxt/-/nuxt-3.6.0.tgz}
     id: registry.npmmirror.com/nuxt/3.6.0
@@ -14580,6 +14599,15 @@ packages:
       vite: registry.npmmirror.com/vite@4.3.9(@types/node@20.2.0)
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  registry.npmmirror.com/vite-svg-loader@4.0.0:
+    resolution: {integrity: sha512-0MMf1yzzSYlV4MGePsLVAOqXsbF5IVxbn4EEzqRnWxTQl8BJg/cfwIzfQNmNQxZp5XXwd4kyRKF1LytuHZTnqA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite-svg-loader/-/vite-svg-loader-4.0.0.tgz}
+    name: vite-svg-loader
+    version: 4.0.0
+    dependencies:
+      '@vue/compiler-sfc': registry.npmmirror.com/@vue/compiler-sfc@3.3.4
+      svgo: registry.npmmirror.com/svgo@3.0.2
     dev: true
 
   registry.npmmirror.com/vite@4.3.9(@types/node@20.2.0):

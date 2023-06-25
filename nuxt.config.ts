@@ -1,5 +1,6 @@
-import { appDescription } from './constants'
-import { pwa } from './config/pwa'
+import { appDescription } from "./constants"
+import { pwa } from "./config/pwa"
+import svgLoader from "vite-svg-loader"
 
 export default defineNuxtConfig({
   postcss: {
@@ -9,20 +10,13 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ['trpc-nuxt'],
+    transpile: ["trpc-nuxt"],
   },
-  css: [
-    '@/assets/css/globals.css',
-  ],
+  css: ["@/assets/css/globals.css"],
   runtimeConfig: {
     API_BASE_URL: process.env.API_BASE_URL,
   },
-  modules: [
-    '@vueuse/nuxt',
-    '@pinia/nuxt',
-    '@nuxtjs/color-mode',
-    '@vite-pwa/nuxt',
-  ],
+  modules: ["nuxt-icon", "@vueuse/nuxt", "@pinia/nuxt", "@nuxtjs/color-mode", "@vite-pwa/nuxt"],
 
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
@@ -40,33 +34,33 @@ export default defineNuxtConfig({
   nitro: {
     esbuild: {
       options: {
-        target: 'esnext',
+        target: "esnext",
       },
     },
     prerender: {
       crawlLinks: false,
-      routes: ['/'],
-      ignore: ['/hi'],
+      routes: ["/"],
+      ignore: ["/hi"],
     },
   },
 
   app: {
     head: {
-      viewport: 'width=device-width,initial-scale=1',
+      viewport: "width=device-width,initial-scale=1",
       link: [
         {
-          rel: 'icon',
-          href: '/favicon.ico',
-          sizes: 'any',
+          rel: "icon",
+          href: "/favicon.ico",
+          sizes: "any",
         },
         {
-          rel: 'icon',
-          type: 'image/svg+xml',
-          href: '/nuxt.svg',
+          rel: "icon",
+          type: "image/svg+xml",
+          href: "/nuxt.svg",
         },
         {
-          rel: 'apple-touch-icon',
-          href: '/apple-touch-icon.png',
+          rel: "apple-touch-icon",
+          href: "/apple-touch-icon.png",
         },
         {
           rel: "stylesheet",
@@ -75,19 +69,26 @@ export default defineNuxtConfig({
       ],
       meta: [
         {
-          name: 'viewport',
-          content: 'width=device-width, initial-scale=1',
+          name: "viewport",
+          content: "width=device-width, initial-scale=1",
         },
         {
-          name: 'description',
+          name: "description",
           content: appDescription,
         },
         {
-          name: 'apple-mobile-web-app-status-bar-style',
-          content: 'black-translucent',
+          name: "apple-mobile-web-app-status-bar-style",
+          content: "black-translucent",
         },
       ],
     },
+  },
+  vite: {
+    plugins: [
+      svgLoader({
+        // Your settings.
+      }),
+    ],
   },
 
   pwa,

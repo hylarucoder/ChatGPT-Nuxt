@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="flex mb-5">
-      <IconButton icon="uil:github" text="面具" />
+      <IconButton icon="mask" text="面具" />
       <IconButton icon="uil:github" text="市场" />
     </div>
     <div class="flex-grow overflow-x-hidden">
