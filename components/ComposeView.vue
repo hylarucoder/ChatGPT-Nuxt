@@ -2,37 +2,10 @@
   <div class="flex-col p-3 rounded-xl border relative">
     <div class="flex flex-wrap">
       <div class="items-center cursor-pointer flex text-[0.75rem] mb-3 mr-1 py-1 px-3 rounded-2xl border">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          width="16"
-          height="16"
-          fill="none"
-          class="h-4 align-middle w-4 truncate"
-        >
-          <defs>
-            <path id="bottom_svg__a" d="M0 0h16v16H0z"></path>
-          </defs>
-          <g>
-            <mask id="bottom_svg__b" fill="#fff">
-              <use xlink:href="#bottom_svg__a"></use>
-            </mask>
-            <g>
-              <path
-                style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                d="M8 0 4 4 0 0"
-                transform="translate(4 4)"
-              ></path>
-              <path
-                style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                d="M8 0 4 4 0 0"
-                transform="translate(4 8)"
-              ></path>
-            </g>
-          </g>
-        </svg>
+        <SvgIcon icon="bottom" />
       </div>
       <div class="items-center cursor-pointer flex text-[0.75rem] mb-3 mr-1 py-1 px-3 rounded-2xl border">
+        <SvgIcon icon="reload" />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -100,86 +73,10 @@
         </svg>
       </div>
       <div class="items-center cursor-pointer flex text-[0.75rem] mb-3 mr-1 py-1 px-3 rounded-2xl border">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          width="16"
-          height="16"
-          fill="none"
-          class="h-4 align-middle w-4 truncate"
-        >
-          <defs>
-            <path id="mask_svg__a" d="M0 0h16v16H0z"></path>
-          </defs>
-          <g>
-            <mask id="mask_svg__b" fill="#fff">
-              <use xlink:href="#mask_svg__a"></use>
-            </mask>
-            <g>
-              <path
-                style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                d="M6 0C2.69 0 0 2.54 0 5.67s2.69 5.66 6 5.66 6-2.53 6-5.66C12 2.54 9.31 0 6 0Z"
-                transform="translate(2 3.333)"
-              ></path>
-              <path
-                style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                d="M1 0C.45 0 0 .6 0 1.33c0 .74.45 1.34 1 1.34s1-.6 1-1.34C2 .6 1.55 0 1 0Z"
-                transform="rotate(15 -22.183 22.313)"
-              ></path>
-              <path
-                style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                d="M1 0C.45 0 0 .6 0 1.33c0 .74.45 1.34 1 1.34s1-.6 1-1.34C2 .6 1.55 0 1 0Z"
-                transform="rotate(165 5.213 5.304)"
-              ></path>
-              <path
-                style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                d="M4 4.51c1.04-1.04 1.15-2.74.1-3.78C3.06-.32 1.04-.2 0 .84"
-                transform="translate(9.667 2.493)"
-              ></path>
-              <path
-                style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                d="M.84 4.51C-.2 3.47-.32 1.77.73.73 1.77-.32 3.8-.2 4.84.84"
-                transform="translate(1.493 2.493)"
-              ></path>
-              <path
-                style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                d="M0 0c.17.43.73 1.09 1.67.29.93.8 1.5.14 1.66-.29"
-                transform="translate(6.5 11.67)"
-              ></path>
-            </g>
-          </g>
-        </svg>
+        <SvgIcon icon="mask" />
       </div>
       <div class="items-center cursor-pointer flex text-[0.75rem] mb-3 py-1 px-3 rounded-2xl border">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          width="16"
-          height="16"
-          fill="none"
-          class="h-4 align-middle w-4 truncate"
-        >
-          <path
-            d="M13.275-.275c.261.26.392.576.392.945v10.66c0 .37-.131.684-.392.945a1.288 1.288 0 0 1-.945.392H1.67c-.37 0-.684-.13-.945-.392a1.288 1.288 0 0 1-.392-.945V.67c0-.37.13-.684.392-.945.26-.261.576-.392.945-.392h10.66c.369 0 .684.13.945.392zM1.667 11.33c0 .002 0 .003.003.003h10.66c.002 0 .003 0 .003-.003V.67c0-.002 0-.003-.003-.003H1.67c-.002 0-.003 0-.003.003z"
-            transform="translate(1 2)"
-            style="fill: rgb(51, 51, 51)"
-            class="opacity-100"
-          ></path>
-          <path
-            d="M9.763 7.507a.666.666 0 0 1-.867 0L7 5.878 5.104 7.506a.665.665 0 0 1-.867.001L2.331 5.878.434 7.506a.66.66 0 0 1-.485.16.66.66 0 0 1-.53-.338.665.665 0 0 1 .147-.834l2.33-2a.666.666 0 0 1 .867 0L4.67 6.123l1.897-1.629a.666.666 0 0 1 .868 0l1.897 1.629 1.906-1.63a.668.668 0 0 1 .867.002l2.33 2a.66.66 0 0 1 .23.455.661.661 0 0 1-.252.575.666.666 0 0 1-.846-.019l-1.897-1.628z"
-            transform="translate(1 2)"
-            style="fill: rgb(51, 51, 51)"
-            class="opacity-100"
-          ></path>
-          <g>
-            <mask id="break_svg__b" fill="#fff">
-              <use xlink:href="#break_svg__a"></use>
-            </mask>
-          </g>
-          <defs>
-            <path id="break_svg__a" d="M0 0h16v16H0z"></path>
-          </defs>
-        </svg>
+        <SvgIcon icon="break" />
       </div>
     </div>
     <div class="flex flex-grow">
