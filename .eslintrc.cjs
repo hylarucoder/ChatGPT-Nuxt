@@ -1,12 +1,12 @@
 require("@rushstack/eslint-patch/modern-module-resolution")
 
 module.exports = {
-  "parserOptions": {
-    "sourceType": "module"
-  },
-  extends: [
-    // ... other configs
-    "plugin:vue/base",
-    "@vue/eslint-config-prettier",
-  ],
+    parser: '@typescript-eslint/parser',
+    plugins: ['@typescript-eslint'],
+    extends: [
+        // ... other configs
+        "plugin:vue/base",
+        "plugin:prettier/recommended",
+        "@vue/eslint-config-prettier",
+    ],
 }
