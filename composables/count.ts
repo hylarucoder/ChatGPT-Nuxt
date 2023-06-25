@@ -1,5 +1,5 @@
 export function useCount() {
-  const count = useState('count', () => Math.round(Math.random() * 20))
+  const count = useState("count", () => Math.round(Math.random() * 20))
 
   function inc() {
     count.value += 1

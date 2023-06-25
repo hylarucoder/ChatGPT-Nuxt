@@ -8,19 +8,15 @@ watchEffect(() => {
 })
 
 definePageMeta({
-  layout: 'home',
+  layout: "home",
 })
 </script>
 
 <template>
   <div>
-    <div/>
-    <h3>
-      Hi,
-    </h3>
-    <div text-xl>
-      {{ name }}!
-    </div>
+    <div />
+    <h3>Hi,</h3>
+    <div text-xl>{{ name }}!</div>
 
     <template v-if="user.otherNames.length">
       <span op-50>Also as known as:</span>
@@ -33,15 +29,10 @@ definePageMeta({
       </ul>
     </template>
 
-    <Counter/>
+    <Counter />
 
     <div>
-      <NuxtLink
-          class="m-3 text-sm btn"
-          to="/"
-      >
-        Back
-      </NuxtLink>
+      <NuxtLink class="m-3 text-sm btn" to="/"> Back </NuxtLink>
     </div>
   </div>
 </template>
