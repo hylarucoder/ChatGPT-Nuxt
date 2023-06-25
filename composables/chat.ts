@@ -1,129 +1,9 @@
 import { defineStore } from "pinia"
+import { ref } from "vue"
+import { ChatSession, Mask } from "~/composables/config/typing"
+import { StoreKey } from "~/constants"
 
-export const ROLES = ["system", "user", "assistant"]
-export type MessageRole = (typeof ROLES)[number]
-
-const ENABLE_GPT4 = true
-
-export const ALL_MODELS = [
-  {
-    name: "gpt-4",
-    available: ENABLE_GPT4,
-  },
-  {
-    name: "gpt-4-0314",
-    available: ENABLE_GPT4,
-  },
-  {
-    name: "gpt-4-0613",
-    available: ENABLE_GPT4,
-  },
-  {
-    name: "gpt-4-32k",
-    available: ENABLE_GPT4,
-  },
-  {
-    name: "gpt-4-32k-0314",
-    available: ENABLE_GPT4,
-  },
-  {
-    name: "gpt-4-32k-0613",
-    available: ENABLE_GPT4,
-  },
-  {
-    name: "gpt-3.5-turbo",
-    available: true,
-  },
-  {
-    name: "gpt-3.5-turbo-0301",
-    available: true,
-  },
-  {
-    name: "gpt-3.5-turbo-0613",
-    available: true,
-  },
-  {
-    name: "gpt-3.5-turbo-16k",
-    available: true,
-  },
-  {
-    name: "gpt-3.5-turbo-16k-0613",
-    available: true,
-  },
-  {
-    name: "qwen-v1", // 通义千问
-    available: false,
-  },
-  {
-    name: "ernie", // 文心一言
-    available: false,
-  },
-  {
-    name: "spark", // 讯飞星火
-    available: false,
-  },
-  {
-    name: "llama", // llama
-    available: false,
-  },
-  {
-    name: "chatglm", // chatglm-6b
-    available: false,
-  },
-] as const
-
-export type ModelType = (typeof ALL_MODELS)[number]["name"]
-
-export const Models = ["gpt-3.5-turbo", "gpt-4"] as const
-export type ChatModel = ModelType
-
-export interface RequestMessage {
-  role: MessageRole
-  content: string
-}
-
-export type Mask = {
-  id: number
-  avatar: string
-  name: string
-  hideContext?: boolean
-  // context: ChatMessage[]
-  context: []
-  syncGlobalConfig?: boolean
-  modelConfig: ModelConfig
-  lang: Lang
-  builtin: boolean
-}
-
-export type ChatMessage = RequestMessage & {
-  date: string
-  streaming?: boolean
-  isError?: boolean
-  id?: number
-  model?: ModelType
-}
-
-export interface ChatStat {
-  tokenCount: number
-  wordCount: number
-  charCount: number
-}
-
-export interface ChatSession {
-  id: number
-  topic: string
-
-  memoryPrompt: string
-  messages: ChatMessage[]
-  stat: ChatStat
-  lastUpdate: number
-  lastSummarizeIndex: number
-  clearContextIndex?: number
-
-  mask: Mask
-}
-
-export const useChatStore = defineStore("chat", () => {
+export const useChatStore = defineStore(StoreKey.Chat, () => {
   const sessions = ref([
     {
       id: 0,
@@ -172,8 +52,36 @@ export const useChatStore = defineStore("chat", () => {
     currentSessionIndex.value = index
   }
 
-  const newSession = (mask) => {
-    // Add your implementation for creating a new session with an optional mask
+  const newSession = (mask: Mask): ChatSession => {
+    let session = {
+      id: globalId.value++,
+      topic: "New Session",
+      memoryPrompt: "",
+      messages: [
+        {
+          role: "chat",
+          content: "Welcome to the chat room!",
+          date: "2021-06-13T15:00:00.000Z",
+          streaming: false,
+          isError: false,
+          id: 0,
+        },
+        {
+          role: "system",
+          content: "Welcome to the chat room!",
+          date: "2021-06-13T15:00:00.000Z",
+          streaming: false,
+          isError: false,
+          id: 0,
+        },
+      ],
+      stat: {},
+      lastUpdate: 0,
+      lastSummarizeIndex: 0,
+      mask: mask,
+    }
+    sessions.value.push(session)
+    return session
   }
 
   const deleteSession = (index) => {

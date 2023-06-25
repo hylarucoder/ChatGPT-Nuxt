@@ -52,6 +52,8 @@
         </div>
       </div>
       <div>
+        <button @click="test">test api</button>
+        <button>{{ a }}</button>
         <NuxtLink to="/chat/new">
           <IconButton icon="add" text="新的聊天" />
         </NuxtLink>
@@ -59,15 +61,20 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="ts" setup>
+import { ref } from "vue"
 import ChatList from "~/components/ChatList.vue"
 import IconButton from "~/components/IconButton.vue"
+import { fetchStream } from "~/constants/api"
 
-export default {
-  name: "Sidebar",
-  components: {
-    ChatList,
-    IconButton,
-  },
+let a = ref("-")
+
+const test = async () => {
+  fetchStream((receivedData) => {
+    a.value = receivedData
+    console.log("Received message:", receivedData)
+  }).catch((error) => {
+    console.error("Error occurred:", error)
+  })
 }
 </script>
