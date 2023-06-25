@@ -90,7 +90,6 @@ const icons = {
   upload: iconUpload,
 }
 
-// const props = defineProps<{ icon: string }>()
 export default defineComponent({
   name: "SvgIcon",
   props: {

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white cursor-grab mb-3 p-3 rounded-xl border-2 hover:bg-gray-200"
+    class="bg-white cursor-grab mb-3 p-3 rounded-xl border-2 hover:bg-gray-200 drop-shadow-sm"
     :class="props.isActive ? 'border-green-500' : 'border-transparent'"
   >
     <div class="text-[0.88rem] font-bold truncate">{{ title }}</div>

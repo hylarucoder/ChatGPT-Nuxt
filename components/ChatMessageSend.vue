@@ -2,7 +2,7 @@
   <div class="text-zinc-800 flex">
     <div class="items-start flex flex-col">
       <div class="mt-5">
-        <div>
+        <div class="flex justify-center items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
