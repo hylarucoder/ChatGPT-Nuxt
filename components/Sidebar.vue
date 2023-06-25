@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-cyan-50 flex flex-col p-5">
+  <div class="bg-cyan-50 flex flex-col p-5 max-w-[300px]">
     <div class="py-5 relative">
       <div class="text-[1.25rem] font-bold">Best Prompts Hub</div>
       <div class="text-[0.75rem]">Build your own AI assistant.</div>
@@ -33,8 +33,12 @@
       </div>
     </div>
     <div class="flex mb-5">
-      <IconButton icon="mask" text="面具" />
-      <IconButton icon="uil:github" text="市场" />
+      <NuxtLink class="flex-grow" to="/chat/masks">
+        <IconButton icon="mask" text="面具" />
+      </NuxtLink>
+      <NuxtLink class="flex-grow" to="/chat/plugins">
+        <IconButton icon="plugin" text="插件" />
+      </NuxtLink>
     </div>
     <div class="flex-grow overflow-x-hidden">
       <ChatList />
@@ -42,95 +46,15 @@
     <div class="flex justify-between pt-5">
       <div class="flex">
         <div>
-          <a href="https://chat.shopify-analytics.com/#/settings" class="cursor-pointer">
-            <button class="items-center bg-white flex h-9 justify-center text-center w-9 p-3 rounded-xl truncate">
-              <div class="items-center flex justify-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  width="16"
-                  height="16"
-                  fill="none"
-                  class="h-4 align-middle w-4 truncate"
-                >
-                  <defs>
-                    <path id="settings_svg__a" d="M0 0h16v16H0z"></path>
-                  </defs>
-                  <g>
-                    <mask id="settings_svg__b" fill="#fff">
-                      <use xlink:href="#settings_svg__a"></use>
-                    </mask>
-                    <g>
-                      <path
-                        style="
-                          stroke: rgb(51, 51, 51);
-                          stroke-width: 1.33333;
-                          stroke-opacity: 1;
-                          stroke-dasharray: 0, 0;
-                        "
-                        transform="translate(1.333 2.333)"
-                        d="M13.33 5.67 10 0H3.33L0 5.67l3.33 5.66H10l3.33-5.66Z"
-                      ></path>
-                      <path
-                        style="
-                          stroke: rgb(51, 51, 51);
-                          stroke-width: 1.33333;
-                          stroke-opacity: 1;
-                          stroke-dasharray: 0, 0;
-                        "
-                        transform="translate(6.333 6.333)"
-                        d="M3.33 1.67C3.33.75 2.59 0 1.67 0 .75 0 0 .75 0 1.67c0 .92.75 1.66 1.67 1.66.92 0 1.66-.74 1.66-1.66Z"
-                      ></path>
-                    </g>
-                  </g>
-                </svg>
-              </div>
-            </button>
-          </a>
+          <NuxtLink to="/chat/settings" class="cursor-pointer">
+            <IconButton icon="chat-settings" />
+          </NuxtLink>
         </div>
       </div>
       <div>
-        <button
-          class="items-center bg-white cursor-pointer flex h-10 justify-center text-center w-24 p-3 rounded-xl truncate"
-        >
-          <div class="items-center flex justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              width="16"
-              height="16"
-              fill="none"
-              class="h-4 align-middle w-4 truncate"
-            >
-              <defs>
-                <path id="add_svg__a" d="M0 0h16v16H0z"></path>
-              </defs>
-              <g>
-                <mask id="add_svg__b" fill="#fff">
-                  <use xlink:href="#add_svg__a"></use>
-                </mask>
-                <g>
-                  <path
-                    style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                    d="M13.33 6.67A6.66 6.66 0 0 0 6.67 0C2.98 0 0 2.98 0 6.67a6.66 6.66 0 0 0 6.67 6.66c3.68 0 6.66-2.98 6.66-6.66Z"
-                    transform="translate(1.333 1.333)"
-                  ></path>
-                  <path
-                    style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                    d="M0 0v5.33"
-                    transform="translate(8 5.333)"
-                  ></path>
-                  <path
-                    style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                    d="M0 0h5.33"
-                    transform="translate(5.333 8)"
-                  ></path>
-                </g>
-              </g>
-            </svg>
-          </div>
-          <div class="text-[0.75rem] ml-1 truncate">新的聊天</div>
-        </button>
+        <NuxtLink to="/chat/new">
+          <IconButton icon="add" text="新的聊天" />
+        </NuxtLink>
       </div>
     </div>
   </div>

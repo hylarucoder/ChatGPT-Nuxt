@@ -1,13 +1,21 @@
 <script setup lang="ts">
-import Sidebar from "~/components/Sidebar.vue";
-import ChatDetail from "~/components/ChatDetail.vue";
-
 const online = useOnline()
 </script>
 
 <template>
-  <div class="bg-white text-zinc-800 flex border-neutral-200 rounded-2xl border truncate">
-    <Sidebar/>
-    <ChatDetail/>
+  <div>
+    <Logos mb-6 />
+    <Suspense>
+      <ClientOnly>
+        <PageView v-if="online" />
+        <div v-else>lllllll You're offline</div>
+      </ClientOnly>
+      <template #fallback>
+        <div class="italic op50">
+          <span animate-pulse>Loading...</span>
+        </div>
+      </template>
+    </Suspense>
+    <InputEntry />
   </div>
 </template>
