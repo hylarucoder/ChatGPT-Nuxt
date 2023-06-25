@@ -17,7 +17,10 @@ export default defineNuxtConfig({
   },
   css: ["@/assets/css/globals.css"],
   runtimeConfig: {
-    API_BASE_URL: process.env.API_BASE_URL,
+    // API_BASE_URL: process.env.API_BASE_URL,
+    public: {
+      API_BASE_URL: process.env.NUXT_API_BASE_URL || "/api",
+    },
   },
   modules: ["nuxt-icon", "@vueuse/nuxt", "@pinia/nuxt", "@nuxtjs/color-mode", "@vite-pwa/nuxt"],
 

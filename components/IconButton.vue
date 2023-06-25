@@ -1,6 +1,6 @@
 <template>
   <button
-    class="items-center bg-white cursor-pointer flex flex-grow h-10 justify-center mr-3 text-center p-3 rounded-xl truncate hover:bg-gray-200"
+    class="items-center bg-white cursor-pointer flex flex-grow h-10 justify-center text-center p-3 rounded-xl truncate hover:bg-gray-200"
     :class="hasText ? 'w-32' : ''"
   >
     <div class="items-center flex justify-center">
@@ -15,7 +15,7 @@ import SvgIcon from "~/components/SvgIcon.vue"
 
 const props = defineProps<{
   icon: string
-  text: string
+  text?: string
 }>()
 
 const hasText = Boolean(props.text)
