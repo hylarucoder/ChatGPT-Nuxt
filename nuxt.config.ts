@@ -3,6 +3,9 @@ import { pwa } from "./config/pwa"
 import svgLoader from "vite-svg-loader"
 
 export default defineNuxtConfig({
+  routeRules: {
+    "/": { redirect: "/chat" },
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
