@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col w-full">
-    <div class="items-center flex justify-between p-3.5 border-gray-200 border">
+    <div class="items-center flex justify-between p-3.5 border-gray-200 border-y">
       <div class="truncate">
         <div class="text-[1.25rem] font-bold truncate">设置</div>
         <div class="text-[0.88rem] mt-1">设置选项</div>
@@ -11,45 +11,7 @@
             class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
           >
             <div class="items-center flex justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                width="16"
-                height="16"
-                fill="none"
-                class="h-4 align-middle w-4 truncate"
-              >
-                <defs>
-                  <path id="clear_svg__a" d="M0 0h16v16H0z"></path>
-                </defs>
-                <g>
-                  <mask id="clear_svg__b" fill="#fff">
-                    <use xlink:href="#clear_svg__a"></use>
-                  </mask>
-                  <g>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(2.667 5)"
-                      d="M1 9.67h8.67l1-9.67H0l1 9.67Z"
-                    ></path>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(6.667 8.334)"
-                      d="M0 0v3.33"
-                    ></path>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(9.334 8.333)"
-                      d="M0 0v3.33"
-                    ></path>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(4 1)"
-                      d="m0 4 5.44-4L8 4"
-                    ></path>
-                  </g>
-                </g>
-              </svg>
+              <SvgIcon icon="clear" />
             </div>
           </button>
         </div>
@@ -58,40 +20,7 @@
             class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
           >
             <div class="items-center flex justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                width="16"
-                height="16"
-                fill="none"
-                class="h-4 align-middle w-4 truncate"
-              >
-                <defs>
-                  <path id="reload_svg__a" d="M0 0h16v16H0z"></path>
-                </defs>
-                <g>
-                  <mask id="reload_svg__b" fill="#fff">
-                    <use xlink:href="#reload_svg__a"></use>
-                  </mask>
-                  <g>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(14 2.667)"
-                      d="M0 0v5.33"
-                    ></path>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(2 8)"
-                      d="M0 0v5.33"
-                    ></path>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(2 2)"
-                      d="M12.003 6a6.005 6.005 0 0 0-10.32-4.17M0 6a6.005 6.005 0 0 0 10.17 4.32"
-                    ></path>
-                  </g>
-                </g>
-              </svg>
+              <SvgIcon icon="reload" />
             </div>
           </button>
         </div>
@@ -100,38 +29,15 @@
             class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
           >
             <div class="items-center flex justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                width="16"
-                height="16"
-                fill="none"
-                class="h-4 align-middle w-4 truncate"
-              >
-                <defs>
-                  <path id="close_svg__a" d="M0 0h16v16H0z"></path>
-                </defs>
-                <g>
-                  <mask id="close_svg__b" fill="#fff">
-                    <use xlink:href="#close_svg__a"></use>
-                  </mask>
-                  <g>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(2.667 2.667)"
-                      d="m0 0 10.67 10.67M0 10.67 10.67 0"
-                    ></path>
-                  </g>
-                </g>
-              </svg>
+              <SvgIcon icon="close" />
             </div>
           </button>
         </div>
       </div>
     </div>
-    <div class="p-5">
+    <div class="p-5 overflow-scroll">
       <div class="mb-5 rounded-xl border">
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>UID</div>
@@ -139,7 +45,7 @@
           </div>
           <div class="cursor-pointer"><p>#1</p></div>
         </div>
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>头像</div>
@@ -156,7 +62,7 @@
             </div>
           </div>
         </div>
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>当前版本：20230607</div>
@@ -169,7 +75,7 @@
             >前往更新</a
           >
         </div>
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>发送键</div>
@@ -185,33 +91,10 @@
               <option value="Alt + Enter" class="px-1">Alt + Enter</option>
               <option value="Meta + Enter" class="px-1">Meta + Enter</option>
             </select>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              width="16"
-              height="16"
-              fill="none"
-              class="bottom-[0.44rem] h-4 left-[6.81rem] absolute right-[0.63rem] top-[1.44rem] align-middle w-4 truncate"
-            >
-              <defs>
-                <path id="down_svg__a" d="M0 0h16v16H0z"></path>
-              </defs>
-              <g>
-                <mask id="down_svg__b" fill="#fff">
-                  <use xlink:href="#down_svg__a"></use>
-                </mask>
-                <g>
-                  <path
-                    style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                    d="M4 8 0 4l4-4"
-                    transform="translate(6.333 4)"
-                  ></path>
-                </g>
-              </g>
-            </svg>
+            <SvgIcon icon="down" />
           </div>
         </div>
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>主题</div>
@@ -225,33 +108,10 @@
               <option value="dark" class="px-1">dark</option>
               <option value="light" class="px-1">light</option>
             </select>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              width="16"
-              height="16"
-              fill="none"
-              class="bottom-[0.44rem] h-4 left-[2.81rem] absolute right-[0.63rem] top-[1.44rem] align-middle w-4 truncate"
-            >
-              <defs>
-                <path id="down_svg__a" d="M0 0h16v16H0z"></path>
-              </defs>
-              <g>
-                <mask id="down_svg__b" fill="#fff">
-                  <use xlink:href="#down_svg__a"></use>
-                </mask>
-                <g>
-                  <path
-                    style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                    d="M4 8 0 4l4-4"
-                    transform="translate(6.333 4)"
-                  ></path>
-                </g>
-              </g>
-            </svg>
+            <SvgIcon icon="down" />
           </div>
         </div>
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>Language</div>
@@ -275,33 +135,10 @@
               <option value="cs" class="px-1">Čeština</option>
               <option value="ko" class="px-1">한국어</option>
             </select>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              width="16"
-              height="16"
-              fill="none"
-              class="bottom-[0.44rem] h-4 left-[5.50rem] absolute right-[0.63rem] top-[1.44rem] align-middle w-4 truncate"
-            >
-              <defs>
-                <path id="down_svg__a" d="M0 0h16v16H0z"></path>
-              </defs>
-              <g>
-                <mask id="down_svg__b" fill="#fff">
-                  <use xlink:href="#down_svg__a"></use>
-                </mask>
-                <g>
-                  <path
-                    style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                    d="M4 8 0 4l4-4"
-                    transform="translate(6.333 4)"
-                  ></path>
-                </g>
-              </g>
-            </svg>
+            <SvgIcon icon="down" />
           </div>
         </div>
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>字体大小</div>
@@ -312,7 +149,7 @@
             14px<input value="14" type="range" class="h-5 text-center w-32" />
           </div>
         </div>
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>预览气泡</div>
@@ -329,7 +166,7 @@
             class="items-center bg-zinc-800 bg-no-repeat cursor-pointer flex h-4 justify-center text-center align-middle w-4 rounded border"
           />
         </div>
-        <div class="items-center flex justify-between py-3 px-5">
+        <div class="items-center flex justify-between py-3 px-5 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>面具启动页</div>
@@ -348,7 +185,7 @@
         </div>
       </div>
       <div class="mb-5 rounded-xl border">
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>API Key</div>
@@ -360,21 +197,7 @@
               class="items-center cursor-pointer flex h-9 justify-center mr-1 text-center w-9 p-3 rounded-xl truncate"
             >
               <div class="items-center flex justify-center">
-                <svg
-                  width="800"
-                  height="800"
-                  viewbox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-[50.00rem] align-middle w-4 truncate"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M19.707 5.707a1 1 0 0 0-1.414-1.414l-4.261 4.26a4 4 0 0 0-5.478 5.478l-4.261 4.262a1 1 0 1 0 1.414 1.414l4.261-4.26a4 4 0 0 0 5.478-5.478l4.261-4.262Zm-7.189 4.36a2 2 0 0 0-2.45 2.45l2.45-2.45Zm-1.036 3.865 2.45-2.45a2 2 0 0 1-2.45 2.45Zm4.283-9.111C14.63 4.32 13.367 4 12 4 9.148 4 6.757 5.395 4.998 6.906c-1.765 1.517-2.99 3.232-3.534 4.064a1.876 1.876 0 0 0 0 2.06 20.304 20.304 0 0 0 2.748 3.344l1.414-1.414A18.315 18.315 0 0 1 3.18 12c.51-.773 1.598-2.268 3.121-3.577C7.874 7.072 9.816 6 12 6a7.06 7.06 0 0 1 2.22.367l1.545-1.546ZM12 18a7.06 7.06 0 0 1-2.22-.367L8.236 19.18c1.136.5 2.398.821 3.765.821 2.852 0 5.243-1.395 7.002-2.906 1.765-1.517 2.99-3.232 3.534-4.064.411-.628.411-1.431 0-2.06a20.303 20.303 0 0 0-2.748-3.344L18.374 9.04A18.312 18.312 0 0 1 20.82 12c-.51.773-1.598 2.268-3.121 3.577C16.126 16.928 14.184 18 12 18Z"
-                    fill="#000"
-                  ></path>
-                </svg>
+                <SvgIcon icon="eye-off" class="w-4 h-4" />
               </div>
             </button>
             <input
@@ -385,7 +208,7 @@
             />
           </div>
         </div>
-        <div class="items-center flex justify-between py-3 px-5">
+        <div class="items-center flex justify-between py-3 px-5 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>余额查询</div>
@@ -394,47 +217,14 @@
           </div>
           <button class="items-center cursor-pointer flex h-10 justify-center text-center w-24 p-3 rounded-xl truncate">
             <div class="items-center flex justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                width="16"
-                height="16"
-                fill="none"
-                class="h-4 align-middle w-4 truncate"
-              >
-                <defs>
-                  <path id="reload_svg__a" d="M0 0h16v16H0z"></path>
-                </defs>
-                <g>
-                  <mask id="reload_svg__b" fill="#fff">
-                    <use xlink:href="#reload_svg__a"></use>
-                  </mask>
-                  <g>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(14 2.667)"
-                      d="M0 0v5.33"
-                    ></path>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(2 8)"
-                      d="M0 0v5.33"
-                    ></path>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(2 2)"
-                      d="M12.003 6a6.005 6.005 0 0 0-10.32-4.17M0 6a6.005 6.005 0 0 0 10.17 4.32"
-                    ></path>
-                  </g>
-                </g>
-              </svg>
+              <SvgIcon icon="reload" />
             </div>
             <div class="text-[0.75rem] ml-1 truncate">重新检查</div>
           </button>
         </div>
       </div>
       <div class="mb-5 rounded-xl border">
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>禁用提示词自动补全</div>
@@ -446,7 +236,7 @@
             class="items-center cursor-pointer flex h-4 justify-center text-center align-middle w-4 border-neutral-200 rounded border"
           />
         </div>
-        <div class="items-center flex justify-between py-3 px-5">
+        <div class="items-center flex justify-between py-3 px-5 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>自定义提示词列表</div>
@@ -455,57 +245,14 @@
           </div>
           <button class="items-center cursor-pointer flex h-10 justify-center text-center w-16 p-3 rounded-xl truncate">
             <div class="items-center flex justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                width="16"
-                height="16"
-                fill="none"
-                class="h-4 align-middle w-4 truncate"
-              >
-                <defs>
-                  <path id="edit_svg__a" d="M0 0h16v16H0z"></path>
-                </defs>
-                <g>
-                  <mask id="edit_svg__b" fill="#fff">
-                    <use xlink:href="#edit_svg__a"></use>
-                  </mask>
-                  <g>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(10.5 11)"
-                      d="M2.83 0v3c0 .37-.3.67-.66.67H0"
-                    ></path>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(2.667 1.333)"
-                      d="M10.67 4V.67c0-.37-.3-.67-.67-.67H.67C.3 0 0 .3 0 .67v12c0 .36.3.66.67.66h2"
-                    ></path>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(5.333 5.333)"
-                      d="M0 0h4.67"
-                    ></path>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(7.667 7.667)"
-                      d="m0 7 5.67-7"
-                    ></path>
-                    <path
-                      style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                      transform="translate(5.333 8)"
-                      d="M0 0h2.67"
-                    ></path>
-                  </g>
-                </g>
-              </svg>
+              <SvgIcon icon="edit" />
             </div>
             <div class="text-[0.75rem] ml-1 truncate">编辑</div>
           </button>
         </div>
       </div>
       <div class="mb-5 rounded-xl border">
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>模型 (model)</div>
@@ -531,33 +278,10 @@
               <option value="llama" class="text-zinc-500 px-1">llama</option>
               <option value="chatglm" class="text-zinc-500 px-1">chatglm</option>
             </select>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              width="16"
-              height="16"
-              fill="none"
-              class="bottom-[0.44rem] h-4 left-[17.88rem] absolute right-[0.63rem] top-[1.44rem] align-middle w-4 truncate"
-            >
-              <defs>
-                <path id="down_svg__a" d="M0 0h16v16H0z"></path>
-              </defs>
-              <g>
-                <mask id="down_svg__b" fill="#fff">
-                  <use xlink:href="#down_svg__a"></use>
-                </mask>
-                <g>
-                  <path
-                    style="stroke: rgb(51, 51, 51); stroke-width: 1.33333; stroke-opacity: 1; stroke-dasharray: 0, 0"
-                    d="M4 8 0 4l4-4"
-                    transform="translate(6.333 4)"
-                  ></path>
-                </g>
-              </g>
-            </svg>
+            <SvgIcon icon="down" />
           </div>
         </div>
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>随机性 (temperature)</div>
@@ -568,7 +292,7 @@
             0.5<input value="0.5" type="range" class="h-5 text-center w-32" />
           </div>
         </div>
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>单次回复限制 (max_tokens)</div>
@@ -581,18 +305,18 @@
             class="cursor-text h-9 px-3 text-center w-20 border-neutral-200 rounded-xl border"
           />
         </div>
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>话题新鲜度 (presence_penalty)</div>
               <div class="text-[0.75rem]">值越大，越有可能扩展到新话题</div>
             </div>
           </div>
-          <div class="flex text-[0.75rem] py-1 px-3 pr-3.5 border-neutral-200 rounded-xl border">
+          <div class="flex text-[0.75rem] py-1 px-3 pr-3.5 border-neutral-200 rounded-xl border-t">
             0.0<input value="0.0" type="range" class="h-5 text-center w-32" />
           </div>
         </div>
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>附带历史消息数</div>
@@ -603,7 +327,7 @@
             4<input value="4" type="range" class="h-5 text-center w-32" />
           </div>
         </div>
-        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border">
+        <div class="items-center flex justify-between py-3 px-5 border-gray-200 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>历史消息长度压缩阈值</div>
@@ -616,7 +340,7 @@
             class="cursor-text h-9 px-3 text-center w-20 border-neutral-200 rounded-xl border"
           />
         </div>
-        <div class="items-center flex justify-between py-3 px-5">
+        <div class="items-center flex justify-between py-3 px-5 border-t">
           <div class="items-center flex">
             <div class="text-[0.88rem] font-bold">
               <div>历史摘要</div>
@@ -637,3 +361,4 @@
     </div>
   </div>
 </template>
+<script setup lang="ts"></script>
