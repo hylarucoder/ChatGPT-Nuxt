@@ -3,38 +3,46 @@ import { ref } from "vue"
 import { ChatSession, Mask } from "~/composables/config/typing"
 import { StoreKey } from "~/constants"
 
+function makeDemoSession(s: number): ChatSession {
+  return {
+    id: s,
+    topic: "Welcome",
+    memoryPrompt: "Welcome to the chat room!",
+    messages: [
+      {
+        role: "system",
+        content: "Welcome to the chat room!",
+        date: "2021-06-13T15:00:00.000Z",
+        streaming: false,
+        isError: false,
+        id: s,
+      },
+      {
+        role: "system",
+        content: "我好!",
+        date: "2021-06-13T15:00:00.000Z",
+        streaming: false,
+        isError: false,
+        id: s,
+      },
+    ],
+    stat: {},
+    lastUpdate: 0,
+    lastSummarizeIndex: 0,
+    mask: {
+      id: s,
+      avatar: "https://cdn.jsdelivr.net/gh/elevenvac/elevenvac.github.io/assets/img/avatar.png",
+    },
+  }
+}
+
 export const useChatStore = defineStore(StoreKey.Chat, () => {
   const sessions = ref([
-    {
-      id: 0,
-      topic: "Welcome",
-      memoryPrompt: "Welcome to the chat room!",
-      messages: [
-        {
-          role: "system",
-          content: "Welcome to the chat room!",
-          date: "2021-06-13T15:00:00.000Z",
-          streaming: false,
-          isError: false,
-          id: 0,
-        },
-        {
-          role: "system",
-          content: "我好!",
-          date: "2021-06-13T15:00:00.000Z",
-          streaming: false,
-          isError: false,
-          id: 0,
-        },
-      ],
-      stat: {},
-      lastUpdate: 0,
-      lastSummarizeIndex: 0,
-      mask: {
-        id: 0,
-        avatar: "https://cdn.jsdelivr.net/gh/elevenvac/elevenvac.github.io/assets/img/avatar.png",
-      },
-    },
+    makeDemoSession(1),
+    makeDemoSession(2),
+    makeDemoSession(3),
+    makeDemoSession(4),
+    makeDemoSession(5),
   ])
   const currentSessionIndex = ref(0)
   const globalId = ref(0)
