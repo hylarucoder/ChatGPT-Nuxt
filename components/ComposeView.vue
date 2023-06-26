@@ -1,6 +1,6 @@
 <template>
   <div class="flex-col p-3 rounded-xl border relative">
-    <p>{{ a }}</p>
+    <MarkdownPreview :markdown="a" />
     <div class="flex flex-wrap">
       <div class="items-center cursor-pointer flex text-[0.75rem] mb-3 mr-1 py-1 px-3 rounded-2xl border">
         <SvgIcon icon="bottom" />
@@ -21,7 +21,7 @@
     <div class="flex flex-grow">
       <textarea class="relative cursor-text h-24 break-words pb-3 pl-3.5 pr-24 w-full rounded-xl border"></textarea>
       <button
-        class="absolute items-center bg-emerald-400 bottom-1 text-white cursor-pointer flex h-10 justify-center right-1 text-center top-[5.63rem] w-16 p-3 rounded-xl truncate"
+        class="absolute items-center bg-emerald-400 bottom-0 text-white cursor-pointer flex h-10 justify-center right-2 text-center px-4 py-2 rounded-xl truncate"
       >
         <div class="items-center flex justify-center">
           <SvgIcon icon="send-white" />
@@ -36,9 +36,26 @@ import { ref } from "vue"
 import { fetchStream } from "~/constants/api"
 
 let a = ref("-")
+const payload = {
+  messages: [
+    {
+      role: "system",
+      content: "Welcome to the chat room!",
+    },
+    {
+      role: "user",
+      content: "请帮我写一个500 字的文档描述, 要求，有代码，有引用，关于 vue 的描述",
+    },
+  ],
+  model: "gpt-3.5-turbo",
+  presence_penalty: 0,
+  stream: true,
+  temperature: 0.5,
+}
 
-const test = async () => {
-  fetchStream((receivedData) => {
+const test = async (e) => {
+  e.preventDefault()
+  fetchStream(payload, (receivedData: string) => {
     a.value = receivedData
     console.log("Received message:", receivedData)
   }).catch((error) => {

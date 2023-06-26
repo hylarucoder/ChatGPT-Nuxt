@@ -33,14 +33,6 @@
         </button>
       </div>
     </div>
-    <div class="bottom-[-3.13rem] flex justify-center left-[1.25rem] absolute right-[1.25rem] top-[5.88rem] z-[999]">
-      <div
-        class="items-center cursor-pointer flex text-[0.75rem] justify-center py-3 border-neutral-200 rounded-full border"
-      >
-        <SvgIcon icon="brain" />
-        <span class="ml-3">包含 0 条预设提示词</span>
-      </div>
-    </div>
   </div>
 </template>
 <script>

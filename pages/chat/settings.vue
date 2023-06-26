@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="p-5 overflow-scroll">
-      <div class="mb-5 rounded-xl border divide-y">
+      <div class="mb-5 rounded-xl border divide-y shadow-sm">
         <SettingItem title="UID">
           <div class="cursor-pointer"><p>#1</p></div>
         </SettingItem>
@@ -129,7 +129,7 @@
           />
         </SettingItem>
       </div>
-      <div class="mb-5 rounded-xl border divide-y">
+      <div class="mb-5 rounded-xl border divide-y shadow-sm">
         <SettingItem title="API Key" subtitle="使用自己的 Key 可绕过密码访问限制">
           <div class="flex justify-end">
             <button
@@ -157,7 +157,7 @@
           </button>
         </SettingItem>
       </div>
-      <div class="mb-5 rounded-xl border divide-y">
+      <div class="mb-5 rounded-xl border divide-y shadow-sm">
         <SettingItem title="禁用提示词自动补全" subtitle="在输入框开头输入 / 即可触发自动补全">
           <input
             type="checkbox"
@@ -174,7 +174,7 @@
           </button>
         </SettingItem>
       </div>
-      <div class="mb-5 rounded-xl border divide-y">
+      <div class="mb-5 rounded-xl border divide-y shadow-sm">
         <SettingItem title="模型 (model)">
           <div class="relative">
             <select

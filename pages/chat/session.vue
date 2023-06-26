@@ -1,3 +1,3 @@
 <template>
-  <div>chat</div>
+  <NuxtPage />
 </template>

@@ -1,9 +1,7 @@
 <template>
   <div class="items-center text-zinc-800 flex flex-col justify-center w-full">
-    <div class="flex justify-between p-3">
-      <button
-        class="items-center bg-white cursor-pointer flex h-10 justify-center text-center w-16 p-3 rounded-xl truncate"
-      >
+    <div class="flex justify-between p-3 w-full">
+      <button class="items-center bg-white cursor-pointer flex h-10 justify-center text-center p-3 rounded-xl truncate">
         <div class="items-center flex justify-center">
           <SvgIcon icon="return" class="w-4 h-4" />
         </div>
@@ -50,804 +48,150 @@
         <div class="ml-1 truncate text-white">直接开始</div>
       </button>
     </div>
-    <div class="items-center flex-grow pt-5">
-      <div class="flex mb-3">
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">后勤工作</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div>
-            <SvgIcon icon="chatgpt" class="w-8 h-8" />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">新的聊天</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f5bc-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">以文搜图</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f638.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">文案写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f978.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">机器学习</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">后勤工作</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f469-200d-1f4bc.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">职业顾问</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f638.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">文案写手</div>
-        </div>
+    <div class="items-center flex-grow pt-5 overflow-hidden">
+      <div class="flex mb-3 overflow-y-auto">
+        <MaskCard
+          v-for="mask in maskCards"
+          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
+          :text="mask.title"
+        />
       </div>
       <div class="flex mb-3 ml-12">
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">后勤工作</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f9d1-200d-1f3eb.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">英专写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4da.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">语言检测器</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4d5.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">小红书写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4d1.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">简历写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f469-200d-2695-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">心理医生</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4b8.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">创业点子王</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f47e.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">GitHub Copilot</div>
-        </div>
+        <MaskCard
+          v-for="mask in maskCards"
+          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
+          :text="mask.title"
+        />
       </div>
       <div class="flex mb-3">
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f9d1-200d-1f3eb.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">英专写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/270d-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">互联网写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f63e.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">心灵导师</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f47e.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">GitHub Copilot</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f916.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">Prompt Improvement</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/2328-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">CAN</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f60e.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">Expert</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f469-200d-2695-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">心理医生</div>
-        </div>
+        <MaskCard
+          v-for="mask in maskCards"
+          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
+          :text="mask.title"
+        />
       </div>
       <div class="flex mb-3 ml-12">
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f63e.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">心灵导师</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div>
-            <SvgIcon icon="chatgpt" class="w-8 h-8" />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">新的聊天</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f5bc-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">以文搜图</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f638.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">文案写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f978.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">机器学习</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">后勤工作</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f469-200d-1f4bc.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">职业顾问</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div>
-            <SvgIcon icon="chatgpt" class="w-8 h-8" />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">新的聊天</div>
-        </div>
+        <MaskCard
+          v-for="mask in maskCards"
+          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
+          :text="mask.title"
+        />
       </div>
       <div class="flex mb-3">
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f9d1-200d-1f3eb.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">英专写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f9d1-200d-1f3eb.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">英专写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4da.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">语言检测器</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4d5.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">小红书写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4d1.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">简历写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f469-200d-2695-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">心理医生</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4b8.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">创业点子王</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f916.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">Prompt Improvement</div>
-        </div>
+        <MaskCard
+          v-for="mask in maskCards"
+          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
+          :text="mask.title"
+        />
       </div>
-      <div class="flex mb-3 ml-12">
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4da.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">语言检测器</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/270d-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">互联网写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f63e.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">心灵导师</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f47e.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">GitHub Copilot</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f916.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">Prompt Improvement</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/2328-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">CAN</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f60e.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">Expert</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f469-200d-1f4bc.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">职业顾问</div>
-        </div>
+      <div class="flex mb-3 ml-6">
+        <MaskCard
+          v-for="mask in maskCards"
+          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
+          :text="mask.title"
+        />
+      </div>
+      <div class="flex mb-3 ml-3">
+        <MaskCard
+          v-for="mask in maskCards"
+          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
+          :text="mask.title"
+        />
       </div>
       <div class="flex mb-3">
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f978.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">机器学习</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div>
-            <SvgIcon icon="chatgpt" class="w-8 h-8" />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">新的聊天</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f5bc-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">以文搜图</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f638.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">文案写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f978.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">机器学习</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">后勤工作</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f469-200d-1f4bc.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">职业顾问</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4b8.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">创业点子王</div>
-        </div>
+        <MaskCard
+          v-for="mask in maskCards"
+          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
+          :text="mask.title"
+        />
       </div>
-      <div class="flex mb-3 ml-12">
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/2328-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">CAN</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f9d1-200d-1f3eb.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">英专写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4da.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">语言检测器</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4d5.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">小红书写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4d1.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">简历写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f469-200d-2695-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">心理医生</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4b8.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">创业点子王</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f638.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">文案写手</div>
-        </div>
+      <div class="flex mb-3 ml--4">
+        <MaskCard
+          v-for="mask in maskCards"
+          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
+          :text="mask.title"
+        />
       </div>
-      <div class="flex mb-3">
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f9d1-200d-1f3eb.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">英专写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/270d-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">互联网写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f63e.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">心灵导师</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f47e.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">GitHub Copilot</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f916.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">Prompt Improvement</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/2328-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">CAN</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f60e.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">Expert</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f47e.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">GitHub Copilot</div>
-        </div>
+      <div class="flex mb-3 ml-2">
+        <MaskCard
+          v-for="mask in maskCards"
+          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
+          :text="mask.title"
+        />
       </div>
-      <div class="flex mb-3 ml-12">
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f638.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">文案写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div>
-            <SvgIcon icon="chatgpt" class="w-8 h-8" />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">新的聊天</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f5bc-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">以文搜图</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f638.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">文案写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f978.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">机器学习</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">后勤工作</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f469-200d-1f4bc.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">职业顾问</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f63e.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">心灵导师</div>
-        </div>
-      </div>
-      <div class="flex mb-3">
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/2328-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">CAN</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f9d1-200d-1f3eb.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">英专写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4da.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">语言检测器</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4d5.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">小红书写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4d1.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">简历写手</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f469-200d-2695-fe0f.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">心理医生</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div class="items-center flex justify-center rounded-xl border">
-            <img
-              src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f4b8.png"
-              class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-            />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">创业点子王</div>
-        </div>
-        <div class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border">
-          <div>
-            <SvgIcon icon="chatgpt" class="w-8 h-8" />
-          </div>
-          <div class="text-[0.88rem] ml-3 truncate">新的聊天</div>
-        </div>
+      <div class="flex mb-3 ml-4">
+        <MaskCard
+          v-for="mask in maskCards"
+          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
+          :text="mask.title"
+        />
       </div>
     </div>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import MaskCard from "~/pages/chat/MaskCard.vue"
+
+const maskCards = [
+  {
+    title: "职业顾问",
+    icon: "job",
+    description: "职业顾问",
+    color: "bg-blue-500",
+  },
+  {
+    title: "心灵导师",
+    icon: "heart",
+    description: "心灵导师",
+    color: "bg-pink-500",
+  },
+  {
+    title: "CAN",
+    icon: "can",
+    description: "CAN",
+    color: "bg-yellow-500",
+  },
+  {
+    title: "英专写手",
+    icon: "english",
+    description: "英专写手",
+    color: "bg-green-500",
+  },
+  {
+    title: "语言检测器",
+    icon: "language",
+    description: "语言检测器",
+    color: "bg-purple-500",
+  },
+  {
+    title: "小红书写手",
+    icon: "xiaohongshu",
+    description: "小红书写手",
+    color: "bg-red-500",
+  },
+  {
+    title: "简历写手",
+    icon: "resume",
+    description: "简历写手",
+    color: "bg-blue-500",
+  },
+  {
+    title: "心理医生",
+    icon: "doctor",
+    description: "心理医生",
+    color: "bg-pink-500",
+  },
+  {
+    title: "创业点子王",
+    icon: "idea",
+    description: "创业点子王",
+    color: "bg-yellow-500",
+  },
+  {
+    title: "新的聊天",
+    icon: "chatgpt",
+    description: "新的聊天",
+    color: "bg-green-500",
+  },
+]
+</script>

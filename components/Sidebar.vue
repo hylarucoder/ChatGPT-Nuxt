@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-cyan-50 flex flex-col p-5 max-w-[300px]">
+  <div class="bg-cyan-50 flex flex-col p-5 max-w-[300px] shadow">
     <div class="py-5 relative">
       <div class="text-[1.25rem] font-bold">Best Prompts Hub</div>
       <div class="text-[0.75rem]">Build your own AI assistant.</div>
@@ -36,19 +36,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue"
 import ChatList from "~/components/ChatList.vue"
 import IconButton from "~/components/IconButton.vue"
-import { fetchStream } from "~/constants/api"
-
-let a = ref("-")
-
-const test = async () => {
-  fetchStream((receivedData) => {
-    a.value = receivedData
-    console.log("Received message:", receivedData)
-  }).catch((error) => {
-    console.error("Error occurred:", error)
-  })
-}
 </script>
