@@ -1,6 +1,6 @@
 <template>
   <div class="flex-col p-3 rounded-xl border relative">
-    <p>{{ a }}</p>
+    <MarkdownPreview :markdown="a" />
     <div class="flex flex-wrap">
       <div class="items-center cursor-pointer flex text-[0.75rem] mb-3 mr-1 py-1 px-3 rounded-2xl border">
         <SvgIcon icon="bottom" />
@@ -36,9 +36,26 @@ import { ref } from "vue"
 import { fetchStream } from "~/constants/api"
 
 let a = ref("-")
+const payload = {
+  messages: [
+    {
+      role: "system",
+      content: "Welcome to the chat room!",
+    },
+    {
+      role: "user",
+      content: "请帮我写一个500 字的文档描述, 要求，有代码，有引用，关于 vue 的描述",
+    },
+  ],
+  model: "gpt-3.5-turbo",
+  presence_penalty: 0,
+  stream: true,
+  temperature: 0.5,
+}
 
-const test = async () => {
-  fetchStream((receivedData) => {
+const test = async (e) => {
+  e.preventDefault()
+  fetchStream(payload, (receivedData: string) => {
     a.value = receivedData
     console.log("Received message:", receivedData)
   }).catch((error) => {

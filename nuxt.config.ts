@@ -1,8 +1,10 @@
 import { appDescription } from "./constants"
 import { pwa } from "./config/pwa"
 import svgLoader from "vite-svg-loader"
+import { defineNuxtConfig } from "nuxt/config"
 
 export default defineNuxtConfig({
+  // @ts-ignore
   routeRules: {
     "/": { redirect: "/chat" },
   },
@@ -19,10 +21,12 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // API_BASE_URL: process.env.API_BASE_URL,
     public: {
+      // @ts-ignore
+      // eslint-disable-next-line no-undef
       API_BASE_URL: process.env.NUXT_API_BASE_URL || "/api",
     },
   },
-  modules: ["nuxt-icon", "@vueuse/nuxt", "@pinia/nuxt", "@nuxtjs/color-mode", "@vite-pwa/nuxt"],
+  modules: ["nuxt-icon", "@vueuse/nuxt", "@pinia/nuxt", "@nuxtjs/color-mode", "@vite-pwa/nuxt", "@nuxt/content"],
 
   experimental: {
     // when using generate, payload js assets included in sw precache manifest

@@ -36,19 +36,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue"
 import ChatList from "~/components/ChatList.vue"
 import IconButton from "~/components/IconButton.vue"
-import { fetchStream } from "~/constants/api"
-
-let a = ref("-")
-
-const test = async () => {
-  fetchStream((receivedData) => {
-    a.value = receivedData
-    console.log("Received message:", receivedData)
-  }).catch((error) => {
-    console.error("Error occurred:", error)
-  })
-}
 </script>
