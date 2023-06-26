@@ -4,7 +4,8 @@ import Sidebar from "@/components/Sidebar.vue"
 
 <template>
   <div class="bg-white h-full text-zinc-800 flex border-neutral-200 rounded-2xl border truncate">
-    <Sidebar />
+      <Sidebar />
+    <div></div>
     <NuxtPage />
   </div>
 </template>
