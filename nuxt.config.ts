@@ -77,6 +77,7 @@ export default defineNuxtConfig({
           href: "https://rsms.me/inter/inter.css",
         },
       ],
+      script: [],
       meta: [
         {
           name: "viewport",

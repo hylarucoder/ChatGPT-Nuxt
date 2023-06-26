@@ -12,7 +12,7 @@ npm i @uivjs/vue-markdown-preview
 # t
 
 ## Project setup
-\`\`\`
+\`\`\`bash
 yarn install
 \`\`\`
 
@@ -27,8 +27,25 @@ yarn build
 \`\`\`
 
 ### Lints and fixes files
-\`\`\`
+\`\`\`bash
 yarn lint
+\`\`\`
+
+## CSS
+
+\`\`\`css
+.markdown-body .task-list-item .handle {
+  display: none;
+}
+
+.markdown-body .task-list-item-checkbox {
+  margin: 0 0.2em 0.25em -1.4em;
+  vertical-align: middle;
+}
+
+.markdown-body .contains-task-list:dir(rtl) .task-list-item-checkbox {
+  margin: 0 -1.6em 0.25em 0.2em;
+}
 \`\`\`
 
 ### Customize configuration
