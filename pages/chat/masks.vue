@@ -1,9 +1,7 @@
 <template>
   <div class="items-center text-zinc-800 flex flex-col justify-center w-full">
-    <div class="flex justify-between p-3">
-      <button
-        class="items-center bg-white cursor-pointer flex h-10 justify-center text-center w-16 p-3 rounded-xl truncate"
-      >
+    <div class="flex justify-between p-3 w-full">
+      <button class="items-center bg-white cursor-pointer flex h-10 justify-center text-center p-3 rounded-xl truncate">
         <div class="items-center flex justify-center">
           <SvgIcon icon="return" class="w-4 h-4" />
         </div>
