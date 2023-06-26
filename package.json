@@ -2,7 +2,7 @@
   "private": true,
   "packageManager": "pnpm@8.6.2",
   "scripts": {
-    "prepare": "lint-staged",
+    "prepare": "husky install",
     "build": "nuxi build",
     "dev": "nuxi dev",
     "dev:pwa": "VITE_PLUGIN_PWA=true nuxi dev",
