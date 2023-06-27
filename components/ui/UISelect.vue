@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, defineEmits, reactive, watch, onMounted } from "vue"
+import { defineProps, defineEmits, reactive, watch } from "vue"
 
 export interface UISelectOption {
   label: string
@@ -33,12 +33,8 @@ const props = defineProps({
 })
 
 const inputRef = reactive({
-  val: "",
+  val: props.modelValue,
   errors: [],
-})
-
-onMounted(() => {
-  inputRef.val = props.modelValue
 })
 
 const emit = defineEmits(["update:modelValue"])

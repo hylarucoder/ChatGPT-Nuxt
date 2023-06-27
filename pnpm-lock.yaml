@@ -73,6 +73,9 @@ devDependencies:
   '@nuxtjs/color-mode':
     specifier: ^3.3.0
     version: registry.npmmirror.com/@nuxtjs/color-mode@3.3.0(rollup@2.79.1)
+  '@pinia-plugin-persistedstate/nuxt':
+    specifier: ^1.1.1
+    version: registry.npmmirror.com/@pinia-plugin-persistedstate/nuxt@1.1.1(@pinia/nuxt@0.4.11)(pinia@2.1.4)(rollup@2.79.1)
   '@pinia/nuxt':
     specifier: ^0.4.11
     version: 0.4.11(rollup@2.79.1)(typescript@5.0.4)(vue@3.3.4)
@@ -4658,6 +4661,24 @@ packages:
       - ts-node
       - webpack
     dev: false
+
+  registry.npmmirror.com/@pinia-plugin-persistedstate/nuxt@1.1.1(@pinia/nuxt@0.4.11)(pinia@2.1.4)(rollup@2.79.1):
+    resolution: {integrity: sha512-b6ZNP3Re8COmfZEpj4KQmbp2TuDKrLggDFLZa8FiJF68xE/oCsPXIuXUvAt8E4ht/5sq4Z/grlA+iGXaI2aeKQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@pinia-plugin-persistedstate/nuxt/-/nuxt-1.1.1.tgz}
+    id: registry.npmmirror.com/@pinia-plugin-persistedstate/nuxt/1.1.1
+    name: '@pinia-plugin-persistedstate/nuxt'
+    version: 1.1.1
+    peerDependencies:
+      '@pinia/nuxt': ^0.4.4
+    dependencies:
+      '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.6.0(rollup@2.79.1)
+      '@pinia/nuxt': 0.4.11(rollup@2.79.1)(typescript@5.0.4)(vue@3.3.4)
+      defu: registry.npmmirror.com/defu@6.1.2
+      pinia-plugin-persistedstate: registry.npmmirror.com/pinia-plugin-persistedstate@3.1.0(pinia@2.1.4)
+    transitivePeerDependencies:
+      - pinia
+      - rollup
+      - supports-color
+    dev: true
 
   registry.npmmirror.com/@pkgjs/parseargs@0.11.0:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz}
@@ -12764,6 +12785,17 @@ packages:
     name: pify
     version: 3.0.0
     engines: {node: '>=4'}
+    dev: true
+
+  registry.npmmirror.com/pinia-plugin-persistedstate@3.1.0(pinia@2.1.4):
+    resolution: {integrity: sha512-8UN+vYMEPBdgNLwceY08mi5olI0wkYaEb8b6hD6xW7SnBRuPydWHlEhZvUWgNb/ibuf4PvufpvtS+dmhYjJQOw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pinia-plugin-persistedstate/-/pinia-plugin-persistedstate-3.1.0.tgz}
+    id: registry.npmmirror.com/pinia-plugin-persistedstate/3.1.0
+    name: pinia-plugin-persistedstate
+    version: 3.1.0
+    peerDependencies:
+      pinia: ^2.0.0
+    dependencies:
+      pinia: registry.npmmirror.com/pinia@2.1.4(typescript@5.0.4)(vue@3.3.4)
     dev: true
 
   registry.npmmirror.com/pinia@2.1.4(typescript@5.0.4)(vue@3.3.4):

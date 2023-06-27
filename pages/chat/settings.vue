@@ -1,4 +1,5 @@
 <template>
+  <!-- Client Only 可以确保 useLocal -->
   <div class="flex flex-col w-full">
     <div class="items-center flex justify-between p-3.5 border-gray-200 border-y">
       <div class="truncate">

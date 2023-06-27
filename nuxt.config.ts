@@ -22,7 +22,15 @@ export default defineNuxtConfig({
       API_BASE_URL: process.env.NUXT_API_BASE_URL || "/api",
     },
   },
-  modules: ["nuxt-icon", "@vueuse/nuxt", "@pinia/nuxt", "@nuxtjs/color-mode", "@vite-pwa/nuxt", "@nuxt/content"],
+  modules: [
+    "nuxt-icon",
+    "@vueuse/nuxt",
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
+    "@nuxtjs/color-mode",
+    "@vite-pwa/nuxt",
+    "@nuxt/content",
+  ],
 
   experimental: {
     // when using generate, payload js assets included in sw precache manifest

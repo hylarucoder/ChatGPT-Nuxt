@@ -1,6 +1,5 @@
 import { defineStore } from "pinia"
-import { reactive, watch } from "vue"
-import { useStorage } from "@vueuse/core"
+import { reactive } from "vue"
 
 export interface TSelectOption {
   label: string
@@ -155,42 +154,41 @@ const modelOptions: TSelectOption[] = [
 ]
 
 const STORE_NAME = "settings"
-export const useSettingStore = defineStore(STORE_NAME, () => {
-  const settings = reactive(
-    useStorage(STORE_NAME, {
-      avatar: "https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f603.png",
-      sendKey: "Enter",
-      theme: "Auto",
-      language: "en",
-      fontSize: 14,
-      previewBubble: false,
-      maskLaunchPage: false,
-      model: "gpt-4",
-      apiKey: "",
-      maxTokens: 2000,
-      temperature: 0.5,
-      presencePenalty: 0.0,
-      historyMessagesCount: 4,
-      historyMessagesThreshold: 1000,
-      historySummary: false,
-      disableAutoCompletePrompt: false,
+
+const defaultSettings = {
+  avatar: "https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f603.png",
+  sendKey: "Enter",
+  theme: "Auto",
+  language: "en",
+  fontSize: 14,
+  previewBubble: false,
+  maskLaunchPage: false,
+  model: "gpt-4",
+  apiKey: "",
+  maxTokens: 2000,
+  temperature: 0.5,
+  presencePenalty: 0.0,
+  historyMessagesCount: 4,
+  historyMessagesThreshold: 1000,
+  historySummary: false,
+  disableAutoCompletePrompt: false,
+}
+export const useSettingStore = defineStore(
+  STORE_NAME,
+  () => {
+    const settings = reactive(defaultSettings)
+    const settingOptions = reactive({
+      sendKey: sendKeyOptions,
+      theme: themeOptions,
+      language: languageOptions,
+      model: modelOptions,
     })
-  )
-  const settingOptions = reactive({
-    sendKey: sendKeyOptions,
-    theme: themeOptions,
-    language: languageOptions,
-    model: modelOptions,
-  })
-
-  watch(settings, (newValue, oldValue) => {
-    console.log("settings changed new", newValue)
-    console.log("settings changed old", oldValue)
-    localStorage.setItem(STORE_NAME, JSON.stringify(newValue))
-  })
-
-  return {
-    settings,
-    settingOptions,
+    return {
+      settings,
+      settingOptions,
+    }
+  },
+  {
+    persist: true,
   }
-})
+)
