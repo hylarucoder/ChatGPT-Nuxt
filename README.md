@@ -22,4 +22,4 @@ One-Click to get well-designed cross-platform ChatGPT web UI.
 
 - https://github.com/Yidadaa/ChatGPT-Next-Web
 - https://github.com/antfu/vitesse-nuxt3
-- https://github.com/wangpin34/rehype-vue
+- nuxt/content

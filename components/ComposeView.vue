@@ -1,6 +1,6 @@
 <template>
   <div class="flex-col p-3 rounded-xl border relative">
-    <MarkdownPreview :markdown="a" />
+    <MarkdownPreview :md="a" />
     <div class="flex flex-wrap">
       <div class="items-center cursor-pointer flex text-[0.75rem] mb-3 mr-1 py-1 px-3 rounded-2xl border">
         <SvgIcon icon="bottom" />

@@ -30,7 +30,7 @@
             class="bg-gray-100 text-[0.88rem] mt-3 p-3 border-neutral-200 rounded-xl border"
           >
             <div class="text-zinc-800 break-words">
-              <MarkdownPreview :markdown="message.content" />
+              <MarkdownPreview :md="message.content" />
             </div>
           </div>
         </div>
@@ -51,7 +51,7 @@
             class="bg-cyan-50 text-[0.88rem] mt-3 p-3 border-neutral-200 rounded-xl border"
           >
             <div class="text-zinc-800 break-words">
-              <MarkdownPreview :markdown="message.content" />
+              <MarkdownPreview :md="message.content" />
             </div>
           </div>
         </div>
@@ -66,7 +66,6 @@ import ChatDetailHeader from "~/components/ChatDetailHeader.vue"
 // import ChatMessageReceiver from "~/components/ChatMessageReceiver.vue"
 // import ChatMessageSend from "~/components/ChatMessageSend.vue"
 import ComposeView from "~/components/ComposeView.vue"
-import MarkdownPreview from "~/components/MarkdownPreview"
 import { useChatStore } from "~/composables/chat"
 
 const chatStore = useChatStore()
