@@ -1,15 +1,12 @@
 <template>
-  <ContentRenderer :value="parsedMarkdown" />
+  <ContentRenderer class="markdown-body" :value="parsedMarkdown" />
 </template>
 
 <script>
-import { defineComponent } from "vue"
-
+import { defineComponent, ref, watchEffect } from "vue"
 import markdownParser from "@nuxt/content/transformers/markdown"
 
 export default defineComponent({
-  components: {},
-
   // define props
   props: {
     md: {
@@ -23,9 +20,20 @@ export default defineComponent({
   },
 
   // init
-  async setup(props) {
+  setup(props) {
+    const parsedMarkdown = ref("")
+
+    watchEffect(async () => {
+      try {
+        parsedMarkdown.value = await markdownParser.parse(props.cid, props.md)
+      } catch (err) {
+        console.error(err)
+        parsedMarkdown.value = ""
+      }
+    })
+
     return {
-      parsedMarkdown: await markdownParser.parse(props.cid, props.md),
+      parsedMarkdown,
     }
   },
 })
