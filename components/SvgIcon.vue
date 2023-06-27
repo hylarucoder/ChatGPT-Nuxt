@@ -3,7 +3,7 @@
   <component :is="currentComponent" />
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue"
+import { defineComponent } from "vue"
 import iconAdd from "@/icons/add.svg?component"
 import iconAuto from "@/icons/auto.svg?component"
 import iconBlackBot from "@/icons/black-bot.svg?component"
@@ -100,23 +100,9 @@ export default defineComponent({
     },
   },
   setup(props) {
-    // Reactive state
-    const count = ref(0)
     const currentComponent = icons[props.icon]
 
-    // Functions that mutate state and trigger updates
-    function increment() {
-      count.value++
-    }
-
-    // Lifecycle hooks
-    onMounted(() => {
-      console.log(`The initial count is ${count.value}.`)
-    })
-
     return {
-      count,
-      increment,
       currentComponent,
     }
   },
