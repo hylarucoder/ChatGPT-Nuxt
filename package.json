@@ -50,7 +50,6 @@
     "@types/unist": "^2.0.6",
     "ai": "^2.1.8",
     "autoprefixer": "^10.4.14",
-    "markdown-it-vue": "^1.1.7",
     "postcss": "^8.4.24",
     "style-to-object": "^0.4.1",
     "tailwindcss": "^3.3.2",
