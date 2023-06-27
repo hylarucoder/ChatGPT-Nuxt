@@ -14,6 +14,9 @@ dependencies:
   '@nuxtjs/tailwindcss':
     specifier: ^6.8.0
     version: registry.npmmirror.com/@nuxtjs/tailwindcss@6.8.0(rollup@2.79.1)(webpack@5.83.1)
+  '@tailwindcss/forms':
+    specifier: ^0.5.3
+    version: registry.npmmirror.com/@tailwindcss/forms@0.5.3(tailwindcss@3.3.2)
   '@trpc/client':
     specifier: ^10.32.0
     version: registry.npmmirror.com/@trpc/client@10.32.0(@trpc/server@10.32.0)
@@ -5004,6 +5007,18 @@ packages:
       magic-string: registry.npmmirror.com/magic-string@0.25.9
       string.prototype.matchall: registry.npmmirror.com/string.prototype.matchall@4.0.8
     dev: true
+
+  registry.npmmirror.com/@tailwindcss/forms@0.5.3(tailwindcss@3.3.2):
+    resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@tailwindcss/forms/-/forms-0.5.3.tgz}
+    id: registry.npmmirror.com/@tailwindcss/forms/0.5.3
+    name: '@tailwindcss/forms'
+    version: 0.5.3
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: registry.npmmirror.com/mini-svg-data-uri@1.4.4
+      tailwindcss: registry.npmmirror.com/tailwindcss@3.3.2
+    dev: false
 
   registry.npmmirror.com/@tootallnate/once@2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@tootallnate/once/-/once-2.0.0.tgz}
@@ -11561,6 +11576,13 @@ packages:
     version: 4.0.0
     engines: {node: '>=12'}
     dev: true
+
+  registry.npmmirror.com/mini-svg-data-uri@1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz}
+    name: mini-svg-data-uri
+    version: 1.4.4
+    hasBin: true
+    dev: false
 
   registry.npmmirror.com/minimatch@3.0.8:
     resolution: {integrity: sha512-6FsRAQsxQ61mw+qP1ZzbL9Bc78x2p5OqNgNpnoAFLTrX8n5Kxph0CsnhmKKNXTWjXqU5L0pGPR7hYk+XWZr60Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/minimatch/-/minimatch-3.0.8.tgz}

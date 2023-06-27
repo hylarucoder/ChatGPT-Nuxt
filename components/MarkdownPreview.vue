@@ -15,7 +15,7 @@ export default defineComponent({
     },
     cid: {
       type: String,
-      default: "<some-id>",
+      default: "TODO-uid",
     },
   },
 

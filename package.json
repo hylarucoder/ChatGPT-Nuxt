@@ -45,6 +45,7 @@
     "@fortaine/fetch-event-source": "^3.0.6",
     "@nuxtjs/google-fonts": "^3.0.1",
     "@nuxtjs/tailwindcss": "^6.8.0",
+    "@tailwindcss/forms": "^0.5.3",
     "@trpc/client": "^10.32.0",
     "@trpc/server": "^10.32.0",
     "@types/unist": "^2.0.6",
@@ -59,7 +60,7 @@
     "zod": "^3.21.4"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx,cjs,mjs,vue}": "eslint --fix",
-    "*.{ts,tsx,js,jsx,cjs,mjs,css,scss,less,md,vue}": "prettier --write"
+    "*.{ts,tsx,js,jsx,mjs,vue}": "eslint --fix",
+    "*.{ts,tsx,js,jsx,mjs,css,scss,less,md,vue}": "prettier --write"
   }
 }

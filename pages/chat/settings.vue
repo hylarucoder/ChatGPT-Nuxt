@@ -37,10 +37,6 @@
     </div>
     <div class="p-5 overflow-scroll">
       <div class="mb-5 rounded-xl border divide-y shadow-sm">
-        <SettingItem title="UID">
-          <div class="cursor-pointer"><p>#1</p></div>
-        </SettingItem>
-
         <SettingItem title="头像">
           <div class="z-[2]">
             <div class="cursor-pointer">
@@ -63,17 +59,15 @@
         </SettingItem>
 
         <SettingItem title="发送键">
-          <div class="relative">
-            <select
-              class="items-center cursor-pointer inline-block h-8 pl-3 pr-6 text-center w-28 border-neutral-200 rounded-xl border"
-            >
-              <option value="Enter" class="px-1">Enter</option>
-              <option value="Ctrl + Enter" class="px-1">Ctrl + Enter</option>
-              <option value="Shift + Enter" class="px-1">Shift + Enter</option>
-              <option value="Alt + Enter" class="px-1">Alt + Enter</option>
-              <option value="Meta + Enter" class="px-1">Meta + Enter</option>
-            </select>
-          </div>
+          <select
+            class="items-center cursor-pointer inline-block h-8 pl-3 pr-6 text-center w-28 border-neutral-200 rounded-xl border"
+          >
+            <option value="Enter" class="px-1">Enter</option>
+            <option value="Ctrl + Enter" class="px-1">Ctrl + Enter</option>
+            <option value="Shift + Enter" class="px-1">Shift + Enter</option>
+            <option value="Alt + Enter" class="px-1">Alt + Enter</option>
+            <option value="Meta + Enter" class="px-1">Meta + Enter</option>
+          </select>
         </SettingItem>
 
         <SettingItem title="主题">
