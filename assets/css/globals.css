@@ -34,3 +34,19 @@ html {
   font-feature-settings: normal;
   font-variation-settings: normal;
 }
+
+pre .copy-code-button {
+  right: 10px;
+  top: 15px;
+  cursor: pointer;
+  padding: 0 5px;
+  text-align: right;
+  background-color: var(--black);
+  color: var(--white);
+  border: var(--border-in-light);
+  border-radius: 10px;
+  transform: translateX(10px);
+  pointer-events: none;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}

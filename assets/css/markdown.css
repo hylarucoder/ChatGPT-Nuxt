@@ -206,28 +206,14 @@
   word-wrap: break-word;
 }
 
-.light {
-  @include light;
-}
-
-.dark {
-  @include dark;
-}
-
-:root {
-  @include light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    @include dark;
-  }
-}
-
 .markdown-body .octicon {
   display: inline-block;
   fill: currentColor;
   vertical-align: text-bottom;
+}
+
+.markdown-body pre {
+  position: relative;
 }
 
 .markdown-body h1:hover .anchor .octicon-link:before,
