@@ -1,7 +1,10 @@
 <template>
   <div class="items-center text-zinc-800 flex flex-col justify-center w-full">
     <div class="flex justify-between p-3 w-full">
-      <button class="items-center bg-white cursor-pointer flex h-10 justify-center text-center p-3 rounded-xl truncate">
+      <button
+        @click="router.back()"
+        class="items-center bg-white cursor-pointer flex h-10 justify-center text-center p-3 rounded-xl truncate"
+      >
         <div class="items-center flex justify-center">
           <SvgIcon icon="return" class="w-4 h-4" />
         </div>
@@ -131,6 +134,9 @@
 </template>
 <script setup lang="ts">
 import MaskCard from "~/pages/chat/MaskCard.vue"
+
+// eslint-disable-next-line no-undef
+const router = useRouter()
 
 const maskCards = [
   {

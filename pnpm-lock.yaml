@@ -14,6 +14,9 @@ dependencies:
   '@nuxtjs/tailwindcss':
     specifier: ^6.8.0
     version: registry.npmmirror.com/@nuxtjs/tailwindcss@6.8.0(rollup@2.79.1)(webpack@5.83.1)
+  '@tailwindcss/forms':
+    specifier: ^0.5.3
+    version: registry.npmmirror.com/@tailwindcss/forms@0.5.3(tailwindcss@3.3.2)
   '@trpc/client':
     specifier: ^10.32.0
     version: registry.npmmirror.com/@trpc/client@10.32.0(@trpc/server@10.32.0)
@@ -70,6 +73,9 @@ devDependencies:
   '@nuxtjs/color-mode':
     specifier: ^3.3.0
     version: registry.npmmirror.com/@nuxtjs/color-mode@3.3.0(rollup@2.79.1)
+  '@pinia-plugin-persistedstate/nuxt':
+    specifier: ^1.1.1
+    version: registry.npmmirror.com/@pinia-plugin-persistedstate/nuxt@1.1.1(@pinia/nuxt@0.4.11)(pinia@2.1.4)(rollup@2.79.1)
   '@pinia/nuxt':
     specifier: ^0.4.11
     version: 0.4.11(rollup@2.79.1)(typescript@5.0.4)(vue@3.3.4)
@@ -97,6 +103,9 @@ devDependencies:
   eslint:
     specifier: ^8.43.0
     version: registry.npmmirror.com/eslint@8.43.0
+  eslint-plugin-nuxt:
+    specifier: ^4.0.0
+    version: registry.npmmirror.com/eslint-plugin-nuxt@4.0.0(eslint@8.43.0)
   hast-to-hyperscript:
     specifier: 10.0.1
     version: registry.npmmirror.com/hast-to-hyperscript@10.0.1
@@ -432,7 +441,7 @@ packages:
       debug: registry.npmmirror.com/debug@4.3.4
       globby: 11.1.0
       is-glob: registry.npmmirror.com/is-glob@4.0.3
-      semver: 7.5.1
+      semver: registry.npmmirror.com/semver@7.5.3
       tsutils: 3.21.0(typescript@5.0.4)
       typescript: registry.npmmirror.com/typescript@5.0.4
     transitivePeerDependencies:
@@ -453,7 +462,7 @@ packages:
       '@typescript-eslint/typescript-estree': 5.59.11(typescript@5.0.4)
       eslint: registry.npmmirror.com/eslint@8.43.0
       eslint-scope: 5.1.1
-      semver: 7.5.1
+      semver: registry.npmmirror.com/semver@7.5.3
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -464,7 +473,7 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       '@typescript-eslint/types': 5.59.11
-      eslint-visitor-keys: 3.4.1
+      eslint-visitor-keys: registry.npmmirror.com/eslint-visitor-keys@3.4.1
     dev: true
 
   /@vite-pwa/nuxt@0.1.0(@nuxt/kit@3.6.0)(vite-plugin-pwa@0.16.4):
@@ -562,7 +571,7 @@ packages:
   /builtins@5.0.1:
     resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
     dependencies:
-      semver: 7.5.1
+      semver: registry.npmmirror.com/semver@7.5.3
     dev: true
 
   /call-bind@1.0.2:
@@ -791,7 +800,7 @@ packages:
     peerDependencies:
       eslint: '>=8'
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.43.0)
+      '@eslint-community/eslint-utils': registry.npmmirror.com/@eslint-community/eslint-utils@4.4.0(eslint@8.43.0)
       '@eslint-community/regexpp': 4.5.1
       eslint: registry.npmmirror.com/eslint@8.43.0
     dev: true
@@ -1008,14 +1017,6 @@ packages:
       estraverse: 4.3.0
     dev: true
 
-  /eslint-scope@7.2.0:
-    resolution: {integrity: sha512-DYj5deGlHBfMt15J7rdtyKNq/Nqlv5KfU4iodrQ019XESsRnwXH9KAE0y3cwtUHDo2ob7CypAnCqefh6vioWRw==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dependencies:
-      esrecurse: 4.3.0
-      estraverse: 5.3.0
-    dev: true
-
   /eslint-visitor-keys@3.4.1:
     resolution: {integrity: sha512-pZnmmLwYzf+kWaM/Qgrvpen51upAktaaiI01nsJD/Yr3lMOdNtq0cxkrrg16w64VtisN6okbs7Q8AfGqj4c9fA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -1027,7 +1028,7 @@ packages:
     dependencies:
       acorn: 8.8.2
       acorn-jsx: 5.3.2(acorn@8.8.2)
-      eslint-visitor-keys: 3.4.1
+      eslint-visitor-keys: registry.npmmirror.com/eslint-visitor-keys@3.4.1
     dev: true
 
   /esquery@1.5.0:
@@ -1371,13 +1372,6 @@ packages:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
     dev: true
 
-  /lru-cache@6.0.0:
-    resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
-    engines: {node: '>=10'}
-    dependencies:
-      yallist: 4.0.0
-    dev: true
-
   /min-indent@1.0.1:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
@@ -1576,7 +1570,7 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      lru-cache: 6.0.0
+      lru-cache: registry.npmmirror.com/lru-cache@6.0.0
     dev: true
 
   /side-channel@1.0.4:
@@ -1716,12 +1710,12 @@ packages:
     dependencies:
       debug: registry.npmmirror.com/debug@4.3.4
       eslint: registry.npmmirror.com/eslint@8.43.0
-      eslint-scope: 7.2.0
-      eslint-visitor-keys: 3.4.1
-      espree: 9.5.2
-      esquery: 1.5.0
-      lodash: 4.17.21
-      semver: 7.5.1
+      eslint-scope: registry.npmmirror.com/eslint-scope@7.2.0
+      eslint-visitor-keys: registry.npmmirror.com/eslint-visitor-keys@3.4.1
+      espree: registry.npmmirror.com/espree@9.5.2
+      esquery: registry.npmmirror.com/esquery@1.5.0
+      lodash: registry.npmmirror.com/lodash@4.17.21
+      semver: registry.npmmirror.com/semver@7.5.3
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1751,10 +1745,6 @@ packages:
   /xml-name-validator@4.0.0:
     resolution: {integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==}
     engines: {node: '>=12'}
-    dev: true
-
-  /yallist@4.0.0:
-    resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
     dev: true
 
   /yaml-eslint-parser@1.2.2:
@@ -4656,6 +4646,24 @@ packages:
       - webpack
     dev: false
 
+  registry.npmmirror.com/@pinia-plugin-persistedstate/nuxt@1.1.1(@pinia/nuxt@0.4.11)(pinia@2.1.4)(rollup@2.79.1):
+    resolution: {integrity: sha512-b6ZNP3Re8COmfZEpj4KQmbp2TuDKrLggDFLZa8FiJF68xE/oCsPXIuXUvAt8E4ht/5sq4Z/grlA+iGXaI2aeKQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@pinia-plugin-persistedstate/nuxt/-/nuxt-1.1.1.tgz}
+    id: registry.npmmirror.com/@pinia-plugin-persistedstate/nuxt/1.1.1
+    name: '@pinia-plugin-persistedstate/nuxt'
+    version: 1.1.1
+    peerDependencies:
+      '@pinia/nuxt': ^0.4.4
+    dependencies:
+      '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.6.0(rollup@2.79.1)
+      '@pinia/nuxt': 0.4.11(rollup@2.79.1)(typescript@5.0.4)(vue@3.3.4)
+      defu: registry.npmmirror.com/defu@6.1.2
+      pinia-plugin-persistedstate: registry.npmmirror.com/pinia-plugin-persistedstate@3.1.0(pinia@2.1.4)
+    transitivePeerDependencies:
+      - pinia
+      - rollup
+      - supports-color
+    dev: true
+
   registry.npmmirror.com/@pkgjs/parseargs@0.11.0:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz}
     name: '@pkgjs/parseargs'
@@ -5004,6 +5012,18 @@ packages:
       magic-string: registry.npmmirror.com/magic-string@0.25.9
       string.prototype.matchall: registry.npmmirror.com/string.prototype.matchall@4.0.8
     dev: true
+
+  registry.npmmirror.com/@tailwindcss/forms@0.5.3(tailwindcss@3.3.2):
+    resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@tailwindcss/forms/-/forms-0.5.3.tgz}
+    id: registry.npmmirror.com/@tailwindcss/forms/0.5.3
+    name: '@tailwindcss/forms'
+    version: 0.5.3
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: registry.npmmirror.com/mini-svg-data-uri@1.4.4
+      tailwindcss: registry.npmmirror.com/tailwindcss@3.3.2
+    dev: false
 
   registry.npmmirror.com/@tootallnate/once@2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@tootallnate/once/-/once-2.0.0.tgz}
@@ -8276,6 +8296,20 @@ packages:
       eslint: registry.npmmirror.com/eslint@8.43.0
     dev: true
 
+  registry.npmmirror.com/eslint-plugin-nuxt@4.0.0(eslint@8.43.0):
+    resolution: {integrity: sha512-v3Vwdk8YKe52bAz8eSIDqQuTtfL/T1r9dSl1uhC5SyR5pgLxgKkQdxXVf/Bf6Ax7uyd9rHqiAuYVdqqDb7ILdA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/eslint-plugin-nuxt/-/eslint-plugin-nuxt-4.0.0.tgz}
+    id: registry.npmmirror.com/eslint-plugin-nuxt/4.0.0
+    name: eslint-plugin-nuxt
+    version: 4.0.0
+    dependencies:
+      eslint-plugin-vue: registry.npmmirror.com/eslint-plugin-vue@9.14.1(eslint@8.43.0)
+      semver: registry.npmmirror.com/semver@7.5.3
+      vue-eslint-parser: registry.npmmirror.com/vue-eslint-parser@9.3.0(eslint@8.43.0)
+    transitivePeerDependencies:
+      - eslint
+      - supports-color
+    dev: true
+
   registry.npmmirror.com/eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.8.0)(eslint@8.43.0)(prettier@2.8.8):
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/eslint-plugin-prettier/-/eslint-plugin-prettier-4.2.1.tgz}
     id: registry.npmmirror.com/eslint-plugin-prettier/4.2.1
@@ -8294,6 +8328,27 @@ packages:
       eslint-config-prettier: registry.npmmirror.com/eslint-config-prettier@8.8.0(eslint@8.43.0)
       prettier: registry.npmmirror.com/prettier@2.8.8
       prettier-linter-helpers: registry.npmmirror.com/prettier-linter-helpers@1.0.0
+    dev: true
+
+  registry.npmmirror.com/eslint-plugin-vue@9.14.1(eslint@8.43.0):
+    resolution: {integrity: sha512-LQazDB1qkNEKejLe/b5a9VfEbtbczcOaui5lQ4Qw0tbRBbQYREyxxOV5BQgNDTqGPs9pxqiEpbMi9ywuIaF7vw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/eslint-plugin-vue/-/eslint-plugin-vue-9.14.1.tgz}
+    id: registry.npmmirror.com/eslint-plugin-vue/9.14.1
+    name: eslint-plugin-vue
+    version: 9.14.1
+    engines: {node: ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
+    dependencies:
+      '@eslint-community/eslint-utils': registry.npmmirror.com/@eslint-community/eslint-utils@4.4.0(eslint@8.43.0)
+      eslint: registry.npmmirror.com/eslint@8.43.0
+      natural-compare: registry.npmmirror.com/natural-compare@1.4.0
+      nth-check: registry.npmmirror.com/nth-check@2.1.1
+      postcss-selector-parser: registry.npmmirror.com/postcss-selector-parser@6.0.13
+      semver: registry.npmmirror.com/semver@7.5.3
+      vue-eslint-parser: registry.npmmirror.com/vue-eslint-parser@9.3.0(eslint@8.43.0)
+      xml-name-validator: registry.npmmirror.com/xml-name-validator@4.0.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.npmmirror.com/eslint-scope@5.1.1:
@@ -11562,6 +11617,13 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
+  registry.npmmirror.com/mini-svg-data-uri@1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz}
+    name: mini-svg-data-uri
+    version: 1.4.4
+    hasBin: true
+    dev: false
+
   registry.npmmirror.com/minimatch@3.0.8:
     resolution: {integrity: sha512-6FsRAQsxQ61mw+qP1ZzbL9Bc78x2p5OqNgNpnoAFLTrX8n5Kxph0CsnhmKKNXTWjXqU5L0pGPR7hYk+XWZr60Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/minimatch/-/minimatch-3.0.8.tgz}
     name: minimatch
@@ -12742,6 +12804,17 @@ packages:
     name: pify
     version: 3.0.0
     engines: {node: '>=4'}
+    dev: true
+
+  registry.npmmirror.com/pinia-plugin-persistedstate@3.1.0(pinia@2.1.4):
+    resolution: {integrity: sha512-8UN+vYMEPBdgNLwceY08mi5olI0wkYaEb8b6hD6xW7SnBRuPydWHlEhZvUWgNb/ibuf4PvufpvtS+dmhYjJQOw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pinia-plugin-persistedstate/-/pinia-plugin-persistedstate-3.1.0.tgz}
+    id: registry.npmmirror.com/pinia-plugin-persistedstate/3.1.0
+    name: pinia-plugin-persistedstate
+    version: 3.1.0
+    peerDependencies:
+      pinia: ^2.0.0
+    dependencies:
+      pinia: registry.npmmirror.com/pinia@2.1.4(typescript@5.0.4)(vue@3.3.4)
     dev: true
 
   registry.npmmirror.com/pinia@2.1.4(typescript@5.0.4)(vue@3.3.4):
@@ -16162,6 +16235,27 @@ packages:
     version: 0.1.0
     dev: true
 
+  registry.npmmirror.com/vue-eslint-parser@9.3.0(eslint@8.43.0):
+    resolution: {integrity: sha512-48IxT9d0+wArT1+3wNIy0tascRoywqSUe2E1YalIC1L8jsUGe5aJQItWfRok7DVFGz3UYvzEI7n5wiTXsCMAcQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-eslint-parser/-/vue-eslint-parser-9.3.0.tgz}
+    id: registry.npmmirror.com/vue-eslint-parser/9.3.0
+    name: vue-eslint-parser
+    version: 9.3.0
+    engines: {node: ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      eslint: '>=6.0.0'
+    dependencies:
+      debug: registry.npmmirror.com/debug@4.3.4
+      eslint: registry.npmmirror.com/eslint@8.43.0
+      eslint-scope: registry.npmmirror.com/eslint-scope@7.2.0
+      eslint-visitor-keys: registry.npmmirror.com/eslint-visitor-keys@3.4.1
+      espree: registry.npmmirror.com/espree@9.5.2
+      esquery: registry.npmmirror.com/esquery@1.5.0
+      lodash: registry.npmmirror.com/lodash@4.17.21
+      semver: registry.npmmirror.com/semver@7.5.3
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   registry.npmmirror.com/vue-router@4.2.2(vue@3.3.4):
     resolution: {integrity: sha512-cChBPPmAflgBGmy3tBsjeoe3f3VOSG6naKyY5pjtrqLGbNEXdzCigFUHgBvp9e3ysAtFtEx7OLqcSDh/1Cq2TQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-router/-/vue-router-4.2.2.tgz}
     id: registry.npmmirror.com/vue-router/4.2.2
@@ -16651,6 +16745,13 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
+    dev: true
+
+  registry.npmmirror.com/xml-name-validator@4.0.0:
+    resolution: {integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/xml-name-validator/-/xml-name-validator-4.0.0.tgz}
+    name: xml-name-validator
+    version: 4.0.0
+    engines: {node: '>=12'}
     dev: true
 
   registry.npmmirror.com/xmlhttprequest-ssl@2.0.0:
