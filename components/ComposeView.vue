@@ -38,7 +38,6 @@
 import { ref } from "vue"
 import { useChatStore } from "~/composables/chat"
 
-// eslint-disable-next-line no-undef
 const route = useRoute()
 const chatStore = useChatStore()
 const currentSession = chatStore.currentSession(route.params.sid)!

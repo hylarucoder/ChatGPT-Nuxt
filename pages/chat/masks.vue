@@ -137,7 +137,6 @@
 import { useChatStore } from "~/composables/chat"
 import MaskCard from "~/pages/chat/MaskCard.vue"
 
-// eslint-disable-next-line no-undef
 const router = useRouter()
 const chatStore = useChatStore()
 

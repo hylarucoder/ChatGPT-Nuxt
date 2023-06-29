@@ -4,6 +4,7 @@ import svgLoader from "vite-svg-loader"
 import { defineNuxtConfig } from "nuxt/config"
 
 export default defineNuxtConfig({
+  // @ts-ignore
   postcss: {
     plugins: {
       tailwindcss: {},
