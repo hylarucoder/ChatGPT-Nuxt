@@ -207,7 +207,7 @@ export const useChatStore = defineStore(
 
     const routeCurrentSession = (): TChatSession => {
       const route = useRoute()
-      return currentSession(route.params.sid as string)
+      return <TChatSession>currentSession(route.params.sid as string)
     }
 
     const nextSession = (delta: number) => {
