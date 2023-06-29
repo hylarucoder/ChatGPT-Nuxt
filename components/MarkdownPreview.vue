@@ -11,7 +11,7 @@ export default defineComponent({
   props: {
     md: {
       type: String,
-      default: "",
+      required: true,
     },
     cid: {
       type: String,

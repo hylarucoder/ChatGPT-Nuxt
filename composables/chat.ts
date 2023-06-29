@@ -2,6 +2,7 @@ import { defineStore } from "pinia"
 import { ref } from "vue"
 import { ChatSession, Mask } from "~/composables/config/typing"
 import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
+import { fetchStream } from "~/constants/api"
 
 const markdown = `
 ## Hello Markdown
@@ -68,14 +69,25 @@ function makeDemoSession(s: number): ChatSession {
         role: "system",
         content: "Welcome to the chat room!",
         date: "2021-06-13T15:00:00.000Z",
+        direction: "send",
         streaming: false,
         isError: false,
         id: s,
       },
       {
-        role: "system",
+        role: "user",
         content: markdown,
         date: "2021-06-13T15:00:00.000Z",
+        direction: "receive",
+        streaming: false,
+        isError: false,
+        id: s,
+      },
+      {
+        role: "user",
+        content: markdown,
+        date: "2021-06-13T15:00:00.000Z",
+        direction: "send",
         streaming: false,
         isError: false,
         id: s,
@@ -134,8 +146,9 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
     currentSessionIndex.value = index
   }
 
-  const newSession = (mask: Mask): ChatSession => {
-    let session = {
+  const newSession = (mask?: Mask): ChatSession => {
+    console.log(mask)
+    let session: ChatSession = {
       id: globalId.value++,
       topic: "New Session",
       memoryPrompt: "",
@@ -146,12 +159,14 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
           date: "2021-06-13T15:00:00.000Z",
           streaming: false,
           isError: false,
+          direction: "send",
           id: 0,
         },
         {
           role: "system",
           content: "Welcome to the chat room!",
           date: "2021-06-13T15:00:00.000Z",
+          direction: "receive",
           streaming: false,
           isError: false,
           id: 0,
@@ -162,9 +177,28 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
         wordCount: 0,
         charCount: 0,
       },
-      lastUpdate: 0,
+      // date to timestamp
+      lastUpdate: new Date().getSeconds(),
       lastSummarizeIndex: 0,
-      mask: mask,
+      mask: {
+        id: 0,
+        avatar: "https://cdn.jsdelivr.net/gh/elevenvac/elevenvac.github.io/assets/img/avatar.png",
+        name: "Demo",
+        context: [],
+        lang: "en",
+        builtin: true,
+        modelConfig: {
+          model: "gpt-3.5-turbo",
+          temperature: 0.5,
+          max_tokens: 2000,
+          presence_penalty: 0,
+          frequency_penalty: 0,
+          sendMemory: true,
+          historyMessageCount: 4,
+          compressMessageLengthThreshold: 1000,
+          template: DEFAULT_INPUT_TEMPLATE,
+        },
+      },
     }
     sessions.value.push(session)
     return session
@@ -184,8 +218,53 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
   }
 
   const onNewMessage = (message: string) => {
-    // Add your logic for handling a new message
-    console.log("nextSession", message)
+    // input message, send to backend, get response
+    // add response message
+    const payload = {
+      messages: [
+        {
+          role: "system",
+          content: "Welcome to the chat room!",
+        },
+        {
+          role: "user",
+          content: "请帮我写一个 20 字的神回复",
+        },
+      ],
+      model: "gpt-3.5-turbo",
+      presence_penalty: 0,
+      stream: true,
+      temperature: 0.5,
+    }
+
+    currentSession().messages.push({
+      role: "user",
+      content: message,
+      date: "2021-06-13T15:00:00.000Z",
+      direction: "send",
+      streaming: false,
+      isError: false,
+      id: 0,
+    })
+    const newMessage = {
+      role: "user",
+      content: "...",
+      date: "2021-06-13T15:00:00.000Z",
+      direction: "receive",
+      streaming: false,
+      isError: false,
+      id: 0,
+    }
+    currentSession().messages.push(newMessage)
+    const nMessage = currentSession().messages[currentSession().messages.length - 1]
+
+    console.log("nextSession", nMessage)
+    fetchStream(payload, (receivedData: string) => {
+      nMessage.content += receivedData
+      console.log("Received message:", receivedData)
+    }).catch((error) => {
+      console.error("Error occurred:", error)
+    })
   }
 
   const onUserInput = async (content: string) => {
