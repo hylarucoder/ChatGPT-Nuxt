@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import Masks from "~/pages/chat/masks.vue"
+const router = useRouter()
+router.push("/chat/masks")
 </script>
-
-<template>
-  <Masks />
-</template>

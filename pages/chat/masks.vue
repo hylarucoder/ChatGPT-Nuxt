@@ -11,7 +11,7 @@
         <div class="text-[0.75rem] ml-1 truncate">返回</div>
       </button>
     </div>
-    <div class="flex mb-5 mt-12">
+    <div class="flex mb-5 mt-12 space-x-1">
       <div class="bg-white h-16 py-5 px-3 w-12 border-neutral-200 rounded-2xl border">
         <img
           src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f606.png"
@@ -33,23 +33,23 @@
     </div>
     <div class="text-[2.00rem] font-bold mb-2">挑选一个面具</div>
     <div>现在开始，与面具背后的灵魂思维碰撞</div>
-    <div class="flex text-[0.75rem] justify-center mb-5 mt-12">
+    <div class="flex text-[0.75rem] justify-center mb-5 mt-12 space-x-2">
       <button
-        class="items-center bg-white cursor-pointer flex h-10 justify-center text-center w-24 p-3 border-neutral-200 rounded-xl border truncate"
-      >
-        <div class="items-center flex justify-center">
-          <SvgIcon icon="eye" class="w-4 h-4" />
-        </div>
-        <div class="ml-1 truncate text-black">查看全部</div>
-      </button>
-      <button
-        class="items-center bg-emerald-400 text-white cursor-pointer flex h-10 justify-center ml-3 text-center w-24 p-3 rounded-xl truncate"
+        class="items-center bg-emerald-400 text-white cursor-pointer flex h-10 justify-center ml-3 text-center w-24 p-3 rounded-xl truncate hover:bg-emerald-500"
         @click="newSessionAndNav"
       >
         <div class="items-center flex justify-center">
           <SvgIcon icon="lightning" class="" style="color: white" />
         </div>
         <div class="ml-1 truncate text-white">直接开始</div>
+      </button>
+      <button
+        class="items-center bg-white cursor-pointer flex h-10 justify-center text-center w-24 p-3 border-neutral-200 rounded-xl border truncate hover:bg-gray-200"
+      >
+        <div class="items-center flex justify-center">
+          <SvgIcon icon="eye" class="w-4 h-4" />
+        </div>
+        <div class="ml-1 truncate text-black">查看全部</div>
       </button>
     </div>
     <div class="items-center flex-grow pt-5 overflow-hidden">
