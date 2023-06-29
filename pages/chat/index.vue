@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import ChatDetail from "~/components/ChatDetail.vue"
+import Masks from "~/pages/chat/masks.vue"
 </script>
 
 <template>
-  <ChatDetail />
+  <Masks />
 </template>

@@ -44,6 +44,7 @@
       </button>
       <button
         class="items-center bg-emerald-400 text-white cursor-pointer flex h-10 justify-center ml-3 text-center w-24 p-3 rounded-xl truncate"
+        @click="newSessionAndNav"
       >
         <div class="items-center flex justify-center">
           <SvgIcon icon="lightning" class="" style="color: white" />
@@ -133,10 +134,18 @@
   </div>
 </template>
 <script setup lang="ts">
+import { useChatStore } from "~/composables/chat"
 import MaskCard from "~/pages/chat/MaskCard.vue"
 
-// eslint-disable-next-line no-undef
 const router = useRouter()
+const chatStore = useChatStore()
+
+const newSessionAndNav = () => {
+  const session = chatStore.newSession()
+  router.push({
+    path: "/chat/session/" + session.id,
+  })
+}
 
 const maskCards = [
   {

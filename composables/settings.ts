@@ -1,5 +1,6 @@
 import { defineStore } from "pinia"
 import { reactive } from "vue"
+import { StoreKey } from "~/constants"
 
 export interface TSelectOption {
   label: string
@@ -153,8 +154,6 @@ const modelOptions: TSelectOption[] = [
   },
 ]
 
-const STORE_NAME = "settings"
-
 const defaultSettings = {
   avatar: "https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f603.png",
   sendKey: "Enter",
@@ -174,7 +173,7 @@ const defaultSettings = {
   disableAutoCompletePrompt: false,
 }
 export const useSettingStore = defineStore(
-  STORE_NAME,
+  StoreKey.Setting,
   () => {
     const settings = reactive(defaultSettings)
     const settingOptions = reactive({
@@ -189,6 +188,8 @@ export const useSettingStore = defineStore(
     }
   },
   {
-    persist: true,
+    persist: {
+      storage: persistedState.localStorage,
+    },
   }
 )

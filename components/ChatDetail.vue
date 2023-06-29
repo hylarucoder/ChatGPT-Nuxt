@@ -17,11 +17,14 @@ import { ref, watch, onMounted } from "vue"
 import { useChatStore } from "~/composables/chat"
 import ChatMessage from "~/pages/chat/ChatMessage.vue"
 
-const el = ref<HTMLElement | null>(null)
-
+const router = useRouter()
 const chatStore = useChatStore()
-const currentSession = chatStore.currentSession()
+const currentSession = chatStore.routeCurrentSession()
+if (!currentSession) {
+  router.push("/chat/new")
+}
 
+const el = ref<HTMLElement | null>(null)
 const scrollToBottom = () => {
   if (el.value) {
     el.value.scrollTop = el.value.scrollHeight
@@ -29,7 +32,7 @@ const scrollToBottom = () => {
 }
 
 watch(
-  () => currentSession.messages,
+  () => currentSession!.messages,
   () => {
     scrollToBottom()
   },

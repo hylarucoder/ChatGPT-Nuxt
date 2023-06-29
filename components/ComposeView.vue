@@ -24,7 +24,7 @@
       />
       <button
         @click="composeNewMessage"
-        class="absolute items-center bg-emerald-400 bottom-0 text-white cursor-pointer flex h-10 justify-center right-2 text-center px-4 py-2 rounded-xl truncate"
+        class="absolute items-center bg-emerald-400 bottom-4 text-white cursor-pointer flex h-10 justify-center right-4 text-center px-4 py-2 rounded-xl truncate"
       >
         <div class="items-center flex justify-center">
           <SvgIcon icon="send-white" />
@@ -38,12 +38,14 @@
 import { ref } from "vue"
 import { useChatStore } from "~/composables/chat"
 
-let composeInput = ref("")
 const chatStore = useChatStore()
+const currentSession = chatStore.routeCurrentSession()
+
+let composeInput = ref("")
 
 const composeNewMessage = () => {
   const input = composeInput.value
   composeInput.value = ""
-  chatStore.onNewMessage(input)
+  chatStore.onNewMessage(currentSession, input)
 }
 </script>
