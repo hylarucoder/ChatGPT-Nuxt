@@ -1,4 +1,3 @@
-import exp from "constants"
 import { DEFAULT_INPUT_TEMPLATE } from "~/constants"
 
 export const ROLES = ["system", "user", "assistant"]
@@ -76,16 +75,24 @@ export const ALL_MODELS = [
 export type ModelType = (typeof ALL_MODELS)[number]["name"]
 
 export enum SubmitKey {
+  // eslint-disable-next-line no-unused-vars
   Enter = "Enter",
+  // eslint-disable-next-line no-unused-vars
   CtrlEnter = "Ctrl + Enter",
+  // eslint-disable-next-line no-unused-vars
   ShiftEnter = "Shift + Enter",
+  // eslint-disable-next-line no-unused-vars
   AltEnter = "Alt + Enter",
+  // eslint-disable-next-line no-unused-vars
   MetaEnter = "Meta + Enter",
 }
 
 export enum Theme {
+  // eslint-disable-next-line no-unused-vars
   Auto = "auto",
+  // eslint-disable-next-line no-unused-vars
   Dark = "dark",
+  // eslint-disable-next-line no-unused-vars
   Light = "light",
 }
 
@@ -119,10 +126,10 @@ export const DEFAULT_CONFIG = {
 
 export type ChatConfig = typeof DEFAULT_CONFIG
 
-export type ChatConfigStore = ChatConfig & {
-  reset: () => void
-  update: (updater: (config: ChatConfig) => void) => void
-}
+// export type ChatConfigStore = ChatConfig & {
+//   reset: () => void
+//   update: (updater: (config: ChatConfig) => void) => void
+// }
 
 export type ModelConfig = ChatConfig["modelConfig"]
 
@@ -143,7 +150,7 @@ const ALL_LANG = {
 
 export type Lang = keyof typeof ALL_LANG
 
-export type Mask = {
+export type TMask = {
   id: number
   avatar: string
   name: string
@@ -155,12 +162,20 @@ export type Mask = {
   builtin: boolean
 }
 
-export type ChatMessage = RequestMessage & {
+export enum TChatDirection {
+  // eslint-disable-next-line no-unused-vars
+  SEND = "SEND",
+  // eslint-disable-next-line no-unused-vars
+  RECEIVE = "RECEIVE",
+}
+
+export type TChatMessage = RequestMessage & {
   date: string
   streaming?: boolean
   isError?: boolean
   id?: number
   model?: ModelType
+  direction: TChatDirection
 }
 
 export interface ChatStat {
@@ -169,16 +184,16 @@ export interface ChatStat {
   charCount: number
 }
 
-export interface ChatSession {
+export interface TChatSession {
   id: number
   topic: string
 
   memoryPrompt: string
-  messages: ChatMessage[]
+  messages: TChatMessage[]
   stat: ChatStat
-  lastUpdate: number
+  lastUpdate: string
   lastSummarizeIndex: number
   clearContextIndex?: number
 
-  mask: Mask
+  mask: TMask
 }

@@ -6,7 +6,6 @@ const API_URL = `${BASE_URL}/v1/chat/completions`
 
 export async function fetchStream(payload: any, callback: () => void) {
   // 设置 POST 请求参数
-  console.log("fetchStream")
   let receivedData = ""
   await fetchEventSource(API_URL, {
     method: "POST",

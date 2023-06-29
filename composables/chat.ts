@@ -1,7 +1,9 @@
 import { defineStore } from "pinia"
 import { ref } from "vue"
-import { ChatSession, Mask } from "~/composables/config/typing"
+import { TMask, TChatDirection, TChatSession } from "~/composables/config/typing"
 import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
+import { fetchStream } from "~/constants/api"
+import { getUtcNow } from "~/utils/date"
 
 const markdown = `
 ## Hello Markdown
@@ -58,7 +60,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 `
 
-function makeDemoSession(s: number): ChatSession {
+function makeDemoSession(s: number): TChatSession {
   return {
     id: s,
     topic: "Welcome",
@@ -68,14 +70,25 @@ function makeDemoSession(s: number): ChatSession {
         role: "system",
         content: "Welcome to the chat room!",
         date: "2021-06-13T15:00:00.000Z",
+        direction: TChatDirection.SEND,
         streaming: false,
         isError: false,
         id: s,
       },
       {
-        role: "system",
+        role: "user",
         content: markdown,
         date: "2021-06-13T15:00:00.000Z",
+        direction: TChatDirection.RECEIVE,
+        streaming: false,
+        isError: false,
+        id: s,
+      },
+      {
+        role: "user",
+        content: markdown,
+        date: "2021-06-13T15:00:00.000Z",
+        direction: TChatDirection.SEND,
         streaming: false,
         isError: false,
         id: s,
@@ -86,7 +99,7 @@ function makeDemoSession(s: number): ChatSession {
       wordCount: 0,
       charCount: 0,
     },
-    lastUpdate: 0,
+    lastUpdate: getUtcNow(),
     lastSummarizeIndex: 0,
     mask: {
       id: s,
@@ -134,8 +147,9 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
     currentSessionIndex.value = index
   }
 
-  const newSession = (mask: Mask): ChatSession => {
-    let session = {
+  const newSession = (mask?: TMask): TChatSession => {
+    console.log(mask)
+    let session: TChatSession = {
       id: globalId.value++,
       topic: "New Session",
       memoryPrompt: "",
@@ -146,12 +160,14 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
           date: "2021-06-13T15:00:00.000Z",
           streaming: false,
           isError: false,
+          direction: TChatDirection.SEND,
           id: 0,
         },
         {
           role: "system",
           content: "Welcome to the chat room!",
           date: "2021-06-13T15:00:00.000Z",
+          direction: TChatDirection.RECEIVE,
           streaming: false,
           isError: false,
           id: 0,
@@ -162,9 +178,28 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
         wordCount: 0,
         charCount: 0,
       },
-      lastUpdate: 0,
+      // date to timestamp
+      lastUpdate: getUtcNow(),
       lastSummarizeIndex: 0,
-      mask: mask,
+      mask: {
+        id: 0,
+        avatar: "https://cdn.jsdelivr.net/gh/elevenvac/elevenvac.github.io/assets/img/avatar.png",
+        name: "Demo",
+        context: [],
+        lang: "en",
+        builtin: true,
+        modelConfig: {
+          model: "gpt-3.5-turbo",
+          temperature: 0.5,
+          max_tokens: 2000,
+          presence_penalty: 0,
+          frequency_penalty: 0,
+          sendMemory: true,
+          historyMessageCount: 4,
+          compressMessageLengthThreshold: 1000,
+          template: DEFAULT_INPUT_TEMPLATE,
+        },
+      },
     }
     sessions.value.push(session)
     return session
@@ -174,7 +209,7 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
     sessions.value.splice(index, 1)
   }
 
-  const currentSession = (): ChatSession => {
+  const currentSession = (): TChatSession => {
     return sessions.value[currentSessionIndex.value]
   }
 
@@ -184,8 +219,60 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
   }
 
   const onNewMessage = (message: string) => {
-    // Add your logic for handling a new message
-    console.log("nextSession", message)
+    // input message, send to backend, get response
+    // add response message
+    const payload = {
+      messages: [
+        {
+          role: "system",
+          content: "Welcome to the chat room!",
+        },
+        {
+          role: "user",
+          content: "请帮我写一个 100 字的神回复",
+        },
+      ],
+      model: "gpt-3.5-turbo",
+      presence_penalty: 0,
+      stream: true,
+      temperature: 0.5,
+    }
+
+    currentSession().messages.push({
+      role: "user",
+      content: message,
+      date: "2021-06-13T15:00:00.000Z",
+      direction: TChatDirection.SEND,
+      streaming: false,
+      isError: false,
+      id: 0,
+    })
+    const newMessage = {
+      role: "user",
+      content: "...",
+      date: "2021-06-13T15:00:00.000Z",
+      direction: TChatDirection.RECEIVE,
+      streaming: false,
+      isError: false,
+      id: 0,
+    }
+    currentSession().messages.push(newMessage)
+    const nMessage = currentSession().messages[currentSession().messages.length - 1]
+
+    console.log("nextSession", nMessage)
+    fetchStream(payload, (receivedData: string) => {
+      nMessage.content = receivedData
+      // const chatElements = document.getElementsByClassName("markdown-body")
+      // const chatEle = chatElements[chatElements.length - 1]
+      // // console.log(chatEle.scrollIntoView)
+      // chatEle?.scrollIntoView({
+      //   behavior: "smooth",
+      //   block: "center",
+      // })
+      // console.log("Received message:", receivedData)
+    }).catch((error) => {
+      console.error("Error occurred:", error)
+    })
   }
 
   const onUserInput = async (content: string) => {

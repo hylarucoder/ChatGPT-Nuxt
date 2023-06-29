@@ -29,7 +29,7 @@
       </div>
       <div>
         <NuxtLink to="/chat/new">
-          <IconButton icon="add" text="新的聊天" />
+          <IconButton icon="add" text="新的聊天" @click="chatStore.newSession()" />
         </NuxtLink>
       </div>
     </div>
@@ -38,4 +38,7 @@
 <script lang="ts" setup>
 import ChatList from "~/components/ChatList.vue"
 import IconButton from "~/components/IconButton.vue"
+import { useChatStore } from "~/composables/chat"
+
+const chatStore = useChatStore()
 </script>

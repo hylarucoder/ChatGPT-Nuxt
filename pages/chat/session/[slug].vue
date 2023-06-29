@@ -1,5 +1,7 @@
 <template>
-  <ChatDetail />
+  <ClientOnly>
+    <ChatDetail />
+  </ClientOnly>
 </template>
 <script setup lang="ts">
 import ChatDetail from "~/components/ChatDetail.vue"

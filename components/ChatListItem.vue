@@ -11,7 +11,6 @@
 const props = defineProps<{
   title: string
   count: number
-  isActive: boolean
   createdAt: string
   link: string
 }>()
