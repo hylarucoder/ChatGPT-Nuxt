@@ -2,7 +2,7 @@
   <div class="items-center flex justify-between py-3.5 px-5 relative border-gray-200 border">
     <div class="truncate">
       <div class="cursor-pointer text-[1.25rem] font-bold truncate">{{ currentSession.topic }}</div>
-      <div class="text-[0.88rem] mt-1">与 ChatGPT 的 {{ currentSession.messages.length }} 条对话</div>
+      <div class="text-[0.88rem] mt-1">与 ChatGPT 的 {{ currentSession.messagesCount }} 条对话</div>
     </div>
     <div class="flex w-[150px]">
       <div class="ml-3">
