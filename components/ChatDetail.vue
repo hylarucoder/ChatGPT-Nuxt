@@ -16,6 +16,7 @@
       </div>
 
       <ChatMessage
+        class="chat-message"
         v-for="message in currentSession.messages"
         :content="message.content"
         :direction="message.direction"
@@ -27,28 +28,23 @@
 </template>
 <script setup lang="ts">
 import { ref, watchEffect, onMounted } from "vue"
-import ChatDetailHeader from "~/components/ChatDetailHeader.vue"
-import ComposeView from "~/components/ComposeView.vue"
 import { useChatStore } from "~/composables/chat"
 import ChatMessage from "~/pages/chat/ChatMessage.vue"
 
 const el = ref<HTMLElement | null>(null)
-// const { x, y, isScrolling, arrivedState, directions } = useScroll(el, { behavior: "auto" })
 
 const chatStore = useChatStore()
 const currentSession = chatStore.currentSession()
 
 const scrollToBottom = () => {
-  // y.value = y.value + 1000
-  // el.scrollIntoView({ behavior: "smooth" })
-}
-
-watchEffect(() => {
-  // currentSession.messages
-  // scrollToBottom()
   if (el.value) {
     el.value.scrollTop = el.value.scrollHeight
   }
+}
+
+watchEffect(() => {
+  currentSession.messages
+  scrollToBottom()
 })
 
 onMounted(scrollToBottom)

@@ -150,7 +150,7 @@ const ALL_LANG = {
 
 export type Lang = keyof typeof ALL_LANG
 
-export type Mask = {
+export type TMask = {
   id: number
   avatar: string
   name: string
@@ -162,13 +162,20 @@ export type Mask = {
   builtin: boolean
 }
 
+export enum TChatDirection {
+  // eslint-disable-next-line no-unused-vars
+  SEND = "SEND",
+  // eslint-disable-next-line no-unused-vars
+  RECEIVE = "RECEIVE",
+}
+
 export type TChatMessage = RequestMessage & {
   date: string
   streaming?: boolean
   isError?: boolean
   id?: number
   model?: ModelType
-  direction: "send" | "receive"
+  direction: TChatDirection
 }
 
 export interface ChatStat {
@@ -177,16 +184,16 @@ export interface ChatStat {
   charCount: number
 }
 
-export interface ChatSession {
+export interface TChatSession {
   id: number
   topic: string
 
   memoryPrompt: string
   messages: TChatMessage[]
   stat: ChatStat
-  lastUpdate: number
+  lastUpdate: string
   lastSummarizeIndex: number
   clearContextIndex?: number
 
-  mask: Mask
+  mask: TMask
 }

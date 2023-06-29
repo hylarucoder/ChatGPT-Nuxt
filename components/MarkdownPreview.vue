@@ -21,14 +21,15 @@ export default defineComponent({
 
   // init
   setup(props) {
-    const parsedMarkdown = ref("")
+    const parsedMarkdown = ref(props.md)
 
     watchEffect(async () => {
       try {
-        parsedMarkdown.value = await markdownParser.parse(props.cid, props.md)
+        parsedMarkdown.value = await markdownParser.parse(props.cid, props.md || "...")
+        console.log(parsedMarkdown.value)
       } catch (err) {
         console.error(err)
-        parsedMarkdown.value = ""
+        parsedMarkdown.value = "..."
       }
     })
 
