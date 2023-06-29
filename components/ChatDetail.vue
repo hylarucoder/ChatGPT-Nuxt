@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col w-full">
     <ChatDetailHeader />
-    <div class="flex-grow w-full p-5 overflow-scroll" ref="el">
+    <div class="flex-grow w-full p-5 overflow-scroll" ref="el" id="message-box">
       <ChatMessage
         class="chat-message"
         v-for="message in currentSession.messages"
@@ -9,12 +9,11 @@
         :direction="message.direction"
       />
     </div>
-
     <ComposeView />
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watchEffect, onMounted } from "vue"
+import { ref, watch, onMounted } from "vue"
 import { useChatStore } from "~/composables/chat"
 import ChatMessage from "~/pages/chat/ChatMessage.vue"
 
@@ -29,10 +28,15 @@ const scrollToBottom = () => {
   }
 }
 
-watchEffect(() => {
-  currentSession.messages
-  scrollToBottom()
-})
+watch(
+  () => currentSession.messages,
+  () => {
+    scrollToBottom()
+  },
+  {
+    deep: true,
+  }
+)
 
 onMounted(scrollToBottom)
 </script>

@@ -23,12 +23,13 @@
         v-model="composeInput"
       />
       <button
+        @click="composeNewMessage"
         class="absolute items-center bg-emerald-400 bottom-0 text-white cursor-pointer flex h-10 justify-center right-2 text-center px-4 py-2 rounded-xl truncate"
       >
         <div class="items-center flex justify-center">
           <SvgIcon icon="send-white" />
         </div>
-        <div class="text-[0.75rem] ml-1 truncate" @click="composeNewMessage">发送</div>
+        <div class="text-[0.75rem] ml-1 truncate">发送</div>
       </button>
     </div>
   </div>
@@ -41,17 +42,8 @@ let composeInput = ref("")
 const chatStore = useChatStore()
 
 const composeNewMessage = () => {
-  chatStore.onNewMessage(composeInput.value)
+  const input = composeInput.value
+  composeInput.value = ""
+  chatStore.onNewMessage(input)
 }
-
-// let a = ref("-")
-// const test = async (e) => {
-//   e.preventDefault()
-//   fetchStream(payload, (receivedData: string) => {
-//     a.value = receivedData
-//     console.log("Received message:", receivedData)
-//   }).catch((error) => {
-//     console.error("Error occurred:", error)
-//   })
-// }
 </script>
