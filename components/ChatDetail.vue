@@ -17,10 +17,9 @@ import { ref, watch, onMounted } from "vue"
 import { useChatStore } from "~/composables/chat"
 import ChatMessage from "~/pages/chat/ChatMessage.vue"
 
-const route = useRoute()
 const router = useRouter()
 const chatStore = useChatStore()
-const currentSession = chatStore.currentSession(route.params.sid)
+const currentSession = chatStore.routeCurrentSession()
 if (!currentSession) {
   router.push("/chat/new")
 }

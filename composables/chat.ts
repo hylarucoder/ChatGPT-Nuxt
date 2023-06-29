@@ -123,200 +123,211 @@ function makeDemoSession(s: number): TChatSession {
   }
 }
 
-export const useChatStore = defineStore(StoreKey.Chat, () => {
-  const sessions = ref([makeDemoSession(1)])
-  const globalId = ref(0)
+export const useChatStore = defineStore(
+  StoreKey.Chat,
+  () => {
+    const sessions = ref([makeDemoSession(1)])
 
-  const clearSessions = () => {
-    sessions.value = []
-  }
+    const clearSessions = () => {
+      sessions.value = []
+    }
 
-  const moveSession = (from: any, to: any) => {
-    const session = sessions.value.splice(from, 1)[0]
-    sessions.value.splice(to, 0, session)
-  }
+    const moveSession = (from: any, to: any) => {
+      const session = sessions.value.splice(from, 1)[0]
+      sessions.value.splice(to, 0, session)
+    }
 
-  const newSession = (mask?: TMask): TChatSession => {
-    console.log(mask)
-    const randomId = Math.floor(Math.random() * 1000000)
-    let session: TChatSession = {
-      id: "na-" + randomId.toString(),
-      topic: "New Session",
-      memoryPrompt: "",
-      messages: [
-        {
-          role: "chat",
-          content: "Welcome to the chat room!",
-          date: "2021-06-13T15:00:00.000Z",
-          streaming: false,
-          isError: false,
-          direction: TChatDirection.SEND,
-          id: 0,
+    const newSession = (mask?: TMask): TChatSession => {
+      console.log(mask)
+      const randomId = Math.floor(Math.random() * 1000000)
+      let session: TChatSession = {
+        id: "na-" + randomId.toString(),
+        topic: "New Session",
+        memoryPrompt: "",
+        messages: [
+          {
+            role: "chat",
+            content: "Welcome to the chat room!",
+            date: "2021-06-13T15:00:00.000Z",
+            streaming: false,
+            isError: false,
+            direction: TChatDirection.SEND,
+            id: 0,
+          },
+          {
+            role: "system",
+            content: "Welcome to the chat room!",
+            date: "2021-06-13T15:00:00.000Z",
+            direction: TChatDirection.RECEIVE,
+            streaming: false,
+            isError: false,
+            id: 0,
+          },
+        ],
+        stat: {
+          tokenCount: 0,
+          wordCount: 0,
+          charCount: 0,
         },
-        {
-          role: "system",
-          content: "Welcome to the chat room!",
-          date: "2021-06-13T15:00:00.000Z",
-          direction: TChatDirection.RECEIVE,
-          streaming: false,
-          isError: false,
+        // date to timestamp
+        lastUpdate: getUtcNow(),
+        lastSummarizeIndex: 0,
+        mask: {
           id: 0,
+          avatar: "https://cdn.jsdelivr.net/gh/elevenvac/elevenvac.github.io/assets/img/avatar.png",
+          name: "Demo",
+          context: [],
+          lang: "en",
+          builtin: true,
+          modelConfig: {
+            model: "gpt-3.5-turbo",
+            temperature: 0.5,
+            max_tokens: 2000,
+            presence_penalty: 0,
+            frequency_penalty: 0,
+            sendMemory: true,
+            historyMessageCount: 4,
+            compressMessageLengthThreshold: 1000,
+            template: DEFAULT_INPUT_TEMPLATE,
+          },
         },
-      ],
-      stat: {
-        tokenCount: 0,
-        wordCount: 0,
-        charCount: 0,
-      },
-      // date to timestamp
-      lastUpdate: getUtcNow(),
-      lastSummarizeIndex: 0,
-      mask: {
+      }
+      sessions.value.push(session)
+      return session
+    }
+
+    const deleteSession = (index: number) => {
+      sessions.value.splice(index, 1)
+    }
+
+    const currentSession = (sid: string): TChatSession | undefined => {
+      const currentSessions = sessions.value.filter((s) => s.id === sid)
+      return currentSessions[0]
+    }
+
+    const routeCurrentSession = (): TChatSession => {
+      const route = useRoute()
+      return currentSession(route.params.sid as string)
+    }
+
+    const nextSession = (delta: number) => {
+      // Add your logic for navigating to the next session
+      console.log("nextSession", delta)
+    }
+
+    const onNewMessage = (currentSession: TChatSession, message: string) => {
+      // input message, send to backend, get response
+      // add response message
+      const payload = {
+        messages: [
+          {
+            role: "system",
+            content: "Welcome to the chat room!",
+          },
+          {
+            role: "user",
+            content: "请帮我写一个 100 字的神回复",
+          },
+        ],
+        model: "gpt-3.5-turbo",
+        presence_penalty: 0,
+        stream: true,
+        temperature: 0.5,
+      }
+
+      currentSession.messages.push({
+        role: "user",
+        content: message,
+        date: "2021-06-13T15:00:00.000Z",
+        direction: TChatDirection.SEND,
+        streaming: false,
+        isError: false,
         id: 0,
-        avatar: "https://cdn.jsdelivr.net/gh/elevenvac/elevenvac.github.io/assets/img/avatar.png",
-        name: "Demo",
-        context: [],
-        lang: "en",
-        builtin: true,
-        modelConfig: {
-          model: "gpt-3.5-turbo",
-          temperature: 0.5,
-          max_tokens: 2000,
-          presence_penalty: 0,
-          frequency_penalty: 0,
-          sendMemory: true,
-          historyMessageCount: 4,
-          compressMessageLengthThreshold: 1000,
-          template: DEFAULT_INPUT_TEMPLATE,
-        },
-      },
-    }
-    sessions.value.push(session)
-    return session
-  }
-
-  const deleteSession = (index: number) => {
-    sessions.value.splice(index, 1)
-  }
-
-  const currentSession = (sid: string): TChatSession | undefined => {
-    const currentSessions = sessions.value.filter((s) => s.id === sid)
-    return currentSessions[0]
-  }
-
-  const nextSession = (delta: number) => {
-    // Add your logic for navigating to the next session
-    console.log("nextSession", delta)
-  }
-
-  const onNewMessage = (currentSession: TChatSession, message: string) => {
-    // input message, send to backend, get response
-    // add response message
-    const payload = {
-      messages: [
-        {
-          role: "system",
-          content: "Welcome to the chat room!",
-        },
-        {
-          role: "user",
-          content: "请帮我写一个 100 字的神回复",
-        },
-      ],
-      model: "gpt-3.5-turbo",
-      presence_penalty: 0,
-      stream: true,
-      temperature: 0.5,
+      })
+      const newMessage = {
+        role: "user",
+        content: "...",
+        date: "2021-06-13T15:00:00.000Z",
+        direction: TChatDirection.RECEIVE,
+        streaming: false,
+        isError: false,
+        id: 0,
+      }
+      currentSession.messages.push(newMessage)
+      const nMessage = currentSession.messages[currentSession.messages.length - 1]
+      console.log("nextSession", nMessage)
+      fetchStream(payload, (receivedData: string) => {
+        nMessage.content = receivedData
+      }).catch((error) => {
+        console.error("Error occurred:", error)
+      })
     }
 
-    currentSession.messages.push({
-      role: "user",
-      content: message,
-      date: "2021-06-13T15:00:00.000Z",
-      direction: TChatDirection.SEND,
-      streaming: false,
-      isError: false,
-      id: 0,
-    })
-    const newMessage = {
-      role: "user",
-      content: "...",
-      date: "2021-06-13T15:00:00.000Z",
-      direction: TChatDirection.RECEIVE,
-      streaming: false,
-      isError: false,
-      id: 0,
+    const onUserInput = async (content: string) => {
+      // Add your logic for handling user input
+      console.log("nextSession", content)
     }
-    currentSession.messages.push(newMessage)
-    const nMessage = currentSession.messages[currentSession.messages.length - 1]
-    console.log("nextSession", nMessage)
-    fetchStream(payload, (receivedData: string) => {
-      nMessage.content = receivedData
-    }).catch((error) => {
-      console.error("Error occurred:", error)
-    })
-  }
 
-  const onUserInput = async (content: string) => {
-    // Add your logic for handling user input
-    console.log("nextSession", content)
-  }
+    const summarizeSession = () => {
+      // Add your logic for summarizing the session
+    }
 
-  const summarizeSession = () => {
-    // Add your logic for summarizing the session
-  }
+    const updateStat = (message: string) => {
+      // Add your logic for updating stats based on a message
+      console.log("nextSession", message)
+    }
 
-  const updateStat = (message: string) => {
-    // Add your logic for updating stats based on a message
-    console.log("nextSession", message)
-  }
+    // const updateCurrentSession = (updater) => {
+    //   updater(sessions.value[currentSessionIndex.value])
+    // }
+    //
+    // const updateMessage = (sessionIndex, messageIndex, updater) => {
+    //   const message = sessions.value[sessionIndex]?.messages[messageIndex]
+    //   if (message) {
+    //     updater(message)
+    //   }
+    // }
 
-  // const updateCurrentSession = (updater) => {
-  //   updater(sessions.value[currentSessionIndex.value])
-  // }
-  //
-  // const updateMessage = (sessionIndex, messageIndex, updater) => {
-  //   const message = sessions.value[sessionIndex]?.messages[messageIndex]
-  //   if (message) {
-  //     updater(message)
-  //   }
-  // }
+    const resetSession = () => {
+      // Add your logic for resetting the session
+    }
 
-  const resetSession = () => {
-    // Add your logic for resetting the session
-  }
+    const getMessagesWithMemory = () => {
+      // Add your logic for getting messages with memory
+    }
 
-  const getMessagesWithMemory = () => {
-    // Add your logic for getting messages with memory
-  }
+    const getMemoryPrompt = () => {
+      // Add your logic for getting a memory prompt
+    }
 
-  const getMemoryPrompt = () => {
-    // Add your logic for getting a memory prompt
-  }
+    const clearAllData = () => {
+      sessions.value = []
+    }
 
-  const clearAllData = () => {
-    sessions.value = []
-    globalId.value = 0
+    return {
+      sessions,
+      clearSessions,
+      moveSession,
+      newSession,
+      deleteSession,
+      currentSession,
+      routeCurrentSession,
+      nextSession,
+      onNewMessage,
+      onUserInput,
+      summarizeSession,
+      updateStat,
+      // updateCurrentSession,
+      // updateMessage,
+      resetSession,
+      getMessagesWithMemory,
+      getMemoryPrompt,
+      clearAllData,
+    }
+  },
+  {
+    persist: {
+      storage: persistedState.localStorage,
+    },
   }
-
-  return {
-    sessions,
-    globalId,
-    clearSessions,
-    moveSession,
-    newSession,
-    deleteSession,
-    currentSession,
-    nextSession,
-    onNewMessage,
-    onUserInput,
-    summarizeSession,
-    updateStat,
-    // updateCurrentSession,
-    // updateMessage,
-    resetSession,
-    getMessagesWithMemory,
-    getMemoryPrompt,
-    clearAllData,
-  }
-})
+)
