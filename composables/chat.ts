@@ -65,6 +65,7 @@ function makeDemoSession(s: number): TChatSession {
     id: s.toString(),
     topic: "Welcome",
     memoryPrompt: "Welcome to the chat room!",
+    messagesCount: 3,
     messages: [
       {
         role: "system",
@@ -144,6 +145,7 @@ export const useChatStore = defineStore(
         id: "na-" + randomId.toString(),
         topic: "New Session",
         memoryPrompt: "",
+        messagesCount: 2,
         messages: [
           {
             role: "chat",
@@ -255,8 +257,8 @@ export const useChatStore = defineStore(
         id: 0,
       }
       currentSession.messages.push(newMessage)
+      currentSession.messagesCount = currentSession.messages.length
       const nMessage = currentSession.messages[currentSession.messages.length - 1]
-      console.log("nextSession", nMessage)
       fetchStream(payload, (receivedData: string) => {
         nMessage.content = receivedData
       }).catch((error) => {
