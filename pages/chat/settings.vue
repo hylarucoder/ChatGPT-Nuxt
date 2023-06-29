@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <div class="flex flex-col w-full">
+    <div class="flex flex-col flex-1">
       <div class="items-center flex justify-between p-3.5 border-gray-200 border-y">
         <div class="truncate">
           <div class="text-[1.25rem] font-bold truncate">设置</div>

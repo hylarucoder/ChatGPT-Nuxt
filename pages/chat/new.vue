@@ -1,5 +1,5 @@
 <template>
-  <div class="items-center text-zinc-800 flex flex-col justify-center w-full">
+  <div class="items-center text-zinc-800 flex flex-col justify-center flex-1">
     <div class="flex justify-between p-3 w-full">
       <button
         @click="router.back()"

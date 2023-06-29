@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col w-full">
+  <div class="flex flex-col flex-1">
     <ChatDetailHeader />
-    <div class="flex-grow w-full p-5 overflow-scroll" ref="el" id="message-box">
+    <div class="flex-grow p-5 overflow-scroll" ref="el" id="message-box">
       <ChatMessage
         class="chat-message"
         v-for="message in currentSession.messages"
