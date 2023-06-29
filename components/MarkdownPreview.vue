@@ -1,5 +1,7 @@
 <template>
-  <ContentRenderer class="markdown-body" :value="parsedMarkdown" />
+  <ClientOnly>
+    <ContentRenderer class="markdown-body" :value="parsedMarkdown" />
+  </ClientOnly>
 </template>
 
 <script>
@@ -19,7 +21,6 @@ export default defineComponent({
     },
   },
 
-  // init
   setup(props) {
     const parsedMarkdown = ref(props.md)
 
@@ -29,7 +30,7 @@ export default defineComponent({
         console.log(parsedMarkdown.value)
       } catch (err) {
         console.error(err)
-        parsedMarkdown.value = "..."
+        parsedMarkdown.value = ""
       }
     })
 
