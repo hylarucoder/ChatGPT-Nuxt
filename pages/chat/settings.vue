@@ -192,7 +192,7 @@
 </template>
 <script setup lang="ts">
 import { useSettingStore } from "~/composables/settings"
-import SettingItem from "~/pages/chat/SettingItem.vue"
+import SettingItem from "~/components/SettingItem.vue"
 
 const settingStore = useSettingStore()
 const settings = settingStore.settings

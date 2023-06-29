@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from "vue"
 import { useChatStore } from "~/composables/chat"
-import ChatMessage from "~/pages/chat/ChatMessage.vue"
+import ChatMessage from "~/components/ChatMessage.vue"
 
 const router = useRouter()
 const chatStore = useChatStore()
