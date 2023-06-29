@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { appName } from "~/constants"
 
-// eslint-disable-next-line no-undef
 useHead({
   title: appName,
 })

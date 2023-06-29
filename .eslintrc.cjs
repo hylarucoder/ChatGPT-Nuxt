@@ -9,7 +9,6 @@ module.exports = {
   extends: [
     // ... other configs
     "plugin:vue/base",
-    "eslint:recommended",
     "@vue/eslint-config-prettier",
     "plugin:nuxt/recommended",
   ],
