@@ -36,64 +36,50 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, computed } from "vue"
+<script lang="ts" setup>
+import { ref, computed } from "vue"
 
 type EmojiCategory = {
   title: string
   emojis: string[]
 }
 
-export default defineComponent({
-  setup() {
-    const searchQuery = ref("")
-    const recentEmojis = ref<string[]>([])
-    const selectedCategoryIndex = ref(0)
+const searchQuery = ref("")
+const recentEmojis = ref<string[]>([])
+const selectedCategoryIndex = ref(0)
 
-    const emojiCategories: EmojiCategory[] = [
-      {
-        title: "Smileys",
-        emojis: ["😀", "😃", "😄", "😁", "😆"],
-      },
-      {
-        title: "Animals",
-        emojis: ["🐶", "🐱", "🦊", "🐻", "🦁"],
-      },
-      // Add more categories as needed
-    ]
-
-    const currentCategoryEmojis = computed(() => {
-      return emojiCategories[selectedCategoryIndex.value].emojis.filter((emoji) => emoji.includes(searchQuery.value))
-    })
-
-    function filterEmojis() {
-      selectedCategoryIndex.value = 0
-    }
-
-    function selectCategory(index: number) {
-      selectedCategoryIndex.value = index
-    }
-
-    function selectEmoji(emoji: string) {
-      if (!recentEmojis.value.includes(emoji)) {
-        recentEmojis.value.unshift(emoji)
-        if (recentEmojis.value.length > 10) {
-          recentEmojis.value.pop()
-        }
-      }
-      // Handle the selected emoji as needed
-      console.log("Selected emoji:", emoji)
-    }
-
-    return {
-      searchQuery,
-      recentEmojis,
-      emojiCategories,
-      currentCategoryEmojis,
-      filterEmojis,
-      selectCategory,
-      selectEmoji,
-    }
+const emojiCategories: EmojiCategory[] = [
+  {
+    title: "Smileys",
+    emojis: ["😀", "😃", "😄", "😁", "😆"],
   },
+  {
+    title: "Animals",
+    emojis: ["🐶", "🐱", "🦊", "🐻", "🦁"],
+  },
+  // Add more categories as needed
+]
+
+const currentCategoryEmojis = computed(() => {
+  return emojiCategories[selectedCategoryIndex.value].emojis.filter((emoji) => emoji.includes(searchQuery.value))
 })
+
+function filterEmojis() {
+  selectedCategoryIndex.value = 0
+}
+
+function selectCategory(index: number) {
+  selectedCategoryIndex.value = index
+}
+
+function selectEmoji(emoji: string) {
+  if (!recentEmojis.value.includes(emoji)) {
+    recentEmojis.value.unshift(emoji)
+    if (recentEmojis.value.length > 10) {
+      recentEmojis.value.pop()
+    }
+  }
+  // Handle the selected emoji as needed
+  console.log("Selected emoji:", emoji)
+}
 </script>

@@ -1,4 +1,4 @@
-<!-- SvgIcon.vue -->
+<!-- VSvgIcon.vue -->
 <template>
   <component :is="currentComponent" />
 </template>

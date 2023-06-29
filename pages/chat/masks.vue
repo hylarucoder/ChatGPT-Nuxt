@@ -70,8 +70,13 @@
           <div class="items-center flex justify-center">
             <SvgIcon icon="add" />
           </div>
-          <div class="text-xs ml-1 text-ellipsis overflow-hidden">新建</div>
+          <div @click="visible = true" class="text-xs ml-1 text-ellipsis overflow-hidden">新建</div>
         </button>
+        <VModel :visible="visible" title="My Modal" @close="visible = false">
+          <p>This is an example Modal.</p>
+          <p>This is an example Modal.</p>
+          <p>This is an example Modal.</p>
+        </VModel>
       </div>
 
       <div class="divide-gray-200">
@@ -120,6 +125,7 @@
 </template>
 <script setup lang="ts">
 import { getRandomEmoji } from "~/utils/emoji"
+import { ref } from "vue"
 
 const masks = ref<TPrompts[]>([])
 
@@ -138,6 +144,8 @@ interface TPrompts {
   description: string
   lang: TLang
 }
+
+const visible = ref(false)
 
 onMounted(() => {
   fetch("/prompts.json")

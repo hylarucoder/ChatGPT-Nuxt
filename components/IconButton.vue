@@ -4,14 +4,13 @@
     :class="hasText ? 'w-32' : ''"
   >
     <div class="items-center flex justify-center">
-      <SvgIcon :icon="icon" />
+      <VSvgIcon :icon="icon" />
     </div>
     <div v-if="hasText" class="text-[0.75rem] ml-1 truncate">{{ text }}</div>
   </button>
 </template>
 <script lang="ts" setup>
 import { defineComponent } from "vue"
-import SvgIcon from "~/components/SvgIcon.vue"
 
 const props = defineProps<{
   icon: string
