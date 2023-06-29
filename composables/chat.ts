@@ -257,8 +257,8 @@ export const useChatStore = defineStore(
         id: 0,
       }
       currentSession.messages.push(newMessage)
+      currentSession.messagesCount = currentSession.messages.length
       const nMessage = currentSession.messages[currentSession.messages.length - 1]
-      console.log("nextSession", nMessage)
       fetchStream(payload, (receivedData: string) => {
         nMessage.content = receivedData
       }).catch((error) => {
