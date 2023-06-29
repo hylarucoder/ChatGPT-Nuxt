@@ -30,10 +30,10 @@ export enum FileName {
 }
 
 export enum StoreKey {
-  Chat = "chat-next-web-store",
+  Chat = "store-chat",
   Access = "access-control",
-  Setting = "app-config",
-  Mask = "mask-store",
+  Setting = "store-setting",
+  Mask = "store-mask",
   Prompt = "prompt-store",
   Update = "chat-update",
 }
