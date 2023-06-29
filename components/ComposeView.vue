@@ -38,12 +38,16 @@
 import { ref } from "vue"
 import { useChatStore } from "~/composables/chat"
 
-let composeInput = ref("")
+// eslint-disable-next-line no-undef
+const route = useRoute()
 const chatStore = useChatStore()
+const currentSession = chatStore.currentSession(route.params.sid)!
+
+let composeInput = ref("")
 
 const composeNewMessage = () => {
   const input = composeInput.value
   composeInput.value = ""
-  chatStore.onNewMessage(input)
+  chatStore.onNewMessage(currentSession, input)
 }
 </script>

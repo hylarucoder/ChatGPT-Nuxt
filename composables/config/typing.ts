@@ -185,7 +185,7 @@ export interface ChatStat {
 }
 
 export interface TChatSession {
-  id: number
+  id: string
   topic: string
 
   memoryPrompt: string

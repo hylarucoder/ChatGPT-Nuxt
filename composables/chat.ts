@@ -62,7 +62,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 function makeDemoSession(s: number): TChatSession {
   return {
-    id: s,
+    id: s.toString(),
     topic: "Welcome",
     memoryPrompt: "Welcome to the chat room!",
     messages: [
@@ -124,14 +124,7 @@ function makeDemoSession(s: number): TChatSession {
 }
 
 export const useChatStore = defineStore(StoreKey.Chat, () => {
-  const sessions = ref([
-    makeDemoSession(1),
-    makeDemoSession(2),
-    makeDemoSession(3),
-    makeDemoSession(4),
-    makeDemoSession(5),
-  ])
-  const currentSessionIndex = ref(0)
+  const sessions = ref([makeDemoSession(1)])
   const globalId = ref(0)
 
   const clearSessions = () => {
@@ -143,14 +136,11 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
     sessions.value.splice(to, 0, session)
   }
 
-  const selectSession = (index: any) => {
-    currentSessionIndex.value = index
-  }
-
   const newSession = (mask?: TMask): TChatSession => {
     console.log(mask)
+    const randomId = Math.floor(Math.random() * 1000000)
     let session: TChatSession = {
-      id: globalId.value++,
+      id: "na-" + randomId.toString(),
       topic: "New Session",
       memoryPrompt: "",
       messages: [
@@ -209,8 +199,9 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
     sessions.value.splice(index, 1)
   }
 
-  const currentSession = (): TChatSession => {
-    return sessions.value[currentSessionIndex.value]
+  const currentSession = (sid: string): TChatSession | undefined => {
+    const currentSessions = sessions.value.filter((s) => s.id === sid)
+    return currentSessions[0]
   }
 
   const nextSession = (delta: number) => {
@@ -218,7 +209,7 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
     console.log("nextSession", delta)
   }
 
-  const onNewMessage = (message: string) => {
+  const onNewMessage = (currentSession: TChatSession, message: string) => {
     // input message, send to backend, get response
     // add response message
     const payload = {
@@ -238,7 +229,7 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
       temperature: 0.5,
     }
 
-    currentSession().messages.push({
+    currentSession.messages.push({
       role: "user",
       content: message,
       date: "2021-06-13T15:00:00.000Z",
@@ -256,20 +247,11 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
       isError: false,
       id: 0,
     }
-    currentSession().messages.push(newMessage)
-    const nMessage = currentSession().messages[currentSession().messages.length - 1]
-
+    currentSession.messages.push(newMessage)
+    const nMessage = currentSession.messages[currentSession.messages.length - 1]
     console.log("nextSession", nMessage)
     fetchStream(payload, (receivedData: string) => {
       nMessage.content = receivedData
-      // const chatElements = document.getElementsByClassName("markdown-body")
-      // const chatEle = chatElements[chatElements.length - 1]
-      // // console.log(chatEle.scrollIntoView)
-      // chatEle?.scrollIntoView({
-      //   behavior: "smooth",
-      //   block: "center",
-      // })
-      // console.log("Received message:", receivedData)
     }).catch((error) => {
       console.error("Error occurred:", error)
     })
@@ -314,17 +296,14 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
 
   const clearAllData = () => {
     sessions.value = []
-    currentSessionIndex.value = 0
     globalId.value = 0
   }
 
   return {
     sessions,
-    currentSessionIndex,
     globalId,
     clearSessions,
     moveSession,
-    selectSession,
     newSession,
     deleteSession,
     currentSession,
