@@ -35,7 +35,7 @@
         </div>
       </div>
     </div>
-    <div class="p-5">
+    <div class="p-5 flex-grow overflow-scroll max-h-full">
       <div class="flex mb-5">
         <input
           type="text"
@@ -74,7 +74,7 @@
         </button>
       </div>
 
-      <div class="divide-gray-200 overflow-scroll max-h-full">
+      <div class="divide-gray-200">
         <div
           v-for="(mask, index) in masks"
           style="border-color: rgb(222, 222, 222); border-style: solid"
@@ -92,7 +92,7 @@
             </div>
             <div>
               <div class="text-sm font-bold">{{ mask.name }}</div>
-              <div class="text-xs text-ellipsis">{{ mask.description }}</div>
+              <p class="text-xs text-ellipsis">{{ mask.description }}</p>
             </div>
           </div>
           <div class="flex">
