@@ -7,28 +7,33 @@ export interface TSelectOption {
   value: string | number
 }
 
-const sendKeyOptions: TSelectOption[] = [
+export const keyMaps = [
   {
     label: "Enter",
-    value: "Enter",
+    keys: ["Enter"],
   },
   {
     label: "Ctrl + Enter",
-    value: "Ctrl + Enter",
+    keys: ["Control", "Enter"],
   },
   {
     label: "Shift + Enter",
-    value: "Shift + Enter",
+    keys: ["Shift", "Enter"],
   },
   {
     label: "Alt + Enter",
-    value: "Alt + Enter",
-  },
-  {
-    label: "Meta + Enter",
-    value: "Meta + Enter",
+    keys: ["Alt", "Enter"],
   },
 ]
+
+// use label as key and value
+
+const sendKeyOptions: TSelectOption[] = keyMaps.map((keyMap) => {
+  return {
+    label: keyMap.label,
+    value: keyMap.label,
+  }
+})
 const themeOptions: TSelectOption[] = [
   {
     label: "Auto",
@@ -155,7 +160,7 @@ const modelOptions: TSelectOption[] = [
 ]
 
 const defaultSettings = {
-  avatar: "https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f603.png",
+  avatar: "🙂",
   sendKey: "Enter",
   theme: "Auto",
   language: "en",
@@ -171,6 +176,9 @@ const defaultSettings = {
   historyMessagesThreshold: 1000,
   historySummary: false,
   disableAutoCompletePrompt: false,
+  latestCommitDate: "",
+  remoteLatestCommitDate: "",
+  hasNewVersion: false,
 }
 export const useSettingStore = defineStore(
   StoreKey.Setting,
@@ -182,9 +190,30 @@ export const useSettingStore = defineStore(
       language: languageOptions,
       model: modelOptions,
     })
+    const owner = "hylarucoder"
+    const repo = "ChatGPT-Nuxt"
+    const branch = "main"
+    const url = `https://api.github.com/repos/${owner}/${repo}/commits?sha=${branch}&per_page=1`
+    const runtimeConfig = useRuntimeConfig()
+
+    const fetchRemoteLatestCommitDate = () => {
+      console.log("fetchRemoteLatestCommitDate", runtimeConfig.public)
+      if (runtimeConfig.public.LATEST_COMMIT_DATE) {
+        settings.latestCommitDate = runtimeConfig.public.LATEST_COMMIT_DATE as string
+        settings.hasNewVersion = settings.latestCommitDate < settings.remoteLatestCommitDate
+      }
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          const date = data[0].commit.author.date
+          settings.remoteLatestCommitDate = date.slice(0, 10).replace(/-/g, "")
+        })
+        .catch((error) => console.error(error))
+    }
     return {
       settings,
       settingOptions,
+      fetchRemoteLatestCommitDate,
     }
   },
   {

@@ -65,6 +65,7 @@ function makeDemoSession(s: number): TChatSession {
     id: s.toString(),
     topic: "Welcome",
     memoryPrompt: "Welcome to the chat room!",
+    composeInput: "",
     messagesCount: 3,
     messages: [
       {
@@ -144,6 +145,7 @@ export const useChatStore = defineStore(
       let session: TChatSession = {
         id: "na-" + randomId.toString(),
         topic: "New Session",
+        composeInput: "",
         memoryPrompt: "",
         messagesCount: 2,
         messages: [

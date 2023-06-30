@@ -1,10 +1,15 @@
 <script setup lang="ts">
+import { onMounted } from "vue"
+import VEmojiAvatar from "~/components/VEmojiAvatar.vue"
 import { useSettingStore } from "~/composables/settings"
 import SettingItem from "~/pages/chat/settings/SettingItem.vue"
 
 const settingStore = useSettingStore()
 const settings = settingStore.settings
 const settingOptions = settingStore.settingOptions
+onMounted(() => {
+  settingStore.fetchRemoteLatestCommitDate()
+})
 </script>
 <template>
   <ClientOnly>
@@ -47,14 +52,17 @@ const settingOptions = settingStore.settingOptions
       <div class="p-5 overflow-scroll">
         <div class="mb-5 rounded-xl border divide-y shadow-sm">
           <SettingItem title="头像">
-            <UIAvatar v-model="settings.avatar" @click="printVar" />
+            <VEmojiAvatar v-model="settings.avatar" />
           </SettingItem>
 
-          <SettingItem title="当前版本：20230607" subtitle="发现新版本：19700101">
+          <SettingItem
+            :title="`当前版本：${settings.latestCommitDate}`"
+            :subtitle="settings.hasNewVersion ? `发现新版本：${settings.remoteLatestCommitDate}` : ``"
+          >
             <a
               href="https://github.com/hylarucoder/ChatGPT-Nuxt#keep-updated"
               class="text-emerald-400 cursor-pointer text-[0.75rem]"
-              >前往更新</a
+              >{{ settings.hasNewVersion ? "前往更新" : "无需更新" }}</a
             >
           </SettingItem>
 

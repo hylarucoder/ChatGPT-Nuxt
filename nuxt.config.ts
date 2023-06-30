@@ -1,7 +1,13 @@
-import { appDescription } from "./constants"
-import { pwa } from "./config/pwa"
-import svgLoader from "vite-svg-loader"
 import { defineNuxtConfig } from "nuxt/config"
+import svgLoader from "vite-svg-loader"
+import { pwa } from "./config/pwa"
+import { appDescription } from "./constants"
+
+function getGitCommitDateYMD() {
+  const { execSync } = require("child_process")
+  const date = execSync("git show -s --format=%ci HEAD").toString()
+  return date.slice(0, 10).replaceAll("-", "")
+}
 
 export default defineNuxtConfig({
   // @ts-ignore
@@ -14,12 +20,10 @@ export default defineNuxtConfig({
   build: {
     transpile: ["trpc-nuxt"],
   },
-  css: ["@/assets/css/globals.css"],
+  css: ["@/assets/css/globals.css", "@/assets/scss/index.scss"],
   runtimeConfig: {
-    // API_BASE_URL: process.env.API_BASE_URL,
     public: {
-      // @ts-ignore
-      // eslint-disable-next-line no-undef
+      LATEST_COMMIT_DATE: getGitCommitDateYMD(),
       API_BASE_URL: process.env.NUXT_API_BASE_URL || "/api",
     },
   },
@@ -61,7 +65,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      viewport: "width=device-width,initial-scale=1",
+      viewport: "width=device-width,initial-scale=1,user-scalable=no",
       link: [
         {
           rel: "icon",

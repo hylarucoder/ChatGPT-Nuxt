@@ -1,0 +1,38 @@
+<script setup lang="ts">
+import { ref } from "vue"
+
+const props = defineProps({
+  modelValue: {
+    type: String,
+    required: true,
+  },
+})
+const showEmojiPicker = ref(false)
+const selectedEmoji = ref(props.modelValue)
+
+const emits = defineEmits(["update:modelValue"])
+
+const selectEmoji = (emoji: string) => {
+  selectedEmoji.value = emoji
+  showEmojiPicker.value = false
+  emits("update:modelValue", emoji)
+}
+const elementRef = ref<HTMLElement | null>(null)
+
+onClickOutside(elementRef, (event) => {
+  if (elementRef.value && !elementRef.value.contains(event.target)) {
+    showEmojiPicker.value = false
+    console.log("click outside element")
+  }
+})
+</script>
+<template>
+  <div class="relative" ref="elementRef">
+    <Icon :name="selectedEmoji" size="1.5em" @click="showEmojiPicker = !showEmojiPicker" />
+    <VEmojiPicker
+      @onSelected="selectEmoji"
+      v-if="showEmojiPicker"
+      class="absolute right-0 p-2 bg-white border border-gray-200 rounded shadow"
+    />
+  </div>
+</template>

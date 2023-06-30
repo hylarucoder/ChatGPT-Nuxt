@@ -1,15 +1,33 @@
 <script lang="ts" setup>
-import { ref } from "vue"
 import { useChatStore } from "~/composables/chat"
 
 const chatStore = useChatStore()
+const settingStore = useSettingStore()
 const currentSession = chatStore.routeCurrentSession()
 
-let composeInput = ref("")
+currentSession.composeInput
+
+const setting = settingStore.settings
+
+const handleKeyDown = (event) => {
+  const targetKeyMap = keyMaps.find((keyMap) => keyMap.label === setting.sendKey)
+
+  if (targetKeyMap) {
+    const allKeysMatched = targetKeyMap.keys.every((key) => event.getModifierState(key) || event.key === key)
+
+    if (allKeysMatched) {
+      event.preventDefault()
+      composeNewMessage()
+    }
+  }
+}
 
 const composeNewMessage = () => {
-  const input = composeInput.value
-  composeInput.value = ""
+  if (!currentSession.composeInput.trim()) {
+    return
+  }
+  const input = currentSession.composeInput
+  currentSession.composeInput = ""
   chatStore.onNewMessage(currentSession, input)
 }
 </script>
@@ -34,12 +52,16 @@ const composeNewMessage = () => {
     </div>
     <div class="flex flex-grow">
       <textarea
-        class="relative cursor-text h-24 break-words pb-3 pl-3.5 pr-24 w-full rounded-xl border"
-        v-model="composeInput"
+        class="relative cursor-text h-24 break-words w-full rounded-xl border"
+        :placeholder="setting.sendKey + ' 发送'"
+        v-model="currentSession.composeInput"
+        @keydown="handleKeyDown"
       />
       <button
         @click="composeNewMessage"
-        class="absolute items-center bg-emerald-400 bottom-4 text-white cursor-pointer flex h-10 justify-center right-4 text-center px-4 py-2 rounded-xl truncate"
+        :disabled="!currentSession.composeInput.trim()"
+        class="absolute items-center bg-emerald-400 bottom-4 text-white cursor-pointer flex h-10 justify-center right-4 text-center px-4 py-4 rounded-xl truncate"
+        :class="{ 'bg-gray-400': !currentSession.composeInput.trim() }"
       >
         <div class="items-center flex justify-center">
           <VSvgIcon icon="send-white" />
