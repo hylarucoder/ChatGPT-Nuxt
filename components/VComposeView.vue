@@ -1,17 +1,15 @@
 <script lang="ts" setup>
 import { ref } from "vue"
 import { useChatStore } from "~/composables/chat"
-import { keyMaps } from "~/composables/settings"
 
 const chatStore = useChatStore()
 const settingStore = useSettingStore()
 const currentSession = chatStore.routeCurrentSession()
 
-let composeInput = ref("")
+currentSession.composeInput
 
 const setting = settingStore.settings
 const keys = useMagicKeys()
-// 设置 Send Key 的发送
 const shortCutSend = keys[setting.sendKey.replaceAll(" ", "")]
 
 watch(shortCutSend, (v) => {
@@ -20,30 +18,12 @@ watch(shortCutSend, (v) => {
   }
 })
 
-// 其他带 enter 的默认换行
-
-for (const keyMap of keyMaps) {
-  if (keyMap.label === setting.sendKey) {
-    continue
-  }
-  if (keyMap.label === "Enter") {
-    continue
-  }
-  const shortCutReturn = keys[keyMap.label.replaceAll(" ", "")]
-  watch(shortCutReturn, (v) => {
-    if (v) {
-      console.log("vvvv return !!")
-      composeInput.value += "\n"
-    }
-  })
-}
-
 const composeNewMessage = () => {
-  if (!composeInput.value.trim()) {
+  if (!currentSession.composeInput.trim()) {
     return
   }
-  const input = composeInput.value
-  composeInput.value = ""
+  const input = currentSession.composeInput
+  currentSession.composeInput = ""
   chatStore.onNewMessage(currentSession, input)
 }
 </script>
@@ -67,12 +47,16 @@ const composeNewMessage = () => {
       </div>
     </div>
     <div class="flex flex-grow">
-      <textarea class="relative cursor-text h-24 break-words w-full rounded-xl border" v-model="composeInput" />
+      <textarea
+        class="relative cursor-text h-24 break-words w-full rounded-xl border"
+        :placeholder="setting.sendKey + ' 发送'"
+        v-model="currentSession.composeInput"
+      />
       <button
         @click="composeNewMessage"
-        :disabled="!composeInput.trim()"
+        :disabled="!currentSession.composeInput.trim()"
         class="absolute items-center bg-emerald-400 bottom-4 text-white cursor-pointer flex h-10 justify-center right-4 text-center px-4 py-4 rounded-xl truncate"
-        :class="{ 'bg-gray-400': !composeInput.trim() }"
+        :class="{ 'bg-gray-400': !currentSession.composeInput.trim() }"
       >
         <div class="items-center flex justify-center">
           <VSvgIcon icon="send-white" />
