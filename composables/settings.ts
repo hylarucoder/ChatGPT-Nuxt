@@ -7,28 +7,37 @@ export interface TSelectOption {
   value: string | number
 }
 
-const sendKeyOptions: TSelectOption[] = [
+export const keyMaps = [
   {
     label: "Enter",
-    value: "Enter",
+    keys: ["Enter"],
   },
   {
     label: "Ctrl + Enter",
-    value: "Ctrl + Enter",
+    keys: ["Control", "Enter"],
   },
   {
     label: "Shift + Enter",
-    value: "Shift + Enter",
+    keys: ["Shift", "Enter"],
   },
   {
     label: "Alt + Enter",
-    value: "Alt + Enter",
+    keys: ["Alt", "Enter"],
   },
   {
     label: "Meta + Enter",
-    value: "Meta + Enter",
+    keys: ["Meta", "Enter"],
   },
 ]
+
+// use label as key and value
+
+const sendKeyOptions: TSelectOption[] = keyMaps.map((keyMap) => {
+  return {
+    label: keyMap.label,
+    value: keyMap.label,
+  }
+})
 const themeOptions: TSelectOption[] = [
   {
     label: "Auto",
