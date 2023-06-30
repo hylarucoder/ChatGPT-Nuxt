@@ -11,7 +11,7 @@
             class="items-center cursor-pointer flex h-10 justify-center w-10 border border-neutral-200 border-solid rounded-xl p-3 overflow-hidden"
           >
             <div class="items-center flex justify-center">
-              <SvgIcon icon="download" />
+              <VSvgIcon icon="download" />
             </div>
           </button>
         </div>
@@ -20,7 +20,7 @@
             class="items-center cursor-pointer flex h-10 justify-center w-10 border border-neutral-200 border-solid rounded-xl p-3 overflow-hidden"
           >
             <div class="items-center flex justify-center">
-              <SvgIcon icon="upload" />
+              <VSvgIcon icon="upload" />
             </div>
           </button>
         </div>
@@ -29,7 +29,7 @@
             class="items-center cursor-pointer flex h-10 justify-center w-10 border border-neutral-200 border-solid rounded-xl p-3 overflow-hidden"
           >
             <div class="items-center flex justify-center">
-              <SvgIcon icon="close" />
+              <VSvgIcon icon="close" />
             </div>
           </button>
         </div>
@@ -68,7 +68,7 @@
           class="items-center cursor-pointer flex text-[0.83rem] h-10 justify-center ml-3 text-center w-30 border border-neutral-200 border-solid rounded-xl p-3 overflow-hidden"
         >
           <div class="items-center flex justify-center">
-            <SvgIcon icon="add" />
+            <VSvgIcon icon="add" />
           </div>
           <div @click="visible = true" class="text-xs ml-1 text-ellipsis overflow-hidden">新建</div>
         </button>
@@ -105,7 +105,7 @@
               class="items-center cursor-pointer flex text-[0.83rem] h-9 justify-center text-center w-20 rounded-xl p-3 overflow-hidden"
             >
               <div class="items-center flex justify-center h-4 w-4">
-                <SvgIcon icon="add" />
+                <VSvgIcon icon="add" />
               </div>
               <div class="text-xs ml-1 text-ellipsis overflow-hidden">对话</div>
             </button>
@@ -113,7 +113,7 @@
               class="items-center cursor-pointer flex text-[0.83rem] h-9 justify-center text-center w-20 rounded-xl p-3 overflow-hidden"
             >
               <div class="items-center flex justify-center h-4 w-4">
-                <SvgIcon icon="eye" />
+                <VSvgIcon icon="eye" />
               </div>
               <div class="text-xs ml-1 text-ellipsis overflow-hidden">查看</div>
             </button>

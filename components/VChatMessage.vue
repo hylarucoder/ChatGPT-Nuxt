@@ -3,7 +3,7 @@
     <div class="items-start flex flex-col">
       <div class="mt-5">
         <div class="flex justify-center items-center">
-          <SvgIcon icon="chatgpt" />
+          <VSvgIcon icon="chatgpt" />
         </div>
       </div>
       <div

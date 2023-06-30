@@ -12,7 +12,7 @@
               class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
             >
               <div class="items-center flex justify-center">
-                <SvgIcon icon="clear" />
+                <VSvgIcon icon="clear" />
               </div>
             </button>
           </div>
@@ -21,7 +21,7 @@
               class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
             >
               <div class="items-center flex justify-center">
-                <SvgIcon icon="reload" />
+                <VSvgIcon icon="reload" />
               </div>
             </button>
           </div>
@@ -30,7 +30,7 @@
               class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
             >
               <div class="items-center flex justify-center">
-                <SvgIcon icon="close" />
+                <VSvgIcon icon="close" />
               </div>
             </button>
           </div>
@@ -88,7 +88,7 @@
                 class="items-center cursor-pointer flex h-9 justify-center mr-1 text-center w-9 p-3 rounded-xl truncate"
               >
                 <div class="items-center flex justify-center">
-                  <SvgIcon icon="eye-off" class="w-4 h-4" />
+                  <VSvgIcon icon="eye-off" class="w-4 h-4" />
                 </div>
               </button>
               <input
@@ -105,7 +105,7 @@
               class="items-center cursor-pointer hover:bg-gray flex h-10 justify-center text-center w-24 p-3 rounded-xl truncate"
             >
               <div class="items-center flex justify-center">
-                <SvgIcon icon="reload" />
+                <VSvgIcon icon="reload" />
               </div>
               <div class="text-[0.75rem] ml-1 truncate">重新检查</div>
             </button>
@@ -121,7 +121,7 @@
               class="items-center cursor-pointer flex h-10 justify-center text-center w-32 p-3 rounded-xl truncate"
             >
               <div class="items-center flex justify-center">
-                <SvgIcon icon="edit" />
+                <VSvgIcon icon="edit" />
               </div>
               <div class="text-[0.75rem] ml-1 truncate">编辑</div>
             </button>

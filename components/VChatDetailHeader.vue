@@ -10,7 +10,7 @@
           class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
         >
           <div class="items-center flex justify-center">
-            <SvgIcon icon="rename" />
+            <VSvgIcon icon="rename" />
           </div>
         </button>
       </div>
@@ -19,7 +19,7 @@
           class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
         >
           <div class="items-center flex justify-center">
-            <SvgIcon icon="share" />
+            <VSvgIcon icon="share" />
           </div>
         </button>
       </div>
@@ -28,7 +28,7 @@
           class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
         >
           <div class="items-center flex justify-center">
-            <SvgIcon icon="max" />
+            <VSvgIcon icon="max" />
           </div>
         </button>
       </div>

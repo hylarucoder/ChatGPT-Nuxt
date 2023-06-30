@@ -5,7 +5,7 @@
       <div class="text-[0.75rem]">Build your own AI assistant.</div>
 
       <div class="bottom-[1.13rem] left-[13.56rem] absolute top-[1.63rem]">
-        <SvgIcon icon="chatgpt" />
+        <VSvgIcon icon="chatgpt" />
       </div>
     </div>
     <div class="flex mb-5 space-x-2">
@@ -17,7 +17,7 @@
       </NuxtLink>
     </div>
     <div class="flex-grow overflow-x-hidden">
-      <ChatList />
+      <VChatList />
     </div>
     <div class="flex justify-between pt-5">
       <div class="flex">

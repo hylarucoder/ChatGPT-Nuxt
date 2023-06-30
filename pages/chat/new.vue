@@ -6,7 +6,7 @@
         class="items-center bg-white cursor-pointer flex h-10 justify-center text-center p-3 rounded-xl truncate"
       >
         <div class="items-center flex justify-center">
-          <SvgIcon icon="return" class="w-4 h-4" />
+          <VSvgIcon icon="return" class="w-4 h-4" />
         </div>
         <div class="text-[0.75rem] ml-1 truncate">返回</div>
       </button>
@@ -39,7 +39,7 @@
         @click="newSessionAndNav"
       >
         <div class="items-center flex justify-center">
-          <SvgIcon icon="lightning" class="" style="color: white" />
+          <VSvgIcon icon="lightning" class="" style="color: white" />
         </div>
         <div class="ml-1 truncate text-white">直接开始</div>
       </button>
@@ -47,7 +47,7 @@
         class="items-center bg-white cursor-pointer flex h-10 justify-center text-center w-24 p-3 border-neutral-200 rounded-xl border truncate hover:bg-gray-200"
       >
         <div class="items-center flex justify-center">
-          <SvgIcon icon="eye" class="w-4 h-4" />
+          <VSvgIcon icon="eye" class="w-4 h-4" />
         </div>
         <div class="ml-1 truncate text-black">查看全部</div>
       </button>

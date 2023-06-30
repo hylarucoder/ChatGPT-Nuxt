@@ -1,21 +1,20 @@
 <template>
   <div class="flex flex-col flex-1">
-    <ChatDetailHeader />
+    <VChatDetailHeader />
     <div class="flex-grow p-5 overflow-scroll" ref="el" id="message-box">
-      <ChatMessage
+      <VChatMessage
         class="chat-message"
         v-for="message in currentSession.messages"
         :content="message.content"
         :direction="message.direction"
       />
     </div>
-    <ComposeView />
+    <VComposeView />
   </div>
 </template>
 <script setup lang="ts">
 import { ref, watch, onMounted } from "vue"
 import { useChatStore } from "~/composables/chat"
-import ChatMessage from "~/components/ChatMessage.vue"
 
 const router = useRouter()
 const chatStore = useChatStore()

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ChatListItem v-for="session in sessions" :session="session" />
+    <VChatListCard v-for="session in sessions" :session="session" />
   </div>
 </template>
 <script setup lang="ts">
