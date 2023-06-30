@@ -171,6 +171,9 @@ const defaultSettings = {
   historyMessagesThreshold: 1000,
   historySummary: false,
   disableAutoCompletePrompt: false,
+  latestCommitDate: "",
+  remoteLatestCommitDate: "",
+  hasNewVersion: false,
 }
 export const useSettingStore = defineStore(
   StoreKey.Setting,
@@ -182,9 +185,30 @@ export const useSettingStore = defineStore(
       language: languageOptions,
       model: modelOptions,
     })
+    const owner = "hylarucoder"
+    const repo = "ChatGPT-Nuxt"
+    const branch = "main"
+    const url = `https://api.github.com/repos/${owner}/${repo}/commits?sha=${branch}&per_page=1`
+    const runtimeConfig = useRuntimeConfig()
+
+    const fetchRemoteLatestCommitDate = () => {
+      console.log("fetchRemoteLatestCommitDate", runtimeConfig.public)
+      if (runtimeConfig.public.LATEST_COMMIT_DATE) {
+        settings.latestCommitDate = runtimeConfig.public.LATEST_COMMIT_DATE as string
+        settings.hasNewVersion = settings.latestCommitDate < settings.remoteLatestCommitDate
+      }
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          const date = data[0].commit.author.date
+          settings.remoteLatestCommitDate = date.slice(0, 10).replace(/-/g, "")
+        })
+        .catch((error) => console.error(error))
+    }
     return {
       settings,
       settingOptions,
+      fetchRemoteLatestCommitDate,
     }
   },
   {

@@ -1,18 +1,19 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue"
 
+type EmojiCategory = {
+  title: string
+  icon: string
+  emojis: string[]
+}
+
 const props = defineProps({
   modelValue: {
     type: String,
     required: true,
   },
 })
-
-type EmojiCategory = {
-  title: string
-  icon: string
-  emojis: string[]
-}
+const emit = defineEmits(["onSelected"])
 
 const searchQuery = ref("")
 const recentEmojis = ref<string[]>([])
@@ -210,8 +211,6 @@ function selectCategory(index: number) {
   selectedCategoryIndex.value = index
 }
 
-const emit = defineEmits(["onSelected"])
-
 function selectEmoji(emoji: string) {
   if (!recentEmojis.value.includes(emoji)) {
     recentEmojis.value.unshift(emoji)
@@ -223,7 +222,7 @@ function selectEmoji(emoji: string) {
 }
 </script>
 <template>
-  <div class="rounded-md bg-white shadow-xs w-[320px]">
+  <div class="rounded-md bg-white shadow-xs w-[320px]" ref="elementRef">
     <div class="grid grid-cols-9 gap-1">
       <div
         v-for="(category, index) in emojiCategories"
