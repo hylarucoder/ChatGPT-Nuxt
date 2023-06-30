@@ -1,6 +1,14 @@
+<script setup lang="ts">
+import { useSettingStore } from "~/composables/settings"
+import SettingItem from "~/pages/chat/settings/SettingItem.vue"
+
+const settingStore = useSettingStore()
+const settings = settingStore.settings
+const settingOptions = settingStore.settingOptions
+</script>
 <template>
   <ClientOnly>
-    <div class="flex flex-col w-full">
+    <div class="flex flex-col flex-1">
       <div class="items-center flex justify-between p-3.5 border-gray-200 border-y">
         <div class="truncate">
           <div class="text-[1.25rem] font-bold truncate">设置</div>
@@ -12,7 +20,7 @@
               class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
             >
               <div class="items-center flex justify-center">
-                <SvgIcon icon="clear" />
+                <VSvgIcon icon="clear" />
               </div>
             </button>
           </div>
@@ -21,7 +29,7 @@
               class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
             >
               <div class="items-center flex justify-center">
-                <SvgIcon icon="reload" />
+                <VSvgIcon icon="reload" />
               </div>
             </button>
           </div>
@@ -30,7 +38,7 @@
               class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
             >
               <div class="items-center flex justify-center">
-                <SvgIcon icon="close" />
+                <VSvgIcon icon="close" />
               </div>
             </button>
           </div>
@@ -88,7 +96,7 @@
                 class="items-center cursor-pointer flex h-9 justify-center mr-1 text-center w-9 p-3 rounded-xl truncate"
               >
                 <div class="items-center flex justify-center">
-                  <SvgIcon icon="eye-off" class="w-4 h-4" />
+                  <VSvgIcon icon="eye-off" class="w-4 h-4" />
                 </div>
               </button>
               <input
@@ -105,7 +113,7 @@
               class="items-center cursor-pointer hover:bg-gray flex h-10 justify-center text-center w-24 p-3 rounded-xl truncate"
             >
               <div class="items-center flex justify-center">
-                <SvgIcon icon="reload" />
+                <VSvgIcon icon="reload" />
               </div>
               <div class="text-[0.75rem] ml-1 truncate">重新检查</div>
             </button>
@@ -121,7 +129,7 @@
               class="items-center cursor-pointer flex h-10 justify-center text-center w-32 p-3 rounded-xl truncate"
             >
               <div class="items-center flex justify-center">
-                <SvgIcon icon="edit" />
+                <VSvgIcon icon="edit" />
               </div>
               <div class="text-[0.75rem] ml-1 truncate">编辑</div>
             </button>
@@ -190,14 +198,3 @@
     </div>
   </ClientOnly>
 </template>
-<script setup lang="ts">
-import { useSettingStore } from "~/composables/settings"
-import SettingItem from "~/pages/chat/SettingItem.vue"
-
-const settingStore = useSettingStore()
-const settings = settingStore.settings
-const settingOptions = settingStore.settingOptions
-const printVar = () => {
-  console.log(settings)
-}
-</script>

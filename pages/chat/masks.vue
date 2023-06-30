@@ -1,212 +1,182 @@
+<script setup lang="ts">
+import { getRandomEmoji } from "~/utils/emoji"
+import { ref } from "vue"
+
+const masks = ref<TPrompts[]>([])
+
+interface TPromptsJson {
+  cn: string[]
+  en: string[]
+}
+
+enum TLang {
+  cn,
+  en,
+}
+
+interface TPrompts {
+  name: string
+  description: string
+  lang: TLang
+}
+
+const visible = ref(false)
+
+onMounted(() => {
+  fetch("/prompts.json")
+    .then((response) => response.json())
+    .then((prompts: TPromptsJson) => {
+      // 将结果放到变量 a 中
+      for (let prompt of prompts.cn) {
+        if (!prompt[0]) {
+          continue
+        }
+        masks.value.push({
+          name: prompt[0],
+          description: prompt[1],
+          lang: TLang.cn,
+        })
+      }
+
+      for (let prompt of prompts.en) {
+        if (!prompt[0]) {
+          continue
+        }
+        masks.value.push({
+          name: prompt[0],
+          description: prompt[1],
+          lang: TLang.en,
+        })
+      }
+
+      // a.value = prompts
+      // console.log("a value", a.value)
+    })
+    .catch((error) => console.error(error))
+})
+</script>
 <template>
-  <div class="items-center text-zinc-800 flex flex-col justify-center w-full">
-    <div class="flex justify-between p-3 w-full">
-      <button
-        @click="router.back()"
-        class="items-center bg-white cursor-pointer flex h-10 justify-center text-center p-3 rounded-xl truncate"
-      >
-        <div class="items-center flex justify-center">
-          <SvgIcon icon="return" class="w-4 h-4" />
+  <div class="flex flex-col overflow-hidden flex-1 h-screen">
+    <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)" class="items-center flex justify-between py-3.5 px-5">
+      <div class="overflow-hidden">
+        <div class="text-xl font-bold text-ellipsis overflow-hidden">预设角色面具</div>
+        <div>{{ masks.length }} 个预设角色定义</div>
+      </div>
+      <div class="flex">
+        <div>
+          <button
+            class="items-center cursor-pointer flex h-10 justify-center w-10 border border-neutral-200 border-solid rounded-xl p-3 overflow-hidden"
+          >
+            <div class="items-center flex justify-center">
+              <VSvgIcon icon="download" />
+            </div>
+          </button>
         </div>
-        <div class="text-[0.75rem] ml-1 truncate">返回</div>
-      </button>
-    </div>
-    <div class="flex mb-5 mt-12 space-x-1">
-      <div class="bg-white h-16 py-5 px-3 w-12 border-neutral-200 rounded-2xl border">
-        <img
-          src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f606.png"
-          class="text-[1.50rem] h-6 align-middle w-6 overflow-clip"
-        />
-      </div>
-      <div class="bg-white h-16 py-5 px-3 w-12 border-neutral-200 rounded-2xl border">
-        <img
-          src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f916.png"
-          class="text-[1.50rem] h-6 align-middle w-6 overflow-clip"
-        />
-      </div>
-      <div class="bg-white h-16 py-5 px-3 w-12 border-neutral-200 rounded-2xl border">
-        <img
-          src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f479.png"
-          class="text-[1.50rem] h-6 align-middle w-6 overflow-clip"
-        />
-      </div>
-    </div>
-    <div class="text-[2.00rem] font-bold mb-2">挑选一个面具</div>
-    <div>现在开始，与面具背后的灵魂思维碰撞</div>
-    <div class="flex text-[0.75rem] justify-center mb-5 mt-12 space-x-2">
-      <button
-        class="items-center bg-emerald-400 text-white cursor-pointer flex h-10 justify-center ml-3 text-center w-24 p-3 rounded-xl truncate hover:bg-emerald-500"
-        @click="newSessionAndNav"
-      >
-        <div class="items-center flex justify-center">
-          <SvgIcon icon="lightning" class="" style="color: white" />
+        <div class="ml-3">
+          <button
+            class="items-center cursor-pointer flex h-10 justify-center w-10 border border-neutral-200 border-solid rounded-xl p-3 overflow-hidden"
+          >
+            <div class="items-center flex justify-center">
+              <VSvgIcon icon="upload" />
+            </div>
+          </button>
         </div>
-        <div class="ml-1 truncate text-white">直接开始</div>
-      </button>
-      <button
-        class="items-center bg-white cursor-pointer flex h-10 justify-center text-center w-24 p-3 border-neutral-200 rounded-xl border truncate hover:bg-gray-200"
-      >
-        <div class="items-center flex justify-center">
-          <SvgIcon icon="eye" class="w-4 h-4" />
+        <div class="ml-3">
+          <button
+            class="items-center cursor-pointer flex h-10 justify-center w-10 border border-neutral-200 border-solid rounded-xl p-3 overflow-hidden"
+          >
+            <div class="items-center flex justify-center">
+              <VSvgIcon icon="close" />
+            </div>
+          </button>
         </div>
-        <div class="ml-1 truncate text-black">查看全部</div>
-      </button>
+      </div>
     </div>
-    <div class="items-center flex-grow pt-5 overflow-hidden">
-      <div class="flex mb-3 overflow-y-auto">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
+    <div class="p-5 flex-grow overflow-scroll max-h-full">
+      <div class="flex mb-5">
+        <input
+          type="text"
+          placeholder="搜索角色面具"
+          class="cursor-text flex-grow text-[0.83rem] h-10 px-3 text-center w-[41.03rem] border border-neutral-200 border-solid rounded-xl"
         />
+        <div class="ml-3 relative">
+          <select
+            class="items-center cursor-pointer inline-block text-[0.83rem] h-10 py-2 pl-3 pr-6 text-center w-30 border border-neutral-200 border-solid rounded-xl"
+          >
+            <option value="所有语言" class="px-1">所有语言</option>
+            <option value="cn" class="px-1">简体中文</option>
+            <option value="en" class="px-1">English</option>
+            <option value="tw" class="px-1">繁體中文</option>
+            <option value="jp" class="px-1">日本語</option>
+            <option value="ko" class="px-1">한국어</option>
+            <option value="fr" class="px-1">Français</option>
+            <option value="es" class="px-1">Español</option>
+            <option value="it" class="px-1">Italiano</option>
+            <option value="tr" class="px-1">Türkçe</option>
+            <option value="de" class="px-1">Deutsch</option>
+            <option value="vi" class="px-1">Tiếng Việt</option>
+            <option value="ru" class="px-1">Русский</option>
+            <option value="cs" class="px-1">Čeština</option>
+            <option value="no" class="px-1">Nynorsk</option>
+            <option value="ar" class="px-1">العربية</option>
+          </select>
+        </div>
+        <button
+          class="items-center cursor-pointer flex text-[0.83rem] h-10 justify-center ml-3 text-center w-30 border border-neutral-200 border-solid rounded-xl p-3 overflow-hidden"
+        >
+          <div class="items-center flex justify-center">
+            <VSvgIcon icon="add" />
+          </div>
+          <div @click="visible = true" class="text-xs ml-1 text-ellipsis overflow-hidden">新建</div>
+        </button>
+        <VModel :visible="visible" title="My Modal" @close="visible = false">
+          <p>This is an example Modal.</p>
+          <p>This is an example Modal.</p>
+          <p>This is an example Modal.</p>
+        </VModel>
       </div>
-      <div class="flex mb-3 ml-12">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
-      </div>
-      <div class="flex mb-3">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
-      </div>
-      <div class="flex mb-3 ml-12">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
-      </div>
-      <div class="flex mb-3">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
-      </div>
-      <div class="flex mb-3 ml-6">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
-      </div>
-      <div class="flex mb-3 ml-3">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
-      </div>
-      <div class="flex mb-3">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
-      </div>
-      <div class="flex mb-3 ml--4">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
-      </div>
-      <div class="flex mb-3 ml-2">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
-      </div>
-      <div class="flex mb-3 ml-4">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+
+      <div class="divide-gray-200">
+        <div
+          v-for="(mask, index) in masks"
+          style="border-color: rgb(222, 222, 222); border-style: solid"
+          class="border-l border-r break-words flex justify-between p-5 divide-gray-50 border-b"
+          :class="{
+            'rounded-tl-xl rounded-tr-xl border-t ': index === 0,
+            'rounded-bl-xl rounded-br-xl': index === masks.length - 1,
+          }"
+        >
+          <div class="items-center flex overflow-auto text-ellipsis">
+            <div class="items-center flex justify-center mr-3">
+              <div style="border-bottom-color: rgb(222, 222, 222)" class="items-center flex justify-center rounded-xl">
+                <Icon icon class="h-10 w-10 overflow-clip" :name="getRandomEmoji(mask.name)" />
+              </div>
+            </div>
+            <div>
+              <div class="text-sm font-bold">{{ mask.name }}</div>
+              <p class="text-xs text-ellipsis">{{ mask.description }}</p>
+            </div>
+          </div>
+          <div class="flex">
+            <button
+              class="items-center cursor-pointer flex text-[0.83rem] h-9 justify-center text-center w-20 rounded-xl p-3 overflow-hidden"
+            >
+              <div class="items-center flex justify-center h-4 w-4">
+                <VSvgIcon icon="add" />
+              </div>
+              <div class="text-xs ml-1 text-ellipsis overflow-hidden">对话</div>
+            </button>
+            <button
+              class="items-center cursor-pointer flex text-[0.83rem] h-9 justify-center text-center w-20 rounded-xl p-3 overflow-hidden"
+            >
+              <div class="items-center flex justify-center h-4 w-4">
+                <VSvgIcon icon="eye" />
+              </div>
+              <div class="text-xs ml-1 text-ellipsis overflow-hidden">查看</div>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import { useChatStore } from "~/composables/chat"
-import MaskCard from "~/pages/chat/MaskCard.vue"
-
-const router = useRouter()
-const chatStore = useChatStore()
-
-const newSessionAndNav = () => {
-  const session = chatStore.newSession()
-  router.push({
-    path: "/chat/session/" + session.id,
-  })
-}
-
-const maskCards = [
-  {
-    title: "职业顾问",
-    icon: "job",
-    description: "职业顾问",
-    color: "bg-blue-500",
-  },
-  {
-    title: "心灵导师",
-    icon: "heart",
-    description: "心灵导师",
-    color: "bg-pink-500",
-  },
-  {
-    title: "CAN",
-    icon: "can",
-    description: "CAN",
-    color: "bg-yellow-500",
-  },
-  {
-    title: "英专写手",
-    icon: "english",
-    description: "英专写手",
-    color: "bg-green-500",
-  },
-  {
-    title: "语言检测器",
-    icon: "language",
-    description: "语言检测器",
-    color: "bg-purple-500",
-  },
-  {
-    title: "小红书写手",
-    icon: "xiaohongshu",
-    description: "小红书写手",
-    color: "bg-red-500",
-  },
-  {
-    title: "简历写手",
-    icon: "resume",
-    description: "简历写手",
-    color: "bg-blue-500",
-  },
-  {
-    title: "心理医生",
-    icon: "doctor",
-    description: "心理医生",
-    color: "bg-pink-500",
-  },
-  {
-    title: "创业点子王",
-    icon: "idea",
-    description: "创业点子王",
-    color: "bg-yellow-500",
-  },
-  {
-    title: "新的聊天",
-    icon: "chatgpt",
-    description: "新的聊天",
-    color: "bg-green-500",
-  },
-]
-</script>

@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+const chatStore = useChatStore()
+const currentSession = chatStore.routeCurrentSession()
+</script>
 <template>
   <div class="items-center flex justify-between py-3.5 px-5 relative border-gray-200 border">
     <div class="truncate">
@@ -10,7 +14,7 @@
           class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
         >
           <div class="items-center flex justify-center">
-            <SvgIcon icon="rename" />
+            <VSvgIcon icon="rename" />
           </div>
         </button>
       </div>
@@ -19,7 +23,7 @@
           class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
         >
           <div class="items-center flex justify-center">
-            <SvgIcon icon="share" />
+            <VSvgIcon icon="share" />
           </div>
         </button>
       </div>
@@ -28,14 +32,10 @@
           class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
         >
           <div class="items-center flex justify-center">
-            <SvgIcon icon="max" />
+            <VSvgIcon icon="max" />
           </div>
         </button>
       </div>
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-const chatStore = useChatStore()
-const currentSession = chatStore.routeCurrentSession()
-</script>

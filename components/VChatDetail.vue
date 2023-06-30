@@ -1,21 +1,6 @@
-<template>
-  <div class="flex flex-col w-full">
-    <ChatDetailHeader />
-    <div class="flex-grow w-full p-5 overflow-scroll" ref="el" id="message-box">
-      <ChatMessage
-        class="chat-message"
-        v-for="message in currentSession.messages"
-        :content="message.content"
-        :direction="message.direction"
-      />
-    </div>
-    <ComposeView />
-  </div>
-</template>
 <script setup lang="ts">
 import { ref, watch, onMounted } from "vue"
 import { useChatStore } from "~/composables/chat"
-import ChatMessage from "~/pages/chat/ChatMessage.vue"
 
 const router = useRouter()
 const chatStore = useChatStore()
@@ -43,3 +28,17 @@ watch(
 
 onMounted(scrollToBottom)
 </script>
+<template>
+  <div class="flex flex-col flex-1">
+    <VChatDetailHeader />
+    <div class="flex-grow p-5 overflow-scroll" ref="el" id="message-box">
+      <VChatMessage
+        class="chat-message"
+        v-for="message in currentSession.messages"
+        :content="message.content"
+        :direction="message.direction"
+      />
+    </div>
+    <VComposeView />
+  </div>
+</template>

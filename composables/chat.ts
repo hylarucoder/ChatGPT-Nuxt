@@ -229,7 +229,7 @@ export const useChatStore = defineStore(
           },
           {
             role: "user",
-            content: "请帮我写一个 100 字的神回复",
+            content: message || "hello",
           },
         ],
         model: "gpt-3.5-turbo",

@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+import { getRandomEmoji } from "~/utils/emoji"
+
+defineProps<{
+  icon: string
+  text: string
+}>()
+</script>
 <template>
   <div
     class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border hover:bg-gray-200"
@@ -8,11 +16,3 @@
     <div class="text-[0.88rem] ml-3 truncate">{{ text }}</div>
   </div>
 </template>
-<script lang="ts" setup>
-import { getRandomEmoji } from "~/utils/emoji"
-
-defineProps<{
-  icon: string
-  text: string
-}>()
-</script>

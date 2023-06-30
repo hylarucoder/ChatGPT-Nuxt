@@ -1,9 +1,24 @@
+<script lang="ts" setup>
+import { defineProps } from "vue"
+import { TChatDirection } from "~/composables/config/typing"
+
+defineProps({
+  content: {
+    type: String,
+    required: true,
+  },
+  direction: {
+    type: String,
+    required: true,
+  },
+})
+</script>
 <template>
   <div class="text-zinc-800 flex w-full" v-if="direction === TChatDirection.RECEIVE">
     <div class="items-start flex flex-col">
       <div class="mt-5">
         <div class="flex justify-center items-center">
-          <SvgIcon icon="chatgpt" />
+          <VSvgIcon icon="chatgpt" />
         </div>
       </div>
       <div
@@ -37,19 +52,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { defineProps } from "vue"
-import { TChatDirection } from "~/composables/config/typing"
-
-defineProps({
-  content: {
-    type: String,
-    required: true,
-  },
-  direction: {
-    type: String,
-    required: true,
-  },
-})
-</script>
