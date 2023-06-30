@@ -1,14 +1,3 @@
-<template>
-  <button
-    class="items-center bg-white cursor-pointer flex flex-grow h-10 justify-center text-center p-3 rounded-xl truncate hover:bg-gray-200 drop-shadow-sm"
-    :class="hasText ? 'w-32' : ''"
-  >
-    <div class="items-center flex justify-center">
-      <VSvgIcon :icon="icon" />
-    </div>
-    <div v-if="hasText" class="text-[0.75rem] ml-1 truncate">{{ text }}</div>
-  </button>
-</template>
 <script lang="ts" setup>
 import { defineComponent } from "vue"
 
@@ -23,3 +12,14 @@ defineComponent({
   name: "IconButton",
 })
 </script>
+<template>
+  <button
+    class="items-center bg-white cursor-pointer flex flex-grow h-10 justify-center text-center p-3 rounded-xl truncate hover:bg-gray-200 drop-shadow-sm"
+    :class="hasText ? 'w-32' : ''"
+  >
+    <div class="items-center flex justify-center">
+      <VSvgIcon :icon="icon" />
+    </div>
+    <div v-if="hasText" class="text-[0.75rem] ml-1 truncate">{{ text }}</div>
+  </button>
+</template>

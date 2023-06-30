@@ -1,3 +1,18 @@
+<script lang="ts" setup>
+import { ref } from "vue"
+import { useChatStore } from "~/composables/chat"
+
+const chatStore = useChatStore()
+const currentSession = chatStore.routeCurrentSession()
+
+let composeInput = ref("")
+
+const composeNewMessage = () => {
+  const input = composeInput.value
+  composeInput.value = ""
+  chatStore.onNewMessage(currentSession, input)
+}
+</script>
 <template>
   <div class="flex-col p-3 rounded-xl border relative">
     <div class="flex flex-wrap">
@@ -34,18 +49,3 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from "vue"
-import { useChatStore } from "~/composables/chat"
-
-const chatStore = useChatStore()
-const currentSession = chatStore.routeCurrentSession()
-
-let composeInput = ref("")
-
-const composeNewMessage = () => {
-  const input = composeInput.value
-  composeInput.value = ""
-  chatStore.onNewMessage(currentSession, input)
-}
-</script>

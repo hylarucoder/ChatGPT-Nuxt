@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { useSettingStore } from "~/composables/settings"
+import SettingItem from "~/pages/chat/settings/SettingItem.vue"
+
+const settingStore = useSettingStore()
+const settings = settingStore.settings
+const settingOptions = settingStore.settingOptions
+</script>
 <template>
   <ClientOnly>
     <div class="flex flex-col flex-1">
@@ -190,14 +198,3 @@
     </div>
   </ClientOnly>
 </template>
-<script setup lang="ts">
-import { useSettingStore } from "~/composables/settings"
-import SettingItem from "~/components/SettingItem.vue"
-
-const settingStore = useSettingStore()
-const settings = settingStore.settings
-const settingOptions = settingStore.settingOptions
-const printVar = () => {
-  console.log(settings)
-}
-</script>

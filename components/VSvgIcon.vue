@@ -1,6 +1,3 @@
-<template>
-  <component :is="currentComponent" />
-</template>
 <script lang="ts">
 import { defineComponent } from "vue"
 import iconAdd from "@/icons/add.svg?component"
@@ -107,3 +104,6 @@ export default defineComponent({
   },
 })
 </script>
+<template>
+  <component :is="currentComponent" />
+</template>

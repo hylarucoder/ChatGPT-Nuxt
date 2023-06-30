@@ -1,3 +1,60 @@
+<script setup lang="ts">
+import { getRandomEmoji } from "~/utils/emoji"
+import { ref } from "vue"
+
+const masks = ref<TPrompts[]>([])
+
+interface TPromptsJson {
+  cn: string[]
+  en: string[]
+}
+
+enum TLang {
+  cn,
+  en,
+}
+
+interface TPrompts {
+  name: string
+  description: string
+  lang: TLang
+}
+
+const visible = ref(false)
+
+onMounted(() => {
+  fetch("/prompts.json")
+    .then((response) => response.json())
+    .then((prompts: TPromptsJson) => {
+      // 将结果放到变量 a 中
+      for (let prompt of prompts.cn) {
+        if (!prompt[0]) {
+          continue
+        }
+        masks.value.push({
+          name: prompt[0],
+          description: prompt[1],
+          lang: TLang.cn,
+        })
+      }
+
+      for (let prompt of prompts.en) {
+        if (!prompt[0]) {
+          continue
+        }
+        masks.value.push({
+          name: prompt[0],
+          description: prompt[1],
+          lang: TLang.en,
+        })
+      }
+
+      // a.value = prompts
+      // console.log("a value", a.value)
+    })
+    .catch((error) => console.error(error))
+})
+</script>
 <template>
   <div class="flex flex-col overflow-hidden flex-1 h-screen">
     <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)" class="items-center flex justify-between py-3.5 px-5">
@@ -123,60 +180,3 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import { getRandomEmoji } from "~/utils/emoji"
-import { ref } from "vue"
-
-const masks = ref<TPrompts[]>([])
-
-interface TPromptsJson {
-  cn: string[]
-  en: string[]
-}
-
-enum TLang {
-  cn,
-  en,
-}
-
-interface TPrompts {
-  name: string
-  description: string
-  lang: TLang
-}
-
-const visible = ref(false)
-
-onMounted(() => {
-  fetch("/prompts.json")
-    .then((response) => response.json())
-    .then((prompts: TPromptsJson) => {
-      // 将结果放到变量 a 中
-      for (let prompt of prompts.cn) {
-        if (!prompt[0]) {
-          continue
-        }
-        masks.value.push({
-          name: prompt[0],
-          description: prompt[1],
-          lang: TLang.cn,
-        })
-      }
-
-      for (let prompt of prompts.en) {
-        if (!prompt[0]) {
-          continue
-        }
-        masks.value.push({
-          name: prompt[0],
-          description: prompt[1],
-          lang: TLang.en,
-        })
-      }
-
-      // a.value = prompts
-      // console.log("a value", a.value)
-    })
-    .catch((error) => console.error(error))
-})
-</script>

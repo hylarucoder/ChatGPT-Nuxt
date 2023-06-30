@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+defineProps({
+  title: String,
+  subtitle: String,
+})
+</script>
 <template>
   <div class="items-center flex justify-between py-3 pl-5 pr-2 border-gray-200">
     <div class="items-center flex">
@@ -11,9 +17,3 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-defineProps({
-  title: String,
-  subtitle: String,
-})
-</script>

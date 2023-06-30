@@ -1,3 +1,80 @@
+<script setup lang="ts">
+import { useChatStore } from "~/composables/chat"
+import MaskCard from "~/components/MaskCard.vue"
+
+const router = useRouter()
+const chatStore = useChatStore()
+
+const newSessionAndNav = () => {
+  const session = chatStore.newSession()
+  router.push({
+    path: "/chat/session/" + session.id,
+  })
+}
+
+const maskCards = [
+  {
+    title: "职业顾问",
+    icon: "job",
+    description: "职业顾问",
+    color: "bg-blue-500",
+  },
+  {
+    title: "心灵导师",
+    icon: "heart",
+    description: "心灵导师",
+    color: "bg-pink-500",
+  },
+  {
+    title: "CAN",
+    icon: "can",
+    description: "CAN",
+    color: "bg-yellow-500",
+  },
+  {
+    title: "英专写手",
+    icon: "english",
+    description: "英专写手",
+    color: "bg-green-500",
+  },
+  {
+    title: "语言检测器",
+    icon: "language",
+    description: "语言检测器",
+    color: "bg-purple-500",
+  },
+  {
+    title: "小红书写手",
+    icon: "xiaohongshu",
+    description: "小红书写手",
+    color: "bg-red-500",
+  },
+  {
+    title: "简历写手",
+    icon: "resume",
+    description: "简历写手",
+    color: "bg-blue-500",
+  },
+  {
+    title: "心理医生",
+    icon: "doctor",
+    description: "心理医生",
+    color: "bg-pink-500",
+  },
+  {
+    title: "创业点子王",
+    icon: "idea",
+    description: "创业点子王",
+    color: "bg-yellow-500",
+  },
+  {
+    title: "新的聊天",
+    icon: "chatgpt",
+    description: "新的聊天",
+    color: "bg-green-500",
+  },
+]
+</script>
 <template>
   <div class="items-center text-zinc-800 flex flex-col justify-center flex-1">
     <div class="flex justify-between p-3 w-full">
@@ -133,80 +210,3 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import { useChatStore } from "~/composables/chat"
-import MaskCard from "~/components/MaskCard.vue"
-
-const router = useRouter()
-const chatStore = useChatStore()
-
-const newSessionAndNav = () => {
-  const session = chatStore.newSession()
-  router.push({
-    path: "/chat/session/" + session.id,
-  })
-}
-
-const maskCards = [
-  {
-    title: "职业顾问",
-    icon: "job",
-    description: "职业顾问",
-    color: "bg-blue-500",
-  },
-  {
-    title: "心灵导师",
-    icon: "heart",
-    description: "心灵导师",
-    color: "bg-pink-500",
-  },
-  {
-    title: "CAN",
-    icon: "can",
-    description: "CAN",
-    color: "bg-yellow-500",
-  },
-  {
-    title: "英专写手",
-    icon: "english",
-    description: "英专写手",
-    color: "bg-green-500",
-  },
-  {
-    title: "语言检测器",
-    icon: "language",
-    description: "语言检测器",
-    color: "bg-purple-500",
-  },
-  {
-    title: "小红书写手",
-    icon: "xiaohongshu",
-    description: "小红书写手",
-    color: "bg-red-500",
-  },
-  {
-    title: "简历写手",
-    icon: "resume",
-    description: "简历写手",
-    color: "bg-blue-500",
-  },
-  {
-    title: "心理医生",
-    icon: "doctor",
-    description: "心理医生",
-    color: "bg-pink-500",
-  },
-  {
-    title: "创业点子王",
-    icon: "idea",
-    description: "创业点子王",
-    color: "bg-yellow-500",
-  },
-  {
-    title: "新的聊天",
-    icon: "chatgpt",
-    description: "新的聊天",
-    color: "bg-green-500",
-  },
-]
-</script>

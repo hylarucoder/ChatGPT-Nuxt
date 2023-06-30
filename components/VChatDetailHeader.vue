@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+const chatStore = useChatStore()
+const currentSession = chatStore.routeCurrentSession()
+</script>
 <template>
   <div class="items-center flex justify-between py-3.5 px-5 relative border-gray-200 border">
     <div class="truncate">
@@ -35,7 +39,3 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-const chatStore = useChatStore()
-const currentSession = chatStore.routeCurrentSession()
-</script>
