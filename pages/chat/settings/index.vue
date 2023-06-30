@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import VEmojiAvatar from "~/components/VEmojiAvatar.vue"
 import { useSettingStore } from "~/composables/settings"
 import SettingItem from "~/pages/chat/settings/SettingItem.vue"
 
@@ -47,7 +48,7 @@ const settingOptions = settingStore.settingOptions
       <div class="p-5 overflow-scroll">
         <div class="mb-5 rounded-xl border divide-y shadow-sm">
           <SettingItem title="头像">
-            <UIAvatar v-model="settings.avatar" @click="printVar" />
+            <VEmojiAvatar v-model="settings.avatar" />
           </SettingItem>
 
           <SettingItem title="当前版本：20230607" subtitle="发现新版本：19700101">

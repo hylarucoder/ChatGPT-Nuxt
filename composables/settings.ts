@@ -155,7 +155,7 @@ const modelOptions: TSelectOption[] = [
 ]
 
 const defaultSettings = {
-  avatar: "https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f603.png",
+  avatar: "🙂",
   sendKey: "Enter",
   theme: "Auto",
   language: "en",

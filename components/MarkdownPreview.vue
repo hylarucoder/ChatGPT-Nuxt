@@ -2,7 +2,7 @@
 import { defineComponent, ref, watchEffect } from "vue"
 import markdownParser from "@nuxt/content/transformers/markdown"
 
-defineProps({
+const props = defineProps({
   md: {
     type: String,
     required: true,
