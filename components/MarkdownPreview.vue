@@ -1,6 +1,22 @@
 <script lang="ts" setup>
 import { defineComponent, ref, watchEffect } from "vue"
-import markdownParser from "@nuxt/content/transformers/markdown"
+import remarkEmoji from "remark-emoji"
+import { unified } from "unified"
+import remarkParse from "remark-parse"
+import remarkGfm from "remark-gfm"
+import remarkSqueezeParagraphs from "remark-squeeze-paragraphs"
+import remarkRehype from "remark-rehype"
+import rehypeHighlight from "rehype-highlight"
+import rehypeStringify from "rehype-stringify"
+
+const processor = unified()
+  .use(remarkParse)
+  .use(remarkEmoji)
+  .use(remarkRehype)
+  .use(remarkSqueezeParagraphs)
+  .use(remarkGfm)
+  .use(rehypeHighlight)
+  .use(rehypeStringify)
 
 const props = defineProps({
   md: {
@@ -17,7 +33,9 @@ const parsedMarkdown = ref(props.md)
 
 watchEffect(async () => {
   try {
-    parsedMarkdown.value = await markdownParser.parse(props.cid, props.md || "...")
+    const a = processor.processSync(props.md || "...")
+    console.log("a--->", String(a))
+    parsedMarkdown.value = a
     console.log(parsedMarkdown.value)
   } catch (err) {
     console.error(err)
@@ -27,6 +45,6 @@ watchEffect(async () => {
 </script>
 <template>
   <ClientOnly>
-    <ContentRenderer class="markdown-body" :value="parsedMarkdown" />
+    <div class="markdown-body" v-html="parsedMarkdown"></div>
   </ClientOnly>
 </template>

@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ["trpc-nuxt"],
   },
-  css: ["@/assets/css/globals.css"],
+  css: ["@/assets/css/globals.css", "@/assets/scss/index.scss"],
   runtimeConfig: {
     public: {
       LATEST_COMMIT_DATE: getGitCommitDateYMD(),
@@ -65,7 +65,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      viewport: "width=device-width,initial-scale=1",
+      viewport: "width=device-width,initial-scale=1,user-scalable=no",
       link: [
         {
           rel: "icon",

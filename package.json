@@ -41,6 +41,7 @@
     "nuxt-icon": "^0.4.1",
     "pinia": "^2.1.4",
     "prettier": "^2.8.8",
+    "sass": "^1.63.6",
     "vite-svg-loader": "^4.0.0",
     "vue-tsc": "^1.8.1"
   },
@@ -55,6 +56,9 @@
     "ai": "^2.1.8",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.24",
+    "rehype-highlight": "^6.0.0",
+    "rehype-stringify": "^9.0.3",
+    "remark-html": "^15.0.2",
     "style-to-object": "^0.4.1",
     "tailwindcss": "^3.3.2",
     "tailwindcss-animate": "^1.0.6",

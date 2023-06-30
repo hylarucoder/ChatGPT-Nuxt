@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ref } from "vue"
 import { useChatStore } from "~/composables/chat"
 
 const chatStore = useChatStore()
@@ -9,14 +8,19 @@ const currentSession = chatStore.routeCurrentSession()
 currentSession.composeInput
 
 const setting = settingStore.settings
-const keys = useMagicKeys()
-const shortCutSend = keys[setting.sendKey.replaceAll(" ", "")]
 
-watch(shortCutSend, (v) => {
-  if (v) {
-    composeNewMessage()
+const handleKeyDown = (event) => {
+  const targetKeyMap = keyMaps.find((keyMap) => keyMap.label === setting.sendKey)
+
+  if (targetKeyMap) {
+    const allKeysMatched = targetKeyMap.keys.every((key) => event.getModifierState(key) || event.key === key)
+
+    if (allKeysMatched) {
+      event.preventDefault()
+      composeNewMessage()
+    }
   }
-})
+}
 
 const composeNewMessage = () => {
   if (!currentSession.composeInput.trim()) {
@@ -51,6 +55,7 @@ const composeNewMessage = () => {
         class="relative cursor-text h-24 break-words w-full rounded-xl border"
         :placeholder="setting.sendKey + ' 发送'"
         v-model="currentSession.composeInput"
+        @keydown="handleKeyDown"
       />
       <button
         @click="composeNewMessage"

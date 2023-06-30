@@ -24,10 +24,6 @@ export const keyMaps = [
     label: "Alt + Enter",
     keys: ["Alt", "Enter"],
   },
-  {
-    label: "Meta + Enter",
-    keys: ["Meta", "Enter"],
-  },
 ]
 
 // use label as key and value
