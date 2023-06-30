@@ -243,7 +243,7 @@ export const useChatStore = defineStore(
       currentSession.messages.push({
         role: "user",
         content: message,
-        date: "2021-06-13T15:00:00.000Z",
+        date: new Date().toISOString(),
         direction: TChatDirection.SEND,
         streaming: false,
         isError: false,
@@ -252,7 +252,7 @@ export const useChatStore = defineStore(
       const newMessage = {
         role: "user",
         content: "...",
-        date: "2021-06-13T15:00:00.000Z",
+        date: new Date().toISOString(),
         direction: TChatDirection.RECEIVE,
         streaming: false,
         isError: false,
@@ -261,9 +261,18 @@ export const useChatStore = defineStore(
       currentSession.messages.push(newMessage)
       currentSession.messagesCount = currentSession.messages.length
       const nMessage = currentSession.messages[currentSession.messages.length - 1]
+      let loadingDots = 0
+      const loadingInterval = setInterval(() => {
+        loadingDots = (loadingDots + 1) % 3
+        const dots = ".".repeat(loadingDots + 1)
+        nMessage.content = dots
+      }, 500)
+
       fetchStream(payload, (receivedData: string) => {
+        clearInterval(loadingInterval) // 清除定时器
         nMessage.content = receivedData
       }).catch((error) => {
+        clearInterval(loadingInterval) // 清除定时器
         console.error("Error occurred:", error)
       })
     }
