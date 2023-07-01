@@ -12,17 +12,18 @@ One-Click to get well-designed cross-platform ChatGPT web UI.
 ## TODO
 
 - [ ] v0.1 🔥 完成 ChatGPT-Next-Web 所有功能的迁移
-- [ ] v0.2 提升代码质量
+- [ ] v0.2 提升代码质量, 一键部署和一键更新
+- [ ] v0.3 完成响应式, 手机适配
+- [ ] v0.9 支持混合存储，支持聊天消息浏览器本地存储 localStorage 以及云端存储
 
 ## Tech Tack
 
 - 💚 [Nuxt 3](https://nuxt.com/) - SSR, ESR, File-based routing, components auto importing, modules, etc.
 - ⚡️ Vite - Instant HMR.
-- 🎨 [UnoCSS](https://github.com/unocss/unocss) - The instant on-demand atomic CSS engine.
-- 😃 Use icons from any icon sets in Pure CSS, powered by [UnoCSS](https://github.com/unocss/unocss).
-- 🔥 The `<script setup>` syntax.
+- 🎨 [TailwindCSS](https://github.com/tailwindlabs/tailwindcss) - The CSS engine.
+- 😃 Use icons from any icon sets [Nuxt Icon](https://github.com/nuxt-modules/icon).
+- 🔥 The `<script setup lang="ts">` syntax.
 - 🍍 [State Management via Pinia](https://github.com/vuejs/pinia), see [./composables/user.ts](composables/user.ts).
-- 📑 [Layout system](layouts).
 - 📥 APIs auto importing - for Composition API, VueUse and custom composables.
 - 🏎 Zero-config cloud functions and deploy.
 - 🦾 TypeScript, of course.

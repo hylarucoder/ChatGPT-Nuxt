@@ -27,6 +27,7 @@ export enum FileName {
 
 export enum StoreKey {
   Chat = "store-chat",
+  ChatSession = "store-chat-sessions",
   Access = "access-control",
   Setting = "store-setting",
   Mask = "store-mask",

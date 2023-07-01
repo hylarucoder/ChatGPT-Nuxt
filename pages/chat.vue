@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import Sidebar from "~/components/VSidebar.vue"
+import { useChatStore } from "~/composables/chat"
+
+const chatStore = useChatStore()
+onBeforeMount(async () => {
+  await chatStore.loadAll()
+  console.log("load all")
+})
 </script>
 
 <template>

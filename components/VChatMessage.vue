@@ -21,6 +21,7 @@ const deleteMessage = (id: number) => {
     currentStore.messages.splice(index, 1)
     currentStore.messagesCount = currentStore.messages.length
   }
+  chatStore.saveAll()
 }
 
 const copyToClipboard = (content: string) => {
@@ -39,11 +40,11 @@ const messageRef = ref()
 const isHovered = useElementHover(messageRef)
 </script>
 <template>
-  <div class="flex w-full text-zinc-800" :class="{ 'flex-row-reverse': isSend }" ref="messageRef">
-    <div class="flex flex-col" :class="{ 'items-start': !isSend, 'items-end': isSend }">
+  <div class="flex w-full text-zinc-800" :class="{ 'flex-row-reverse': isSend }">
+    <div class="flex flex-col" :class="{ 'items-start': !isSend, 'items-end': isSend }" ref="messageRef">
       <div class="mt-5 flex">
         <div class="flex h-8 w-8 items-center justify-center rounded-xl border border-neutral-200">
-          <Icon size="1.4em" class="text-center" :name="settings.avatar" />
+          <Icon size="1.4em" class="text-center" name="🤖" />
         </div>
       </div>
       <div
@@ -58,18 +59,34 @@ const isHovered = useElementHover(messageRef)
         <div class="relative max-w-[800px] break-words text-zinc-800">
           <template v-if="!isSend">
             <!-- animation show when hover -->
-            <div
-              style="word-break: break-word"
-              class="absolute -top-8 right-0 flex select-text space-x-2 rounded text-xs text-zinc-800 ease-in"
-              v-show="isHovered"
+            <transition
+              enter-from-class="translate-x-[5%] opacity-0"
+              leave-to-class="translate-x-[5%] opacity-0"
+              enter-active-class="transition duration-300"
+              leave-active-class="transition duration-300"
             >
-              <div @click="copyToClipboard(message.content)" class="cursor-pointer opacity-50 hover:opacity-80">
-                Copy
+              <div
+                style="word-break: break-word"
+                class="absolute -top-8 right-0 flex select-text space-x-2 rounded text-xs text-zinc-800 ease-in"
+                v-show="isHovered"
+              >
+                <div @click="copyToClipboard(message.content)" class="cursor-pointer opacity-50 hover:opacity-80">
+                  Copy
+                </div>
+                <div class="cursor-pointer opacity-50 hover:opacity-80" @click="deleteMessage(message.id)">Delete</div>
+                <!--              <div class="cursor-pointer opacity-50 hover:opacity-80">Retry</div>-->
               </div>
-              <div class="cursor-pointer opacity-50 hover:opacity-80" @click="deleteMessage(message.id)">Delete</div>
-              <!--              <div class="cursor-pointer opacity-50 hover:opacity-80">Retry</div>-->
-            </div>
-            <div class="absolute -bottom-8 right-0 text-xs text-neutral-400" v-show="isHovered">{{ message.date }}</div>
+            </transition>
+            <transition
+              enter-from-class="translate-x-[6%] opacity-0"
+              leave-to-class="translate-x-[6%] opacity-0"
+              enter-active-class="transition duration-300"
+              leave-active-class="transition duration-300"
+            >
+              <div class="absolute -bottom-8 right-0 text-xs text-neutral-400" v-show="isHovered">
+                {{ message.date }}
+              </div>
+            </transition>
           </template>
           <MarkdownPreview :md="message.content" />
         </div>
