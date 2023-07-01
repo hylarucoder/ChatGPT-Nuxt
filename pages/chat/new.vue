@@ -122,6 +122,7 @@ const maskCards = [
       </button>
       <button
         class="flex h-10 w-24 cursor-pointer items-center justify-center truncate rounded-xl border border-neutral-200 bg-white p-3 text-center hover:bg-gray-200"
+        @click="router.push('/chat/masks')"
       >
         <div class="flex items-center justify-center">
           <VSvgIcon icon="eye" class="h-4 w-4" />
@@ -131,81 +132,37 @@ const maskCards = [
     </div>
     <div class="flex-grow items-center overflow-hidden pt-5">
       <div class="mb-3 flex overflow-y-auto">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
       <div class="mb-3 ml-12 flex">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
       <div class="mb-3 flex">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
       <div class="mb-3 ml-12 flex">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
       <div class="mb-3 flex">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
       <div class="mb-3 ml-6 flex">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
       <div class="mb-3 ml-3 flex">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
       <div class="mb-3 flex">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
       <div class="mb-3 ml--4 flex">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
       <div class="mb-3 ml-2 flex">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
       <div class="mb-3 ml-4 flex">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
     </div>
   </div>
