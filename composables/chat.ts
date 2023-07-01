@@ -110,7 +110,7 @@ export const useChatStore = defineStore(
             direction: TChatDirection.RECEIVE,
             streaming: false,
             isError: false,
-            id: 0,
+            id: 1,
           },
         ],
         stat: {
@@ -185,6 +185,14 @@ export const useChatStore = defineStore(
         stream: true,
         temperature: 0.5,
       }
+      // check if the last message
+      let latestMessageId = 0
+      const latestMessage = currentSession.messages[currentSession.messages.length - 1]
+      if (latestMessage) {
+        latestMessageId = latestMessage.id
+      }
+
+      latestMessageId++
 
       currentSession.messages.push({
         role: "user",
@@ -193,8 +201,11 @@ export const useChatStore = defineStore(
         direction: TChatDirection.SEND,
         streaming: false,
         isError: false,
-        id: 0,
+        id: latestMessageId,
       })
+
+      latestMessageId++
+
       const newMessage = {
         role: "user",
         content: "...",
@@ -202,7 +213,7 @@ export const useChatStore = defineStore(
         direction: TChatDirection.RECEIVE,
         streaming: false,
         isError: false,
-        id: 0,
+        id: latestMessageId,
       }
       currentSession.messages.push(newMessage)
       currentSession.messagesCount = currentSession.messages.length

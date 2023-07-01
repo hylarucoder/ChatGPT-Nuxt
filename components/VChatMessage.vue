@@ -10,13 +10,40 @@ const props = defineProps<{
   message: TChatMessage
 }>()
 const isSend = props.message.direction === TChatDirection.SEND
+
+const chatStore = useChatStore()
+const currentStore = chatStore.routeCurrentSession()
+
+currentStore.messages
+const deleteMessage = (id: number) => {
+  // check and delete message
+  const index = currentStore.messages.findIndex((message) => message.id === id)
+  if (index !== -1) {
+    currentStore.messages.splice(index, 1)
+  }
+}
+
+const copyToClipboard = (content: string) => {
+  // copy
+  const input = document.createElement("input")
+  input.setAttribute("readonly", "readonly")
+  input.setAttribute("value", content)
+  document.body.appendChild(input)
+  input.select()
+  input.setSelectionRange(0, 9999)
+  document.execCommand("copy")
+  document.body.removeChild(input)
+}
+
+const messageRef = ref()
+const isHovered = useElementHover(messageRef)
 </script>
 <template>
-  <div class="flex w-full text-zinc-800" :class="{ 'flex-row-reverse': isSend }">
+  <div class="flex w-full text-zinc-800" :class="{ 'flex-row-reverse': isSend }" ref="messageRef">
     <div class="flex flex-col" :class="{ 'items-start': !isSend, 'items-end': isSend }">
       <div class="mt-5 flex">
-        <div class="flex items-center justify-center rounded-xl border border-neutral-200">
-          <Icon class="h-5 w-5 overflow-clip align-middle text-[1.13rem]" :name="settings.avatar" />
+        <div class="flex h-8 w-8 items-center justify-center rounded-xl border border-neutral-200">
+          <Icon size="1.4em" class="text-center" :name="settings.avatar" />
         </div>
       </div>
       <div
@@ -30,15 +57,19 @@ const isSend = props.message.direction === TChatDirection.SEND
       >
         <div class="relative max-w-[800px] break-words text-zinc-800">
           <template v-if="!isSend">
+            <!-- animation show when hover -->
             <div
               style="word-break: break-word"
-              class="absolute -top-8 right-0 flex select-text flex-row-reverse rounded text-xs text-zinc-800"
+              class="absolute -top-8 right-0 flex select-text space-x-2 rounded text-xs text-zinc-800 ease-in"
+              v-show="isHovered"
             >
-              <div class="cursor-pointer opacity-50 hover:opacity-80">Delete</div>
-              <div class="mr-3 cursor-pointer opacity-50 hover:opacity-80">Retry</div>
-              <div class="mr-3 cursor-pointer opacity-50 hover:opacity-80">Copy</div>
+              <div @click="copyToClipboard(message.content)" class="cursor-pointer opacity-50 hover:opacity-80">
+                Copy
+              </div>
+              <div class="cursor-pointer opacity-50 hover:opacity-80" @click="deleteMessage(message.id)">Delete</div>
+              <div class="cursor-pointer opacity-50 hover:opacity-80">Retry</div>
             </div>
-            <div class="absolute -bottom-8 right-0 text-xs text-neutral-400">6/27/2023, 9:49:56 AM</div>
+            <div class="absolute -bottom-8 right-0 text-xs text-neutral-400" v-show="isHovered">{{ message.date }}</div>
           </template>
           <MarkdownPreview :md="message.content" />
         </div>
