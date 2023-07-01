@@ -43,12 +43,7 @@ onMounted(() => {
   <div class="flex flex-1 flex-col">
     <VChatDetailHeader />
     <div class="flex-grow overflow-y-scroll p-5" ref="el">
-      <VChatMessage
-        class="chat-message"
-        v-for="message in currentSession.messages"
-        :content="message.content"
-        :direction="message.direction"
-      />
+      <VChatMessage class="chat-message" v-for="message in currentSession.messages" :message="message" />
     </div>
     <VComposeView />
   </div>
