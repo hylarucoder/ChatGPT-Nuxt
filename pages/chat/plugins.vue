@@ -1,5 +1,5 @@
 <template>
-  <div class="items-center text-zinc-800 flex">
-    <div class="text-gray-700 shadow-md p-3 border-gray-300 ml-4 h-24 flex border-2">plugins</div>
+  <div class="flex items-center text-zinc-800">
+    <div class="ml-4 flex h-24 border-2 border-gray-300 p-3 text-gray-700 shadow-md">plugins</div>
   </div>
 </template>
