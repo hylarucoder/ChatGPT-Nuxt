@@ -2,6 +2,9 @@
 
 One-Click to get well-designed cross-platform ChatGPT web UI.
 
+> 还在疯狂开发中，接口和项目结构还在疯狂调整，此阶段没有文档，请确保自己能读懂代码。
+> 请等待 v0.1 版本
+
 ## Features
 
 ## Tech Tack
