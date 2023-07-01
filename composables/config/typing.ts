@@ -75,31 +75,45 @@ export const ALL_MODELS = [
 export type ModelType = (typeof ALL_MODELS)[number]["name"]
 
 export enum SubmitKey {
-  // eslint-disable-next-line no-unused-vars
   Enter = "Enter",
-  // eslint-disable-next-line no-unused-vars
   CtrlEnter = "Ctrl + Enter",
-  // eslint-disable-next-line no-unused-vars
   ShiftEnter = "Shift + Enter",
-  // eslint-disable-next-line no-unused-vars
   AltEnter = "Alt + Enter",
-  // eslint-disable-next-line no-unused-vars
-  MetaEnter = "Meta + Enter",
 }
 
 export enum Theme {
-  // eslint-disable-next-line no-unused-vars
   Auto = "auto",
-  // eslint-disable-next-line no-unused-vars
   Dark = "dark",
-  // eslint-disable-next-line no-unused-vars
   Light = "light",
 }
 
-export const Models = ["gpt-3.5-turbo", "gpt-4"] as const
-export type ChatModel = ModelType
-export const DEFAULT_CONFIG = {
-  submitKey: SubmitKey.CtrlEnter as SubmitKey,
+export interface TModelConfig {
+  model: ModelType
+  temperature: number
+  maxTokens: number
+  presencePenalty: number
+  frequencyPenalty: number
+  sendMemory: boolean
+  historyMessageCount: number
+  compressMessageLengthThreshold: number
+  template: string
+}
+
+export interface TConfig {
+  submitKey: SubmitKey
+  avatar: string
+  fontSize: number
+  theme: Theme
+  tightBorder: boolean
+  sendPreviewBubble: boolean
+  sidebarWidth: number
+  disablePromptHint: boolean
+  dontShowMaskSplashScreen: boolean
+  modelConfig: TModelConfig
+}
+
+export const DEFAULT_CONFIG: TConfig = {
+  submitKey: SubmitKey.CtrlEnter,
   avatar: "1f603",
   fontSize: 14,
   theme: Theme.Auto as Theme,
@@ -114,9 +128,9 @@ export const DEFAULT_CONFIG = {
   modelConfig: {
     model: "gpt-3.5-turbo" as ModelType,
     temperature: 0.5,
-    max_tokens: 2000,
-    presence_penalty: 0,
-    frequency_penalty: 0,
+    maxTokens: 2000,
+    presencePenalty: 0,
+    frequencyPenalty: 0,
     sendMemory: true,
     historyMessageCount: 4,
     compressMessageLengthThreshold: 1000,

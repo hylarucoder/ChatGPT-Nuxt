@@ -1,6 +1,8 @@
+import exp from "constants"
 import { defineStore } from "pinia"
 import { reactive } from "vue"
 import { StoreKey } from "~/constants"
+import { SubmitKey } from "~/constants/enums"
 
 export interface TSelectOption {
   label: string
@@ -9,32 +11,32 @@ export interface TSelectOption {
 
 export const keyMaps = [
   {
-    label: "Enter",
+    label: SubmitKey.Enter,
     keys: ["Enter"],
   },
   {
-    label: "Ctrl + Enter",
+    label: SubmitKey.CtrlEnter,
     keys: ["Control", "Enter"],
   },
   {
-    label: "Shift + Enter",
+    label: SubmitKey.ShiftEnter,
     keys: ["Shift", "Enter"],
   },
   {
-    label: "Alt + Enter",
+    label: SubmitKey.AltEnter,
     keys: ["Alt", "Enter"],
   },
 ]
 
 // use label as key and value
 
-const sendKeyOptions: TSelectOption[] = keyMaps.map((keyMap) => {
+export const sendKeyOptions: TSelectOption[] = keyMaps.map((keyMap) => {
   return {
     label: keyMap.label,
     value: keyMap.label,
   }
 })
-const themeOptions: TSelectOption[] = [
+export const themeOptions: TSelectOption[] = [
   {
     label: "Auto",
     value: "Auto",
@@ -49,7 +51,7 @@ const themeOptions: TSelectOption[] = [
   },
 ]
 
-const languageOptions = [
+export const languageOptions = [
   {
     label: "English",
     value: "en",
@@ -104,7 +106,7 @@ const languageOptions = [
   },
 ]
 
-const modelOptions: TSelectOption[] = [
+export const modelOptions: TSelectOption[] = [
   {
     label: "gpt-4",
     value: "gpt-4",
@@ -184,12 +186,6 @@ export const useSettingStore = defineStore(
   StoreKey.Setting,
   () => {
     const settings = reactive(defaultSettings)
-    const settingOptions = reactive({
-      sendKey: sendKeyOptions,
-      theme: themeOptions,
-      language: languageOptions,
-      model: modelOptions,
-    })
     const owner = "hylarucoder"
     const repo = "ChatGPT-Nuxt"
     const branch = "main"
@@ -212,7 +208,6 @@ export const useSettingStore = defineStore(
     }
     return {
       settings,
-      settingOptions,
       fetchRemoteLatestCommitDate,
     }
   },

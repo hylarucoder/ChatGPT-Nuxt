@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { onMounted } from "vue"
 import VEmojiAvatar from "~/components/VEmojiAvatar.vue"
-import { useSettingStore } from "~/composables/settings"
+import { languageOptions, modelOptions, sendKeyOptions, themeOptions, useSettingStore } from "~/composables/settings"
 import SettingItem from "~/pages/chat/settings/SettingItem.vue"
 
 const settingStore = useSettingStore()
 const settings = settingStore.settings
-const settingOptions = settingStore.settingOptions
 onMounted(() => {
   settingStore.fetchRemoteLatestCommitDate()
 })
@@ -67,27 +66,20 @@ onMounted(() => {
           </SettingItem>
 
           <SettingItem title="发送键">
-            <UISelect :options="settingOptions.sendKey" v-model="settings.sendKey" />
+            <UISelect :options="sendKeyOptions" v-model="settings.sendKey" />
           </SettingItem>
 
           <SettingItem title="主题">
-            <UISelect :options="settingOptions.theme" v-model="settings.theme" />
+            <UISelect :options="themeOptions" v-model="settings.theme" />
           </SettingItem>
 
           <SettingItem title="Language">
-            <UISelect :options="settingOptions.language" v-model="settings.language" />
+            <UISelect :options="languageOptions" v-model="settings.language" />
           </SettingItem>
 
           <SettingItem title="字体大小" subtitle="聊天内容的字体大小">
             {{ settings.fontSize }}px
             <UIInputRange :step="1" :max="18" :min="10" v-model="settings.fontSize" class="ml-1 h-5 w-32 text-center" />
-          </SettingItem>
-
-          <SettingItem title="预览气泡" subtitle="在预览气泡中预览 Markdown 内容">
-            <UICheckbox
-              v-model="settings.previewBubble"
-              class="flex h-4 w-4 cursor-pointer items-center justify-center rounded border bg-no-repeat text-center align-middle"
-            />
           </SettingItem>
 
           <SettingItem title="面具启动页" subtitle="新建聊天时，展示面具启动页">
@@ -145,7 +137,7 @@ onMounted(() => {
         </div>
         <div class="mb-5 divide-y rounded-xl border shadow-sm">
           <SettingItem title="模型 (model)">
-            <UISelect :options="settingOptions.model" v-model="settings.model" />
+            <UISelect :options="modelOptions" v-model="settings.model" />
           </SettingItem>
 
           <SettingItem title="随机性 (temperature)" subtitle="值越大，回复越随机">

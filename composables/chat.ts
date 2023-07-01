@@ -1,6 +1,7 @@
 import { defineStore } from "pinia"
 import { ref } from "vue"
 import { TMask, TChatDirection, TChatSession } from "~/composables/config/typing"
+import { useSettingStore } from "~/composables/settings"
 import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
 import { fetchStream } from "~/constants/api"
 import { getUtcNow } from "~/utils/date"
@@ -74,6 +75,8 @@ export const useChatStore = defineStore(
   StoreKey.Chat,
   () => {
     const sessions = ref([makeDemoSession(1)])
+    const settingStore = useSettingStore()
+    const settings = settingStore.settings
 
     const clearSessions = () => {
       sessions.value = []
@@ -85,7 +88,6 @@ export const useChatStore = defineStore(
     }
 
     const newSession = (mask?: TMask): TChatSession => {
-      console.log(mask)
       const randomId = Math.floor(Math.random() * 1000000)
       let session: TChatSession = {
         id: "na-" + randomId.toString(),
@@ -128,14 +130,14 @@ export const useChatStore = defineStore(
           lang: "en",
           builtin: true,
           modelConfig: {
-            model: "gpt-3.5-turbo",
-            temperature: 0.5,
-            max_tokens: 2000,
-            presence_penalty: 0,
-            frequency_penalty: 0,
+            model: settings.model,
+            temperature: settings.temperature,
+            max_tokens: settings.maxTokens,
+            presence_penalty: settings.presencePenalty,
+            // frequency_penalty: settings.fr,
             sendMemory: true,
-            historyMessageCount: 4,
-            compressMessageLengthThreshold: 1000,
+            historyMessageCount: settings.historyMessagesCount,
+            compressMessageLengthThreshold: settings.historyMessagesThreshold,
             template: DEFAULT_INPUT_TEMPLATE,
           },
         },
