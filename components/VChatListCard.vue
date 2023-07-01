@@ -20,15 +20,15 @@ const onDeleteSession = () => {
     :to="`/chat/session/` + session.id"
     active-class="chat-list-card__active"
   >
-    <div class="text-[0.88rem] font-bold truncate">{{ session.topic }}</div>
-    <div class="text-neutral-400 flex text-[0.75rem] justify-between mt-2">
+    <div class="truncate text-[0.88rem] font-bold">{{ session.topic }}</div>
+    <div class="mt-2 flex justify-between text-[0.75rem] text-neutral-400">
       <div class="truncate">{{ session.messagesCount }} 条对话</div>
       <div class="truncate">{{ session.lastUpdate }}</div>
     </div>
     <VSvgIcon
       icon="close"
       @click="onDeleteSession"
-      class="h-5 w-5 absolute top-2 right-2 text-neutral-400 cursor-pointer opacity-0 transition-opacity duration-200"
+      class="absolute right-2 top-2 h-5 w-5 cursor-pointer text-neutral-400 opacity-0 transition-opacity duration-200"
       :class="{ 'opacity-100': upHere }"
       v-if="upHere"
     />
@@ -36,7 +36,7 @@ const onDeleteSession = () => {
 </template>
 <style>
 .chat-list-card {
-  @apply bg-white border-white block cursor-grab border-2 mb-3 p-3 rounded-xl hover:bg-gray-200 drop-shadow-sm hover:border-gray-200;
+  @apply mb-3 block cursor-grab rounded-xl border-2 border-white bg-white p-3 drop-shadow-sm hover:border-gray-200 hover:bg-gray-200;
 }
 
 .chat-list-card__active {

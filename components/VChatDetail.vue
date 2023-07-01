@@ -40,9 +40,9 @@ onMounted(() => {
 })
 </script>
 <template>
-  <div class="flex flex-col flex-1">
+  <div class="flex flex-1 flex-col">
     <VChatDetailHeader />
-    <div class="flex-grow p-5 overflow-y-scroll" ref="el">
+    <div class="flex-grow overflow-y-scroll p-5" ref="el">
       <VChatMessage
         class="chat-message"
         v-for="message in currentSession.messages"

@@ -13,44 +13,44 @@ onMounted(() => {
 </script>
 <template>
   <ClientOnly>
-    <div class="flex flex-col flex-1">
-      <div class="items-center flex justify-between p-3.5 border-gray-200 border-y">
+    <div class="flex flex-1 flex-col">
+      <div class="flex items-center justify-between border-y border-gray-200 p-3.5">
         <div class="truncate">
-          <div class="text-[1.25rem] font-bold truncate">设置</div>
-          <div class="text-[0.88rem] mt-1">设置选项</div>
+          <div class="truncate text-[1.25rem] font-bold">设置</div>
+          <div class="mt-1 text-[0.88rem]">设置选项</div>
         </div>
         <div class="flex">
           <div class="ml-3">
             <button
-              class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
+              class="flex h-10 w-10 cursor-pointer items-center justify-center truncate rounded-xl border border-neutral-200 p-3 text-center"
             >
-              <div class="items-center flex justify-center">
+              <div class="flex items-center justify-center">
                 <VSvgIcon icon="clear" />
               </div>
             </button>
           </div>
           <div class="ml-3">
             <button
-              class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
+              class="flex h-10 w-10 cursor-pointer items-center justify-center truncate rounded-xl border border-neutral-200 p-3 text-center"
             >
-              <div class="items-center flex justify-center">
+              <div class="flex items-center justify-center">
                 <VSvgIcon icon="reload" />
               </div>
             </button>
           </div>
           <div class="ml-3">
             <button
-              class="items-center cursor-pointer flex h-10 justify-center text-center w-10 p-3 border-neutral-200 rounded-xl border truncate"
+              class="flex h-10 w-10 cursor-pointer items-center justify-center truncate rounded-xl border border-neutral-200 p-3 text-center"
             >
-              <div class="items-center flex justify-center">
+              <div class="flex items-center justify-center">
                 <VSvgIcon icon="close" />
               </div>
             </button>
           </div>
         </div>
       </div>
-      <div class="p-5 overflow-scroll">
-        <div class="mb-5 rounded-xl border divide-y shadow-sm">
+      <div class="overflow-scroll p-5">
+        <div class="mb-5 divide-y rounded-xl border shadow-sm">
           <SettingItem title="头像">
             <VEmojiAvatar v-model="settings.avatar" />
           </SettingItem>
@@ -61,7 +61,7 @@ onMounted(() => {
           >
             <a
               href="https://github.com/hylarucoder/ChatGPT-Nuxt#keep-updated"
-              class="text-emerald-400 cursor-pointer text-[0.75rem]"
+              class="cursor-pointer text-[0.75rem] text-emerald-400"
               >{{ settings.hasNewVersion ? "前往更新" : "无需更新" }}</a
             >
           </SettingItem>
@@ -80,76 +80,76 @@ onMounted(() => {
 
           <SettingItem title="字体大小" subtitle="聊天内容的字体大小">
             {{ settings.fontSize }}px
-            <UIInputRange :step="1" :max="18" :min="10" v-model="settings.fontSize" class="h-5 text-center w-32 ml-1" />
+            <UIInputRange :step="1" :max="18" :min="10" v-model="settings.fontSize" class="ml-1 h-5 w-32 text-center" />
           </SettingItem>
 
           <SettingItem title="预览气泡" subtitle="在预览气泡中预览 Markdown 内容">
             <UICheckbox
               v-model="settings.previewBubble"
-              class="items-center bg-no-repeat cursor-pointer flex h-4 justify-center text-center align-middle w-4 rounded border"
+              class="flex h-4 w-4 cursor-pointer items-center justify-center rounded border bg-no-repeat text-center align-middle"
             />
           </SettingItem>
 
           <SettingItem title="面具启动页" subtitle="新建聊天时，展示面具启动页">
             <UICheckbox
               v-model="settings.maskLaunchPage"
-              class="items-center bg-no-repeat cursor-pointer flex h-4 justify-center text-center align-middle w-4 rounded border"
+              class="flex h-4 w-4 cursor-pointer items-center justify-center rounded border bg-no-repeat text-center align-middle"
             />
           </SettingItem>
         </div>
-        <div class="mb-5 rounded-xl border divide-y shadow-sm">
+        <div class="mb-5 divide-y rounded-xl border shadow-sm">
           <SettingItem title="API Key" subtitle="使用自己的 Key 可绕过密码访问限制">
             <div class="flex justify-end">
               <button
-                class="items-center cursor-pointer flex h-9 justify-center mr-1 text-center w-9 p-3 rounded-xl truncate"
+                class="mr-1 flex h-9 w-9 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center"
               >
-                <div class="items-center flex justify-center">
-                  <VSvgIcon icon="eye-off" class="w-4 h-4" />
+                <div class="flex items-center justify-center">
+                  <VSvgIcon icon="eye-off" class="h-4 w-4" />
                 </div>
               </button>
               <input
                 v-model="settings.apiKey"
                 type="password"
                 placeholder="OpenAI API Key"
-                class="cursor-text h-9 px-3 text-center w-52 border-neutral-200 rounded-xl border"
+                class="h-9 w-52 cursor-text rounded-xl border border-neutral-200 px-3 text-center"
               />
             </div>
           </SettingItem>
 
           <SettingItem title="余额查询" subtitle="本月已使用 $[?]，订阅总额 $[?]">
             <button
-              class="items-center cursor-pointer hover:bg-gray flex h-10 justify-center text-center w-24 p-3 rounded-xl truncate"
+              class="hover:bg-gray flex h-10 w-24 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center"
             >
-              <div class="items-center flex justify-center">
+              <div class="flex items-center justify-center">
                 <VSvgIcon icon="reload" />
               </div>
-              <div class="text-[0.75rem] ml-1 truncate">重新检查</div>
+              <div class="ml-1 truncate text-[0.75rem]">重新检查</div>
             </button>
           </SettingItem>
         </div>
-        <div class="mb-5 rounded-xl border divide-y shadow-sm">
+        <div class="mb-5 divide-y rounded-xl border shadow-sm">
           <SettingItem title="禁用提示词自动补全" subtitle="在输入框开头输入 / 即可触发自动补全">
             <UICheckbox v-model="settings.disableAutoCompletePrompt" />
           </SettingItem>
 
           <SettingItem title="自定义提示词列表" subtitle="内置 0 条，用户定义 0 条">
             <button
-              class="items-center cursor-pointer flex h-10 justify-center text-center w-32 p-3 rounded-xl truncate"
+              class="flex h-10 w-32 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center"
             >
-              <div class="items-center flex justify-center">
+              <div class="flex items-center justify-center">
                 <VSvgIcon icon="edit" />
               </div>
-              <div class="text-[0.75rem] ml-1 truncate">编辑</div>
+              <div class="ml-1 truncate text-[0.75rem]">编辑</div>
             </button>
           </SettingItem>
         </div>
-        <div class="mb-5 rounded-xl border divide-y shadow-sm">
+        <div class="mb-5 divide-y rounded-xl border shadow-sm">
           <SettingItem title="模型 (model)">
             <UISelect :options="settingOptions.model" v-model="settings.model" />
           </SettingItem>
 
           <SettingItem title="随机性 (temperature)" subtitle="值越大，回复越随机">
-            <div class="flex text-[0.75rem] py-1 px-3 pr-3.5 border-neutral-200 rounded-xl border">
+            <div class="flex rounded-xl border border-neutral-200 px-3 py-1 pr-3.5 text-[0.75rem]">
               {{ settings.temperature }}
               <UIInputRange :min="0.0" :max="1.0" :step="0.1" class="ml-1" v-model="settings.temperature" />
             </div>
@@ -157,32 +157,32 @@ onMounted(() => {
 
           <SettingItem title="单次回复限制 (max_tokens)" subtitle="单次交互所用的最大 Token 数">
             <UIInputNumber
-              class="cursor-text h-9 px-3 text-center w-20 border-neutral-200 rounded-xl border"
+              class="h-9 w-20 cursor-text rounded-xl border border-neutral-200 px-3 text-center"
               v-model="settings.maxTokens"
             />
           </SettingItem>
 
           <SettingItem title="话题新鲜度 (presence_penalty)" subtitle="值越大，越有可能扩展到新话题">
-            <div class="flex text-[0.75rem] py-1 px-3 pr-3.5 border-neutral-200 rounded-xl border">
+            <div class="flex rounded-xl border border-neutral-200 px-3 py-1 pr-3.5 text-[0.75rem]">
               {{ settings.presencePenalty }}
               <UIInputRange
                 :min="-2.0"
                 :max="2.0"
                 :step="0.1"
                 v-model="settings.presencePenalty"
-                class="h-5 text-center w-32 ml-1"
+                class="ml-1 h-5 w-32 text-center"
               />
             </div>
           </SettingItem>
 
           <SettingItem title="附带历史消息数" subtitle="每次请求携带的历史消息数">
-            <div class="flex text-[0.75rem] py-1 px-3 pr-3.5 border-neutral-200 rounded-xl border">
+            <div class="flex rounded-xl border border-neutral-200 px-3 py-1 pr-3.5 text-[0.75rem]">
               {{ settings.historyMessagesCount }}
               <UIInputRange
                 :min="0"
                 :max="32"
                 :step="1"
-                class="h-5 text-center w-32 ml-1"
+                class="ml-1 h-5 w-32 text-center"
                 v-model="settings.historyMessagesCount"
               />
             </div>
@@ -190,7 +190,7 @@ onMounted(() => {
 
           <SettingItem title="历史消息长度压缩阈值" subtitle="当未压缩的历史消息超过该值时，将进行压缩">
             <UIInputNumber
-              class="cursor-text h-9 px-3 text-center w-20 border-neutral-200 rounded-xl border"
+              class="h-9 w-20 cursor-text rounded-xl border border-neutral-200 px-3 text-center"
               v-model="settings.historyMessagesThreshold"
             />
           </SettingItem>
@@ -198,7 +198,7 @@ onMounted(() => {
           <SettingItem title="历史摘要" subtitle="自动压缩聊天记录并作为上下文发送">
             <UICheckbox
               v-model="settings.historySummary"
-              class="items-center bg-no-repeat cursor-pointer flex h-4 justify-center text-center align-middle w-4 rounded border"
+              class="flex h-4 w-4 cursor-pointer items-center justify-center rounded border bg-no-repeat text-center align-middle"
             />
           </SettingItem>
         </div>

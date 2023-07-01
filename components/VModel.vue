@@ -45,10 +45,10 @@ const modalClass = computed(() => [
 </style>
 <template>
   <teleport :to="selector">
-    <div v-if="visible" class="fixed z-50 top-0 left-0 w-full h-full bg-modal-overlay">
-      <div class="bg-white rounded-lg md:overflow-hidden" :class="modalClass">
-        <div class="px-6 py-4 flex justify-between items-center">
-          <h3 class="text-2xl text-gray-700 font-medium">{{ title }}</h3>
+    <div v-if="visible" class="bg-modal-overlay fixed left-0 top-0 z-50 h-full w-full">
+      <div class="rounded-lg bg-white md:overflow-hidden" :class="modalClass">
+        <div class="flex items-center justify-between px-6 py-4">
+          <h3 class="text-2xl font-medium text-gray-700">{{ title }}</h3>
           <button class="text-gray-600 hover:text-gray-800 focus:outline-none" @click="close">&times;</button>
         </div>
         <div class="p-6">

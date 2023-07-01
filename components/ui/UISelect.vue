@@ -1,9 +1,9 @@
 <template>
   <select
     v-model="inputRef.val"
-    class="items-center cursor-pointer inline-block h-10 pr-6 pl-3 text-center w-40 border-neutral-200 rounded-xl border"
+    class="inline-block h-10 w-40 cursor-pointer items-center rounded-xl border border-neutral-200 pl-3 pr-6 text-center"
   >
-    <option class="text-sm h-8" v-for="option in options" :key="option.value" :value="option.value">
+    <option class="h-8 text-sm" v-for="option in options" :key="option.value" :value="option.value">
       {{ option.label }}
     </option>
   </select>
