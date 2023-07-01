@@ -2,7 +2,7 @@ import exp from "constants"
 import { defineStore } from "pinia"
 import { reactive } from "vue"
 import { ALL_MODELS, SubmitKey } from "~/constants/typing"
-import { StoreKey } from "~/constants"
+import { FETCH_COMMIT_URL, StoreKey } from "~/constants"
 
 export interface TSelectOption {
   label: string
@@ -138,19 +138,14 @@ export const useSettingStore = defineStore(
   StoreKey.Setting,
   () => {
     const settings = reactive(defaultSettings)
-    const owner = "hylarucoder"
-    const repo = "ChatGPT-Nuxt"
-    const branch = "main"
-    const url = `https://api.github.com/repos/${owner}/${repo}/commits?sha=${branch}&per_page=1`
     const runtimeConfig = useRuntimeConfig()
 
     const fetchRemoteLatestCommitDate = () => {
-      console.log("fetchRemoteLatestCommitDate", runtimeConfig.public)
       if (runtimeConfig.public.LATEST_COMMIT_DATE) {
         settings.latestCommitDate = runtimeConfig.public.LATEST_COMMIT_DATE as string
         settings.hasNewVersion = settings.latestCommitDate < settings.remoteLatestCommitDate
       }
-      fetch(url)
+      fetch(FETCH_COMMIT_URL)
         .then((response) => response.json())
         .then((data) => {
           const date = data[0].commit.author.date

@@ -6,8 +6,6 @@ import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
 import { fetchStream } from "~/constants/api"
 import { getUtcNow } from "~/utils/date"
 
-function makeSession() {}
-
 function makeEmptySession(s: number): TChatSession {
   const session: TChatSession = {
     id: s.toString(),
@@ -102,23 +100,26 @@ export const useChatStore = defineStore(
     }
 
     const onNewMessage = (currentSession: TChatSession, message: string) => {
-      // input message, send to backend, get response
-      // add response message
+      // latest 4 messages
+      const lastMessages = currentSession.messages.slice(-4).map((message) => {
+        return {
+          role: message.role,
+          content: message.content,
+        }
+      })
+      console.log(toRaw(lastMessages))
       const payload = {
         messages: [
-          {
-            role: "system",
-            content: "Welcome to the chat room!",
-          },
+          ...lastMessages,
           {
             role: "user",
             content: message,
           },
         ],
         model: "gpt-3.5-turbo",
-        presence_penalty: 0,
+        presence_penalty: settings.presencePenalty,
         stream: true,
-        temperature: 0.5,
+        temperature: settings.temperature,
       }
       // check if the last message
       let latestMessageId: number = 0
