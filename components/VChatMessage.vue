@@ -1,41 +1,17 @@
 <script lang="ts" setup>
 import { defineProps } from "vue"
-import { TChatDirection, TChatMessage } from "~/constants/typing"
 import { useSettingStore } from "~/composables/settings"
+import { TChatDirection, TChatMessage } from "~/constants/typing"
+import { copyToClipboard } from "~/utils/clipboard"
 
-const settingStore = useSettingStore()
-const settings = settingStore.settings
+const { settings } = useSettingStore()
 
 const props = defineProps<{
   message: TChatMessage
 }>()
+
 const isSend = props.message.direction === TChatDirection.SEND
-
-const chatStore = useChatStore()
-const currentStore = chatStore.routeCurrentSession()
-
-const deleteMessage = (id: number) => {
-  // check and delete message
-  const index = currentStore.messages.findIndex((message) => message.id === id)
-  if (index !== -1) {
-    currentStore.messages.splice(index, 1)
-    currentStore.messagesCount = currentStore.messages.length
-  }
-  chatStore.saveAll()
-}
-
-const copyToClipboard = (content: string) => {
-  // copy
-  const input = document.createElement("input")
-  input.setAttribute("readonly", "readonly")
-  input.setAttribute("value", content)
-  document.body.appendChild(input)
-  input.select()
-  input.setSelectionRange(0, 9999)
-  document.execCommand("copy")
-  document.body.removeChild(input)
-}
-
+const currentSession = useRoutedChatSession()
 const messageRef = ref()
 const isHovered = useElementHover(messageRef)
 </script>
@@ -44,7 +20,7 @@ const isHovered = useElementHover(messageRef)
     <div class="flex flex-col" :class="{ 'items-start': !isSend, 'items-end': isSend }" ref="messageRef">
       <div class="mt-5 flex">
         <div class="flex h-8 w-8 items-center justify-center rounded-xl border border-neutral-200">
-          <Icon size="1.4em" class="text-center" name="🤖" />
+          <Icon size="1.4em" class="text-center" :name="isSend ? settings.avatar : '🤖'" />
         </div>
       </div>
       <div
@@ -73,7 +49,12 @@ const isHovered = useElementHover(messageRef)
                 <div @click="copyToClipboard(message.content)" class="cursor-pointer opacity-50 hover:opacity-80">
                   Copy
                 </div>
-                <div class="cursor-pointer opacity-50 hover:opacity-80" @click="deleteMessage(message.id)">Delete</div>
+                <div
+                  class="cursor-pointer opacity-50 hover:opacity-80"
+                  @click="currentSession.deleteMessage(message.id!)"
+                >
+                  Delete
+                </div>
                 <!--              <div class="cursor-pointer opacity-50 hover:opacity-80">Retry</div>-->
               </div>
             </transition>
