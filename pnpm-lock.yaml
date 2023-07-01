@@ -8,6 +8,12 @@ dependencies:
   '@fortaine/fetch-event-source':
     specifier: ^3.0.6
     version: registry.npmmirror.com/@fortaine/fetch-event-source@3.0.6
+  '@iconify-json/carbon':
+    specifier: ^1.1.18
+    version: 1.1.18
+  '@iconify-json/twemoji':
+    specifier: ^1.1.11
+    version: 1.1.11
   '@nuxtjs/google-fonts':
     specifier: ^3.0.1
     version: registry.npmmirror.com/@nuxtjs/google-fonts@3.0.1(rollup@2.79.1)
@@ -29,12 +35,9 @@ dependencies:
   ai:
     specifier: ^2.1.8
     version: registry.npmmirror.com/ai@2.1.8(react@18.2.0)(svelte@3.59.1)(vue@3.3.4)
-  autoprefixer:
-    specifier: ^10.4.14
-    version: registry.npmmirror.com/autoprefixer@10.4.14(postcss@8.4.24)
-  postcss:
-    specifier: ^8.4.24
-    version: registry.npmmirror.com/postcss@8.4.24
+  pinia:
+    specifier: ^2.1.4
+    version: registry.npmmirror.com/pinia@2.1.4(typescript@5.0.4)(vue@3.3.4)
   rehype-highlight:
     specifier: ^6.0.0
     version: registry.npmmirror.com/rehype-highlight@6.0.0
@@ -56,9 +59,6 @@ dependencies:
   trpc-nuxt:
     specifier: ^0.10.5
     version: registry.npmmirror.com/trpc-nuxt@0.10.5(@trpc/client@10.32.0)(@trpc/server@10.32.0)
-  unist-util-visit:
-    specifier: ^4.1.2
-    version: registry.npmmirror.com/unist-util-visit@4.1.2
   zod:
     specifier: ^3.21.4
     version: registry.npmmirror.com/zod@3.21.4
@@ -67,12 +67,6 @@ devDependencies:
   '@antfu/eslint-config':
     specifier: ^0.39.5
     version: 0.39.5(eslint@8.43.0)(typescript@5.0.4)
-  '@iconify-json/carbon':
-    specifier: ^1.1.18
-    version: 1.1.18
-  '@iconify-json/twemoji':
-    specifier: ^1.1.11
-    version: 1.1.11
   '@nuxt/content':
     specifier: ^2.7.0
     version: registry.npmmirror.com/@nuxt/content@2.7.0(rollup@2.79.1)
@@ -109,6 +103,9 @@ devDependencies:
   '@vueuse/nuxt':
     specifier: ^10.2.0
     version: registry.npmmirror.com/@vueuse/nuxt@10.2.0(nuxt@3.6.0)(rollup@2.79.1)(vue@3.3.4)
+  autoprefixer:
+    specifier: ^10.4.14
+    version: registry.npmmirror.com/autoprefixer@10.4.14(postcss@8.4.24)
   consola:
     specifier: ^3.1.0
     version: 3.1.0
@@ -139,9 +136,9 @@ devDependencies:
   nuxt-icon:
     specifier: ^0.4.1
     version: registry.npmmirror.com/nuxt-icon@0.4.1(rollup@2.79.1)(vue@3.3.4)
-  pinia:
-    specifier: ^2.1.4
-    version: registry.npmmirror.com/pinia@2.1.4(typescript@5.0.4)(vue@3.3.4)
+  postcss:
+    specifier: ^8.4.24
+    version: registry.npmmirror.com/postcss@8.4.24
   prettier:
     specifier: ^2.8.8
     version: registry.npmmirror.com/prettier@2.8.8
@@ -151,6 +148,9 @@ devDependencies:
   sass:
     specifier: ^1.63.6
     version: registry.npmmirror.com/sass@1.63.6
+  unist-util-visit:
+    specifier: ^4.1.2
+    version: registry.npmmirror.com/unist-util-visit@4.1.2
   vite-svg-loader:
     specifier: ^4.0.0
     version: registry.npmmirror.com/vite-svg-loader@4.0.0
@@ -296,17 +296,17 @@ packages:
     resolution: {integrity: sha512-RbKET6KS9xUMeYVq1FUH3UUA7AYNcnApkHt2AccCwTWTQQs/O58ji4Of6z6PhRajGlbfvrJzT/Uqh19OKECRvA==}
     dependencies:
       '@iconify/types': 2.0.0
-    dev: true
+    dev: false
 
   /@iconify-json/twemoji@1.1.11:
     resolution: {integrity: sha512-ZA2v2AGWPC0rxiZDLqsVD+DoYB3n5Ft5q0YYAsy9QyYvoNWSdh6Vxe5d3yUP4mSpNkE4YW96RAjiZu72uXb7kQ==}
     dependencies:
       '@iconify/types': 2.0.0
-    dev: true
+    dev: false
 
   /@iconify/types@2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
-    dev: true
+    dev: false
 
   /@nuxt/kit@3.5.0(rollup@2.79.1):
     resolution: {integrity: sha512-QqhOPTan5cpaYCksSWdmtpldCGfnsqTd55blztMSF+OPxfGav4GE4BrBD3ZSMn2/5MxieF3GU/w5/tgcDXE3bA==}
@@ -5913,7 +5913,6 @@ packages:
     resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vue/devtools-api/-/devtools-api-6.5.0.tgz}
     name: '@vue/devtools-api'
     version: 6.5.0
-    dev: true
 
   registry.npmmirror.com/@vue/eslint-config-prettier@7.1.0(eslint@8.43.0)(prettier@2.8.8):
     resolution: {integrity: sha512-Pv/lVr0bAzSIHLd9iz0KnvAr4GKyCEl+h52bc4e5yWuDVtLgFwycF7nrbWTAQAS+FU6q1geVd07lc6EWfJiWKQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vue/eslint-config-prettier/-/eslint-config-prettier-7.1.0.tgz}
@@ -13055,7 +13054,6 @@ packages:
       typescript: registry.npmmirror.com/typescript@5.0.4
       vue: registry.npmmirror.com/vue@3.3.4
       vue-demi: registry.npmmirror.com/vue-demi@0.14.5(vue@3.3.4)
-    dev: true
 
   registry.npmmirror.com/pinkie-promise@2.0.1:
     resolution: {integrity: sha512-0Gni6D4UcLTbv9c57DfxDGdr41XfgUjqWZu492f0cIGr16zDU06BWP/RAEvOuo7CQ0CNjHaLlM59YJJFm3NWlw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pinkie-promise/-/pinkie-promise-2.0.1.tgz}
@@ -15725,7 +15723,6 @@ packages:
     version: 5.0.4
     engines: {node: '>=12.20'}
     hasBin: true
-    dev: true
 
   registry.npmmirror.com/ufo@1.1.2:
     resolution: {integrity: sha512-TrY6DsjTQQgyS3E3dBaOXf0TpPD8u9FVrVYmKVegJuFw51n/YB9XPt+U6ydzFG5ZIN7+DIjPbNmXoBj9esYhgQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ufo/-/ufo-1.1.2.tgz}
@@ -16576,7 +16573,6 @@ packages:
         optional: true
     dependencies:
       vue: registry.npmmirror.com/vue@3.3.4
-    dev: true
 
   registry.npmmirror.com/vue-devtools-stub@0.1.0:
     resolution: {integrity: sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-devtools-stub/-/vue-devtools-stub-0.1.0.tgz}
