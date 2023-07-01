@@ -1,52 +1,46 @@
 <script lang="ts" setup>
 import { defineProps } from "vue"
-import { TChatDirection } from "~/composables/config/typing"
+import { TChatDirection, TChatMessage } from "~/composables/config/typing"
+import { useSettingStore } from "~/composables/settings"
 
-defineProps({
-  content: {
-    type: String,
-    required: true,
-  },
-  direction: {
-    type: String,
-    required: true,
-  },
-})
+const settingStore = useSettingStore()
+const settings = settingStore.settings
+
+const props = defineProps<{
+  message: TChatMessage
+}>()
+const isSend = props.message.direction === TChatDirection.SEND
 </script>
 <template>
-  <div class="text-zinc-800 flex w-full" v-if="direction === TChatDirection.RECEIVE">
-    <div class="items-start flex flex-col">
-      <div class="mt-5">
-        <div class="flex justify-center items-center">
-          <VSvgIcon icon="chatgpt" />
+  <div class="flex w-full text-zinc-800" :class="{ 'flex-row-reverse': isSend }">
+    <div class="flex flex-col" :class="{ 'items-start': !isSend, 'items-end': isSend }">
+      <div class="mt-5 flex">
+        <div class="flex items-center justify-center rounded-xl border border-neutral-200">
+          <Icon class="h-5 w-5 overflow-clip align-middle text-[1.13rem]" :name="settings.avatar" />
         </div>
       </div>
       <div
         style="user-select: text; word-break: break-word"
-        class="bg-gray-100 text-[0.88rem] mt-3 p-3 border-neutral-200 rounded-xl border"
+        class="mt-3 rounded-xl border p-3 text-[0.88rem]"
+        :class="{
+          'border-neutral-200': true,
+          'bg-gray-100': !isSend,
+          'bg-cyan-50': isSend,
+        }"
       >
-        <div class="text-zinc-800 break-words max-w-[800px]">
-          <MarkdownPreview :md="content" />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="text-zinc-800 flex w-full flex-row-reverse" v-if="direction === TChatDirection.SEND">
-    <div class="items-end text-zinc-800 flex flex-col">
-      <div class="mt-5">
-        <div class="items-center flex justify-center border-neutral-200 rounded-xl border">
-          <img
-            src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f603.png"
-            class="text-[1.13rem] h-5 align-middle w-5 overflow-clip"
-          />
-        </div>
-      </div>
-      <div
-        style="user-select: text; word-break: break-word"
-        class="bg-cyan-50 text-[0.88rem] mt-3 p-3 border-neutral-200 rounded-xl border"
-      >
-        <div class="text-zinc-800 break-words max-w-[800px]">
-          <MarkdownPreview :md="content" />
+        <div class="relative max-w-[800px] break-words text-zinc-800">
+          <template v-if="!isSend">
+            <div
+              style="word-break: break-word"
+              class="absolute -top-8 right-0 flex select-text flex-row-reverse rounded text-xs text-zinc-800"
+            >
+              <div class="cursor-pointer opacity-50 hover:opacity-80">Delete</div>
+              <div class="mr-3 cursor-pointer opacity-50 hover:opacity-80">Retry</div>
+              <div class="mr-3 cursor-pointer opacity-50 hover:opacity-80">Copy</div>
+            </div>
+            <div class="absolute -bottom-8 right-0 text-xs text-neutral-400">6/27/2023, 9:49:56 AM</div>
+          </template>
+          <MarkdownPreview :md="message.content" />
         </div>
       </div>
     </div>

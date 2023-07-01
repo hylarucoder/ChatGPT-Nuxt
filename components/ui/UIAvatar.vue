@@ -1,8 +1,8 @@
 <template>
   <div class="z-[2]">
     <div class="cursor-pointer" @click="handleClick">
-      <div class="items-center flex justify-center border-neutral-200 rounded-xl border">
-        <img :src="modelValue" class="text-[1.13rem] h-5 align-middle w-5 overflow-clip" />
+      <div class="flex items-center justify-center rounded-xl border border-neutral-200">
+        <img :src="modelValue" class="h-5 w-5 overflow-clip align-middle text-[1.13rem]" />
       </div>
     </div>
   </div>

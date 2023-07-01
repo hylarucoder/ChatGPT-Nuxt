@@ -14,12 +14,12 @@ defineComponent({
 </script>
 <template>
   <button
-    class="items-center bg-white cursor-pointer flex flex-grow h-10 justify-center text-center p-3 rounded-xl truncate hover:bg-gray-200 drop-shadow-sm"
+    class="flex h-10 flex-grow cursor-pointer items-center justify-center truncate rounded-xl bg-white p-3 text-center drop-shadow-sm hover:bg-gray-200"
     :class="hasText ? 'w-32' : ''"
   >
-    <div class="items-center flex justify-center">
+    <div class="flex items-center justify-center">
       <VSvgIcon :icon="icon" />
     </div>
-    <div v-if="hasText" class="text-[0.75rem] ml-1 truncate">{{ text }}</div>
+    <div v-if="hasText" class="ml-1 truncate text-[0.75rem]">{{ text }}</div>
   </button>
 </template>

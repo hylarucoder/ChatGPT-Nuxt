@@ -5,61 +5,6 @@ import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
 import { fetchStream } from "~/constants/api"
 import { getUtcNow } from "~/utils/date"
 
-const markdown = `
-## Hello Markdown
-\`\`\`shell
-npm i @uivjs/vue-markdown-preview
-
-\`\`\`
-# t
-
-## Project setup
-\`\`\`bash
-yarn install
-\`\`\`
-
-### Compiles and hot-reloads for development
-\`\`\`
-yarn serve
-\`\`\`
-
-### Compiles and minifies for production
-\`\`\`
-yarn build
-\`\`\`
-
-### Lints and fixes files
-\`\`\`bash
-yarn lint
-\`\`\`
-
-## CSS
-
-\`\`\`css
-.markdown-body .task-list-item .handle {
-  display: none;
-}
-
-.markdown-body .task-list-item-checkbox {
-  margin: 0 0.2em 0.25em -1.4em;
-  vertical-align: middle;
-}
-
-.markdown-body .contains-task-list:dir(rtl) .task-list-item-checkbox {
-  margin: 0 -1.6em 0.25em 0.2em;
-}
-\`\`\`
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-| Syntax      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
-
-`
-
 function makeDemoSession(s: number): TChatSession {
   return {
     id: s.toString(),
@@ -79,7 +24,7 @@ function makeDemoSession(s: number): TChatSession {
       },
       {
         role: "user",
-        content: markdown,
+        content: "okey",
         date: "2021-06-13T15:00:00.000Z",
         direction: TChatDirection.RECEIVE,
         streaming: false,
@@ -88,7 +33,7 @@ function makeDemoSession(s: number): TChatSession {
       },
       {
         role: "user",
-        content: markdown,
+        content: "well",
         date: "2021-06-13T15:00:00.000Z",
         direction: TChatDirection.SEND,
         streaming: false,
@@ -105,7 +50,7 @@ function makeDemoSession(s: number): TChatSession {
     lastSummarizeIndex: 0,
     mask: {
       id: s,
-      avatar: "https://cdn.jsdelivr.net/gh/elevenvac/elevenvac.github.io/assets/img/avatar.png",
+      avatar: "🐻",
       name: "Demo",
       context: [],
       lang: "en",
@@ -173,12 +118,11 @@ export const useChatStore = defineStore(
           wordCount: 0,
           charCount: 0,
         },
-        // date to timestamp
         lastUpdate: getUtcNow(),
         lastSummarizeIndex: 0,
         mask: {
           id: 0,
-          avatar: "https://cdn.jsdelivr.net/gh/elevenvac/elevenvac.github.io/assets/img/avatar.png",
+          avatar: "熊",
           name: "Demo",
           context: [],
           lang: "en",
@@ -196,11 +140,13 @@ export const useChatStore = defineStore(
           },
         },
       }
-      sessions.value.push(session)
+      sessions.value.unshift(session)
       return session
     }
 
-    const deleteSession = (index: number) => {
+    const deleteSession = (id: string) => {
+      // remove session by id
+      const index = sessions.value.findIndex((s) => s.id === id)
       sessions.value.splice(index, 1)
     }
 
@@ -231,7 +177,7 @@ export const useChatStore = defineStore(
           },
           {
             role: "user",
-            content: message || "hello",
+            content: message,
           },
         ],
         model: "gpt-3.5-turbo",
@@ -243,7 +189,7 @@ export const useChatStore = defineStore(
       currentSession.messages.push({
         role: "user",
         content: message,
-        date: "2021-06-13T15:00:00.000Z",
+        date: new Date().toISOString(),
         direction: TChatDirection.SEND,
         streaming: false,
         isError: false,
@@ -252,7 +198,7 @@ export const useChatStore = defineStore(
       const newMessage = {
         role: "user",
         content: "...",
-        date: "2021-06-13T15:00:00.000Z",
+        date: new Date().toISOString(),
         direction: TChatDirection.RECEIVE,
         streaming: false,
         isError: false,
@@ -261,9 +207,18 @@ export const useChatStore = defineStore(
       currentSession.messages.push(newMessage)
       currentSession.messagesCount = currentSession.messages.length
       const nMessage = currentSession.messages[currentSession.messages.length - 1]
+      let loadingDots = 0
+      const loadingInterval = setInterval(() => {
+        loadingDots = (loadingDots + 1) % 3
+        const dots = ".".repeat(loadingDots + 1)
+        nMessage.content = dots
+      }, 500)
+
       fetchStream(payload, (receivedData: string) => {
+        clearInterval(loadingInterval) // 清除定时器
         nMessage.content = receivedData
       }).catch((error) => {
+        clearInterval(loadingInterval) // 清除定时器
         console.error("Error occurred:", error)
       })
     }
@@ -322,8 +277,6 @@ export const useChatStore = defineStore(
       onUserInput,
       summarizeSession,
       updateStat,
-      // updateCurrentSession,
-      // updateMessage,
       resetSession,
       getMessagesWithMemory,
       getMemoryPrompt,

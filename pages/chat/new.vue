@@ -76,136 +76,93 @@ const maskCards = [
 ]
 </script>
 <template>
-  <div class="items-center text-zinc-800 flex flex-col justify-center flex-1">
-    <div class="flex justify-between p-3 w-full">
+  <div class="flex flex-1 flex-col items-center justify-center text-zinc-800">
+    <div class="flex w-full justify-between p-3">
       <button
         @click="router.back()"
-        class="items-center bg-white cursor-pointer flex h-10 justify-center text-center p-3 rounded-xl truncate"
+        class="flex h-10 cursor-pointer items-center justify-center truncate rounded-xl bg-white p-3 text-center"
       >
-        <div class="items-center flex justify-center">
-          <VSvgIcon icon="return" class="w-4 h-4" />
+        <div class="flex items-center justify-center">
+          <VSvgIcon icon="return" class="h-4 w-4" />
         </div>
-        <div class="text-[0.75rem] ml-1 truncate">返回</div>
+        <div class="ml-1 truncate text-[0.75rem]">返回</div>
       </button>
     </div>
-    <div class="flex mb-5 mt-12 space-x-1">
-      <div class="bg-white h-16 py-5 px-3 w-12 border-neutral-200 rounded-2xl border">
+    <div class="mb-5 mt-12 flex space-x-1">
+      <div class="h-16 w-12 rounded-2xl border border-neutral-200 bg-white px-3 py-5">
         <img
           src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f606.png"
-          class="text-[1.50rem] h-6 align-middle w-6 overflow-clip"
+          class="h-6 w-6 overflow-clip align-middle text-[1.50rem]"
         />
       </div>
-      <div class="bg-white h-16 py-5 px-3 w-12 border-neutral-200 rounded-2xl border">
+      <div class="h-16 w-12 rounded-2xl border border-neutral-200 bg-white px-3 py-5">
         <img
           src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f916.png"
-          class="text-[1.50rem] h-6 align-middle w-6 overflow-clip"
+          class="h-6 w-6 overflow-clip align-middle text-[1.50rem]"
         />
       </div>
-      <div class="bg-white h-16 py-5 px-3 w-12 border-neutral-200 rounded-2xl border">
+      <div class="h-16 w-12 rounded-2xl border border-neutral-200 bg-white px-3 py-5">
         <img
           src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f479.png"
-          class="text-[1.50rem] h-6 align-middle w-6 overflow-clip"
+          class="h-6 w-6 overflow-clip align-middle text-[1.50rem]"
         />
       </div>
     </div>
-    <div class="text-[2.00rem] font-bold mb-2">挑选一个面具</div>
+    <div class="mb-2 text-[2.00rem] font-bold">挑选一个面具</div>
     <div>现在开始，与面具背后的灵魂思维碰撞</div>
-    <div class="flex text-[0.75rem] justify-center mb-5 mt-12 space-x-2">
+    <div class="mb-5 mt-12 flex justify-center space-x-2 text-[0.75rem]">
       <button
-        class="items-center bg-emerald-400 text-white cursor-pointer flex h-10 justify-center ml-3 text-center w-24 p-3 rounded-xl truncate hover:bg-emerald-500"
+        class="ml-3 flex h-10 w-24 cursor-pointer items-center justify-center truncate rounded-xl bg-emerald-400 p-3 text-center text-white hover:bg-emerald-500"
         @click="newSessionAndNav"
       >
-        <div class="items-center flex justify-center">
+        <div class="flex items-center justify-center">
           <VSvgIcon icon="lightning" class="" style="color: white" />
         </div>
         <div class="ml-1 truncate text-white">直接开始</div>
       </button>
       <button
-        class="items-center bg-white cursor-pointer flex h-10 justify-center text-center w-24 p-3 border-neutral-200 rounded-xl border truncate hover:bg-gray-200"
+        class="flex h-10 w-24 cursor-pointer items-center justify-center truncate rounded-xl border border-neutral-200 bg-white p-3 text-center hover:bg-gray-200"
+        @click="router.push('/chat/masks')"
       >
-        <div class="items-center flex justify-center">
-          <VSvgIcon icon="eye" class="w-4 h-4" />
+        <div class="flex items-center justify-center">
+          <VSvgIcon icon="eye" class="h-4 w-4" />
         </div>
         <div class="ml-1 truncate text-black">查看全部</div>
       </button>
     </div>
-    <div class="items-center flex-grow pt-5 overflow-hidden">
-      <div class="flex mb-3 overflow-y-auto">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+    <div class="flex-grow items-center overflow-hidden pt-5">
+      <div class="mb-3 flex overflow-y-auto">
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
-      <div class="flex mb-3 ml-12">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+      <div class="mb-3 ml-12 flex">
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
-      <div class="flex mb-3">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+      <div class="mb-3 flex">
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
-      <div class="flex mb-3 ml-12">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+      <div class="mb-3 ml-12 flex">
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
-      <div class="flex mb-3">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+      <div class="mb-3 flex">
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
-      <div class="flex mb-3 ml-6">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+      <div class="mb-3 ml-6 flex">
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
-      <div class="flex mb-3 ml-3">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+      <div class="mb-3 ml-3 flex">
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
-      <div class="flex mb-3">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+      <div class="mb-3 flex">
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
-      <div class="flex mb-3 ml--4">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+      <div class="mb-3 ml--4 flex">
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
-      <div class="flex mb-3 ml-2">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+      <div class="mb-3 ml-2 flex">
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
-      <div class="flex mb-3 ml-4">
-        <MaskCard
-          v-for="mask in maskCards"
-          icon="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f69b.png"
-          :text="mask.title"
-        />
+      <div class="mb-3 ml-4 flex">
+        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
       </div>
     </div>
   </div>

@@ -34,11 +34,8 @@ const parsedMarkdown = ref(props.md)
 watchEffect(async () => {
   try {
     const a = processor.processSync(props.md || "...")
-    console.log("a--->", String(a))
-    parsedMarkdown.value = a
-    console.log(parsedMarkdown.value)
+    parsedMarkdown.value = String(a)
   } catch (err) {
-    console.error(err)
     parsedMarkdown.value = ""
   }
 })

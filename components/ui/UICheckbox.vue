@@ -1,7 +1,7 @@
 <template>
   <input
     type="checkbox"
-    class="items-center cursor-pointer flex h-4 justify-center text-center align-middle w-4 border-neutral-200 rounded"
+    class="flex h-4 w-4 cursor-pointer items-center justify-center rounded border-neutral-200 text-center align-middle"
     v-model="inputRef.val"
   />
 </template>

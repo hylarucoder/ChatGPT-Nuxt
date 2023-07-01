@@ -8,11 +8,11 @@ defineProps<{
 </script>
 <template>
   <div
-    class="items-center bg-white cursor-pointer flex mr-3 py-3 px-3.5 border-neutral-200 rounded-xl border hover:bg-gray-200"
+    class="mr-3 flex cursor-pointer items-center rounded-xl border border-neutral-200 bg-white px-3.5 py-3 hover:bg-gray-200"
   >
-    <div class="items-center flex justify-center">
-      <Icon class="text-[1.13rem] h-5 align-middle w-5 overflow-clip" :name="getRandomEmoji(text)" />
+    <div class="flex items-center justify-center">
+      <Icon class="h-5 w-5 overflow-clip align-middle text-[1.13rem]" :name="getRandomEmoji(text)" />
     </div>
-    <div class="text-[0.88rem] ml-3 truncate">{{ text }}</div>
+    <div class="ml-3 truncate text-[0.88rem]">{{ text }}</div>
   </div>
 </template>

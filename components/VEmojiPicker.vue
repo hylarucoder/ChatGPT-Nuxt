@@ -222,12 +222,12 @@ function selectEmoji(emoji: string) {
 }
 </script>
 <template>
-  <div class="rounded-md bg-white shadow-xs w-[320px]" ref="elementRef">
+  <div class="shadow-xs w-[320px] rounded-md bg-white" ref="elementRef">
     <div class="grid grid-cols-9 gap-1">
       <div
         v-for="(category, index) in emojiCategories"
         :key="index"
-        class="w-[30px] h-[30px] flex justify-center items-center cursor-pointer rounded hover:bg-gray-200"
+        class="flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded hover:bg-gray-200"
         @click="selectCategory(index)"
         :class="{ 'bg-gray-300': selectedCategoryIndex === index }"
       >
@@ -237,9 +237,9 @@ function selectEmoji(emoji: string) {
       </div>
     </div>
 
-    <div class="grid grid-cols-9 gap-1 mt-1">
+    <div class="mt-1 grid grid-cols-9 gap-1">
       <div
-        class="w-[30px] h-[30px] flex justify-center items-center hover:bg-gray-200 rounded cursor-pointer"
+        class="flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded hover:bg-gray-200"
         v-for="emoji in currentCategoryEmojis"
         :key="emoji"
       >

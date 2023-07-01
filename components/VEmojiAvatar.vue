@@ -32,7 +32,7 @@ onClickOutside(elementRef, (event) => {
     <VEmojiPicker
       @onSelected="selectEmoji"
       v-if="showEmojiPicker"
-      class="absolute right-0 p-2 bg-white border border-gray-200 rounded shadow"
+      class="absolute right-0 rounded border border-gray-200 bg-white p-2 shadow"
     />
   </div>
 </template>

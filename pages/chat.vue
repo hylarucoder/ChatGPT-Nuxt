@@ -3,7 +3,7 @@ import Sidebar from "~/components/VSidebar.vue"
 </script>
 
 <template>
-  <div class="bg-white h-full w-full text-zinc-800 flex border-neutral-200 rounded-2xl border truncate">
+  <div class="flex h-full w-full truncate rounded-2xl border border-neutral-200 bg-white text-zinc-800">
     <ClientOnly>
       <Sidebar />
       <NuxtPage />
