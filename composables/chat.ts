@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
 import { ref } from "vue"
-import { TMask, TChatDirection, TChatSession, TModelType } from "~/constants/typing"
+import { TMask, TChatDirection, TChatSession } from "~/constants/typing"
 import { useSettingStore } from "~/composables/settings"
 import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
 import { fetchStream } from "~/constants/api"
