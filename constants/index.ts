@@ -20,10 +20,6 @@ export enum Path {
   Auth = "/chat/auth",
 }
 
-export enum SlotID {
-  AppBody = "app-body",
-}
-
 export enum FileName {
   Masks = "masks.json",
   Prompts = "prompts.json",
@@ -34,8 +30,8 @@ export enum StoreKey {
   Access = "access-control",
   Setting = "store-setting",
   Mask = "store-mask",
-  Prompt = "prompt-store",
-  Update = "chat-update",
+  Prompt = "store-prompt",
+  Update = "store-update",
 }
 
 export const MAX_SIDEBAR_WIDTH = 500

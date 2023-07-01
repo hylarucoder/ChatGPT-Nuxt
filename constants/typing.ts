@@ -1,78 +1,64 @@
-import { DEFAULT_INPUT_TEMPLATE } from "~/constants"
+import { DEFAULT_INPUT_TEMPLATE } from "~/constants/index"
 
 export const ROLES = ["system", "user", "assistant"]
 export type MessageRole = (typeof ROLES)[number]
 
-const ENABLE_GPT4 = true
-
 export const ALL_MODELS = [
   {
-    name: "gpt-4",
-    available: ENABLE_GPT4,
+    label: "gpt-4",
+    value: "gpt-4",
   },
   {
-    name: "gpt-4-0314",
-    available: ENABLE_GPT4,
+    label: "gpt-4-0314",
+    value: "gpt-4-0314",
   },
   {
-    name: "gpt-4-0613",
-    available: ENABLE_GPT4,
+    label: "gpt-4-32k",
+    value: "gpt-4-32k",
   },
   {
-    name: "gpt-4-32k",
-    available: ENABLE_GPT4,
+    label: "gpt-4-32k-0314",
+    value: "gpt-4-32k-0314",
   },
   {
-    name: "gpt-4-32k-0314",
-    available: ENABLE_GPT4,
+    label: "gpt-4-mobile",
+    value: "gpt-4-mobile",
   },
   {
-    name: "gpt-4-32k-0613",
-    available: ENABLE_GPT4,
+    label: "text-davinci-002-render-sha-mobile",
+    value: "text-davinci-002-render-sha-mobile",
   },
   {
-    name: "gpt-3.5-turbo",
-    available: true,
+    label: "gpt-3.5-turbo",
+    value: "gpt-3.5-turbo",
   },
   {
-    name: "gpt-3.5-turbo-0301",
-    available: true,
+    label: "gpt-3.5-turbo-0301",
+    value: "gpt-3.5-turbo-0301",
   },
   {
-    name: "gpt-3.5-turbo-0613",
-    available: true,
+    label: "qwen-v1",
+    value: "qwen-v1",
   },
   {
-    name: "gpt-3.5-turbo-16k",
-    available: true,
+    label: "ernie",
+    value: "ernie",
   },
   {
-    name: "gpt-3.5-turbo-16k-0613",
-    available: true,
+    label: "spark",
+    value: "spark",
   },
   {
-    name: "qwen-v1", // 通义千问
-    available: false,
+    label: "llama",
+    value: "llama",
   },
   {
-    name: "ernie", // 文心一言
-    available: false,
-  },
-  {
-    name: "spark", // 讯飞星火
-    available: false,
-  },
-  {
-    name: "llama", // llama
-    available: false,
-  },
-  {
-    name: "chatglm", // chatglm-6b
-    available: false,
+    label: "chatglm",
+    value: "chatglm",
   },
 ] as const
 
-export type ModelType = (typeof ALL_MODELS)[number]["name"]
+export type ModelType = (typeof ALL_MODELS)[number]["label"]
 
 export enum SubmitKey {
   Enter = "Enter",

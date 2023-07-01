@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps } from "vue"
-import { TChatDirection, TChatMessage } from "~/composables/config/typing"
+import { TChatDirection, TChatMessage } from "~/constants/typing"
 import { useSettingStore } from "~/composables/settings"
 
 const settingStore = useSettingStore()

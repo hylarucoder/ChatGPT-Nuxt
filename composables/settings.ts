@@ -1,8 +1,8 @@
 import exp from "constants"
 import { defineStore } from "pinia"
 import { reactive } from "vue"
+import { ALL_MODELS, SubmitKey } from "~/constants/typing"
 import { StoreKey } from "~/constants"
-import { SubmitKey } from "~/constants/enums"
 
 export interface TSelectOption {
   label: string
@@ -106,60 +106,12 @@ export const languageOptions = [
   },
 ]
 
-export const modelOptions: TSelectOption[] = [
-  {
-    label: "gpt-4",
-    value: "gpt-4",
-  },
-  {
-    label: "gpt-4-0314",
-    value: "gpt-4-0314",
-  },
-  {
-    label: "gpt-4-32k",
-    value: "gpt-4-32k",
-  },
-  {
-    label: "gpt-4-32k-0314",
-    value: "gpt-4-32k-0314",
-  },
-  {
-    label: "gpt-4-mobile",
-    value: "gpt-4-mobile",
-  },
-  {
-    label: "text-davinci-002-render-sha-mobile",
-    value: "text-davinci-002-render-sha-mobile",
-  },
-  {
-    label: "gpt-3.5-turbo",
-    value: "gpt-3.5-turbo",
-  },
-  {
-    label: "gpt-3.5-turbo-0301",
-    value: "gpt-3.5-turbo-0301",
-  },
-  {
-    label: "qwen-v1",
-    value: "qwen-v1",
-  },
-  {
-    label: "ernie",
-    value: "ernie",
-  },
-  {
-    label: "spark",
-    value: "spark",
-  },
-  {
-    label: "llama",
-    value: "llama",
-  },
-  {
-    label: "chatglm",
-    value: "chatglm",
-  },
-]
+export const modelOptions: TSelectOption[] = ALL_MODELS.map((option) => {
+  return {
+    label: option.label,
+    value: option.value,
+  }
+})
 
 const defaultSettings = {
   avatar: "🙂",

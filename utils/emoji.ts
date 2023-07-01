@@ -1,4 +1,55 @@
-const commonEmojis = ["😀", "😂", "😍", "❤️", "👍", "👋", "🤔", "👀", "🍕", "🎉"]
+const commonEmojis: string[] = [
+  "😀",
+  "😂",
+  "😍",
+  "❤️",
+  "👍",
+  "👋",
+  "🤔",
+  "👀",
+  "🍕",
+  "🎉",
+  "🍔",
+  "🥑",
+  "🍦",
+  "🍩",
+  "🥪",
+  "🍺",
+  "🎸",
+  "📷",
+  "🎮",
+  "💻",
+  "🌎",
+  "🌻",
+  "🏠",
+  "🚗",
+  "🛵",
+  "🎈",
+  "🎁",
+  "💰",
+  "📚",
+  "🎤",
+  "😎",
+  "🤯",
+  "🤢",
+  "🥳",
+  "🤗",
+  "😴",
+  "👻",
+  "💊",
+  "🍼",
+  "🐶",
+  "🐱",
+  "🐢",
+  "🐬",
+  "🦁",
+  "🍓",
+  "🍇",
+  "🍌",
+  "🥭",
+  "🍎",
+  "🍫",
+]
 
 function getRandomCommonEmoji() {
   // 从 commonEmojis 数组中随机选择一个 emoji
@@ -16,7 +67,7 @@ export function getRandomEmoji(str: string) {
   const random = Math.floor(Math.random() * (total + 1))
 
   // 有 20% 的概率返回常见 emoji，否则返回随机生成的 emoji
-  const commonEmojiChance = 0.8
+  const commonEmojiChance = 1
   const shouldReturnCommonEmoji = Math.random() < commonEmojiChance
   if (shouldReturnCommonEmoji) {
     return getRandomCommonEmoji()

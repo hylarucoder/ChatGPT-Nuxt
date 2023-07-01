@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { TChatSession } from "~/composables/config/typing"
+import { TChatSession } from "~/constants/typing"
 
 const props = defineProps<{
   session: TChatSession

@@ -89,23 +89,14 @@ const maskCards = [
       </button>
     </div>
     <div class="mb-5 mt-12 flex space-x-1">
-      <div class="h-16 w-12 rounded-2xl border border-neutral-200 bg-white px-3 py-5">
-        <img
-          src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f606.png"
-          class="h-6 w-6 overflow-clip align-middle text-[1.50rem]"
-        />
+      <div class="flex h-16 w-12 items-center justify-center rounded-2xl border border-neutral-200 bg-white px-3 py-5">
+        <Icon name="😆" size="1.4em" />
       </div>
-      <div class="h-16 w-12 rounded-2xl border border-neutral-200 bg-white px-3 py-5">
-        <img
-          src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f916.png"
-          class="h-6 w-6 overflow-clip align-middle text-[1.50rem]"
-        />
+      <div class="flex h-16 w-12 items-center justify-center rounded-2xl border border-neutral-200 bg-white px-3 py-5">
+        <Icon name="🤖" size="1.4em" />
       </div>
-      <div class="h-16 w-12 rounded-2xl border border-neutral-200 bg-white px-3 py-5">
-        <img
-          src="https://cdn.staticfile.org/emoji-datasource-apple/14.0.0/img/apple/64/1f479.png"
-          class="h-6 w-6 overflow-clip align-middle text-[1.50rem]"
-        />
+      <div class="flex h-16 w-12 items-center justify-center rounded-2xl border border-neutral-200 bg-white px-3 py-5">
+        <Icon name="👹" size="1.4em" />
       </div>
     </div>
     <div class="mb-2 text-[2.00rem] font-bold">挑选一个面具</div>
