@@ -1,12 +1,9 @@
 import { fetchEventSource } from "@fortaine/fetch-event-source"
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL
-// eslint-disable-next-line no-undef
 const API_URL = `${BASE_URL}/v1/chat/completions`
 
-// eslint-disable-next-line no-unused-vars
 export async function fetchStream(payload: any, callback: (receivedData: string) => void) {
-  // 设置 POST 请求参数
   let receivedData = ""
   await fetchEventSource(API_URL, {
     method: "POST",
