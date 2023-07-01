@@ -1,39 +1,22 @@
 import { defineStore } from "pinia"
 import { ref } from "vue"
-import { TMask, TChatDirection, TChatSession } from "~/composables/config/typing"
+import { TMask, TChatDirection, TChatSession } from "~/constants/typing"
+import { useSettingStore } from "~/composables/settings"
 import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
 import { fetchStream } from "~/constants/api"
 import { getUtcNow } from "~/utils/date"
 
-function makeDemoSession(s: number): TChatSession {
-  return {
+function makeEmptySession(s: number): TChatSession {
+  const session: TChatSession = {
     id: s.toString(),
-    topic: "Welcome",
+    topic: "New Session",
     memoryPrompt: "Welcome to the chat room!",
     composeInput: "",
-    messagesCount: 3,
+    messagesCount: 1,
     messages: [
       {
         role: "system",
         content: "Welcome to the chat room!",
-        date: "2021-06-13T15:00:00.000Z",
-        direction: TChatDirection.SEND,
-        streaming: false,
-        isError: false,
-        id: s,
-      },
-      {
-        role: "user",
-        content: "okey",
-        date: "2021-06-13T15:00:00.000Z",
-        direction: TChatDirection.RECEIVE,
-        streaming: false,
-        isError: false,
-        id: s,
-      },
-      {
-        role: "user",
-        content: "well",
         date: "2021-06-13T15:00:00.000Z",
         direction: TChatDirection.SEND,
         streaming: false,
@@ -55,25 +38,29 @@ function makeDemoSession(s: number): TChatSession {
       context: [],
       lang: "en",
       builtin: true,
-      modelConfig: {
-        model: "gpt-3.5-turbo",
-        temperature: 0.5,
-        max_tokens: 2000,
-        presence_penalty: 0,
-        frequency_penalty: 0,
-        sendMemory: true,
-        historyMessageCount: 4,
-        compressMessageLengthThreshold: 1000,
-        template: DEFAULT_INPUT_TEMPLATE,
-      },
+    },
+    modelConfig: {
+      model: "gpt-3.5-turbo",
+      temperature: 0.5,
+      maxTokens: 2000,
+      presencePenalty: 0,
+      // frequencyPenalty: 0,
+      sendMemory: true,
+      historyMessageCount: 4,
+      compressMessageLengthThreshold: 1000,
+      template: DEFAULT_INPUT_TEMPLATE,
     },
   }
+  return session
 }
 
 export const useChatStore = defineStore(
   StoreKey.Chat,
   () => {
-    const sessions = ref([makeDemoSession(1)])
+    const sessionGlobalId = ref(0)
+    const sessions = ref([makeEmptySession(1)])
+    const settingStore = useSettingStore()
+    const settings = settingStore.settings
 
     const clearSessions = () => {
       sessions.value = []
@@ -85,61 +72,7 @@ export const useChatStore = defineStore(
     }
 
     const newSession = (mask?: TMask): TChatSession => {
-      console.log(mask)
-      const randomId = Math.floor(Math.random() * 1000000)
-      let session: TChatSession = {
-        id: "na-" + randomId.toString(),
-        topic: "New Session",
-        composeInput: "",
-        memoryPrompt: "",
-        messagesCount: 2,
-        messages: [
-          {
-            role: "chat",
-            content: "Welcome to the chat room!",
-            date: "2021-06-13T15:00:00.000Z",
-            streaming: false,
-            isError: false,
-            direction: TChatDirection.SEND,
-            id: 0,
-          },
-          {
-            role: "system",
-            content: "Welcome to the chat room!",
-            date: "2021-06-13T15:00:00.000Z",
-            direction: TChatDirection.RECEIVE,
-            streaming: false,
-            isError: false,
-            id: 0,
-          },
-        ],
-        stat: {
-          tokenCount: 0,
-          wordCount: 0,
-          charCount: 0,
-        },
-        lastUpdate: getUtcNow(),
-        lastSummarizeIndex: 0,
-        mask: {
-          id: 0,
-          avatar: "熊",
-          name: "Demo",
-          context: [],
-          lang: "en",
-          builtin: true,
-          modelConfig: {
-            model: "gpt-3.5-turbo",
-            temperature: 0.5,
-            max_tokens: 2000,
-            presence_penalty: 0,
-            frequency_penalty: 0,
-            sendMemory: true,
-            historyMessageCount: 4,
-            compressMessageLengthThreshold: 1000,
-            template: DEFAULT_INPUT_TEMPLATE,
-          },
-        },
-      }
+      const session = makeEmptySession(sessionGlobalId.value++)
       sessions.value.unshift(session)
       return session
     }
@@ -167,24 +100,35 @@ export const useChatStore = defineStore(
     }
 
     const onNewMessage = (currentSession: TChatSession, message: string) => {
-      // input message, send to backend, get response
-      // add response message
+      // latest 4 messages
+      const lastMessages = currentSession.messages.slice(-4).map((message) => {
+        return {
+          role: message.role,
+          content: message.content,
+        }
+      })
+      console.log(toRaw(lastMessages))
       const payload = {
         messages: [
-          {
-            role: "system",
-            content: "Welcome to the chat room!",
-          },
+          ...lastMessages,
           {
             role: "user",
             content: message,
           },
         ],
         model: "gpt-3.5-turbo",
-        presence_penalty: 0,
+        presence_penalty: settings.presencePenalty,
         stream: true,
-        temperature: 0.5,
+        temperature: settings.temperature,
       }
+      // check if the last message
+      let latestMessageId: number = 0
+      const latestMessage = currentSession.messages[currentSession.messages.length - 1]
+      if (latestMessage) {
+        latestMessageId = latestMessage.id
+      }
+
+      latestMessageId++
 
       currentSession.messages.push({
         role: "user",
@@ -193,8 +137,11 @@ export const useChatStore = defineStore(
         direction: TChatDirection.SEND,
         streaming: false,
         isError: false,
-        id: 0,
+        id: latestMessageId,
       })
+
+      latestMessageId++
+
       const newMessage = {
         role: "user",
         content: "...",
@@ -202,7 +149,7 @@ export const useChatStore = defineStore(
         direction: TChatDirection.RECEIVE,
         streaming: false,
         isError: false,
-        id: 0,
+        id: latestMessageId,
       }
       currentSession.messages.push(newMessage)
       currentSession.messagesCount = currentSession.messages.length

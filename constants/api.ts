@@ -28,7 +28,6 @@ export async function fetchStream(payload: any, callback: (receivedData: string)
         return
       }
       try {
-        console.log("onmessage ev", ev.data)
         const parsedData = JSON.parse(ev.data)
         let content = parsedData.choices[0].delta.content
         if (content) {
@@ -36,6 +35,7 @@ export async function fetchStream(payload: any, callback: (receivedData: string)
           callback(receivedData)
         }
       } catch (e) {
+        // TODO: handle error?
         console.log("onmessage error", e)
       }
     },
