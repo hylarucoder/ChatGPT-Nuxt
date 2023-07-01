@@ -14,12 +14,12 @@ const isSend = props.message.direction === TChatDirection.SEND
 const chatStore = useChatStore()
 const currentStore = chatStore.routeCurrentSession()
 
-currentStore.messages
 const deleteMessage = (id: number) => {
   // check and delete message
   const index = currentStore.messages.findIndex((message) => message.id === id)
   if (index !== -1) {
     currentStore.messages.splice(index, 1)
+    currentStore.messagesCount = currentStore.messages.length
   }
 }
 
@@ -67,7 +67,7 @@ const isHovered = useElementHover(messageRef)
                 Copy
               </div>
               <div class="cursor-pointer opacity-50 hover:opacity-80" @click="deleteMessage(message.id)">Delete</div>
-              <div class="cursor-pointer opacity-50 hover:opacity-80">Retry</div>
+              <!--              <div class="cursor-pointer opacity-50 hover:opacity-80">Retry</div>-->
             </div>
             <div class="absolute -bottom-8 right-0 text-xs text-neutral-400" v-show="isHovered">{{ message.date }}</div>
           </template>
