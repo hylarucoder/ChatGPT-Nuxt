@@ -58,7 +58,7 @@ export const ALL_MODELS = [
   },
 ] as const
 
-export type ModelType = (typeof ALL_MODELS)[number]["label"]
+export type TModelType = (typeof ALL_MODELS)[number]["label"]
 
 export enum SubmitKey {
   Enter = "Enter",
@@ -74,11 +74,11 @@ export enum Theme {
 }
 
 export interface TModelConfig {
-  model: ModelType
+  model: TModelType
   temperature: number
   maxTokens: number
   presencePenalty: number
-  frequencyPenalty: number
+  // frequencyPenalty: number
   sendMemory: boolean
   historyMessageCount: number
   compressMessageLengthThreshold: number
@@ -106,13 +106,11 @@ export const DEFAULT_CONFIG: TConfig = {
   tightBorder: true,
   sendPreviewBubble: false,
   sidebarWidth: 300,
-
   disablePromptHint: false,
-
   dontShowMaskSplashScreen: false, // dont show splash screen when create chat
 
   modelConfig: {
-    model: "gpt-3.5-turbo" as ModelType,
+    model: "gpt-3.5-turbo" as TModelType,
     temperature: 0.5,
     maxTokens: 2000,
     presencePenalty: 0,
@@ -123,15 +121,6 @@ export const DEFAULT_CONFIG: TConfig = {
     template: DEFAULT_INPUT_TEMPLATE,
   },
 }
-
-export type ChatConfig = typeof DEFAULT_CONFIG
-
-// export type ChatConfigStore = ChatConfig & {
-//   reset: () => void
-//   update: (updater: (config: ChatConfig) => void) => void
-// }
-
-export type ModelConfig = ChatConfig["modelConfig"]
 
 export interface RequestMessage {
   role: MessageRole
@@ -157,7 +146,6 @@ export type TMask = {
   hideContext?: boolean
   context: MessageContext[]
   syncGlobalConfig?: boolean
-  modelConfig: ModelConfig
   lang: Lang
   builtin: boolean
 }
@@ -174,11 +162,11 @@ export type TChatMessage = RequestMessage & {
   streaming?: boolean
   isError?: boolean
   id?: number
-  model?: ModelType
+  model?: TModelType
   direction: TChatDirection
 }
 
-export interface ChatStat {
+export interface TChatStat {
   tokenCount: number
   wordCount: number
   charCount: number
@@ -191,10 +179,10 @@ export interface TChatSession {
   memoryPrompt: string
   messagesCount: number
   messages: TChatMessage[]
-  stat: ChatStat
+  stat: TChatStat
+  modelConfig: TModelConfig
   lastUpdate: string
   lastSummarizeIndex: number
   clearContextIndex?: number
-
   mask: TMask
 }

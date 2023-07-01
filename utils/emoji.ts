@@ -54,9 +54,7 @@ const commonEmojis: string[] = [
 function getRandomCommonEmoji() {
   // 从 commonEmojis 数组中随机选择一个 emoji
   const randomIndex = Math.floor(Math.random() * commonEmojis.length)
-  const emoji = commonEmojis[randomIndex]
-
-  return emoji
+  return commonEmojis[randomIndex]
 }
 
 export function getRandomEmoji(str: string) {
