@@ -58,6 +58,9 @@ function getRandomCommonEmoji() {
 }
 
 export function getRandomEmoji(str: string) {
+  if (!str) {
+    str = "."
+  }
   // 将字符串的每个字符的 Unicode 编码相加
   const total = str.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)
 
