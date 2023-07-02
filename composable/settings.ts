@@ -125,6 +125,7 @@ const defaultSettings = {
   maxTokens: 2000,
   temperature: 0.5,
   presencePenalty: 0.0,
+  frequencyPenalty: 0.0,
   historyMessagesCount: 4,
   historyMessagesThreshold: 1000,
   historySummary: false,

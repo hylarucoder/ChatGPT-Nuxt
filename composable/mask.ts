@@ -6,7 +6,7 @@ interface TPromptsJson {
   en: string[]
 }
 
-enum TLang {
+export enum TLang {
   cn,
   en,
 }

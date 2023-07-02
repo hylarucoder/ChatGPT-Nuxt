@@ -1,4 +1,10 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { TLocale } from "~/locales/en"
+
+const { t, n } = useI18n<{ message: TLocale }>({
+  useScope: "global",
+})
+</script>
 <template>
   <div class="z-10 flex w-[--sidebar-width] max-w-[300px] flex-shrink-0 flex-col overflow-hidden bg-cyan-50 p-5 shadow">
     <div class="relative py-5">
@@ -11,10 +17,10 @@
     </div>
     <div class="mb-5 flex space-x-2">
       <NuxtLink class="flex-grow" to="/chat/masks">
-        <IconButton icon="mask" text="面具" />
+        <IconButton icon="mask" :text="t(`Mask.Name`)" />
       </NuxtLink>
       <NuxtLink class="flex-grow" to="/chat/plugins">
-        <IconButton icon="plugin" text="插件" />
+        <IconButton icon="plugin" :text="t(`Plugin.Name`)" />
       </NuxtLink>
     </div>
     <div class="flex-grow overflow-x-hidden">
@@ -30,7 +36,7 @@
       </div>
       <div>
         <NuxtLink to="/chat/new">
-          <IconButton icon="add" text="新的聊天" />
+          <IconButton icon="add" :text="t(`Home.NewChat`)" />
         </NuxtLink>
       </div>
     </div>

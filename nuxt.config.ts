@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     },
   },
   modules: [
+    "@nuxtjs/i18n",
     "nuxt-icon",
     "@vueuse/nuxt",
     "@pinia/nuxt",
@@ -109,6 +110,12 @@ export default defineNuxtConfig({
         // Your settings.
       }),
     ],
+  },
+
+  i18n: {
+    locales: ["en", "zh_CN"],
+    defaultLocale: "en",
+    vueI18n: "./i18n.config.ts", // if you are using custom path, default
   },
 
   pwa,
