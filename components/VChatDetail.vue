@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useRoutedChatSession } from "~/composable/chat"
+
 const router = useRouter()
 const currentSession = useRoutedChatSession()
 console.log("currentSession", toRaw(currentSession.session))

@@ -1,6 +1,5 @@
 import { defineStore } from "pinia"
 import { ComputedRef, ref } from "vue"
-import { useSettingStore } from "~/composables/settings"
 import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
 import { fetchStream } from "~/constants/api"
 import { TChatDirection, TChatSession, TMask } from "~/constants/typing"
@@ -14,6 +13,7 @@ function makeEmptySession(s: number): TChatSession {
     topic: "New Session",
     memoryPrompt: "Welcome to the chat room!",
     composeInput: "",
+    latestMessageId: 0,
     messagesCount: 1,
     messages: [
       {
@@ -56,10 +56,9 @@ function makeEmptySession(s: number): TChatSession {
   return session
 }
 
-export const useChatStore = defineStore(StoreKey.Chat, () => {
+export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
   const sessionGid = ref(0)
   const sessions = ref<TChatSession[]>([])
-  const settingStore = useSettingStore()
 
   const loadAll = async () => {
     const loaded = loadFromLocalStorage(StoreKey.ChatSession, {
@@ -121,33 +120,8 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
     if (s) {
       s.lastUpdate = getUtcNow()
       s.messagesCount = session.messages.length
+      s.topic = session.topic
     }
-  }
-
-  const onUserInput = async (content: string) => {
-    // Add your logic for handling user input
-    console.log("nextSession", content)
-  }
-
-  const summarizeSession = () => {
-    // Add your logic for summarizing the session
-  }
-
-  const updateStat = (message: string) => {
-    // Add your logic for updating stats based on a message
-    console.log("nextSession", message)
-  }
-
-  const resetSession = () => {
-    // Add your logic for resetting the session
-  }
-
-  const getMessagesWithMemory = () => {
-    // Add your logic for getting messages with memory
-  }
-
-  const getMemoryPrompt = () => {
-    // Add your logic for getting a memory prompt
   }
 
   const clearAllData = () => {
@@ -162,15 +136,7 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
     moveSession,
     newSession,
     deleteSession,
-    currentSession,
-    routeCurrentSession,
     nextSession,
-    onUserInput,
-    summarizeSession,
-    updateStat,
-    resetSession,
-    getMessagesWithMemory,
-    getMemoryPrompt,
     clearAllData,
     refreshSession,
   }
@@ -196,7 +162,7 @@ export const useRoutedChatSession = (): TUseChatSession => {
 }
 
 export const useChatSession = (sid: string): TUseChatSession => {
-  const chatStore = useChatStore()
+  const chatStore = useSidebarChatSessions()
   if (cachedChatSession.has(sid)) {
     return cachedChatSession.get(sid) as TUseChatSession
   }
@@ -312,6 +278,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
     if (name) {
       const oldName = session.topic
       session.topic = name || oldName
+      chatStore.refreshSession(session)
     }
   }
 

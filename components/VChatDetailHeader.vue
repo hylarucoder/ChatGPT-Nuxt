@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useRoutedChatSession } from "~/composable/chat"
+
 const chatSession = useRoutedChatSession()
 </script>
 <template>

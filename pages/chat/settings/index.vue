@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue"
 import VEmojiAvatar from "~/components/VEmojiAvatar.vue"
-import { languageOptions, modelOptions, sendKeyOptions, themeOptions, useSettingStore } from "~/composables/settings"
+import { languageOptions, modelOptions, sendKeyOptions, themeOptions, useSettingStore } from "~/composable/settings"
 import SettingItem from "~/pages/chat/settings/SettingItem.vue"
 
 const settingStore = useSettingStore()
