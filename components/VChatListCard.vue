@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { TChatSession } from "~/constants/typing"
+import { formatDateString } from "~/utils/date"
 
 const props = defineProps<{
   session: TChatSession
@@ -23,7 +24,7 @@ const onDeleteSession = () => {
     <div class="truncate text-[0.88rem] font-bold">{{ session.topic }}</div>
     <div class="mt-2 flex justify-between text-[0.75rem] text-neutral-400">
       <div class="truncate">{{ session.messagesCount }} 条对话</div>
-      <div class="truncate">{{ session.lastUpdate }}</div>
+      <div class="truncate">{{ formatDateString(session.lastUpdate) }}</div>
     </div>
     <VSvgIcon
       icon="close"

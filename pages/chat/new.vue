@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useChatStore } from "~/composables/chat"
+import { useSidebarChatSessions } from "~/composable/chat"
 import MaskCard from "~/components/MaskCard.vue"
 
 const router = useRouter()
-const chatStore = useChatStore()
+const chatStore = useSidebarChatSessions()
 
 const newSessionAndNav = () => {
   const session = chatStore.newSession()

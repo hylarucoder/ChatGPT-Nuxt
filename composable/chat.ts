@@ -1,11 +1,11 @@
 import { defineStore } from "pinia"
 import { ComputedRef, ref } from "vue"
-import { useSettingStore } from "~/composables/settings"
 import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
 import { fetchStream } from "~/constants/api"
 import { TChatDirection, TChatSession, TMask } from "~/constants/typing"
 import { getUtcNow } from "~/utils/date"
 import { debounce } from "~/utils/debounce"
+import { loadFromLocalStorage, saveSessionToLocalStorage, saveToLocalStorage } from "./storage"
 
 function makeEmptySession(s: number): TChatSession {
   const session: TChatSession = {
@@ -13,6 +13,7 @@ function makeEmptySession(s: number): TChatSession {
     topic: "New Session",
     memoryPrompt: "Welcome to the chat room!",
     composeInput: "",
+    latestMessageId: 0,
     messagesCount: 1,
     messages: [
       {
@@ -55,39 +56,9 @@ function makeEmptySession(s: number): TChatSession {
   return session
 }
 
-interface ChatSessionStorage {
-  sessions: TChatSession[]
-  sessionGid: number
-}
-
-const defaultChatSessionStorage: ChatSessionStorage = {
-  sessions: [],
-  sessionGid: 10000,
-}
-
-export const loadFromLocalStorage = (
-  key: string,
-  defaultValue: ChatSessionStorage = defaultChatSessionStorage
-): ChatSessionStorage => {
-  const storedValue = localStorage.getItem(key)
-  if (storedValue) {
-    try {
-      return JSON.parse(storedValue)
-    } catch (e) {
-      return defaultValue
-    }
-  }
-  return defaultValue
-}
-
-const saveToLocalStorage = <T>(key: string, value: T) => {
-  localStorage.setItem(StoreKey.ChatSession, JSON.stringify(value))
-}
-
-export const useChatStore = defineStore(StoreKey.Chat, () => {
+export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
   const sessionGid = ref(0)
   const sessions = ref<TChatSession[]>([])
-  const settingStore = useSettingStore()
 
   const loadAll = async () => {
     const loaded = loadFromLocalStorage(StoreKey.ChatSession, {
@@ -144,30 +115,13 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
     console.log("nextSession", delta)
   }
 
-  const onUserInput = async (content: string) => {
-    // Add your logic for handling user input
-    console.log("nextSession", content)
-  }
-
-  const summarizeSession = () => {
-    // Add your logic for summarizing the session
-  }
-
-  const updateStat = (message: string) => {
-    // Add your logic for updating stats based on a message
-    console.log("nextSession", message)
-  }
-
-  const resetSession = () => {
-    // Add your logic for resetting the session
-  }
-
-  const getMessagesWithMemory = () => {
-    // Add your logic for getting messages with memory
-  }
-
-  const getMemoryPrompt = () => {
-    // Add your logic for getting a memory prompt
+  const refreshSession = async (session: TChatSession) => {
+    const s = sessions.value.filter((s) => s.id === session.id)[0]
+    if (s) {
+      s.lastUpdate = getUtcNow()
+      s.messagesCount = session.messages.length
+      s.topic = session.topic
+    }
   }
 
   const clearAllData = () => {
@@ -182,16 +136,9 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
     moveSession,
     newSession,
     deleteSession,
-    currentSession,
-    routeCurrentSession,
     nextSession,
-    onUserInput,
-    summarizeSession,
-    updateStat,
-    resetSession,
-    getMessagesWithMemory,
-    getMemoryPrompt,
     clearAllData,
+    refreshSession,
   }
 })
 
@@ -214,32 +161,8 @@ export const useRoutedChatSession = (): TUseChatSession => {
   return useChatSession(sid)
 }
 
-export const loadSessionFromLocalStorage = (sid: string): TChatSession | null => {
-  const chatSessionStorage = loadFromLocalStorage(StoreKey.ChatSession, defaultChatSessionStorage)
-  const session = chatSessionStorage.sessions.find((s) => s.id === sid)
-  if (session) {
-    return session
-  }
-  return null
-}
-
-export const saveSessionToLocalStorage = (newSession: TChatSession): void => {
-  const chatSessionStorage = loadFromLocalStorage(StoreKey.ChatSession, defaultChatSessionStorage)
-
-  const existingSessionIndex = chatSessionStorage.sessions.findIndex((s) => s.id === newSession.id)
-
-  if (existingSessionIndex !== -1) {
-    chatSessionStorage.sessions[existingSessionIndex] = newSession
-    console.log("find", chatSessionStorage.sessions[existingSessionIndex])
-  } else {
-    chatSessionStorage.sessions.push(newSession)
-    console.log("reuse", chatSessionStorage.sessions[existingSessionIndex])
-  }
-
-  saveToLocalStorage(StoreKey.ChatSession, chatSessionStorage)
-}
-
 export const useChatSession = (sid: string): TUseChatSession => {
+  const chatStore = useSidebarChatSessions()
   if (cachedChatSession.has(sid)) {
     return cachedChatSession.get(sid) as TUseChatSession
   }
@@ -333,6 +256,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
       loadingDots = (loadingDots + 1) % 3
       nMessage.content = ".".repeat(loadingDots + 1)
     }, 500)
+    chatStore.refreshSession(session)
 
     fetchStream(payload, (receivedData: string) => {
       clearInterval(loadingInterval) // 清除定时器
@@ -354,6 +278,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
     if (name) {
       const oldName = session.topic
       session.topic = name || oldName
+      chatStore.refreshSession(session)
     }
   }
 

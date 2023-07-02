@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { useRoutedChatSession, useSidebarChatSessions } from "~/composable/chat"
+
 const router = useRouter()
 
-const chatStore = useChatStore()
+const chatStore = useSidebarChatSessions()
 const sessions = chatStore.sessions
 const onDeleteSession = (id: string) => {
   if (sessions.length === 0) return

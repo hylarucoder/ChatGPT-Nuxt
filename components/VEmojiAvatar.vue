@@ -20,9 +20,10 @@ const selectEmoji = (emoji: string) => {
 const elementRef = ref<HTMLElement | null>(null)
 
 onClickOutside(elementRef, (event) => {
+  // TODO: how to remove listener when component showEmojiPicker removed?
+  if (!showEmojiPicker.value) return
   if (elementRef.value && !elementRef.value.contains(event.target)) {
     showEmojiPicker.value = false
-    console.log("click outside element")
   }
 })
 </script>

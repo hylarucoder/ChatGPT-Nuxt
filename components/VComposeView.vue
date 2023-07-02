@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { useRoutedChatSession } from "~/composable/chat"
+import { keyMaps, useSettingStore } from "~/composable/settings"
+
 const settingStore = useSettingStore()
 const setting = settingStore.settings
 const chatSession = useRoutedChatSession()

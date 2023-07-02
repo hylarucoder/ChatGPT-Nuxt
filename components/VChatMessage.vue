@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { defineProps } from "vue"
-import { useSettingStore } from "~/composables/settings"
+import { useRoutedChatSession } from "~/composable/chat"
+import { useSettingStore } from "~/composable/settings"
 import { TChatDirection, TChatMessage } from "~/constants/typing"
 import { copyToClipboard } from "~/utils/clipboard"
+import { formatDateString } from "../utils/date"
 
 const { settings } = useSettingStore()
 
@@ -65,7 +67,7 @@ const isHovered = useElementHover(messageRef)
               leave-active-class="transition duration-300"
             >
               <div class="absolute -bottom-8 right-0 text-xs text-neutral-400" v-show="isHovered">
-                {{ message.date }}
+                {{ formatDateString(message.date) }}
               </div>
             </transition>
           </template>
