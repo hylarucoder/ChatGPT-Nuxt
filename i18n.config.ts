@@ -1,12 +1,10 @@
+import en from "./locales/en"
+import zh_CN from "./locales/zh_CN"
+
 export default defineI18nConfig(() => ({
-  legacy: false,
-  locale: "en",
+  // detectBrowserLanguage: true,
   messages: {
-    en: {
-      welcome: "Welcome",
-    },
-    fr: {
-      welcome: "Bienvenue",
-    },
+    en,
+    zh_CN,
   },
 }))

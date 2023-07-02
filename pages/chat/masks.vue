@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { TPrompts, useMasks } from "~/composable/mask"
+import { TLocale } from "~/locales/en"
 import { getRandomEmoji } from "~/utils/emoji"
 import { ref } from "vue"
 import { useSidebarChatSessions } from "~/composable/chat"
@@ -18,6 +19,9 @@ const newSessionAndNav = (mask: TPrompts) => {
     path: "/chat/session/" + session.id,
   })
 }
+const { t } = useI18n<{ message: TLocale }>({
+  useScope: "global",
+})
 
 const visible = ref(false)
 </script>
@@ -26,13 +30,15 @@ const visible = ref(false)
     <div class="flex h-screen flex-1 flex-col overflow-hidden">
       <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)" class="flex items-center justify-between px-5 py-3.5">
         <div class="overflow-hidden">
-          <div class="overflow-hidden text-ellipsis text-xl font-bold">预设角色面具</div>
-          <div>{{ maskUse.masks.length }} 个预设角色定义</div>
+          <div class="overflow-hidden text-ellipsis text-xl font-bold">
+            {{ t("Mask.Page.Title") }}
+          </div>
+          <div>{{ t("Mask.Page.SubTitle", { count: maskUse.masks.length }) }}</div>
         </div>
         <div class="flex">
           <div>
             <button
-              class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-solid border-neutral-200 p-3"
+              class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-solid border-neutral-200 p-3 hover:bg-gray-200"
             >
               <div class="flex items-center justify-center">
                 <VSvgIcon icon="download" />
@@ -41,7 +47,7 @@ const visible = ref(false)
           </div>
           <div class="ml-3">
             <button
-              class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-solid border-neutral-200 p-3"
+              class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-solid border-neutral-200 p-3 hover:bg-gray-200"
             >
               <div class="flex items-center justify-center">
                 <VSvgIcon icon="upload" />
@@ -50,7 +56,8 @@ const visible = ref(false)
           </div>
           <div class="ml-3">
             <button
-              class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-solid border-neutral-200 p-3"
+              class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-solid border-neutral-200 p-3 hover:bg-gray-200"
+              @click="router.back()"
             >
               <div class="flex items-center justify-center">
                 <VSvgIcon icon="close" />
@@ -63,25 +70,27 @@ const visible = ref(false)
         <div class="mb-5 flex">
           <input
             type="text"
-            placeholder="搜索角色面具"
-            class="h-10 w-[41.03rem] flex-grow cursor-text rounded-xl border border-solid border-neutral-200 px-3 text-center text-[0.83rem]"
+            :placeholder="t(`Mask.Page.Search`)"
+            class="h-10 flex-grow cursor-text rounded-xl border border-solid border-neutral-200 px-3 text-center text-[0.83rem]"
           />
           <div class="relative ml-3">
             <select
-              class="w-30 inline-block h-10 cursor-pointer items-center rounded-xl border border-solid border-neutral-200 py-2 pl-3 pr-6 text-center text-[0.83rem]"
+              class="inline-block h-10 cursor-pointer items-center rounded-xl border border-solid border-neutral-200 py-2 pl-3 pr-6 text-center text-[0.83rem]"
             >
-              <option value="所有语言" class="px-1">所有语言</option>
+              <option :value="t(`Settings.Lang.All`)" class="px-1">{{ t(`Settings.Lang.All`) }}</option>
               <option value="cn" class="px-1">简体中文</option>
               <option value="en" class="px-1">English</option>
             </select>
           </div>
           <button
-            class="w-30 ml-3 flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-solid border-neutral-200 p-3 text-center text-[0.83rem]"
+            class="ml-3 flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-solid border-neutral-200 p-3 text-center text-[0.83rem]"
           >
             <div class="flex items-center justify-center">
               <VSvgIcon icon="add" />
             </div>
-            <div @click="visible = true" class="ml-1 overflow-hidden text-ellipsis text-xs">新建</div>
+            <div @click="visible = true" class="ml-1 overflow-hidden text-ellipsis text-xs">
+              {{ t(`Mask.Page.Create`) }}
+            </div>
           </button>
           <VModel :visible="visible" title="My Modal" @close="visible = false">
             <p>This is an example Modal.</p>
@@ -106,7 +115,7 @@ const visible = ref(false)
                   style="border-bottom-color: rgb(222, 222, 222)"
                   class="flex items-center justify-center rounded-xl"
                 >
-                  <Icon icon class="h-10 w-10 overflow-clip" :name="getRandomEmoji(mask.name)" />
+                  <Icon size="1.4em" class="h-10 w-10 overflow-clip" :name="getRandomEmoji(mask.name)" />
                 </div>
               </div>
               <div>
@@ -116,21 +125,25 @@ const visible = ref(false)
             </div>
             <div class="flex">
               <button
-                class="flex h-9 w-20 cursor-pointer items-center justify-center overflow-hidden rounded-xl p-3 text-center text-[0.83rem]"
+                class="flex h-9 w-20 cursor-pointer items-center justify-center overflow-hidden rounded-xl p-3 text-center text-[0.83rem] hover:bg-gray-200"
                 @click="newSessionAndNav(mask)"
               >
                 <div class="flex h-4 w-4 items-center justify-center">
                   <VSvgIcon icon="add" />
                 </div>
-                <div class="ml-1 overflow-hidden text-ellipsis text-xs">对话</div>
+                <div class="ml-1 overflow-hidden text-ellipsis text-xs">
+                  {{ t(`Mask.Item.Chat`) }}
+                </div>
               </button>
               <button
-                class="flex h-9 w-20 cursor-pointer items-center justify-center overflow-hidden rounded-xl p-3 text-center text-[0.83rem]"
+                class="flex h-9 w-20 cursor-pointer items-center justify-center overflow-hidden rounded-xl p-3 text-center text-[0.83rem] hover:bg-gray-200"
               >
                 <div class="flex h-4 w-4 items-center justify-center">
                   <VSvgIcon icon="eye" />
                 </div>
-                <div class="ml-1 overflow-hidden text-ellipsis text-xs">查看</div>
+                <div class="ml-1 overflow-hidden text-ellipsis text-xs">
+                  {{ t(`Mask.Item.View`) }}
+                </div>
               </button>
             </div>
           </div>

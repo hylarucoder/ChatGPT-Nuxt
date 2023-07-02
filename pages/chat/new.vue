@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MaskCard from "~/components/MaskCard.vue"
-import { TPrompts, useMasks } from "~/composable/mask"
+import { TLang, TPrompts, useMasks } from "~/composable/mask"
 import { getRandomEmoji } from "~/utils/emoji"
 import { useSidebarChatSessions } from "~/composable/chat"
 
@@ -45,12 +45,16 @@ function splitArrayIntoChunks<T>(arr: T[], rows: number, cols: number) {
         <div class="flex items-center justify-center">
           <VSvgIcon icon="return" class="h-4 w-4" />
         </div>
-        <div class="ml-1 overflow-hidden text-ellipsis text-xs">Return</div>
+        <div class="ml-1 overflow-hidden text-ellipsis text-xs">
+          {{ $t("NewChat.Return") }}
+        </div>
       </button>
       <button
         class="flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-white p-3 text-center hover:bg-gray-200"
       >
-        <div class="ml-1 overflow-hidden text-ellipsis text-xs">Never Show Again</div>
+        <div class="ml-1 overflow-hidden text-ellipsis text-xs">
+          {{ $t("NewChat.NotShow") }}
+        </div>
       </button>
     </div>
     <div class="mb-5 mt-12 flex space-x-1">
@@ -64,26 +68,40 @@ function splitArrayIntoChunks<T>(arr: T[], rows: number, cols: number) {
         <Icon name="👹" size="1.4em" />
       </div>
     </div>
-    <div class="mb-2 text-[2.00rem] font-bold">挑选一个面具</div>
-    <div>现在开始，与面具背后的灵魂思维碰撞</div>
+    <div class="mb-2 text-[2.00rem] font-bold">
+      {{ $t("NewChat.Title") }}
+    </div>
+    <div>
+      {{ $t("NewChat.SubTitle") }}
+    </div>
     <div class="mb-5 mt-12 flex justify-center space-x-2 text-[0.75rem]">
       <button
-        class="flex h-10 w-24 cursor-pointer items-center justify-center truncate rounded-xl border border-neutral-200 bg-white p-3 text-center hover:bg-gray-200"
+        class="flex h-10 cursor-pointer items-center justify-center truncate rounded-xl border border-neutral-200 bg-white p-3 text-center hover:bg-gray-200"
         @click="router.push('/chat/masks')"
       >
         <div class="flex items-center justify-center">
           <Icon size="1.3em" name="ph:eye" color="#000" />
         </div>
-        <div class="ml-1 truncate text-black">查看全部</div>
+        <div class="ml-1 truncate text-black">
+          {{ $t("NewChat.More") }}
+        </div>
       </button>
       <button
-        class="ml-3 flex h-10 w-24 cursor-pointer items-center justify-center truncate rounded-xl bg-[--primary] p-3 text-center text-white hover:bg-emerald-500"
-        @click="newSessionAndNav"
+        class="ml-3 flex h-10 cursor-pointer items-center justify-center truncate rounded-xl bg-[--primary] p-3 text-center text-white hover:bg-emerald-500"
+        @click="
+          newSessionAndNav({
+            name: 'New Chat',
+            description: `hello`,
+            lang: TLang.en,
+          })
+        "
       >
         <div class="flex items-center justify-center">
           <Icon color="#FFF" size="1.4em" name="typcn:flash-outline" />
         </div>
-        <div class="ml-1 truncate text-white">直接开始</div>
+        <div class="ml-1 truncate text-white">
+          {{ $t("NewChat.Skip") }}
+        </div>
       </button>
     </div>
     <div class="flex-grow items-center overflow-x-hidden pt-5">
