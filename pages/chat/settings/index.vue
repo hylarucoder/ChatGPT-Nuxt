@@ -13,7 +13,7 @@ onMounted(() => {
 <template>
   <ClientOnly>
     <div class="flex flex-1 flex-col">
-      <div class="flex items-center justify-between border-y border-gray-200 p-3.5">
+      <div class="flex items-center justify-between border-b border-gray-200 p-3.5">
         <div class="truncate">
           <div class="truncate text-[1.25rem] font-bold">设置</div>
           <div class="mt-1 text-[0.88rem]">设置选项</div>

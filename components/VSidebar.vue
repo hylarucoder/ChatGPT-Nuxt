@@ -1,6 +1,6 @@
 <script lang="ts" setup></script>
 <template>
-  <div class="z-10 flex max-w-[300px] flex-shrink-0 flex-col overflow-hidden bg-cyan-50 p-5 shadow">
+  <div class="z-10 flex w-[--sidebar-width] max-w-[300px] flex-shrink-0 flex-col overflow-hidden bg-cyan-50 p-5 shadow">
     <div class="relative py-5">
       <div class="text-[1.25rem] font-bold">ChatGPT Nuxt</div>
       <div class="text-[0.75rem]">Build your own AI assistant.</div>
