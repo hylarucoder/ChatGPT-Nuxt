@@ -18,34 +18,31 @@ const scrollToBottom = () => {
   }
 }
 
-// watch(
-//   () => currentSession.session.messages,
-//   () => {
-//     console.log("watch ", currentSession.session.messages)
-//     nextTick(() => {
-//       scrollToBottom()
-//     })
-//   },
-//   {
-//     deep: true,
-//   }
-// )
-watchEffect(() => {
-  console.log("Messages updated:", currentSession.session.messages)
-  nextTick(() => {
-    scrollToBottom()
-  })
-})
+watch(
+  () => currentSession.session.messages,
+  () => {
+    console.log("watch ", currentSession.session.messages)
+    nextTick(() => {
+      scrollToBottom()
+    })
+  },
+  {
+    deep: true,
+  }
+)
 
 onMounted(() => {
   nextTick(() => {
     scrollToBottom()
   })
 })
+const printMessages = () => {
+  console.log("currentSession", toRaw(currentSession.session))
+}
 </script>
 <template>
   <div class="flex flex-1 flex-col">
-    <VChatDetailHeader />
+    <VChatDetailHeader @click="printMessages" />
     <div class="flex-grow overflow-y-scroll p-5" ref="el">
       <VChatMessage
         class="chat-message"

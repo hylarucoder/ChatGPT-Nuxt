@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 const settingStore = useSettingStore()
 const setting = settingStore.settings
-const currentChat = useRoutedChatSession()
-const { session, isEmptyInput, onNewMessage } = currentChat
+const chatSession = useRoutedChatSession()
 
 const handleKeyDown = (event: any) => {
   const targetKeyMap = keyMaps.find((keyMap) => keyMap.label === setting.sendKey)
@@ -18,12 +17,12 @@ const handleKeyDown = (event: any) => {
 }
 
 const composeNewMessage = () => {
-  if (isEmptyInput.value) {
+  if (chatSession.isEmptyInput.value) {
     return
   }
-  const input = session.composeInput
-  onNewMessage(input)
-  session.composeInput = ""
+  const input = chatSession.session.composeInput
+  chatSession.onNewMessage(input)
+  chatSession.session.composeInput = ""
 }
 </script>
 <template>
@@ -49,14 +48,14 @@ const composeNewMessage = () => {
       <textarea
         class="relative h-24 w-full cursor-text break-words rounded-xl border"
         :placeholder="setting.sendKey + ' 发送'"
-        v-model="session.composeInput"
+        v-model="chatSession.session.composeInput"
         @keydown="handleKeyDown"
       />
       <button
         @click="composeNewMessage"
-        :disabled="isEmptyInput"
-        class="absolute bottom-4 right-4 flex h-10 cursor-pointer items-center justify-center truncate rounded-xl bg-emerald-400 px-4 py-4 text-center text-white"
-        :class="{ 'bg-gray-400': isEmptyInput }"
+        class="absolute bottom-4 right-4 flex h-10 cursor-pointer items-center justify-center truncate rounded-xl px-4 py-4 text-center text-white"
+        :disabled="chatSession.isEmptyInput.value"
+        :class="{ 'bg-emerald-400': !chatSession.isEmptyInput.value, 'bg-gray-200': chatSession.isEmptyInput.value }"
       >
         <div class="flex items-center justify-center">
           <VSvgIcon icon="send-white" />
