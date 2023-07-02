@@ -1,6 +1,11 @@
-# ChatGPT Nuxt
+<h1 align="center"> ChatGPT Nuxt </h1>
+
+<p align="center">
+  <img width="200" alt="image" src="https://github.com/hylarucoder/ChatGPT-Nuxt/assets/5625783/3e1c0518-ca27-4f90-9c3c-40c15323a174">
+</p>
 
 One-Click to get well-designed cross-platform ChatGPT web UI.
+
 
 > 还在疯狂开发中，接口和项目结构还在疯狂调整，此阶段没有文档,代码也比较粗糙，请确保自己能读懂代码。
 > 正经使用请等待 v0.1 版本
