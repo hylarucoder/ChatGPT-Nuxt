@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { TPrompts, useMasks } from "~/composable/mask"
 import { getRandomEmoji } from "~/utils/emoji"
 import { ref } from "vue"
 import { useSidebarChatSessions } from "~/composable/chat"
 
 const router = useRouter()
 const chatStore = useSidebarChatSessions()
+const maskUse = useMasks()
 
 const newSessionAndNav = (mask: TPrompts) => {
   const session = chatStore.newSession(undefined, {
@@ -17,66 +19,7 @@ const newSessionAndNav = (mask: TPrompts) => {
   })
 }
 
-const masks = ref<TPrompts[]>([])
-
-interface TPromptsJson {
-  cn: string[]
-  en: string[]
-}
-
-enum TLang {
-  cn,
-  en,
-}
-
-interface TPrompts {
-  name: string
-  description: string
-  lang: TLang
-}
-
 const visible = ref(false)
-const { data, pending, error, refresh } = await useFetch("/prompts.json", {
-  lazy: true,
-  server: false,
-})
-console.log("data, pending", data, pending, error, refresh)
-
-const transformData = (data: TPromptsJson) => {
-  const transformedData: TPrompts[] = []
-
-  for (const [title, description] of data.cn) {
-    if (!title) {
-      continue
-    }
-    transformedData.push({
-      name: title,
-      description: description,
-      lang: TLang.cn,
-    })
-  }
-  for (const [title, description] of data.en) {
-    if (!title) {
-      continue
-    }
-    transformedData.push({
-      name: title,
-      description: description,
-      lang: TLang.cn,
-    })
-  }
-
-  return transformedData
-}
-
-onMounted(async () => {
-  if (!data.value) {
-    await refresh()
-  }
-  if (data.value) {
-    masks.value = transformData(data.value)
-  }
-})
 </script>
 <template>
   <ClientOnly>
@@ -84,7 +27,7 @@ onMounted(async () => {
       <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)" class="flex items-center justify-between px-5 py-3.5">
         <div class="overflow-hidden">
           <div class="overflow-hidden text-ellipsis text-xl font-bold">预设角色面具</div>
-          <div>{{ masks.length }} 个预设角色定义</div>
+          <div>{{ maskUse.masks.length }} 个预设角色定义</div>
         </div>
         <div class="flex">
           <div>
@@ -149,12 +92,12 @@ onMounted(async () => {
 
         <div class="divide-gray-200">
           <div
-            v-for="(mask, index) in masks"
+            v-for="(mask, index) in maskUse.masks"
             style="border-color: rgb(222, 222, 222); border-style: solid"
             class="flex justify-between divide-gray-50 break-words border-b border-l border-r p-5"
             :class="{
               'rounded-tl-xl rounded-tr-xl border-t ': index === 0,
-              'rounded-bl-xl rounded-br-xl': index === masks.length - 1,
+              'rounded-bl-xl rounded-br-xl': index === maskUse.masks.length - 1,
             }"
           >
             <div class="flex items-center overflow-auto text-ellipsis">

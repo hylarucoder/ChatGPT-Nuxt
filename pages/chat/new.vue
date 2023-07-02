@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import MaskCard from "~/components/MaskCard.vue"
+import { TPrompts, useMasks } from "~/composable/mask"
 import { getRandomEmoji } from "~/utils/emoji"
-import { ref } from "vue"
 import { useSidebarChatSessions } from "~/composable/chat"
 
 const router = useRouter()
 const chatStore = useSidebarChatSessions()
+const masksUse = useMasks()
 
 const newSessionAndNav = (mask: TPrompts) => {
   const session = chatStore.newSession(undefined, {
@@ -18,76 +19,21 @@ const newSessionAndNav = (mask: TPrompts) => {
   })
 }
 
-const masksByRow = ref<TPrompts[][]>([])
+function splitArrayIntoChunks<T>(arr: T[], rows: number, cols: number) {
+  const result = []
+  let index = 0
 
-interface TPromptsJson {
-  cn: string[][]
-  en: string[][]
-}
-
-enum TLang {
-  cn,
-  en,
-}
-
-interface TPrompts {
-  name: string
-  description: string
-  lang: TLang
-}
-
-const { data, pending, error, refresh } = await useFetch("/prompts.json", {
-  lazy: true,
-  server: false,
-})
-console.log("data, pending", data, pending, error, refresh)
-
-function convertToMasksByRow(promptsJson: TPromptsJson, numRows: number = 8): TPrompts[][] {
-  const masksByRow: TPrompts[][] = []
-  const maxLength = Math.max(promptsJson.cn.length, promptsJson.en.length)
-  const numCols = Math.ceil(maxLength / numRows)
-
-  for (let i = 0; i < numRows; i++) {
-    masksByRow[i] = []
-    for (let j = 0; j < numCols; j++) {
-      const index = i + numRows * j
-      if (index < promptsJson.cn.length) {
-        if (!promptsJson.cn[index][0]) {
-          continue
-        }
-        masksByRow[i].push({
-          name: promptsJson.cn[index][0],
-          description: promptsJson.cn[index][1] || "",
-          lang: TLang.cn,
-        })
-      }
-      if (index < promptsJson.en.length) {
-        if (!promptsJson.en[index][0]) {
-          continue
-        }
-
-        masksByRow[i].push({
-          name: promptsJson.en[index][0],
-          description: promptsJson.en[index][1] || "",
-          lang: TLang.en,
-        })
-      }
+  for (let row = 0; row < rows; row++) {
+    const rowData = []
+    for (let col = 0; col < cols && index < arr.length; col++) {
+      rowData.push(arr[index])
+      index++
     }
+    result.push(rowData)
   }
 
-  return masksByRow
+  return result
 }
-
-onMounted(async () => {
-  if (!data.value) {
-    await refresh()
-  }
-  if (data.value) {
-    console.log(data.value)
-    masksByRow.value = convertToMasksByRow(data.value)
-    console.log(toRaw(masksByRow.value))
-  }
-})
 </script>
 <template>
   <div class="flex w-full flex-shrink flex-col items-center overflow-hidden">
@@ -141,7 +87,7 @@ onMounted(async () => {
       </button>
     </div>
     <div class="flex-grow items-center overflow-x-hidden pt-5">
-      <div class="mb-3 flex" v-for="(row, index) in masksByRow" :key="index">
+      <div class="mb-3 flex" v-for="(row, index) in splitArrayIntoChunks(masksUse.masks, 8, 18)" :key="index">
         <MaskCard
           @click="
             newSessionAndNav({
