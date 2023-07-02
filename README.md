@@ -11,7 +11,7 @@ One-Click to get well-designed cross-platform ChatGPT web UI.
 
 ## ScreenShot
 
-<img width="1325" alt="image" src="https://github.com/hylarucoder/ChatGPT-Nuxt/assets/5625783/0b22626c-94c3-4710-9c4e-31d853def453">
+<img width="1348" alt="image" src="https://github.com/hylarucoder/ChatGPT-Nuxt/assets/5625783/9e048368-6604-46f9-b4ec-61697aea6ab4">
 
 ## TODO
 
@@ -19,7 +19,6 @@ One-Click to get well-designed cross-platform ChatGPT web UI.
 - [ ] v0.2 提升代码质量, 一键部署和一键更新
 - [ ] v0.3 完成响应式, 手机适配
 - [ ] v0.9 支持混合存储，支持聊天消息浏览器本地存储 localStorage 以及云端存储
-
 
 ## Tech Tack
 
@@ -39,4 +38,3 @@ One-Click to get well-designed cross-platform ChatGPT web UI.
 - https://github.com/Yidadaa/ChatGPT-Next-Web
 - https://github.com/antfu/vitesse-nuxt3
 - nuxt/content
-
