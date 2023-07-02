@@ -1,82 +1,96 @@
 <script setup lang="ts">
-import { useSidebarChatSessions } from "~/composable/chat"
 import MaskCard from "~/components/MaskCard.vue"
+import { getRandomEmoji } from "~/utils/emoji"
+import { ref } from "vue"
+import { useSidebarChatSessions } from "~/composable/chat"
 
 const router = useRouter()
 const chatStore = useSidebarChatSessions()
 
-const newSessionAndNav = () => {
-  const session = chatStore.newSession()
+const newSessionAndNav = (mask: TPrompts) => {
+  const session = chatStore.newSession(undefined, {
+    topic: mask.name,
+    description: mask.description,
+    avatar: getRandomEmoji("a"),
+  })
   router.push({
     path: "/chat/session/" + session.id,
   })
 }
 
-const maskCards = [
-  {
-    title: "职业顾问",
-    icon: "job",
-    description: "职业顾问",
-    color: "bg-blue-500",
-  },
-  {
-    title: "心灵导师",
-    icon: "heart",
-    description: "心灵导师",
-    color: "bg-pink-500",
-  },
-  {
-    title: "CAN",
-    icon: "can",
-    description: "CAN",
-    color: "bg-yellow-500",
-  },
-  {
-    title: "英专写手",
-    icon: "english",
-    description: "英专写手",
-    color: "bg-green-500",
-  },
-  {
-    title: "语言检测器",
-    icon: "language",
-    description: "语言检测器",
-    color: "bg-purple-500",
-  },
-  {
-    title: "小红书写手",
-    icon: "xiaohongshu",
-    description: "小红书写手",
-    color: "bg-red-500",
-  },
-  {
-    title: "简历写手",
-    icon: "resume",
-    description: "简历写手",
-    color: "bg-blue-500",
-  },
-  {
-    title: "心理医生",
-    icon: "doctor",
-    description: "心理医生",
-    color: "bg-pink-500",
-  },
-  {
-    title: "创业点子王",
-    icon: "idea",
-    description: "创业点子王",
-    color: "bg-yellow-500",
-  },
-  {
-    title: "新的聊天",
-    icon: "chatgpt",
-    description: "新的聊天",
-    color: "bg-green-500",
-  },
-]
+const masksByRow = ref<TPrompts[][]>([])
+
+interface TPromptsJson {
+  cn: string[][]
+  en: string[][]
+}
+
+enum TLang {
+  cn,
+  en,
+}
+
+interface TPrompts {
+  name: string
+  description: string
+  lang: TLang
+}
+
+const { data, pending, error, refresh } = await useFetch("/prompts.json", {
+  lazy: true,
+  server: false,
+})
+console.log("data, pending", data, pending, error, refresh)
+
+function convertToMasksByRow(promptsJson: TPromptsJson, numRows: number = 8): TPrompts[][] {
+  const masksByRow: TPrompts[][] = []
+  const maxLength = Math.max(promptsJson.cn.length, promptsJson.en.length)
+  const numCols = Math.ceil(maxLength / numRows)
+
+  for (let i = 0; i < numRows; i++) {
+    masksByRow[i] = []
+    for (let j = 0; j < numCols; j++) {
+      const index = i + numRows * j
+      if (index < promptsJson.cn.length) {
+        if (!promptsJson.cn[index][0]) {
+          continue
+        }
+        masksByRow[i].push({
+          name: promptsJson.cn[index][0],
+          description: promptsJson.cn[index][1] || "",
+          lang: TLang.cn,
+        })
+      }
+      if (index < promptsJson.en.length) {
+        if (!promptsJson.en[index][0]) {
+          continue
+        }
+
+        masksByRow[i].push({
+          name: promptsJson.en[index][0],
+          description: promptsJson.en[index][1] || "",
+          lang: TLang.en,
+        })
+      }
+    }
+  }
+
+  return masksByRow
+}
+
+onMounted(async () => {
+  if (!data.value) {
+    await refresh()
+  }
+  if (data.value) {
+    console.log(data.value)
+    masksByRow.value = convertToMasksByRow(data.value)
+    console.log(toRaw(masksByRow.value))
+  }
+})
 </script>
 <template>
-  <div class="flex flex-1 flex-col items-center justify-center text-zinc-800">
+  <div class="flex w-full flex-shrink flex-col items-center">
     <div class="flex w-full justify-between p-3">
       <button
         @click="router.back()"
@@ -121,39 +135,21 @@ const maskCards = [
         <div class="ml-1 truncate text-black">查看全部</div>
       </button>
     </div>
-    <div class="flex-grow items-center overflow-hidden pt-5">
-      <div class="mb-3 flex overflow-y-auto">
-        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
-      </div>
-      <div class="mb-3 ml-12 flex">
-        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
-      </div>
-      <div class="mb-3 flex">
-        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
-      </div>
-      <div class="mb-3 ml-12 flex">
-        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
-      </div>
-      <div class="mb-3 flex">
-        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
-      </div>
-      <div class="mb-3 ml-6 flex">
-        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
-      </div>
-      <div class="mb-3 ml-3 flex">
-        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
-      </div>
-      <div class="mb-3 flex">
-        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
-      </div>
-      <div class="mb-3 ml--4 flex">
-        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
-      </div>
-      <div class="mb-3 ml-2 flex">
-        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
-      </div>
-      <div class="mb-3 ml-4 flex">
-        <MaskCard v-for="mask in maskCards" :icon="getRandomEmoji(mask.title)" :text="mask.title" />
+    <div class="flex-grow items-center overflow-x-hidden pt-5">
+      <div class="mb-3 flex" v-for="(row, index) in masksByRow" :key="index">
+        <MaskCard
+          @click="
+            newSessionAndNav({
+              name: mask.name,
+              description: mask.description,
+              lang: mask.lang,
+            })
+          "
+          v-for="mask in row"
+          :key="mask.name"
+          :icon="getRandomEmoji(mask.name || '?')"
+          :text="mask.name"
+        />
       </div>
     </div>
   </div>

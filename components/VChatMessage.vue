@@ -22,12 +22,12 @@ const isHovered = useElementHover(messageRef)
     <div class="flex flex-col" :class="{ 'items-start': !isSend, 'items-end': isSend }" ref="messageRef">
       <div class="mt-5 flex">
         <div class="flex h-8 w-8 items-center justify-center rounded-xl border border-neutral-200">
-          <Icon size="1.4em" class="text-center" :name="isSend ? settings.avatar : '🤖'" />
+          <Icon size="1.3em" class="text-center" :name="isSend ? settings.avatar : currentSession.session.avatar" />
         </div>
       </div>
       <div
         style="user-select: text; word-break: break-word"
-        class="mt-3 rounded-xl border p-3 text-[0.88rem]"
+        class="mt-1 rounded-xl border p-3 text-[0.88rem]"
         :class="{
           'border-neutral-200': true,
           'bg-gray-100': !isSend,

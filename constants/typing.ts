@@ -175,6 +175,7 @@ export interface TChatStat {
 export interface TChatSession {
   id: string
   topic: string
+  avatar: string
   latestMessageId: number
   composeInput: string
   memoryPrompt: string
@@ -185,5 +186,5 @@ export interface TChatSession {
   lastUpdate: string
   lastSummarizeIndex: number
   clearContextIndex?: number
-  mask: TMask
+  mask?: TMask
 }

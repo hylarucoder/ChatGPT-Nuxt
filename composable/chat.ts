@@ -7,25 +7,16 @@ import { getUtcNow } from "~/utils/date"
 import { debounce } from "~/utils/debounce"
 import { loadFromLocalStorage, saveSessionToLocalStorage, saveToLocalStorage } from "./storage"
 
-function makeEmptySession(s: number): TChatSession {
+function makeEmptySession(s: number, simple: TSimple, mask?: TMask): TChatSession {
   const session: TChatSession = {
     id: s.toString(),
-    topic: "New Session",
+    topic: simple.topic,
+    avatar: simple.avatar,
     memoryPrompt: "Welcome to the chat room!",
     composeInput: "",
     latestMessageId: 0,
-    messagesCount: 1,
-    messages: [
-      {
-        role: "system",
-        content: "Welcome to the chat room!",
-        date: "2021-06-13T15:00:00.000Z",
-        direction: TChatDirection.RECEIVE,
-        streaming: false,
-        isError: false,
-        id: s,
-      },
-    ],
+    messagesCount: 2,
+    messages: [],
     stat: {
       tokenCount: 0,
       wordCount: 0,
@@ -33,14 +24,7 @@ function makeEmptySession(s: number): TChatSession {
     },
     lastUpdate: getUtcNow(),
     lastSummarizeIndex: 0,
-    mask: {
-      id: s,
-      avatar: "🐻",
-      name: "Demo",
-      context: [],
-      lang: "en",
-      builtin: true,
-    },
+    mask: mask,
     modelConfig: {
       model: "gpt-3.5-turbo",
       temperature: 0.5,
@@ -53,7 +37,37 @@ function makeEmptySession(s: number): TChatSession {
       template: DEFAULT_INPUT_TEMPLATE,
     },
   }
+  if (simple.description) {
+    session.messages.push(
+      ...[
+        {
+          role: "system",
+          content: simple.description,
+          date: getUtcNow(),
+          direction: TChatDirection.SEND,
+          streaming: false,
+          isError: false,
+          id: s,
+        },
+        {
+          role: "user",
+          content: "OK",
+          date: getUtcNow(),
+          direction: TChatDirection.RECEIVE,
+          streaming: false,
+          isError: false,
+          id: s,
+        },
+      ]
+    )
+  }
   return session
+}
+
+type TSimple = {
+  avatar: string
+  topic: string
+  description: string
 }
 
 export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
@@ -85,8 +99,8 @@ export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
     sessions.value.splice(to, 0, session)
   }
 
-  const newSession = (mask?: TMask): TChatSession => {
-    const session = makeEmptySession(++sessionGid.value)
+  const newSession = (mask?: TMask, simple?: TSimple): TChatSession => {
+    const session = makeEmptySession(++sessionGid.value, simple)
     sessions.value.unshift(session)
     saveAll()
     return session
@@ -97,17 +111,6 @@ export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
     const index = sessions.value.findIndex((s) => s.id === id)
     sessions.value.splice(index, 1)
     saveAll()
-  }
-
-  const currentSession = (sid: string): TChatSession | undefined => {
-    const currentSessions = sessions.value.filter((s) => s.id === sid)
-    return currentSessions[0]
-  }
-
-  const routeCurrentSession = (): TChatSession => {
-    const route = useRoute()
-    // @ts-ignore
-    return <TChatSession>currentSession(route.params?.sid as string)
   }
 
   const nextSession = (delta: number) => {
@@ -174,6 +177,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
   const session = reactive<TChatSession>({
     id: sid,
     topic: res.topic,
+    avatar: res.avatar,
     latestMessageId: res.latestMessageId || 1000,
     messages: [],
     composeInput: res.composeInput,

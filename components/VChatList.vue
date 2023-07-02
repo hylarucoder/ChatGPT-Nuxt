@@ -10,11 +10,10 @@ const onDeleteSession = (id: string) => {
   if (sessions.length === 1) {
     return
   }
-  const currentSession = useRoutedChatSession()
+  const newSession = sessions.filter((session) => session.id !== id)[0]
+  console.log("router new Session", newSession.id)
+  router.push("/chat/session/" + newSession.id)
   chatStore.deleteSession(id)
-  if (currentSession.session.id === id) {
-    router.push("/chat/session/" + chatStore.sessions[0].id)
-  }
 }
 </script>
 <template>
