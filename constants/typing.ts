@@ -175,6 +175,7 @@ export interface TChatStat {
 export interface TChatSession {
   id: string
   topic: string
+  latestMessageId: number
   composeInput: string
   memoryPrompt: string
   messagesCount: number

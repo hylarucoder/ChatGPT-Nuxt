@@ -1,10 +1,11 @@
 import { defineStore } from "pinia"
-import { ref } from "vue"
-import { TMask, TChatDirection, TChatSession, TChatMessage } from "~/constants/typing"
+import { ComputedRef, ref } from "vue"
 import { useSettingStore } from "~/composables/settings"
 import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
 import { fetchStream } from "~/constants/api"
+import { TChatDirection, TChatSession, TMask } from "~/constants/typing"
 import { getUtcNow } from "~/utils/date"
+import { debounce } from "~/utils/debounce"
 
 function makeEmptySession(s: number): TChatSession {
   const session: TChatSession = {
@@ -54,23 +55,29 @@ function makeEmptySession(s: number): TChatSession {
   return session
 }
 
-const debounce = <T extends (...args: any[]) => any>(func: T, delay: number) => {
-  let timerId: ReturnType<typeof setTimeout>
-
-  return (...args: Parameters<T>) => {
-    clearTimeout(timerId)
-    timerId = setTimeout(() => {
-      func.apply(this, args)
-    }, delay) as ReturnType<typeof setTimeout>
-  }
+interface ChatSessionStorage {
+  sessions: TChatSession[]
+  sessionGid: number
 }
 
-const loadFromLocalStorage = <T>(key: string, defaultValue: T): T => {
-  try {
-    return JSON.parse(localStorage.getItem(key) || "")
-  } catch (e) {
-    return defaultValue
+const defaultChatSessionStorage: ChatSessionStorage = {
+  sessions: [],
+  sessionGid: 10000,
+}
+
+export const loadFromLocalStorage = (
+  key: string,
+  defaultValue: ChatSessionStorage = defaultChatSessionStorage
+): ChatSessionStorage => {
+  const storedValue = localStorage.getItem(key)
+  if (storedValue) {
+    try {
+      return JSON.parse(storedValue)
+    } catch (e) {
+      return defaultValue
+    }
   }
+  return defaultValue
 }
 
 const saveToLocalStorage = <T>(key: string, value: T) => {
@@ -79,9 +86,8 @@ const saveToLocalStorage = <T>(key: string, value: T) => {
 
 export const useChatStore = defineStore(StoreKey.Chat, () => {
   const sessionGid = ref(0)
-  const sessions = ref([])
+  const sessions = ref<TChatSession[]>([])
   const settingStore = useSettingStore()
-  const settings = settingStore.settings
 
   const loadAll = async () => {
     const loaded = loadFromLocalStorage(StoreKey.ChatSession, {
@@ -128,9 +134,7 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
   }
 
   const routeCurrentSession = (): TChatSession => {
-    const chatSessionStore = useChatSessionStore()
     const route = useRoute()
-    // chatSessionStore.loadSession(route.params?.sid as string)
     // @ts-ignore
     return <TChatSession>currentSession(route.params?.sid as string)
   }
@@ -138,80 +142,6 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
   const nextSession = (delta: number) => {
     // Add your logic for navigating to the next session
     console.log("nextSession", delta)
-  }
-
-  const onNewMessage = (currentSession: TChatSession, message: string) => {
-    // latest 4 messages
-    const lastMessages = currentSession.messages.slice(-4).map((message) => {
-      return {
-        role: message.role,
-        content: message.content,
-      }
-    })
-    console.log(toRaw(lastMessages))
-    const payload = {
-      messages: [
-        ...lastMessages,
-        {
-          role: "user",
-          content: message,
-        },
-      ],
-      model: "gpt-3.5-turbo",
-      presence_penalty: settings.presencePenalty,
-      stream: true,
-      temperature: settings.temperature,
-    }
-    // check if the last message
-    let latestMessageId: number = 0
-    const latestMessage = currentSession.messages[currentSession.messages.length - 1]
-    if (latestMessage) {
-      latestMessageId = latestMessage.id
-    }
-
-    latestMessageId++
-
-    currentSession.messages.push({
-      role: "user",
-      content: message,
-      date: new Date().toISOString(),
-      direction: TChatDirection.SEND,
-      streaming: false,
-      isError: false,
-      id: latestMessageId,
-    })
-
-    latestMessageId++
-
-    const newMessage = {
-      role: "user",
-      content: "...",
-      date: new Date().toISOString(),
-      direction: TChatDirection.RECEIVE,
-      streaming: false,
-      isError: false,
-      id: latestMessageId,
-    }
-    currentSession.messages.push(newMessage)
-    currentSession.messagesCount = currentSession.messages.length
-    const nMessage = currentSession.messages[currentSession.messages.length - 1]
-    let loadingDots = 0
-    const loadingInterval = setInterval(() => {
-      loadingDots = (loadingDots + 1) % 3
-      const dots = ".".repeat(loadingDots + 1)
-      nMessage.content = dots
-    }, 500)
-
-    fetchStream(payload, (receivedData: string) => {
-      clearInterval(loadingInterval) // 清除定时器
-      nMessage.content = receivedData
-      // TODO: performance issue
-      saveAll()
-    }).catch((error) => {
-      clearInterval(loadingInterval) // 清除定时器
-      console.error("Error occurred:", error)
-    })
-    saveAll()
   }
 
   const onUserInput = async (content: string) => {
@@ -227,17 +157,6 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
     // Add your logic for updating stats based on a message
     console.log("nextSession", message)
   }
-
-  // const updateCurrentSession = (updater) => {
-  //   updater(sessions.value[currentSessionIndex.value])
-  // }
-  //
-  // const updateMessage = (sessionIndex, messageIndex, updater) => {
-  //   const message = sessions.value[sessionIndex]?.messages[messageIndex]
-  //   if (message) {
-  //     updater(message)
-  //   }
-  // }
 
   const resetSession = () => {
     // Add your logic for resetting the session
@@ -266,7 +185,6 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
     currentSession,
     routeCurrentSession,
     nextSession,
-    onNewMessage,
     onUserInput,
     summarizeSession,
     updateStat,
@@ -277,24 +195,92 @@ export const useChatStore = defineStore(StoreKey.Chat, () => {
   }
 })
 
-export const useChatSessionStore = defineStore(StoreKey.ChatSession, () => {
-  const messageGid = ref(0)
-  const messages = ref<TChatMessage[]>([])
-  const messagesCount = ref(0)
-  const settingStore = useSettingStore()
-  const globalSettings = settingStore.settings
+// share chat session between routes and components
+const cachedChatSession = new Map<string, TUseChatSession>()
 
-  const clearMessage = () => {
-    messages.value = []
+interface TUseChatSession {
+  session: TChatSession
+  isEmptyInput: ComputedRef<boolean>
+  onUserInput: (content: string) => Promise<void>
+  rename: () => void
+  onNewMessage: (message: string) => void
+  deleteMessage: (id: number) => void
+}
+
+export const useRoutedChatSession = (): TUseChatSession => {
+  const route = useRoute()
+  // @ts-ignore
+  const sid = route.params?.sid
+  return useChatSession(sid)
+}
+
+export const loadSessionFromLocalStorage = (sid: string): TChatSession | null => {
+  const chatSessionStorage = loadFromLocalStorage(StoreKey.ChatSession, defaultChatSessionStorage)
+  const session = chatSessionStorage.sessions.find((s) => s.id === sid)
+  if (session) {
+    return session
+  }
+  return null
+}
+
+export const saveSessionToLocalStorage = (newSession: TChatSession): void => {
+  const chatSessionStorage = loadFromLocalStorage(StoreKey.ChatSession, defaultChatSessionStorage)
+
+  const existingSessionIndex = chatSessionStorage.sessions.findIndex((s) => s.id === newSession.id)
+
+  if (existingSessionIndex !== -1) {
+    chatSessionStorage.sessions[existingSessionIndex] = newSession
+    console.log("find", chatSessionStorage.sessions[existingSessionIndex])
+  } else {
+    chatSessionStorage.sessions.push(newSession)
+    console.log("reuse", chatSessionStorage.sessions[existingSessionIndex])
   }
 
-  const deleteMessage = (id: string) => {
-    // remove message by id
+  saveToLocalStorage(StoreKey.ChatSession, chatSessionStorage)
+}
+
+export const useChatSession = (sid: string): TUseChatSession => {
+  if (cachedChatSession.has(sid)) {
+    return cachedChatSession.get(sid) as TUseChatSession
   }
+  const loaded = loadFromLocalStorage(StoreKey.ChatSession, {
+    sessions: [] as TChatSession[],
+    sessionGid: 10000,
+  })
+  const res = loaded.sessions.filter((s) => s.id === sid)[0]
+  const session = reactive<TChatSession>({
+    id: sid,
+    topic: res.topic,
+    latestMessageId: res.latestMessageId || 1000,
+    messages: [],
+    composeInput: res.composeInput,
+    memoryPrompt: res.memoryPrompt,
+    messagesCount: res.messagesCount,
+    modelConfig: res.modelConfig,
+    stat: res.stat,
+    lastUpdate: res.lastUpdate,
+    lastSummarizeIndex: res.lastSummarizeIndex,
+    clearContextIndex: res.clearContextIndex,
+    mask: res.mask,
+  })
+  session.messages.push(...res.messages)
+
+  const debounceSave = debounce(
+    () => {
+      console.log("toRaw message before saving", toRaw(session.messages))
+      saveSessionToLocalStorage(toRaw(session))
+    },
+    1000,
+    false
+  )
+
+  const isEmptyInput = computed(() => {
+    return session.composeInput.trim().length === 0
+  })
 
   const onNewMessage = (message: string) => {
     // latest 4 messages
-    const lastMessages = messages.value.slice(-4).map((message) => {
+    const lastMessages = session.messages.slice(-4).map((message) => {
       return {
         role: message.role,
         content: message.content,
@@ -309,31 +295,26 @@ export const useChatSessionStore = defineStore(StoreKey.ChatSession, () => {
         },
       ],
       model: "gpt-3.5-turbo",
-      presence_penalty: globalSettings.presencePenalty,
+      presence_penalty: session.modelConfig.presencePenalty,
       stream: true,
-      temperature: globalSettings.temperature,
+      temperature: session.modelConfig.temperature,
     }
-    // check if the last message
-    let latestMessageId: number = 0
-    const latestMessage = messages.value[messages.length - 1]
+    const latestMessage = session.messages[session.messages.length - 1]
     if (latestMessage) {
-      latestMessageId = latestMessage.id
+      session.latestMessageId = latestMessage.id!
     }
 
-    latestMessageId++
-
-    messages.value.push({
+    session.latestMessageId++
+    session.messages.push({
       role: "user",
       content: message,
       date: new Date().toISOString(),
       direction: TChatDirection.SEND,
       streaming: false,
       isError: false,
-      id: latestMessageId,
+      id: session.latestMessageId,
     })
-
-    latestMessageId++
-
+    session.latestMessageId++
     const newMessage = {
       role: "user",
       content: "...",
@@ -341,21 +322,22 @@ export const useChatSessionStore = defineStore(StoreKey.ChatSession, () => {
       direction: TChatDirection.RECEIVE,
       streaming: false,
       isError: false,
-      id: latestMessageId,
+      id: session.latestMessageId,
     }
-    messages.value.push(newMessage)
-    messagesCount.value = messages.value.length
-    const nMessage = messages.value[messages.value.length - 1]
+    session.messages.push(newMessage)
+    session.messagesCount = session.messages.length
+    console.log("session.messages", toRaw(session.messages))
+    const nMessage = session.messages[session.messages.length - 1]
     let loadingDots = 0
     const loadingInterval = setInterval(() => {
       loadingDots = (loadingDots + 1) % 3
-      const dots = ".".repeat(loadingDots + 1)
-      nMessage.content = dots
+      nMessage.content = ".".repeat(loadingDots + 1)
     }, 500)
 
     fetchStream(payload, (receivedData: string) => {
       clearInterval(loadingInterval) // 清除定时器
       nMessage.content = receivedData
+      debounceSave()
     }).catch((error) => {
       clearInterval(loadingInterval) // 清除定时器
       console.error("Error occurred:", error)
@@ -363,28 +345,38 @@ export const useChatSessionStore = defineStore(StoreKey.ChatSession, () => {
   }
 
   const onUserInput = async (content: string) => {
+    // Add your logic for handling user input
     console.log("nextSession", content)
   }
 
-  const summarizeSession = () => {
-    // Add your logic for summarizing the session
+  const rename = () => {
+    const name = prompt("请输入会话名称", session.topic)
+    if (name) {
+      const oldName = session.topic
+      session.topic = name || oldName
+    }
   }
 
-  const updateStat = (message: string) => {
-    // Add your logic for updating stats based on a message
-    console.log("nextSession", message)
+  const deleteMessage = (id: number) => {
+    // check and delete message
+    const index = session.messages.findIndex((message) => message.id === id)
+    if (index !== -1) {
+      session.messages.splice(index, 1)
+      session.messagesCount = session.messages.length
+      console.log("--->", toRaw(session.messages))
+    }
+    // chatStore.saveAll()
   }
 
-  const resetSession = () => {
-    // Add your logic for resetting the session
-  }
-
-  return {
-    messages,
-    messageGid,
+  const result = {
+    session,
+    isEmptyInput,
     onUserInput,
-    summarizeSession,
-    updateStat,
-    resetSession,
+    rename,
+    onNewMessage,
+    deleteMessage,
+    // ... 其他与单个会话相关的方法
   }
-})
+  cachedChatSession.set(sid, result)
+  return result
+}

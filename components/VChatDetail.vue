@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from "vue"
-import { useChatStore } from "~/composables/chat"
-
 const router = useRouter()
-const chatStore = useChatStore()
-const currentSession = chatStore.routeCurrentSession()
+const currentSession = useRoutedChatSession()
+console.log("currentSession", toRaw(currentSession.session))
 if (!currentSession) {
   router.push("/chat/new")
 }
@@ -22,8 +19,9 @@ const scrollToBottom = () => {
 }
 
 watch(
-  () => currentSession.messages,
+  () => currentSession.session.messages,
   () => {
+    console.log("watch ", currentSession.session.messages)
     nextTick(() => {
       scrollToBottom()
     })
@@ -38,12 +36,20 @@ onMounted(() => {
     scrollToBottom()
   })
 })
+const printMessages = () => {
+  console.log("currentSession", toRaw(currentSession.session))
+}
 </script>
 <template>
   <div class="flex flex-1 flex-col">
-    <VChatDetailHeader />
+    <VChatDetailHeader @click="printMessages" />
     <div class="flex-grow overflow-y-scroll p-5" ref="el">
-      <VChatMessage class="chat-message" v-for="message in currentSession.messages" :message="message" />
+      <VChatMessage
+        class="chat-message"
+        :key="message.id"
+        v-for="message in currentSession.session.messages"
+        :message="message"
+      />
     </div>
     <VComposeView />
   </div>

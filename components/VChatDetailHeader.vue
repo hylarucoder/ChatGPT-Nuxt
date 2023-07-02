@@ -1,25 +1,17 @@
 <script lang="ts" setup>
-const chatStore = useChatStore()
-const currentSession = chatStore.routeCurrentSession()
-const renameSession = () => {
-  const name = prompt("请输入会话名称")
-  if (name) {
-    const oldName = currentSession.topic
-    currentSession.topic = name || oldName
-  }
-}
+const chatSession = useRoutedChatSession()
 </script>
 <template>
   <div class="relative flex items-center justify-between border border-gray-200 px-5 py-3.5">
     <div class="truncate">
-      <div class="cursor-pointer truncate text-[1.25rem] font-bold">{{ currentSession.topic }}</div>
-      <div class="mt-1 text-[0.88rem]">与 ChatGPT 的 {{ currentSession.messagesCount }} 条对话</div>
+      <div class="cursor-pointer truncate text-[1.25rem] font-bold">{{ chatSession.session.topic }}</div>
+      <div class="mt-1 text-[0.88rem]">与 ChatGPT 的 {{ chatSession.session.messagesCount }} 条对话</div>
     </div>
     <div class="flex w-[150px]">
       <div class="ml-3">
         <button
           class="flex h-10 w-10 cursor-pointer items-center justify-center truncate rounded-xl border border-neutral-200 p-3 text-center hover:bg-gray-200"
-          @click="renameSession"
+          @click="chatSession.rename()"
         >
           <div class="flex items-center justify-center">
             <VSvgIcon icon="rename" />

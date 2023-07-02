@@ -1,15 +1,9 @@
 <script lang="ts" setup>
-import { useChatStore } from "~/composables/chat"
-
-const chatStore = useChatStore()
 const settingStore = useSettingStore()
-const currentSession = chatStore.routeCurrentSession()
-
-currentSession.composeInput
-
 const setting = settingStore.settings
+const chatSession = useRoutedChatSession()
 
-const handleKeyDown = (event) => {
+const handleKeyDown = (event: any) => {
   const targetKeyMap = keyMaps.find((keyMap) => keyMap.label === setting.sendKey)
 
   if (targetKeyMap) {
@@ -23,12 +17,12 @@ const handleKeyDown = (event) => {
 }
 
 const composeNewMessage = () => {
-  if (!currentSession.composeInput.trim()) {
+  if (chatSession.isEmptyInput.value) {
     return
   }
-  const input = currentSession.composeInput
-  currentSession.composeInput = ""
-  chatStore.onNewMessage(currentSession, input)
+  const input = chatSession.session.composeInput
+  chatSession.onNewMessage(input)
+  chatSession.session.composeInput = ""
 }
 </script>
 <template>
@@ -54,14 +48,14 @@ const composeNewMessage = () => {
       <textarea
         class="relative h-24 w-full cursor-text break-words rounded-xl border"
         :placeholder="setting.sendKey + ' 发送'"
-        v-model="currentSession.composeInput"
+        v-model="chatSession.session.composeInput"
         @keydown="handleKeyDown"
       />
       <button
         @click="composeNewMessage"
-        :disabled="!currentSession.composeInput.trim()"
-        class="absolute bottom-4 right-4 flex h-10 cursor-pointer items-center justify-center truncate rounded-xl bg-emerald-400 px-4 py-4 text-center text-white"
-        :class="{ 'bg-gray-400': !currentSession.composeInput.trim() }"
+        class="absolute bottom-4 right-4 flex h-10 cursor-pointer items-center justify-center truncate rounded-xl px-4 py-4 text-center text-white"
+        :disabled="chatSession.isEmptyInput.value"
+        :class="{ 'bg-emerald-400': !chatSession.isEmptyInput.value, 'bg-gray-200': chatSession.isEmptyInput.value }"
       >
         <div class="flex items-center justify-center">
           <VSvgIcon icon="send-white" />
