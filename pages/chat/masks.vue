@@ -1,6 +1,21 @@
 <script setup lang="ts">
 import { getRandomEmoji } from "~/utils/emoji"
 import { ref } from "vue"
+import { useSidebarChatSessions } from "~/composable/chat"
+
+const router = useRouter()
+const chatStore = useSidebarChatSessions()
+
+const newSessionAndNav = (mask: TPrompts) => {
+  const session = chatStore.newSession(undefined, {
+    topic: mask.name,
+    description: mask.description,
+    avatar: getRandomEmoji("a"),
+  })
+  router.push({
+    path: "/chat/session/" + session.id,
+  })
+}
 
 const masks = ref<TPrompts[]>([])
 
@@ -30,25 +45,24 @@ console.log("data, pending", data, pending, error, refresh)
 const transformData = (data: TPromptsJson) => {
   const transformedData: TPrompts[] = []
 
-  for (const prompt of data.cn) {
-    if (!prompt[0]) {
+  for (const [title, description] of data.cn) {
+    if (!title) {
       continue
     }
     transformedData.push({
-      name: prompt[0],
-      description: prompt[1],
+      name: title,
+      description: description,
       lang: TLang.cn,
     })
   }
-
-  for (const prompt of data.en) {
-    if (!prompt[0]) {
+  for (const [title, description] of data.en) {
+    if (!title) {
       continue
     }
     transformedData.push({
-      name: prompt[0],
-      description: prompt[1],
-      lang: TLang.en,
+      name: title,
+      description: description,
+      lang: TLang.cn,
     })
   }
 
@@ -116,19 +130,6 @@ onMounted(async () => {
               <option value="所有语言" class="px-1">所有语言</option>
               <option value="cn" class="px-1">简体中文</option>
               <option value="en" class="px-1">English</option>
-              <option value="tw" class="px-1">繁體中文</option>
-              <option value="jp" class="px-1">日本語</option>
-              <option value="ko" class="px-1">한국어</option>
-              <option value="fr" class="px-1">Français</option>
-              <option value="es" class="px-1">Español</option>
-              <option value="it" class="px-1">Italiano</option>
-              <option value="tr" class="px-1">Türkçe</option>
-              <option value="de" class="px-1">Deutsch</option>
-              <option value="vi" class="px-1">Tiếng Việt</option>
-              <option value="ru" class="px-1">Русский</option>
-              <option value="cs" class="px-1">Čeština</option>
-              <option value="no" class="px-1">Nynorsk</option>
-              <option value="ar" class="px-1">العربية</option>
             </select>
           </div>
           <button
@@ -173,6 +174,7 @@ onMounted(async () => {
             <div class="flex">
               <button
                 class="flex h-9 w-20 cursor-pointer items-center justify-center overflow-hidden rounded-xl p-3 text-center text-[0.83rem]"
+                @click="newSessionAndNav(mask)"
               >
                 <div class="flex h-4 w-4 items-center justify-center">
                   <VSvgIcon icon="add" />
