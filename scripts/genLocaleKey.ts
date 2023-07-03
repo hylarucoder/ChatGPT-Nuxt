@@ -1,4 +1,4 @@
-import en from "../locales/en"
+import en from "~/src/locales/en"
 // write to file
 import fs from "fs"
 import path from "path"

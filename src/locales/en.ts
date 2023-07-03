@@ -1,5 +1,3 @@
-import { SubmitKey } from "~/constants/typing"
-
 const en = {
   WIP: "Coming Soon...",
   Error: {

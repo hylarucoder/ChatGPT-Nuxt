@@ -1,7 +1,7 @@
 import { defineNuxtConfig } from "nuxt/config"
 import svgLoader from "vite-svg-loader"
-import { pwa } from "./config/pwa"
-import { appDescription } from "./constants"
+import { pwa } from "./src/config/pwa"
+import { appDescription } from "./src/constants"
 
 function getGitCommitDateYMD() {
   const { execSync } = require("child_process")
@@ -17,10 +17,11 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  srcDir: "src/",
   build: {
     transpile: ["trpc-nuxt"],
   },
-  css: ["@/assets/css/globals.css", "@/assets/scss/index.scss"],
+  css: ["~/assets/css/globals.css", "~/assets/scss/index.scss"],
   runtimeConfig: {
     public: {
       LATEST_COMMIT_DATE: getGitCommitDateYMD(),

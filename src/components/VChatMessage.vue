@@ -4,7 +4,7 @@ import { useRoutedChatSession } from "~/composable/chat"
 import { useSettingStore } from "~/composable/settings"
 import { TChatDirection, TChatMessage } from "~/constants/typing"
 import { copyToClipboard } from "~/utils/clipboard"
-import { formatDateString } from "../utils/date"
+import { formatDateString } from "~/utils/date"
 
 const { settings } = useSettingStore()
 
