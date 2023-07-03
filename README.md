@@ -18,6 +18,7 @@ One-Click to get well-designed cross-platform ChatGPT web UI.
 - TODO: Local storage for privacy concerns, but offers the option to use cloud services and embrace langchain ecosystem.
 - TODO: Mobile-friendly interface
 - TODO: One-click deployment and automatic updating.
+- TODO: Support POE
 
 ## ScreenShot
 

@@ -43,7 +43,7 @@ function splitArrayIntoChunks<T>(arr: T[], rows: number, cols: number) {
         @click="router.back()"
       >
         <div class="flex items-center justify-center">
-          <VSvgIcon icon="return" class="h-4 w-4" />
+          <Icon name="mingcute:left-line" size="1.2em" />
         </div>
         <div class="ml-1 overflow-hidden text-ellipsis text-xs">
           {{ $t("NewChat.Return") }}

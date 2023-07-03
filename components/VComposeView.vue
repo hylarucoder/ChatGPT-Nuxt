@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import { useRoutedChatSession } from "~/composable/chat"
+import { useTrans } from "~/composable/locales"
 import { keyMaps, useSettingStore } from "~/composable/settings"
 
 const settingStore = useSettingStore()
 const setting = settingStore.settings
 const chatSession = useRoutedChatSession()
+const { t } = useTrans()
 
 const handleKeyDown = (event: any) => {
   const targetKeyMap = keyMaps.find((keyMap) => keyMap.label === setting.sendKey)
@@ -36,19 +38,7 @@ const composeNewMessage = () => {
   <div class="relative flex-col rounded-xl border p-3">
     <div class="flex flex-wrap">
       <div class="mb-3 mr-1 flex cursor-pointer items-center rounded-2xl border px-3 py-1 text-[0.75rem]">
-        <VSvgIcon icon="bottom" />
-      </div>
-      <div class="mb-3 mr-1 flex cursor-pointer items-center rounded-2xl border px-3 py-1 text-[0.75rem]">
-        <VSvgIcon icon="auto" />
-      </div>
-      <div class="mb-3 mr-1 flex cursor-pointer items-center rounded-2xl border px-3 py-1 text-[0.75rem]">
-        <VSvgIcon icon="prompt" />
-      </div>
-      <div class="mb-3 mr-1 flex cursor-pointer items-center rounded-2xl border px-3 py-1 text-[0.75rem]">
-        <VSvgIcon icon="mask" />
-      </div>
-      <div class="mb-3 flex cursor-pointer items-center rounded-2xl border px-3 py-1 text-[0.75rem]">
-        <VSvgIcon icon="break" />
+        <Icon name="bx:bot" size="1.4em" />
       </div>
     </div>
     <div class="flex flex-grow">
@@ -68,9 +58,11 @@ const composeNewMessage = () => {
         }"
       >
         <div class="flex items-center justify-center">
-          <VSvgIcon icon="send-white" />
+          <Icon name="lucide:send" size="1.0em" />
         </div>
-        <div class="ml-1 truncate text-[0.75rem]">发送</div>
+        <div class="ml-1 truncate text-[0.75rem]">
+          {{ t("Chat.Send") }}
+        </div>
       </button>
     </div>
   </div>

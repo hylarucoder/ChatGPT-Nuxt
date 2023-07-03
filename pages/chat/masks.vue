@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useTrans } from "~/composable/locales"
 import { TPrompts, useMasks } from "~/composable/mask"
 import { TLocale } from "~/locales/en"
 import { getRandomEmoji } from "~/utils/emoji"
@@ -19,9 +20,7 @@ const newSessionAndNav = (mask: TPrompts) => {
     path: "/chat/session/" + session.id,
   })
 }
-const { t } = useI18n<{ message: TLocale }>({
-  useScope: "global",
-})
+const { t } = useTrans()
 
 const visible = ref(false)
 </script>
@@ -37,32 +36,13 @@ const visible = ref(false)
         </div>
         <div class="flex">
           <div>
-            <button
-              class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-solid border-neutral-200 p-3 hover:bg-gray-200"
-            >
-              <div class="flex items-center justify-center">
-                <VSvgIcon icon="download" />
-              </div>
-            </button>
+            <HeadIconButton icon="material-symbols:download" size="1.3em" />
           </div>
           <div class="ml-3">
-            <button
-              class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-solid border-neutral-200 p-3 hover:bg-gray-200"
-            >
-              <div class="flex items-center justify-center">
-                <VSvgIcon icon="upload" />
-              </div>
-            </button>
+            <HeadIconButton icon="material-symbols:upload" size="1.3em" />
           </div>
           <div class="ml-3">
-            <button
-              class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-solid border-neutral-200 p-3 hover:bg-gray-200"
-              @click="router.back()"
-            >
-              <div class="flex items-center justify-center">
-                <VSvgIcon icon="close" />
-              </div>
-            </button>
+            <HeadIconButton icon="material-symbols:close" size="1.3em" />
           </div>
         </div>
       </div>
@@ -83,10 +63,10 @@ const visible = ref(false)
             </select>
           </div>
           <button
-            class="ml-3 flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-solid border-neutral-200 p-3 text-center text-[0.83rem]"
+            class="ml-3 flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-solid border-neutral-200 p-3 text-center text-[0.83rem] hover:bg-gray-200"
           >
             <div class="flex items-center justify-center">
-              <VSvgIcon icon="add" />
+              <Icon name="zondicons:add-outline" size="1.1em" />
             </div>
             <div @click="visible = true" class="ml-1 overflow-hidden text-ellipsis text-xs">
               {{ t(`Mask.Page.Create`) }}
@@ -129,7 +109,7 @@ const visible = ref(false)
                 @click="newSessionAndNav(mask)"
               >
                 <div class="flex h-4 w-4 items-center justify-center">
-                  <VSvgIcon icon="add" />
+                  <Icon name="zondicons:add-outline" size="1.1em" />
                 </div>
                 <div class="ml-1 overflow-hidden text-ellipsis text-xs">
                   {{ t(`Mask.Item.Chat`) }}
@@ -138,8 +118,8 @@ const visible = ref(false)
               <button
                 class="flex h-9 w-20 cursor-pointer items-center justify-center overflow-hidden rounded-xl p-3 text-center text-[0.83rem] hover:bg-gray-200"
               >
-                <div class="flex h-4 w-4 items-center justify-center">
-                  <VSvgIcon icon="eye" />
+                <div class="flex h-6 w-6 items-center justify-center">
+                  <Icon name="mingcute:eye-line" size="1.4em" />
                 </div>
                 <div class="ml-1 overflow-hidden text-ellipsis text-xs">
                   {{ t(`Mask.Item.View`) }}

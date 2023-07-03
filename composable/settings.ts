@@ -1,5 +1,7 @@
 import { defineStore } from "pinia"
 import { reactive } from "vue"
+import { useTrans } from "~/composable/locales"
+import { loadFromLocalStorage, saveToLocalStorage } from "~/composable/storage"
 import { ALL_MODELS, SubmitKey } from "~/constants/typing"
 import { FETCH_COMMIT_URL, StoreKey } from "~/constants"
 
@@ -127,40 +129,43 @@ const defaultSettings = {
   presencePenalty: 0.0,
   frequencyPenalty: 0.0,
   historyMessagesCount: 4,
-  historyMessagesThreshold: 1000,
+  compressMessageLengthThreshold: 1000,
+  serverUrl: "https://api.openai.com",
   historySummary: false,
   disableAutoCompletePrompt: false,
   latestCommitDate: "",
   remoteLatestCommitDate: "",
   hasNewVersion: false,
 }
-export const useSettingStore = defineStore(
-  StoreKey.Setting,
-  () => {
-    const settings = reactive(defaultSettings)
-    const runtimeConfig = useRuntimeConfig()
 
-    const fetchRemoteLatestCommitDate = () => {
-      if (runtimeConfig.public.LATEST_COMMIT_DATE) {
-        settings.latestCommitDate = runtimeConfig.public.LATEST_COMMIT_DATE as string
-        settings.hasNewVersion = settings.latestCommitDate < settings.remoteLatestCommitDate
-      }
-      fetch(FETCH_COMMIT_URL)
-        .then((response) => response.json())
-        .then((data) => {
-          const date = data[0].commit.author.date
-          settings.remoteLatestCommitDate = date.slice(0, 10).replace(/-/g, "")
-        })
-        .catch((error) => console.error(error))
+export const useSettingStore = defineStore(StoreKey.Setting, () => {
+  const settings = reactive(loadFromLocalStorage(StoreKey.Setting, defaultSettings))
+  const runtimeConfig = useRuntimeConfig()
+  const { t, setLocale } = useTrans()
+  setLocale(settings.language)
+
+  const fetchRemoteLatestCommitDate = () => {
+    if (runtimeConfig.public.LATEST_COMMIT_DATE) {
+      settings.latestCommitDate = runtimeConfig.public.LATEST_COMMIT_DATE as string
+      settings.hasNewVersion = settings.latestCommitDate < settings.remoteLatestCommitDate
     }
-    return {
-      settings,
-      fetchRemoteLatestCommitDate,
-    }
-  },
-  {
-    persist: {
-      storage: persistedState.localStorage,
-    },
+    fetch(FETCH_COMMIT_URL)
+      .then((response) => response.json())
+      .then((data) => {
+        const date = data[0].commit.author.date
+        settings.remoteLatestCommitDate = date.slice(0, 10).replace(/-/g, "")
+      })
+      .catch((error) => console.error(error))
   }
-)
+  watch(
+    () => settings,
+    () => {
+      saveToLocalStorage(StoreKey.Setting, settings)
+    },
+    { deep: true }
+  )
+  return {
+    settings,
+    fetchRemoteLatestCommitDate,
+  }
+})

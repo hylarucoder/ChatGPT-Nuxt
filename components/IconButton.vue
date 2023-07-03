@@ -1,16 +1,11 @@
 <script lang="ts" setup>
-import { defineComponent } from "vue"
-
 const props = defineProps<{
   icon: string
   text?: string
+  size?: string
 }>()
 
 const hasText = Boolean(props.text)
-
-defineComponent({
-  name: "IconButton",
-})
 </script>
 <template>
   <button
@@ -18,7 +13,7 @@ defineComponent({
     :class="hasText ? 'w-32' : ''"
   >
     <div class="flex items-center justify-center">
-      <VSvgIcon :icon="icon" />
+      <Icon :name="icon" :size="size || '1.1em'" />
     </div>
     <div v-if="hasText" class="ml-1 truncate text-[0.75rem]">{{ text }}</div>
   </button>
