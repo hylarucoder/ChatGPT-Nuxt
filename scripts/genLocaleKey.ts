@@ -1,4 +1,4 @@
-import en from "../locales/en"
+import en from "./src/locales/en"
 // write to file
 import fs from "fs"
 import path from "path"
@@ -40,5 +40,5 @@ export type TLocaleKeys = (typeof localeKeys)[number]
 `
 const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
-const filePath = path.resolve(__dirname, "../locales/schema.ts")
+const filePath = path.resolve(__dirname, "../src/locales/schema.ts")
 fs.writeFileSync(filePath, headerText + middleText + footerText)

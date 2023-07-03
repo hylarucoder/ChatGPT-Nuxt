@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTrans } from "~/composable/locales"
 import { TPrompts, useMasks } from "~/composable/mask"
-import { TLocale } from "~/locales/en"
+import { TLocale } from "~/src/locales/en"
 import { getRandomEmoji } from "~/utils/emoji"
 import { ref } from "vue"
 import { useSidebarChatSessions } from "~/composable/chat"

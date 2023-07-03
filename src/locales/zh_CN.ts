@@ -1,5 +1,4 @@
-import { SubmitKey } from "~/constants/typing"
-import { TLocale } from "~/locales/en"
+import { TLocale } from "./en"
 
 const cn: TLocale = {
   WIP: "该功能仍在开发中……",

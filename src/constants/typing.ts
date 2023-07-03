@@ -1,4 +1,4 @@
-import { DEFAULT_INPUT_TEMPLATE } from "~/constants/index"
+import { DEFAULT_INPUT_TEMPLATE } from "~/constants"
 
 export const ROLES = ["system", "user", "assistant"]
 export type MessageRole = (typeof ROLES)[number]
