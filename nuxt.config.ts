@@ -115,6 +115,7 @@ export default defineNuxtConfig({
   i18n: {
     locales: ["en", "zh_CN"],
     defaultLocale: "en",
+    strategy: "no_prefix",
     vueI18n: "./i18n.config.ts", // if you are using custom path, default
   },
 

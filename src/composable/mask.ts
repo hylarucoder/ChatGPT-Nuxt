@@ -1,4 +1,5 @@
 import { defineStore } from "pinia"
+import { useSettingStore } from "~/composable/settings"
 import { StoreKey } from "~/constants"
 
 interface TPromptsJson {
@@ -14,10 +15,11 @@ export enum TLang {
 export interface TPrompts {
   name: string
   description: string
-  lang: TLang
+  lang: string
 }
 
 export const useMasks = defineStore(StoreKey.Mask, () => {
+  const { settings } = useSettingStore()
   const masks = ref<TPrompts[]>([])
   const load = async () => {
     const newMasks = []
@@ -26,17 +28,24 @@ export const useMasks = defineStore(StoreKey.Mask, () => {
       newMasks.push({
         name: title,
         description,
-        lang: TLang.cn,
+        lang: "zh_CN",
       })
     }
     for (const [title, description] of data.en) {
       newMasks.push({
         name: title,
         description,
-        lang: TLang.en,
+        lang: "en",
       })
     }
     masks.value.push(...newMasks.filter((m) => m.name))
+    masks.value.sort((a, b) => {
+      if (a.lang === settings.language) {
+        return -1
+      } else {
+        return 1
+      }
+    })
   }
   onMounted(() => {
     load().then((r) => {})

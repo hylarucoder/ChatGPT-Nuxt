@@ -78,7 +78,7 @@ export interface TModelConfig {
   temperature: number
   maxTokens: number
   presencePenalty: number
-  // frequencyPenalty: number
+  frequencyPenalty: number
   sendMemory: boolean
   historyMessageCount: number
   compressMessageLengthThreshold: number

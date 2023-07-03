@@ -1,7 +1,5 @@
 import { fetchEventSource } from "@fortaine/fetch-event-source"
 
-// const BASE_URL = import.meta.env.VITE_API_BASE_URL
-
 export async function fetchStream(
   payload: any,
   callback: (receivedData: string) => void,
