@@ -57,52 +57,52 @@ export const languageOptions = [
   },
   {
     label: "简体中文",
-    value: "cn",
+    value: "zh_CN",
   },
-  {
-    label: "繁體中文",
-    value: "tw",
-  },
-  {
-    label: "Français",
-    value: "fr",
-  },
-  {
-    label: "Español",
-    value: "es",
-  },
-  {
-    label: "Italiano",
-    value: "it",
-  },
-  {
-    label: "Türkçe",
-    value: "tr",
-  },
-  {
-    label: "日本語",
-    value: "jp",
-  },
-  {
-    label: "Deutsch",
-    value: "de",
-  },
-  {
-    label: "Tiếng Việt",
-    value: "vi",
-  },
-  {
-    label: "Русский",
-    value: "ru",
-  },
-  {
-    label: "Čeština",
-    value: "cs",
-  },
-  {
-    label: "한국어",
-    value: "ko",
-  },
+  // {
+  //   label: "繁體中文",
+  //   value: "tw",
+  // },
+  // {
+  //   label: "Français",
+  //   value: "fr",
+  // },
+  // {
+  //   label: "Español",
+  //   value: "es",
+  // },
+  // {
+  //   label: "Italiano",
+  //   value: "it",
+  // },
+  // {
+  //   label: "Türkçe",
+  //   value: "tr",
+  // },
+  // {
+  //   label: "日本語",
+  //   value: "jp",
+  // },
+  // {
+  //   label: "Deutsch",
+  //   value: "de",
+  // },
+  // {
+  //   label: "Tiếng Việt",
+  //   value: "vi",
+  // },
+  // {
+  //   label: "Русский",
+  //   value: "ru",
+  // },
+  // {
+  //   label: "Čeština",
+  //   value: "cs",
+  // },
+  // {
+  //   label: "한국어",
+  //   value: "ko",
+  // },
 ]
 
 export const modelOptions: TSelectOption[] = ALL_MODELS.map((option) => {

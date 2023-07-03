@@ -11,7 +11,13 @@ One-Click to get well-designed cross-platform ChatGPT web UI.
 
 ## Features
 
-- [x] One-Click
+- [x] Nuxt 3 + Vite + TailwindCSS + PWA
+- [x] i18n support, including English and 简体中文
+- Well-designed UI inspired by ChatGPT-Next-Web
+- TODO: Inherits most features from ChatGPT-Next-Web, but much more extensible and opinionated.
+- TODO: Local storage for privacy concerns, but offers the option to use cloud services and embrace langchain ecosystem.
+- TODO: Mobile-friendly interface
+- TODO: One-click deployment and automatic updating.
 
 ## ScreenShot
 
