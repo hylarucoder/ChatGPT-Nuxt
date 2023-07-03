@@ -11,8 +11,8 @@ const { t, n } = useI18n<{ message: TLocale }>({
       <div class="text-[1.25rem] font-bold">ChatGPT Nuxt</div>
       <div class="text-[0.75rem]">Build your own AI assistant.</div>
 
-      <div class="absolute bottom-[1.13rem] left-[13.56rem] top-[1.63rem]">
-        <VSvgIcon icon="chatgpt" />
+      <div class="absolute right-0 top-2">
+        <img src="/nuxt.svg" class="h-16 w-16" />
       </div>
     </div>
     <div class="mb-5 flex space-x-2">
