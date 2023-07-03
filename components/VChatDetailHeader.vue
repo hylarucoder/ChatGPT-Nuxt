@@ -15,32 +15,13 @@ const { t } = useTrans()
     </div>
     <div class="flex w-[150px]">
       <div class="ml-3">
-        <button
-          class="flex h-10 w-10 cursor-pointer items-center justify-center truncate rounded-xl border border-neutral-200 p-3 text-center hover:bg-gray-200"
-          @click="chatSession.rename()"
-        >
-          <div class="flex items-center justify-center">
-            <VSvgIcon icon="rename" />
-          </div>
-        </button>
+        <HeadIconButton icon="ph:pen-bold" @click="chatSession.rename()" size="1.2em" />
       </div>
       <div class="ml-3">
-        <button
-          class="flex h-10 w-10 cursor-pointer items-center justify-center truncate rounded-xl border border-neutral-200 p-3 text-center hover:bg-gray-200"
-        >
-          <div class="flex items-center justify-center">
-            <VSvgIcon icon="share" />
-          </div>
-        </button>
+        <HeadIconButton icon="uil:share" size="1.2em" />
       </div>
       <div class="ml-3">
-        <button
-          class="flex h-10 w-10 cursor-pointer items-center justify-center truncate rounded-xl border border-neutral-200 p-3 text-center hover:bg-gray-200"
-        >
-          <div class="flex items-center justify-center">
-            <VSvgIcon icon="max" />
-          </div>
-        </button>
+        <HeadIconButton icon="gg:maximize-alt" size="1.2em" />
       </div>
     </div>
   </div>

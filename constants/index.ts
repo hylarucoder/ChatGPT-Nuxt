@@ -29,7 +29,7 @@ export enum StoreKey {
   Chat = "store-chat",
   ChatSession = "store-chat-sessions",
   Access = "access-control",
-  Setting = "store-setting",
+  Setting = "store-setting-v1",
   Mask = "store-mask",
   Prompt = "store-prompt",
   Update = "store-update",

@@ -32,7 +32,6 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "@vueuse/nuxt",
     "@pinia/nuxt",
-    "@pinia-plugin-persistedstate/nuxt",
     "@nuxtjs/color-mode",
     "@vite-pwa/nuxt",
     "@nuxt/content",

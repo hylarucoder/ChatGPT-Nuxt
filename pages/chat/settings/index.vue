@@ -13,6 +13,18 @@ onMounted(() => {
 
 const { t, setLocale } = useTrans()
 
+const apiKeyShow = ref(false)
+const usageReloading = ref(false)
+const checkUsage = () => {
+  if (usageReloading.value) {
+    return
+  }
+  usageReloading.value = true
+  setTimeout(() => {
+    usageReloading.value = false
+  }, 1000)
+}
+
 watch(
   () => settings.language,
   () => {
@@ -34,31 +46,13 @@ watch(
         </div>
         <div class="flex">
           <div class="ml-3">
-            <button
-              class="flex h-10 w-10 cursor-pointer items-center justify-center truncate rounded-xl border border-neutral-200 p-3 text-center"
-            >
-              <div class="flex items-center justify-center">
-                <VSvgIcon icon="clear" />
-              </div>
-            </button>
+            <HeadIconButton icon="mdi:bin-outline" size="1.3em" />
           </div>
           <div class="ml-3">
-            <button
-              class="flex h-10 w-10 cursor-pointer items-center justify-center truncate rounded-xl border border-neutral-200 p-3 text-center"
-            >
-              <div class="flex items-center justify-center">
-                <VSvgIcon icon="reload" />
-              </div>
-            </button>
+            <HeadIconButton icon="mdi:reload" size="1.3em" />
           </div>
           <div class="ml-3">
-            <button
-              class="flex h-10 w-10 cursor-pointer items-center justify-center truncate rounded-xl border border-neutral-200 p-3 text-center"
-            >
-              <div class="flex items-center justify-center">
-                <VSvgIcon icon="close" />
-              </div>
-            </button>
+            <HeadIconButton icon="mdi:close" size="1.3em" />
           </div>
         </div>
       </div>
@@ -76,11 +70,12 @@ watch(
                 : ``
             "
           >
-            <a
+            <NuxtLink
+              target="_blank"
               href="https://github.com/hylarucoder/ChatGPT-Nuxt#keep-updated"
               class="cursor-pointer text-[0.75rem] text-emerald-400"
-              >{{ settings.hasNewVersion ? t("Settings.Update.GoToUpdate") : t("Settings.Update.IsLatest") }}</a
-            >
+              >{{ settings.hasNewVersion ? t("Settings.Update.GoToUpdate") : t("Settings.Update.IsLatest") }}
+            </NuxtLink>
           </SettingItem>
 
           <SettingItem :title="t('Settings.SendKey')">
@@ -96,8 +91,16 @@ watch(
           </SettingItem>
 
           <SettingItem :title="t('Settings.FontSize.Title')" :subtitle="t('Settings.FontSize.SubTitle')">
-            {{ settings.fontSize }}px
-            <UIInputRange :step="1" :max="18" :min="10" v-model="settings.fontSize" class="ml-1 h-5 w-32 text-center" />
+            <div class="flex rounded-xl border border-neutral-200 px-3 py-1 pr-3.5 text-[0.75rem]">
+              {{ settings.fontSize }}px
+              <UIInputRange
+                :step="1"
+                :max="18"
+                :min="10"
+                v-model="settings.fontSize"
+                class="ml-1 h-5 w-32 text-center"
+              />
+            </div>
           </SettingItem>
 
           <SettingItem :title="t('Settings.Mask.Title')" :subtitle="t('Settings.Mask.SubTitle')">
@@ -119,15 +122,17 @@ watch(
           <SettingItem :title="t('Settings.Token.Title')" :subtitle="t('Settings.Token.SubTitle')">
             <div class="flex justify-end">
               <button
-                class="mr-1 flex h-9 w-9 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center"
+                class="mr-1 flex h-9 w-9 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center hover:bg-gray-200"
+                @click="apiKeyShow = !apiKeyShow"
               >
                 <div class="flex items-center justify-center">
-                  <VSvgIcon icon="eye-off" class="h-4 w-4" />
+                  <Icon name="mdi:eye-outline" size="1.4em" v-if="apiKeyShow" />
+                  <Icon name="mdi:eye-off-outline" size="1.4em" v-if="!apiKeyShow" />
                 </div>
               </button>
               <input
                 v-model="settings.apiKey"
-                type="password"
+                :type="!apiKeyShow ? `password` : `text`"
                 :placeholder="t('Settings.Token.Placeholder')"
                 class="h-9 w-52 cursor-text rounded-xl border border-neutral-200 px-3 text-center"
               />
@@ -139,10 +144,11 @@ watch(
             :subtitle="t('Settings.Usage.SubTitle', { used: `[?]`, total: `[?]` })"
           >
             <button
-              class="hover:bg-gray flex h-10 w-24 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center"
+              @click="checkUsage()"
+              class="flex h-10 w-24 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center hover:bg-gray-200"
             >
-              <div class="flex items-center justify-center">
-                <VSvgIcon icon="reload" />
+              <div :class="{ 'animate-spin': usageReloading }" class="flex items-center justify-center">
+                <Icon name="mdi:reload" size="1.3em" />
               </div>
               <div class="ml-1 truncate text-[0.75rem]">{{ t("Settings.Usage.Check") }}</div>
             </button>
@@ -158,10 +164,10 @@ watch(
             :subtitle="t('Settings.Prompt.ListCount', { builtin: 0, custom: 0 })"
           >
             <button
-              class="flex h-10 w-32 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center"
+              class="flex h-10 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center hover:bg-gray-200"
             >
               <div class="flex items-center justify-center">
-                <VSvgIcon icon="edit" />
+                <Icon name="ph:pen-duotone" size="1.3em" />
               </div>
               <div class="ml-1 truncate text-[0.75rem]">{{ t("Settings.Prompt.Edit") }}</div>
             </button>
@@ -234,7 +240,7 @@ watch(
           >
             <UIInputNumber
               class="h-9 w-20 cursor-text rounded-xl border border-neutral-200 px-3 text-center"
-              v-model="settings.historyMessagesThreshold"
+              v-model="settings.compressMessageLengthThreshold"
             />
           </SettingItem>
 

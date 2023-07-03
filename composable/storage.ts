@@ -34,10 +34,7 @@ export const saveSessionToLocalStorage = (newSession: TChatSession): void => {
 
   saveToLocalStorage(StoreKey.ChatSession, chatSessionStorage)
 }
-export const loadFromLocalStorage = (
-  key: string,
-  defaultValue: ChatSessionStorage = defaultChatSessionStorage
-): ChatSessionStorage => {
+export const loadFromLocalStorage = <T>(key: string, defaultValue: T): T => {
   const storedValue = localStorage.getItem(key)
   if (storedValue) {
     try {
@@ -50,5 +47,5 @@ export const loadFromLocalStorage = (
 }
 
 export const saveToLocalStorage = <T>(key: string, value: T) => {
-  localStorage.setItem(StoreKey.ChatSession, JSON.stringify(value))
+  localStorage.setItem(key, JSON.stringify(value))
 }
