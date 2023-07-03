@@ -201,10 +201,6 @@ export const useChatSession = (sid: string): TUseChatSession => {
     false
   )
 
-  const isEmptyInput = computed(() => {
-    return session.composeInput.trim().length === 0
-  })
-
   const onNewMessage = (message: string) => {
     // latest 4 messages
     const lastMessages = session.messages.slice(-4).map((message) => {
@@ -299,7 +295,6 @@ export const useChatSession = (sid: string): TUseChatSession => {
 
   const result = {
     session,
-    isEmptyInput,
     onUserInput,
     rename,
     onNewMessage,

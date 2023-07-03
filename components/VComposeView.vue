@@ -19,11 +19,15 @@ const handleKeyDown = (event: any) => {
   }
 }
 
+const isEmptyInput = (composeInput: string) => {
+  return composeInput.trim().length === 0
+}
+
 const composeNewMessage = () => {
-  if (chatSession.isEmptyInput.value) {
+  const input = chatSession.session.composeInput
+  if (isEmptyInput(input)) {
     return
   }
-  const input = chatSession.session.composeInput
   chatSession.onNewMessage(input)
   chatSession.session.composeInput = ""
 }
@@ -57,8 +61,11 @@ const composeNewMessage = () => {
       <button
         @click="composeNewMessage"
         class="absolute bottom-4 right-4 flex h-10 cursor-pointer items-center justify-center truncate rounded-xl px-4 py-4 text-center text-white"
-        :disabled="chatSession.isEmptyInput.value"
-        :class="{ 'bg-emerald-400': !chatSession.isEmptyInput.value, 'bg-gray-200': chatSession.isEmptyInput.value }"
+        :disabled="isEmptyInput(chatSession.session.composeInput)"
+        :class="{
+          'bg-emerald-400': !isEmptyInput(chatSession.session.composeInput),
+          'bg-gray-200': isEmptyInput(chatSession.session.composeInput),
+        }"
       >
         <div class="flex items-center justify-center">
           <VSvgIcon icon="send-white" />
