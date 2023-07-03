@@ -14,10 +14,10 @@ const { t } = useTrans()
       </div>
     </div>
     <div class="mb-5 flex space-x-2">
-      <NuxtLink class="flex-grow" to="/chat/masks">
+      <NuxtLink class="flex-grow" :to="`/chat/masks`">
         <IconButton icon="bx:bot" :text="t(`Mask.Name`)" />
       </NuxtLink>
-      <NuxtLink class="flex-grow" to="/chat/plugins">
+      <NuxtLink class="flex-grow" :to="`/chat/plugins`">
         <IconButton icon="bi:magic" :text="t(`Plugin.Name`)" />
       </NuxtLink>
     </div>
@@ -33,7 +33,7 @@ const { t } = useTrans()
         </div>
       </div>
       <div>
-        <NuxtLink to="/chat/new">
+        <NuxtLink :to="`/chat/new`">
           <IconButton icon="zondicons:add-outline" size="0.9em" :text="t(`Home.NewChat`)" />
         </NuxtLink>
       </div>

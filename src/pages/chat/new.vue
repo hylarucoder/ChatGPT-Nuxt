@@ -92,7 +92,7 @@ function splitArrayIntoChunks<T>(arr: T[], rows: number, cols: number) {
           newSessionAndNav({
             name: 'New Chat',
             description: `hello`,
-            lang: TLang.en,
+            lang: `en`,
           })
         "
       >

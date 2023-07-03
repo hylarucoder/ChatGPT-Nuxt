@@ -44,7 +44,7 @@ const composeNewMessage = () => {
     <div class="flex flex-grow">
       <textarea
         class="min-h-24 relative h-24 w-full cursor-text break-words rounded-xl border"
-        :placeholder="setting.sendKey + ' 发送'"
+        :placeholder="`[` + setting.sendKey + ']' + ' to Send'"
         v-model="chatSession.session.composeInput"
         @keydown="handleKeyDown"
       />

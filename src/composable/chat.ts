@@ -31,7 +31,7 @@ function makeEmptySession(s: number, simple: TSimple, mask?: TMask): TChatSessio
       temperature: 0.5,
       maxTokens: 2000,
       presencePenalty: 0,
-      // frequencyPenalty: 0,
+      frequencyPenalty: 0,
       sendMemory: true,
       historyMessageCount: 4,
       compressMessageLengthThreshold: 1000,
