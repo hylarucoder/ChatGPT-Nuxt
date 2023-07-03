@@ -249,7 +249,6 @@ export const useChatSession = (sid: string): TUseChatSession => {
     }
     session.messages.push(newMessage)
     session.messagesCount = session.messages.length
-    console.log("session.messages", toRaw(session.messages))
     const nMessage = session.messages[session.messages.length - 1]
     let loadingDots = 0
     const loadingInterval = setInterval(() => {

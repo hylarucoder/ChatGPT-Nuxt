@@ -3,7 +3,6 @@ import { useRoutedChatSession } from "~/composable/chat"
 
 const router = useRouter()
 const currentSession = useRoutedChatSession()
-console.log("currentSession", toRaw(currentSession.session))
 if (!currentSession) {
   router.push("/chat/new")
 }
@@ -23,7 +22,6 @@ const scrollToBottom = () => {
 watch(
   () => currentSession.session.messages,
   () => {
-    console.log("watch ", currentSession.session.messages)
     nextTick(() => {
       scrollToBottom()
     })

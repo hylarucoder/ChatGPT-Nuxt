@@ -5,7 +5,6 @@ import { useSidebarChatSessions } from "~/composable/chat"
 const chatStore = useSidebarChatSessions()
 onBeforeMount(async () => {
   await chatStore.loadAll()
-  console.log("load all")
 })
 </script>
 
