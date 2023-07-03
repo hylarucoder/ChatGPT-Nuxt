@@ -22,7 +22,10 @@ One-Click to get well-designed cross-platform ChatGPT web UI.
 
 ## ScreenShot
 
-<img width="1348" alt="image" src="https://github.com/hylarucoder/ChatGPT-Nuxt/assets/5625783/9e048368-6604-46f9-b4ec-61697aea6ab4">
+<img width="1211" alt="image" src="https://github.com/hylarucoder/ChatGPT-Nuxt/assets/5625783/e41c82f2-3b25-4991-9a9a-1324e1a691af">
+<img width="1221" alt="image" src="https://github.com/hylarucoder/ChatGPT-Nuxt/assets/5625783/a5715e67-40be-4f0f-b8fb-9d3c59858abd">
+<img width="1210" alt="image" src="https://github.com/hylarucoder/ChatGPT-Nuxt/assets/5625783/7418bf87-4541-4c71-bb91-19d8327e8096">
+
 
 ## TODO
 
