@@ -27,7 +27,7 @@ const visible = ref(false)
 </script>
 <template>
   <ClientOnly>
-    <div class="flex h-screen flex-1 flex-col overflow-hidden">
+    <div class="flex h-full flex-1 flex-col overflow-hidden">
       <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)" class="flex items-center justify-between px-5 py-3.5">
         <div class="overflow-hidden">
           <div class="overflow-hidden text-ellipsis text-xl font-bold">
