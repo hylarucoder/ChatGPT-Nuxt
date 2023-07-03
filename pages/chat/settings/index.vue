@@ -127,6 +127,40 @@ watch(
               />
             </div>
           </SettingItem>
+          <SettingItem :title="t('Settings.Token.Title')" :subtitle="t('Settings.Token.SubTitle')">
+            <div class="flex justify-end">
+              <button
+                class="mr-1 flex h-9 w-9 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center"
+              >
+                <div class="flex items-center justify-center">
+                  <VSvgIcon icon="eye-off" class="h-4 w-4" />
+                </div>
+              </button>
+              <input
+                v-model="settings.apiKey"
+                type="password"
+                :placeholder="t('Settings.Token.Placeholder')"
+                class="h-9 w-52 cursor-text rounded-xl border border-neutral-200 px-3 text-center"
+              />
+            </div>
+          </SettingItem>
+          <SettingItem :title="t('Settings.Token.Title')" :subtitle="t('Settings.Token.SubTitle')">
+            <div class="flex justify-end">
+              <button
+                class="mr-1 flex h-9 w-9 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center"
+              >
+                <div class="flex items-center justify-center">
+                  <VSvgIcon icon="eye-off" class="h-4 w-4" />
+                </div>
+              </button>
+              <input
+                v-model="settings.apiKey"
+                type="password"
+                :placeholder="t('Settings.Token.Placeholder')"
+                class="h-9 w-52 cursor-text rounded-xl border border-neutral-200 px-3 text-center"
+              />
+            </div>
+          </SettingItem>
 
           <SettingItem
             :title="t('Settings.Usage.Title')"
