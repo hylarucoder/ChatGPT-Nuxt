@@ -3,7 +3,7 @@ import { onMounted } from "vue"
 import VEmojiAvatar from "~/components/VEmojiAvatar.vue"
 import { useTrans } from "~/composable/locales"
 import { languageOptions, modelOptions, sendKeyOptions, themeOptions, useSettingStore } from "~/composable/settings"
-import SettingItem from "~/src/pages/chat/settings/SettingItem.vue"
+import SettingItem from "~/pages/chat/settings/SettingItem.vue"
 
 const settingStore = useSettingStore()
 const settings = settingStore.settings
