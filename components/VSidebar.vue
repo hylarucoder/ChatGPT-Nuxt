@@ -12,7 +12,7 @@ const { t, n } = useI18n<{ message: TLocale }>({
       <div class="text-[0.75rem]">Build your own AI assistant.</div>
 
       <div class="absolute right-0 top-2">
-        <img src="/nuxt.svg" class="h-16 w-16" />
+        <img src="/nuxt.svg" class="h-16 w-16 opacity-80" />
       </div>
     </div>
     <div class="mb-5 flex space-x-2">
