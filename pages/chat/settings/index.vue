@@ -11,9 +11,16 @@ onMounted(() => {
   settingStore.fetchRemoteLatestCommitDate()
 })
 
-const { t } = useI18n<{ message: TLocale }>({
+const { t, setLocale } = useI18n<{ message: TLocale }>({
   useScope: "global",
 })
+
+watch(
+  () => settings.language,
+  () => {
+    setLocale(settings.language)
+  }
+)
 </script>
 <template>
   <ClientOnly>
