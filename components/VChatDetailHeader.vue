@@ -1,12 +1,9 @@
 <script lang="ts" setup>
 import { useRoutedChatSession } from "~/composable/chat"
+import { useTrans } from "~/composable/locales"
 
 const chatSession = useRoutedChatSession()
-import { TLocale } from "~/locales/en"
-
-const { t } = useI18n<{ message: TLocale }>({
-  useScope: "global",
-})
+const { t } = useTrans()
 </script>
 <template>
   <div class="relative flex items-center justify-between border border-gray-200 px-5 py-3.5">

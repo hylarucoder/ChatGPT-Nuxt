@@ -142,6 +142,9 @@ devDependencies:
   sass:
     specifier: ^1.63.6
     version: registry.npmmirror.com/sass@1.63.6
+  tsx:
+    specifier: ^3.12.7
+    version: registry.npmmirror.com/tsx@3.12.7
   vite-svg-loader:
     specifier: ^4.0.0
     version: registry.npmmirror.com/vite-svg-loader@4.0.0

@@ -128,6 +128,8 @@ const defaultSettings = {
   frequencyPenalty: 0.0,
   historyMessagesCount: 4,
   historyMessagesThreshold: 1000,
+  compressMessageLengthThreshold: 1000,
+  serverUrl: "https://api.openai.com",
   historySummary: false,
   disableAutoCompletePrompt: false,
   latestCommitDate: "",

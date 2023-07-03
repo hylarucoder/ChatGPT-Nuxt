@@ -1,5 +1,6 @@
 import { defineStore } from "pinia"
 import { ComputedRef, ref } from "vue"
+import { useSettingStore } from "~/composable/settings"
 import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
 import { fetchStream } from "~/constants/api"
 import { TChatDirection, TChatSession, TMask } from "~/constants/typing"
@@ -169,6 +170,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
   if (cachedChatSession.has(sid)) {
     return cachedChatSession.get(sid) as TUseChatSession
   }
+  const { settings } = useSettingStore()
   const loaded = loadFromLocalStorage(StoreKey.ChatSession, {
     sessions: [] as TChatSession[],
     sessionGid: 10000,
@@ -257,11 +259,16 @@ export const useChatSession = (sid: string): TUseChatSession => {
     }, 500)
     chatStore.refreshSession(session)
 
-    fetchStream(payload, (receivedData: string) => {
-      clearInterval(loadingInterval) // 清除定时器
-      nMessage.content = receivedData
-      debounceSave()
-    }).catch((error) => {
+    fetchStream(
+      payload,
+      (receivedData: string) => {
+        clearInterval(loadingInterval) // 清除定时器
+        nMessage.content = receivedData
+        debounceSave()
+      },
+      settings.serverUrl,
+      settings.apiKey
+    ).catch((error) => {
       clearInterval(loadingInterval) // 清除定时器
       console.error("Error occurred:", error)
     })

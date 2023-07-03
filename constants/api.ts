@@ -1,14 +1,20 @@
 import { fetchEventSource } from "@fortaine/fetch-event-source"
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL
-const API_URL = `${BASE_URL}/v1/chat/completions`
+// const BASE_URL = import.meta.env.VITE_API_BASE_URL
 
-export async function fetchStream(payload: any, callback: (receivedData: string) => void) {
+export async function fetchStream(
+  payload: any,
+  callback: (receivedData: string) => void,
+  BASE_URL: string,
+  TOKEN: string
+) {
+  const API_URL = `${BASE_URL}/v1/chat/completions`
   let receivedData = ""
   await fetchEventSource(API_URL, {
     method: "POST",
     headers: {
       Accept: "text/event-stream",
+      Authorization: `Bearer ${TOKEN}`,
     },
     body: JSON.stringify({
       ...payload,

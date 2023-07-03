@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useTrans } from "~/composable/locales"
 import { TPrompts, useMasks } from "~/composable/mask"
 import { TLocale } from "~/locales/en"
 import { getRandomEmoji } from "~/utils/emoji"
@@ -19,9 +20,7 @@ const newSessionAndNav = (mask: TPrompts) => {
     path: "/chat/session/" + session.id,
   })
 }
-const { t } = useI18n<{ message: TLocale }>({
-  useScope: "global",
-})
+const { t } = useTrans()
 
 const visible = ref(false)
 </script>

@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-import { TLocale } from "~/locales/en"
+import { useTrans } from "~/composable/locales"
 
-const { t, n } = useI18n<{ message: TLocale }>({
-  useScope: "global",
-})
+const { t } = useTrans()
 </script>
 <template>
   <div class="z-10 flex w-[--sidebar-width] max-w-[300px] flex-shrink-0 flex-col overflow-hidden bg-cyan-50 p-5 shadow">

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onMounted } from "vue"
 import VEmojiAvatar from "~/components/VEmojiAvatar.vue"
+import { useTrans } from "~/composable/locales"
 import { languageOptions, modelOptions, sendKeyOptions, themeOptions, useSettingStore } from "~/composable/settings"
-import { TLocale } from "~/locales/en"
 import SettingItem from "~/pages/chat/settings/SettingItem.vue"
 
 const settingStore = useSettingStore()
@@ -11,9 +11,7 @@ onMounted(() => {
   settingStore.fetchRemoteLatestCommitDate()
 })
 
-const { t, setLocale } = useI18n<{ message: TLocale }>({
-  useScope: "global",
-})
+const { t, setLocale } = useTrans()
 
 watch(
   () => settings.language,
@@ -110,36 +108,10 @@ watch(
           </SettingItem>
         </div>
         <div class="mb-5 divide-y rounded-xl border shadow-sm">
-          <SettingItem :title="t('Settings.Token.Title')" :subtitle="t('Settings.Token.SubTitle')">
+          <SettingItem :title="t('Settings.Endpoint.Title')" :subtitle="t('Settings.Endpoint.SubTitle')">
             <div class="flex justify-end">
-              <button
-                class="mr-1 flex h-9 w-9 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center"
-              >
-                <div class="flex items-center justify-center">
-                  <VSvgIcon icon="eye-off" class="h-4 w-4" />
-                </div>
-              </button>
               <input
-                v-model="settings.apiKey"
-                type="password"
-                :placeholder="t('Settings.Token.Placeholder')"
-                class="h-9 w-52 cursor-text rounded-xl border border-neutral-200 px-3 text-center"
-              />
-            </div>
-          </SettingItem>
-          <SettingItem :title="t('Settings.Token.Title')" :subtitle="t('Settings.Token.SubTitle')">
-            <div class="flex justify-end">
-              <button
-                class="mr-1 flex h-9 w-9 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center"
-              >
-                <div class="flex items-center justify-center">
-                  <VSvgIcon icon="eye-off" class="h-4 w-4" />
-                </div>
-              </button>
-              <input
-                v-model="settings.apiKey"
-                type="password"
-                :placeholder="t('Settings.Token.Placeholder')"
+                v-model="settings.serverUrl"
                 class="h-9 w-52 cursor-text rounded-xl border border-neutral-200 px-3 text-center"
               />
             </div>
