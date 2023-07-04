@@ -8,6 +8,7 @@ import remarkSqueezeParagraphs from "remark-squeeze-paragraphs"
 import remarkRehype from "remark-rehype"
 import rehypeHighlight from "rehype-highlight"
 import rehypeStringify from "rehype-stringify"
+import rehypeSanitize from "rehype-sanitize"
 
 const processor = unified()
   .use(remarkParse)
@@ -16,6 +17,7 @@ const processor = unified()
   .use(remarkSqueezeParagraphs)
   .use(remarkGfm)
   .use(rehypeHighlight)
+  .use(rehypeSanitize)
   .use(rehypeStringify)
 
 const props = defineProps({
@@ -23,18 +25,23 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  cid: {
-    type: String,
-    default: "TODO-uid",
-  },
 })
 
 const parsedMarkdown = ref(props.md)
 
+const throttleParse = useThrottleFn(
+  (s) => {
+    const a = processor.processSync(s)
+    parsedMarkdown.value = String(a)
+  },
+  80,
+  true,
+  true
+)
+
 watchEffect(async () => {
   try {
-    const a = processor.processSync(props.md || "...")
-    parsedMarkdown.value = String(a)
+    await throttleParse(props.md || "...")
   } catch (err) {
     parsedMarkdown.value = ""
   }

@@ -6,7 +6,7 @@ const chatSession = useRoutedChatSession()
 const { t } = useTrans()
 </script>
 <template>
-  <div class="relative flex items-center justify-between border border-gray-200 px-5 py-3.5">
+  <div class="relative flex items-center justify-between border-b border-gray-200 px-5 py-3.5">
     <div class="truncate">
       <div class="cursor-pointer truncate text-[1.25rem] font-bold">{{ chatSession.session.topic }}</div>
       <div class="mt-1 text-[0.88rem]">

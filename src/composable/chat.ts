@@ -84,12 +84,17 @@ export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
     sessionGid.value = loaded.sessionGid
   }
 
-  const saveAll = debounce(() => {
-    saveToLocalStorage(StoreKey.ChatSession, {
-      sessions: sessions.value,
-      sessionGid: sessionGid.value,
-    })
-  }, 1000)
+  const saveAll = useThrottleFn(
+    () => {
+      saveToLocalStorage(StoreKey.ChatSession, {
+        sessions: sessions.value,
+        sessionGid: sessionGid.value,
+      })
+    },
+    1000,
+    true,
+    true
+  )
 
   const clearSessions = () => {
     sessions.value = []
