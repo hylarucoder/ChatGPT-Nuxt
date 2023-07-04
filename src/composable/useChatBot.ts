@@ -64,7 +64,8 @@ export default function useChatBot() {
             onMessage(message)
           }
         } catch (e) {
-          throw e
+          message.content = String(s)
+          onError(message)
         }
       },
       onerror(ev) {
