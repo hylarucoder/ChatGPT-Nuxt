@@ -1,6 +1,9 @@
 <script lang="ts" setup>
+import { useTrans } from "~/composable/locales"
 import { TChatSession } from "~/constants/typing"
 import { formatDateString } from "~/utils/date"
+
+const { t } = useTrans()
 
 const props = defineProps<{
   session: TChatSession
@@ -23,7 +26,7 @@ const onDeleteSession = () => {
   >
     <div class="truncate text-[0.88rem] font-bold">{{ session.topic }}</div>
     <div class="mt-2 flex justify-between text-[0.75rem] text-neutral-400">
-      <div class="truncate">{{ session.messagesCount }} 条对话</div>
+      <div class="truncate">{{ t("ChatItem.ChatItemCount", { count: session.messagesCount }) }}</div>
       <div class="truncate">{{ formatDateString(session.lastUpdate) }}</div>
     </div>
     <span
