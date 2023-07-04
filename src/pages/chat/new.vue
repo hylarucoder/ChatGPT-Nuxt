@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import MaskCard from "~/components/MaskCard.vue"
 import { TLang, TPrompts, useMasks } from "~/composable/mask"
+import { useMaskGroup } from "~/composable/maskGroup"
 import { getRandomEmoji } from "~/utils/emoji"
 import { useSidebarChatSessions } from "~/composable/chat"
 
 const router = useRouter()
 const chatStore = useSidebarChatSessions()
 const masksUse = useMasks()
+const { groups, computeGroup } = useMaskGroup(masksUse.masks)
+
+const maskRef = ref<HTMLDivElement | null>(null)
 
 const newSessionAndNav = (mask: TPrompts) => {
   const session = chatStore.newSession(undefined, {
@@ -19,24 +23,23 @@ const newSessionAndNav = (mask: TPrompts) => {
   })
 }
 
-function splitArrayIntoChunks<T>(arr: T[], rows: number, cols: number) {
-  const result = []
-  let index = 0
+onMounted(() => {
+  computeGroup()
+})
 
-  for (let row = 0; row < rows; row++) {
-    const rowData = []
-    for (let col = 0; col < cols && index < arr.length; col++) {
-      rowData.push(arr[index])
-      index++
+watch(
+  [groups, masksUse.masks],
+  () => {
+    if (maskRef.value && !!masksUse.masks) {
+      computeGroup()
+      maskRef.value.scrollLeft = (maskRef.value.scrollWidth - maskRef.value.clientWidth) / 4
     }
-    result.push(rowData)
-  }
-
-  return result
-}
+  },
+  { deep: true, flush: "post" }
+)
 </script>
 <template>
-  <div class="flex w-full flex-shrink flex-col items-center overflow-hidden">
+  <div id="app-body" class="flex w-full flex-shrink flex-col items-center overflow-hidden">
     <div class="flex w-full justify-between p-3 text-zinc-800">
       <button
         class="flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-white p-3 text-center hover:bg-gray-200"
@@ -104,8 +107,8 @@ function splitArrayIntoChunks<T>(arr: T[], rows: number, cols: number) {
         </div>
       </button>
     </div>
-    <div class="flex-grow items-center overflow-x-hidden pt-5">
-      <div class="mb-3 flex" v-for="(row, index) in splitArrayIntoChunks(masksUse.masks, 8, 18)" :key="index">
+    <div ref="maskRef" class="masks pt-5">
+      <div class="mask-row mb-3 flex" v-for="(row, index) in groups" :key="index">
         <MaskCard
           @click="
             newSessionAndNav({
@@ -123,3 +126,24 @@ function splitArrayIntoChunks<T>(arr: T[], rows: number, cols: number) {
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.masks {
+  flex-grow: 1;
+  width: 100%;
+  overflow: auto;
+
+  $linear: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+
+  -webkit-mask-image: $linear;
+  mask-image: $linear;
+
+  .mask-row {
+    @for $i from 1 to 10 {
+      &:nth-child(#{$i * 2}) {
+        margin-left: 60px;
+      }
+    }
+  }
+}
+</style>
