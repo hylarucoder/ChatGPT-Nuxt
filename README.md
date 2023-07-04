@@ -26,7 +26,6 @@ One-Click to get well-designed cross-platform ChatGPT web UI.
 <img width="1221" alt="image" src="https://github.com/hylarucoder/ChatGPT-Nuxt/assets/5625783/a5715e67-40be-4f0f-b8fb-9d3c59858abd">
 <img width="1210" alt="image" src="https://github.com/hylarucoder/ChatGPT-Nuxt/assets/5625783/7418bf87-4541-4c71-bb91-19d8327e8096">
 
-
 ## TODO
 
 - [ ] v0.1 🔥 完成 ChatGPT-Next-Web 所有功能的迁移
@@ -51,4 +50,5 @@ One-Click to get well-designed cross-platform ChatGPT web UI.
 
 - https://github.com/Yidadaa/ChatGPT-Next-Web
 - https://github.com/antfu/vitesse-nuxt3
-- nuxt/content
+- https://github.com/nuxt/content
+- https://github.com/nuxtlabs/ui

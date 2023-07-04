@@ -4,7 +4,7 @@
     @click="$emit('click')"
   >
     <div class="flex items-center justify-center">
-      <Icon :size="size" :name="icon"></Icon>
+      <span :class="icon" class="h-5 w-5" />
     </div>
   </button>
 </template>

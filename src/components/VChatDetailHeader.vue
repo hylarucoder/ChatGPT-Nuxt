@@ -15,13 +15,13 @@ const { t } = useTrans()
     </div>
     <div class="flex w-[150px]">
       <div class="ml-3">
-        <HeadIconButton icon="ph:pen-bold" @click="chatSession.rename()" size="1.2em" />
+        <HeadIconButton icon="i-mdi-circle-edit-outline" @click="chatSession.rename()" size="1.2em" />
       </div>
       <div class="ml-3">
-        <HeadIconButton icon="uil:share" size="1.2em" />
+        <HeadIconButton icon="i-mdi-share-all-outline bg-black" size="1.2em" />
       </div>
       <div class="ml-3">
-        <HeadIconButton icon="gg:maximize-alt" size="1.2em" />
+        <HeadIconButton icon="i-mdi-window-maximize" size="1.2em" />
       </div>
     </div>
   </div>

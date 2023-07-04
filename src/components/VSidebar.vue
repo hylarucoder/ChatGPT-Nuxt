@@ -15,10 +15,10 @@ const { t } = useTrans()
     </div>
     <div class="mb-5 flex space-x-2">
       <NuxtLink class="flex-grow" :to="`/chat/masks`">
-        <IconButton icon="bx:bot" :text="t(`Mask.Name`)" />
+        <IconButton icon="i-mdi-robot-happy-outline" :text="t(`Mask.Name`)" />
       </NuxtLink>
       <NuxtLink class="flex-grow" :to="`/chat/plugins`">
-        <IconButton icon="bi:magic" :text="t(`Plugin.Name`)" />
+        <IconButton icon="i-mdi-folder-search-outline" :text="t(`Plugin.Name`)" />
       </NuxtLink>
     </div>
     <div class="flex-grow overflow-x-hidden">
@@ -28,13 +28,13 @@ const { t } = useTrans()
       <div class="flex">
         <div>
           <NuxtLink to="/chat/settings" class="cursor-pointer">
-            <IconButton icon="icon-park-outline:setting-one" />
+            <IconButton icon="i-mdi-cog-outline" />
           </NuxtLink>
         </div>
       </div>
       <div>
         <NuxtLink :to="`/chat/new`">
-          <IconButton icon="zondicons:add-outline" size="0.9em" :text="t(`Home.NewChat`)" />
+          <IconButton icon="i-mdi-chat-outline" size="0.9em" :text="t(`Home.NewChat`)" />
         </NuxtLink>
       </div>
     </div>

@@ -40,16 +40,18 @@ const composeNewMessage = () => {
       <div
         class="mb-3 mr-1 flex cursor-pointer items-center rounded-2xl border px-3 py-1 text-[0.75rem] hover:bg-gray-200"
       >
-        <Icon name="bx:bot" size="1.4em" />
+        <span class="i-mdi-robot-excited-outline" size="1.4em" />
       </div>
     </div>
     <div class="flex flex-grow">
-      <textarea
-        class="min-h-24 relative h-24 w-full cursor-text break-words rounded-xl border"
-        :placeholder="`[` + setting.sendKey + ']' + ' to Send'"
-        v-model="chatSession.session.composeInput"
-        @keydown="handleKeyDown"
-      />
+      <div class="min-h-24 w-full">
+        <UTextarea
+          autoresize
+          :placeholder="`[` + setting.sendKey + ']' + ' to Send'"
+          v-model="chatSession.session.composeInput"
+          @keydown="handleKeyDown"
+        />
+      </div>
       <button
         @click="composeNewMessage"
         class="absolute bottom-4 right-4 flex h-10 cursor-pointer items-center justify-center truncate rounded-xl px-4 py-4 text-center text-white"
@@ -60,7 +62,7 @@ const composeNewMessage = () => {
         }"
       >
         <div class="flex items-center justify-center">
-          <Icon name="lucide:send" size="1.0em" />
+          <span class="i-lucide-send" size="1.0em" />
         </div>
         <div class="ml-1 truncate text-[0.75rem]">
           {{ t("Chat.Send") }}
