@@ -7,3 +7,4 @@ dist
 .idea/
 .DS_Store
 .vscode/
+.pnpm-store/

@@ -4,8 +4,8 @@ BUILDER_TARGET_IMAGE_TAG = "nuxt-builder"
 
 .PHONY: builder
 builder:
-	docker build -t $(BUILDER_TARGET_IMAGE_TAG) --progress plain -f builder.dockerfile .
-	#docker buildx build -t $(BUILDER_TARGET_IMAGE_TAG) --push --progress plain  -f builder.dockerfile .
+	docker build -t $(BUILDER_TARGET_IMAGE_TAG) --progress plain -f .docker/builder.dockerfile .
+	#docker buildx build -t $(BUILDER_TARGET_IMAGE_TAG) --push --progress plain  -f .docker/builder.dockerfile .
 
 build:
 	pnpm install && pnpm build
@@ -16,6 +16,6 @@ package:
 
 
 .PHONY: release
-release: builder package
-	docker build -t $(RELEASE_IMAGE_TAG) --progress plain -f release.dockerfile .
-	#docker buildx build -t $(RELEASE_IMAGE_TAG) --push --progress plain  -f Dockerfile .
+release:
+	docker build -t $(RELEASE_IMAGE_TAG) --progress plain -f .docker/release.dockerfile .
+	#docker buildx build -t $(RELEASE_IMAGE_TAG) --push --progress plain  -f .docker/release.dockerfile .
