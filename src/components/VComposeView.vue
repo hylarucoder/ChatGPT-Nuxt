@@ -44,12 +44,14 @@ const composeNewMessage = () => {
       </div>
     </div>
     <div class="flex flex-grow">
-      <textarea
-        class="min-h-24 relative h-24 w-full cursor-text break-words rounded-xl border"
-        :placeholder="`[` + setting.sendKey + ']' + ' to Send'"
-        v-model="chatSession.session.composeInput"
-        @keydown="handleKeyDown"
-      />
+      <div class="min-h-24 w-full">
+        <UTextarea
+          autoresize
+          :placeholder="`[` + setting.sendKey + ']' + ' to Send'"
+          v-model="chatSession.session.composeInput"
+          @keydown="handleKeyDown"
+        />
+      </div>
       <button
         @click="composeNewMessage"
         class="absolute bottom-4 right-4 flex h-10 cursor-pointer items-center justify-center truncate rounded-xl px-4 py-4 text-center text-white"

@@ -91,15 +91,9 @@ watch(
           </SettingItem>
 
           <SettingItem :title="t('Settings.FontSize.Title')" :subtitle="t('Settings.FontSize.SubTitle')">
-            <div class="flex rounded-xl border border-neutral-200 px-3 py-1 pr-3.5 text-[0.75rem]">
-              {{ settings.fontSize }}px
-              <UIInputRange
-                :step="1"
-                :max="18"
-                :min="10"
-                v-model="settings.fontSize"
-                class="ml-1 h-5 w-32 text-center"
-              />
+            <div class="flex w-40 items-center justify-center">
+              <span class="mr-2 w-6"> {{ settings.fontSize }}px </span>
+              <URange step="1" max="18" min="10" v-model="settings.fontSize" />
             </div>
           </SettingItem>
 
@@ -172,29 +166,24 @@ watch(
           </SettingItem>
 
           <SettingItem :title="t('Settings.Temperature.Title')" :subtitle="t('Settings.Temperature.SubTitle')">
-            <div class="flex rounded-xl border border-neutral-200 px-3 py-1 pr-3.5 text-[0.75rem]">
-              {{ settings.temperature }}
-              <UIInputRange :min="0.0" :max="1.0" :step="0.1" class="ml-1" v-model="settings.temperature" />
+            <div class="flex w-40 items-center justify-center">
+              <span class="mr-2">{{ settings.temperature }}</span>
+              <URange min="0.0" max="1.0" step="0.1" v-model="settings.temperature" />
             </div>
           </SettingItem>
 
           <SettingItem :title="t('Settings.MaxTokens.Title')" :subtitle="t('Settings.MaxTokens.SubTitle')">
-            <UIInputNumber
-              class="h-9 w-20 cursor-text rounded-xl border border-neutral-200 px-3 text-center"
-              v-model="settings.maxTokens"
-            />
+            <div class="w-20">
+              <UInput type="number" v-model="settings.maxTokens" />
+            </div>
           </SettingItem>
 
           <SettingItem :title="t('Settings.PresencePenalty.Title')" :subtitle="t('Settings.PresencePenalty.SubTitle')">
-            <div class="flex rounded-xl border border-neutral-200 px-3 py-1 pr-3.5 text-[0.75rem]">
-              {{ settings.presencePenalty }}
-              <UIInputRange
-                :min="-2.0"
-                :max="2.0"
-                :step="0.1"
-                v-model="settings.presencePenalty"
-                class="ml-1 h-5 w-32 text-center"
-              />
+            <div class="flex w-40 items-center justify-center">
+              <span class="mr-2">
+                {{ settings.presencePenalty }}
+              </span>
+              <URange :min="-2.0" :max="2.0" :step="0.1" v-model="settings.presencePenalty" />
             </div>
           </SettingItem>
 
@@ -202,28 +191,20 @@ watch(
             :title="t('Settings.FrequencyPenalty.Title')"
             :subtitle="t('Settings.FrequencyPenalty.SubTitle')"
           >
-            <div class="flex rounded-xl border border-neutral-200 px-3 py-1 pr-3.5 text-[0.75rem]">
-              {{ settings.frequencyPenalty }}
-              <UIInputRange
-                :min="-2.0"
-                :max="2.0"
-                :step="0.1"
-                v-model="settings.frequencyPenalty"
-                class="ml-1 h-5 w-32 text-center"
-              />
+            <div class="flex w-40 items-center justify-center">
+              <span class="mr-2">
+                {{ settings.frequencyPenalty }}
+              </span>
+              <URange :min="-2.0" :max="2.0" :step="0.1" v-model="settings.frequencyPenalty" />
             </div>
           </SettingItem>
 
           <SettingItem :title="t('Settings.HistoryCount.Title')" :subtitle="t('Settings.HistoryCount.SubTitle')">
-            <div class="flex rounded-xl border border-neutral-200 px-3 py-1 pr-3.5 text-[0.75rem]">
-              {{ settings.historyMessagesCount }}
-              <UIInputRange
-                :min="0"
-                :max="32"
-                :step="1"
-                class="ml-1 h-5 w-32 text-center"
-                v-model="settings.historyMessagesCount"
-              />
+            <div class="flex w-40 items-center justify-center">
+              <span class="mr-2">
+                {{ settings.historyMessagesCount }}
+              </span>
+              <URange :min="0" :max="32" :step="1" v-model="settings.historyMessagesCount" />
             </div>
           </SettingItem>
 
@@ -231,10 +212,9 @@ watch(
             :title="t('Settings.CompressThreshold.Title')"
             :subtitle="t('Settings.CompressThreshold.SubTitle')"
           >
-            <UIInputNumber
-              class="h-9 w-20 cursor-text rounded-xl border border-neutral-200 px-3 text-center"
-              v-model="settings.compressMessageLengthThreshold"
-            />
+            <div class="w-20">
+              <UInput type="number" v-model="settings.compressMessageLengthThreshold" />
+            </div>
           </SettingItem>
 
           <SettingItem :title="t('Memory.Title')" :subtitle="t('Memory.Send')">

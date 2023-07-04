@@ -10,18 +10,14 @@ function getGitCommitDateYMD() {
 }
 
 export default defineNuxtConfig({
-  // @ts-ignore
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
   srcDir: "src/",
   build: {
     transpile: ["trpc-nuxt"],
   },
-  css: ["~/assets/css/globals.css", "~/assets/scss/index.scss"],
+  css: [
+    // "~/assets/css/globals.css",
+    "~/assets/scss/index.scss",
+  ],
   runtimeConfig: {
     public: {
       LATEST_COMMIT_DATE: getGitCommitDateYMD(),
@@ -38,6 +34,9 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxthq/ui",
   ],
+  ui: {
+    icons: ["mdi", "lucide"],
+  },
 
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
