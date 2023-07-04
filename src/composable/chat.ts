@@ -270,6 +270,9 @@ export const useChatSession = (sid: string): TUseChatSession => {
       settings.apiKey
     ).catch((error) => {
       clearInterval(loadingInterval) // 清除定时器
+      // 在聊天中展示 error message
+      nMessage.isError = true
+      nMessage.content = `Error occurred: ${error}`
       console.error("Error occurred:", error)
     })
   }
@@ -299,7 +302,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
     // chatStore.saveAll()
   }
 
-  const result = {
+  const result = <TUseChatSession> {
     session,
     onUserInput,
     rename,
