@@ -35,9 +35,11 @@ const composeNewMessage = () => {
 }
 </script>
 <template>
-  <div class="relative flex-col rounded-xl border p-3">
+  <div class="relative flex-col rounded-xl border-t p-3">
     <div class="flex flex-wrap">
-      <div class="mb-3 mr-1 flex cursor-pointer items-center rounded-2xl border px-3 py-1 text-[0.75rem]">
+      <div
+        class="mb-3 mr-1 flex cursor-pointer items-center rounded-2xl border px-3 py-1 text-[0.75rem] hover:bg-gray-200"
+      >
         <Icon name="bx:bot" size="1.4em" />
       </div>
     </div>

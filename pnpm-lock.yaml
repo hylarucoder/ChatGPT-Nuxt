@@ -38,6 +38,9 @@ dependencies:
   rehype-highlight:
     specifier: ^6.0.0
     version: registry.npmmirror.com/rehype-highlight@6.0.0
+  rehype-sanitize:
+    specifier: ^5.0.1
+    version: registry.npmmirror.com/rehype-sanitize@5.0.1
   rehype-stringify:
     specifier: ^9.0.3
     version: registry.npmmirror.com/rehype-stringify@9.0.3
@@ -12825,6 +12828,16 @@ packages:
       hast-util-raw: registry.npmmirror.com/hast-util-raw@7.2.3
       unified: registry.npmmirror.com/unified@10.1.2
     dev: true
+
+  registry.npmmirror.com/rehype-sanitize@5.0.1:
+    resolution: {integrity: sha512-da/jIOjq8eYt/1r9GN6GwxIR3gde7OZ+WV8pheu1tL8K0D9KxM2AyMh+UEfke+FfdM3PvGHeYJU0Td5OWa7L5A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/rehype-sanitize/-/rehype-sanitize-5.0.1.tgz}
+    name: rehype-sanitize
+    version: 5.0.1
+    dependencies:
+      '@types/hast': registry.npmmirror.com/@types/hast@2.3.4
+      hast-util-sanitize: registry.npmmirror.com/hast-util-sanitize@4.1.0
+      unified: registry.npmmirror.com/unified@10.1.2
+    dev: false
 
   registry.npmmirror.com/rehype-slug@5.1.0:
     resolution: {integrity: sha512-Gf91dJoXneiorNEnn+Phx97CO7oRMrpi+6r155tTxzGuLtm+QrI4cTwCa9e1rtePdL4i9tSO58PeSS6HWfgsiw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/rehype-slug/-/rehype-slug-5.1.0.tgz}
