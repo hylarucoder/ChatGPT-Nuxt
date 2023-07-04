@@ -2,7 +2,7 @@ import { defineStore } from "pinia"
 import { ComputedRef, ref } from "vue"
 import { useSettingStore } from "~/composable/settings"
 import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
-import { fetchStream } from "~/constants/api"
+import useChatBot from "~/composable/useChatBot"
 import { TChatDirection, TChatSession, TMask } from "~/constants/typing"
 import { getUtcNow } from "~/utils/date"
 import { debounce } from "~/utils/debounce"
@@ -204,6 +204,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
   )
 
   const onNewMessage = (message: string) => {
+    const { chat, message: currentMessage } = useChatBot()
     // latest 4 messages
     const lastMessages = session.messages.slice(-4).map((message) => {
       return {
@@ -259,22 +260,23 @@ export const useChatSession = (sid: string): TUseChatSession => {
     }, 500)
     chatStore.refreshSession(session)
 
-    fetchStream(
-      payload,
-      (receivedData: string) => {
+    chat(
+      payload as TOpenApiChatCompletionMessage,
+      () => {},
+      (message) => {
         clearInterval(loadingInterval) // 清除定时器
-        nMessage.content = receivedData
+        nMessage.content = message.content
         debounceSave()
       },
-      settings.serverUrl,
-      settings.apiKey
-    ).catch((error) => {
-      clearInterval(loadingInterval) // 清除定时器
-      // 在聊天中展示 error message
-      nMessage.isError = true
-      nMessage.content = `Error occurred: ${error}`
-      console.error("Error occurred:", error)
-    })
+      (message) => {
+        clearInterval(loadingInterval) // 清除定时器
+        // 在聊天中展示 error message
+        nMessage.isError = true
+        nMessage.content = `Error occurred: ${message.errorMessage}`
+        console.error("Error occurred:", message.errorMessage)
+      },
+      () => {}
+    ).then((r) => {})
   }
 
   const onUserInput = async (content: string) => {
@@ -302,7 +304,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
     // chatStore.saveAll()
   }
 
-  const result = <TUseChatSession> {
+  const result = <TUseChatSession>{
     session,
     onUserInput,
     rename,

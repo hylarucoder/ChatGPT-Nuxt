@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoutedChatSession, useSidebarChatSessions } from "~/composable/chat"
+import { useSidebarChatSessions } from "~/composable/chat"
 
 const router = useRouter()
 
