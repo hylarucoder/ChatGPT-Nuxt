@@ -5,7 +5,6 @@ import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
 import useChatBot from "~/composable/useChatBot"
 import { TChatDirection, TChatSession, TMask } from "~/constants/typing"
 import { getUtcNow } from "~/utils/date"
-import { debounce } from "~/utils/debounce"
 import { loadFromLocalStorage, saveSessionToLocalStorage, saveToLocalStorage } from "./storage"
 
 function makeEmptySession(s: number, simple: TSimple, mask?: TMask): TChatSession {
@@ -199,13 +198,13 @@ export const useChatSession = (sid: string): TUseChatSession => {
   })
   session.messages.push(...res.messages)
 
-  const debounceSave = debounce(
+  const throttledSave = useThrottleFn(
     () => {
-      console.log("toRaw message before saving", toRaw(session.messages))
       saveSessionToLocalStorage(toRaw(session))
     },
     1000,
-    false
+    true,
+    true
   )
 
   const onNewMessage = (message: string) => {
@@ -271,7 +270,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
       (message) => {
         clearInterval(loadingInterval) // 清除定时器
         nMessage.content = message.content
-        debounceSave()
+        throttledSave()
       },
       (message) => {
         clearInterval(loadingInterval) // 清除定时器
