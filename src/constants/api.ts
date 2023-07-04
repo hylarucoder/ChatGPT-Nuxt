@@ -22,6 +22,8 @@ export async function fetchStream(
         console.log("Connection made ", res)
       } else if (res.status >= 400 && res.status < 500 && res.status !== 429) {
         console.log("Client-side error ", res)
+        // 抛出异常信息
+        throw `${res.status || res.statusText} ${res.type}`
       }
     },
     onmessage(ev) {
@@ -33,18 +35,18 @@ export async function fetchStream(
       }
       try {
         const parsedData = JSON.parse(ev.data)
-        let content = parsedData.choices[0].delta.content
+        // 这样当choices[0]不存在时，不会异常
+        let content = parsedData.choices[0]?.delta?.content
         if (content) {
           receivedData += content
           callback(receivedData)
         }
       } catch (e) {
-        // TODO: handle error?
-        console.log("onmessage error", e)
+        throw e
       }
     },
     onerror(ev) {
-      console.log("onerror", ev)
+      throw ev
     },
   })
 }
