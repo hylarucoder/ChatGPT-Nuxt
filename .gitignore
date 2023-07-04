@@ -7,4 +7,3 @@ dist
 .idea/
 .DS_Store
 .vscode/
-yarn.lock

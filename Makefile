@@ -8,7 +8,7 @@ builder:
 	#docker buildx build -t $(BUILDER_TARGET_IMAGE_TAG) --push --progress plain  -f builder.dockerfile .
 
 build:
-	yarn install && yarn build
+	pnpm install && pnpm build
 
 .PHONY: package
 package:
