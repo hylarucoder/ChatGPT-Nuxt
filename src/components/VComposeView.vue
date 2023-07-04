@@ -40,7 +40,7 @@ const composeNewMessage = () => {
       <div
         class="mb-3 mr-1 flex cursor-pointer items-center rounded-2xl border px-3 py-1 text-[0.75rem] hover:bg-gray-200"
       >
-        <Icon name="bx:bot" size="1.4em" />
+        <span class="i-mdi-robot-excited-outline" size="1.4em" />
       </div>
     </div>
     <div class="flex flex-grow">
@@ -60,7 +60,7 @@ const composeNewMessage = () => {
         }"
       >
         <div class="flex items-center justify-center">
-          <Icon name="lucide:send" size="1.0em" />
+          <span class="i-lucide-send" size="1.0em" />
         </div>
         <div class="ml-1 truncate text-[0.75rem]">
           {{ t("Chat.Send") }}

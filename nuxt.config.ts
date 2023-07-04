@@ -36,6 +36,7 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@vite-pwa/nuxt",
     "@nuxt/content",
+    "@nuxthq/ui",
   ],
 
   experimental: {
@@ -82,10 +83,10 @@ export default defineNuxtConfig({
           rel: "apple-touch-icon",
           href: "/apple-touch-icon.png",
         },
-        {
-          rel: "stylesheet",
-          href: "https://rsms.me/inter/inter.css",
-        },
+        // {
+        //   rel: "stylesheet",
+        //   href: "https://rsms.me/inter/inter.css",
+        // },
       ],
       script: [],
       meta: [

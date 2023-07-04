@@ -1,5 +1,8 @@
-// ignore eslint
-//
+const {
+  iconsPlugin,
+  getIconCollections,
+} = require("@egoist/tailwindcss-icons")
+
 const { fontFamily } = require("tailwindcss/defaultTheme")
 
 /** @type {import("tailwindcss").Config} */
@@ -78,6 +81,10 @@ module.exports = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    require("@tailwindcss/forms"),
+    // require("@tailwindcss/forms"),
+    iconsPlugin({
+      // Select the icon collections you want to use
+      collections: getIconCollections(["mdi", "lucide"]),
+    }),
   ],
 }

@@ -46,13 +46,13 @@ watch(
         </div>
         <div class="flex">
           <div class="ml-3">
-            <HeadIconButton icon="mdi:bin-outline" size="1.3em" />
+            <HeadIconButton icon="i-mdi-bin-outline" size="1.3em" />
           </div>
           <div class="ml-3">
-            <HeadIconButton icon="mdi:reload" size="1.3em" />
+            <HeadIconButton icon="i-mdi-reload" size="1.3em" />
           </div>
           <div class="ml-3">
-            <HeadIconButton icon="mdi:close" size="1.3em" />
+            <HeadIconButton icon="i-mdi-close" size="1.3em" />
           </div>
         </div>
       </div>
@@ -79,15 +79,15 @@ watch(
           </SettingItem>
 
           <SettingItem :title="t('Settings.SendKey')">
-            <UISelect :options="sendKeyOptions" v-model="settings.sendKey" />
+            <USelect class="min-w-100" :options="sendKeyOptions" v-model="settings.sendKey" />
           </SettingItem>
 
           <SettingItem :title="t('Settings.Theme')">
-            <UISelect :options="themeOptions" v-model="settings.theme" />
+            <USelect :options="themeOptions" v-model="settings.theme" />
           </SettingItem>
 
           <SettingItem :title="t('Settings.Lang.Name')">
-            <UISelect :options="languageOptions" v-model="settings.language" />
+            <USelect :options="languageOptions" v-model="settings.language" />
           </SettingItem>
 
           <SettingItem :title="t('Settings.FontSize.Title')" :subtitle="t('Settings.FontSize.SubTitle')">
@@ -104,19 +104,13 @@ watch(
           </SettingItem>
 
           <SettingItem :title="t('Settings.Mask.Title')" :subtitle="t('Settings.Mask.SubTitle')">
-            <UICheckbox
-              v-model="settings.maskLaunchPage"
-              class="flex h-4 w-4 cursor-pointer items-center justify-center rounded border bg-no-repeat text-center align-middle"
-            />
+            <UCheckbox v-model="settings.maskLaunchPage" />
           </SettingItem>
         </div>
         <div class="mb-5 divide-y rounded-xl border shadow-sm">
           <SettingItem :title="t('Settings.Endpoint.Title')" :subtitle="t('Settings.Endpoint.SubTitle')">
             <div class="flex justify-end">
-              <input
-                v-model="settings.serverUrl"
-                class="h-9 w-52 cursor-text rounded-xl border border-neutral-200 px-3 text-center"
-              />
+              <UInput v-model="settings.serverUrl" />
             </div>
           </SettingItem>
           <SettingItem :title="t('Settings.Token.Title')" :subtitle="t('Settings.Token.SubTitle')">
@@ -126,15 +120,14 @@ watch(
                 @click="apiKeyShow = !apiKeyShow"
               >
                 <div class="flex items-center justify-center">
-                  <Icon name="mdi:eye-outline" size="1.4em" v-if="apiKeyShow" />
-                  <Icon name="mdi:eye-off-outline" size="1.4em" v-if="!apiKeyShow" />
+                  <span class="i-mdi-eye-outline h-4 w-4" v-if="apiKeyShow" />
+                  <span class="i-mdi-eye-off-outline h-4 w-5" v-if="!apiKeyShow" />
                 </div>
               </button>
-              <input
+              <UInput
                 v-model="settings.apiKey"
                 :type="!apiKeyShow ? `password` : `text`"
                 :placeholder="t('Settings.Token.Placeholder')"
-                class="h-9 w-52 cursor-text rounded-xl border border-neutral-200 px-3 text-center"
               />
             </div>
           </SettingItem>
@@ -148,7 +141,7 @@ watch(
               class="flex h-10 w-24 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center hover:bg-gray-200"
             >
               <div :class="{ 'animate-spin': usageReloading }" class="flex items-center justify-center">
-                <Icon name="mdi:reload" size="1.3em" />
+                <span class="i-mdi-reload h-4 w-4" />
               </div>
               <div class="ml-1 truncate text-[0.75rem]">{{ t("Settings.Usage.Check") }}</div>
             </button>
@@ -156,7 +149,7 @@ watch(
         </div>
         <div class="mb-5 divide-y rounded-xl border shadow-sm">
           <SettingItem :title="t('Settings.Prompt.Disable.Title')" :subtitle="t('Settings.Prompt.Disable.SubTitle')">
-            <UICheckbox v-model="settings.disableAutoCompletePrompt" />
+            <UCheckbox v-model="settings.disableAutoCompletePrompt" />
           </SettingItem>
 
           <SettingItem
@@ -167,7 +160,7 @@ watch(
               class="flex h-10 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center hover:bg-gray-200"
             >
               <div class="flex items-center justify-center">
-                <Icon name="ph:pen-duotone" size="1.3em" />
+                <span class="i-mdi-pen h-4 w-4" />
               </div>
               <div class="ml-1 truncate text-[0.75rem]">{{ t("Settings.Prompt.Edit") }}</div>
             </button>
@@ -175,7 +168,7 @@ watch(
         </div>
         <div class="mb-5 divide-y rounded-xl border shadow-sm">
           <SettingItem :title="t('Settings.Model')">
-            <UISelect :options="modelOptions" v-model="settings.model" />
+            <USelect searchable :options="modelOptions" v-model="settings.model" />
           </SettingItem>
 
           <SettingItem :title="t('Settings.Temperature.Title')" :subtitle="t('Settings.Temperature.SubTitle')">
@@ -245,10 +238,7 @@ watch(
           </SettingItem>
 
           <SettingItem :title="t('Memory.Title')" :subtitle="t('Memory.Send')">
-            <UICheckbox
-              v-model="settings.historySummary"
-              class="flex h-4 w-4 cursor-pointer items-center justify-center rounded border bg-no-repeat text-center align-middle"
-            />
+            <UCheckbox v-model="settings.historySummary" />
           </SettingItem>
         </div>
       </div>

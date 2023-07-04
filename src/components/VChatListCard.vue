@@ -26,11 +26,10 @@ const onDeleteSession = () => {
       <div class="truncate">{{ session.messagesCount }} 条对话</div>
       <div class="truncate">{{ formatDateString(session.lastUpdate) }}</div>
     </div>
-    <Icon
-      name="carbon:close-outline"
+    <span
       size="1.3em"
       @click="onDeleteSession"
-      class="absolute right-2 top-2 h-5 w-5 cursor-pointer text-neutral-400 opacity-0 transition-opacity duration-200"
+      class="i-mdi-close-circle-outline absolute right-2 top-2 h-5 w-5 cursor-pointer text-neutral-400 opacity-0 transition-opacity duration-200"
       :class="{ 'opacity-100': upHere }"
       v-if="upHere"
     />

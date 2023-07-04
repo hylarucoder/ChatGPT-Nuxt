@@ -13,7 +13,7 @@ const hasText = Boolean(props.text)
     :class="hasText ? 'w-32' : ''"
   >
     <div class="flex items-center justify-center">
-      <Icon :name="icon" :size="size || '1.1em'" />
+      <span :class="icon" class="h-4 w-4" />
     </div>
     <div v-if="hasText" class="ml-1 truncate text-[0.75rem]">{{ text }}</div>
   </button>

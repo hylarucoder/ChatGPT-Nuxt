@@ -43,9 +43,9 @@ function splitArrayIntoChunks<T>(arr: T[], rows: number, cols: number) {
         @click="router.back()"
       >
         <div class="flex items-center justify-center">
-          <Icon name="mingcute:left-line" size="1.2em" />
+          <span class="i-mdi-chevron-left h-4" />
         </div>
-        <div class="ml-1 overflow-hidden text-ellipsis text-xs">
+        <div class="ml-0 overflow-hidden text-ellipsis text-xs">
           {{ $t("NewChat.Return") }}
         </div>
       </button>
