@@ -58,3 +58,5 @@ One-Click to get well-designed cross-platform ChatGPT web UI.
 - https://github.com/antfu/vitesse-nuxt3
 - https://github.com/nuxt/content
 - https://github.com/nuxtlabs/ui
+- https://github.com/sindresorhus/github-markdown-css
+- https://github.com/remarkjs/remark-rehype
