@@ -159,7 +159,8 @@ export const useSettingStore = defineStore(StoreKey.Setting, () => {
   }
   watch(
     () => settings,
-    () => {
+    (value, oldValue) => {
+      document.documentElement.style.setProperty("--markdown-font-size", `${value.fontSize}px`)
       saveToLocalStorage(StoreKey.Setting, settings)
     },
     { deep: true }
