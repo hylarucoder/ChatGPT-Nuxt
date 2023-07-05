@@ -15,9 +15,32 @@ const onDeleteSession = (id: string) => {
   router.push("/chat/session/" + newSession.id)
   chatStore.deleteSession(id)
 }
+const draggingItem = ref(null)
+
+const onDragStart = (index: number) => {
+  draggingItem.value = sessions[index]
+}
+
+const onDrop = (dropIndex: number) => {
+  const dragIndex = sessions.indexOf(draggingItem.value)
+  if (dragIndex !== dropIndex) {
+    sessions.splice(dragIndex, 1)
+    sessions.splice(dropIndex, 0, draggingItem.value)
+  }
+  draggingItem.value = null
+}
 </script>
 <template>
   <div>
-    <VChatListCard @onDeleteSession="onDeleteSession(session.id)" v-for="session in sessions" :session="session" />
+    <VChatListCard
+      class="cursor-pointer"
+      @onDeleteSession="onDeleteSession(session.id)"
+      @dragstart="() => onDragStart(index)"
+      @dragover.prevent
+      @drop="() => onDrop(index)"
+      draggable="true"
+      v-for="(session, index) in sessions"
+      :session="session"
+    />
   </div>
 </template>
