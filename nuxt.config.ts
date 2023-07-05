@@ -26,6 +26,7 @@ export default defineNuxtConfig({
   },
   modules: [
     "@nuxtjs/i18n",
+    "@nuxtjs/device",
     "nuxt-icon",
     "@vueuse/nuxt",
     "@pinia/nuxt",

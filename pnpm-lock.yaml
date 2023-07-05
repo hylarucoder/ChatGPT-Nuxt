@@ -76,6 +76,9 @@ devDependencies:
   '@nuxtjs/color-mode':
     specifier: ^3.3.0
     version: registry.npmmirror.com/@nuxtjs/color-mode@3.3.0(rollup@2.79.1)
+  '@nuxtjs/device':
+    specifier: ^3.1.0
+    version: registry.npmmirror.com/@nuxtjs/device@3.1.0(rollup@2.79.1)
   '@nuxtjs/eslint-module':
     specifier: ^4.1.0
     version: registry.npmmirror.com/@nuxtjs/eslint-module@4.1.0(eslint@8.44.0)(rollup@2.79.1)(vite@4.3.9)(webpack@5.83.1)
@@ -3369,6 +3372,19 @@ packages:
       '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.5.3(rollup@2.79.1)
       lodash.template: registry.npmmirror.com/lodash.template@4.5.0
       pathe: registry.npmmirror.com/pathe@1.1.1
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: true
+
+  registry.npmmirror.com/@nuxtjs/device@3.1.0(rollup@2.79.1):
+    resolution: {integrity: sha512-jXWCVuPmzsGpn86GTA9/TOmfWulf9h3r2g6o5LpoZk4P1a9McMlpbDiaMPmyG5erfCj6H+XoZ6HBPCN9DtoCDA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nuxtjs/device/-/device-3.1.0.tgz}
+    id: registry.npmmirror.com/@nuxtjs/device/3.1.0
+    name: '@nuxtjs/device'
+    version: 3.1.0
+    dependencies:
+      '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.6.1(rollup@2.79.1)
+      defu: registry.npmmirror.com/defu@6.1.2
     transitivePeerDependencies:
       - rollup
       - supports-color

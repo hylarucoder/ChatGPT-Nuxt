@@ -41,7 +41,7 @@ const printMessages = () => {
 }
 </script>
 <template>
-  <div class="flex flex-1 flex-col">
+  <div class="flex w-full flex-1 flex-col">
     <VChatDetailHeader @click="printMessages" />
     <div class="flex-grow overflow-y-scroll p-5" ref="el">
       <VChatMessage

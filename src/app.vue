@@ -1,8 +1,29 @@
 <script setup lang="ts">
+import { setMobileCssVariables } from "~/utils/css"
 import { appName } from "./constants"
 
 useHead({
   title: appName,
+})
+
+const { isMobile } = useDevice()
+
+onMounted(() => {
+  if (isMobile) {
+    useHead({
+      meta: [
+        {
+          name: "viewport",
+          content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
+        },
+      ],
+    })
+    setMobileCssVariables({
+      "--window-width": "100vw",
+      "--window-height": "100vh",
+      "--sidebar-width": "100vw",
+    })
+  }
 })
 </script>
 

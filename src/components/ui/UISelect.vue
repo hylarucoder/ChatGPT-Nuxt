@@ -1,7 +1,7 @@
 <template>
   <select
     v-model="inputRef.val"
-    class="inline-block min-w-fit max-w-xs cursor-pointer items-center rounded-xl border border-neutral-200 pb-1 pr-6 pt-1 text-center"
+    class="inline-block min-w-fit max-w-xs cursor-pointer items-center rounded-md border border-neutral-200 pb-1 pr-6 pt-1 text-center"
   >
     <option class="h-8 text-sm" v-for="option in options" :key="option.value" :value="option.value">
       {{ option.label }}

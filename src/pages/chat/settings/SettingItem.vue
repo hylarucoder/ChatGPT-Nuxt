@@ -12,7 +12,7 @@ defineProps({
         <div class="text-xs" v-if="subtitle">{{ subtitle }}</div>
       </div>
     </div>
-    <div class="flex rounded-xl border-neutral-200 px-3 py-1 pr-3.5 text-[0.75rem]">
+    <div class="flex rounded-md border-neutral-200 px-3 py-1 pr-3.5 text-[0.75rem]">
       <slot></slot>
     </div>
   </div>

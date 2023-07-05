@@ -9,7 +9,7 @@ const hasText = Boolean(props.text)
 </script>
 <template>
   <button
-    class="flex h-10 flex-grow cursor-pointer items-center justify-center truncate rounded-xl bg-white p-3 text-center drop-shadow-sm hover:bg-gray-200"
+    class="flex h-10 flex-grow cursor-pointer items-center justify-center truncate rounded-md bg-white p-3 text-center drop-shadow-sm hover:bg-gray-200"
     :class="hasText ? 'w-32' : ''"
   >
     <div class="flex items-center justify-center">
