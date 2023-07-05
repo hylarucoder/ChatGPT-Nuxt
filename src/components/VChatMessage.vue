@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { defineProps } from "vue"
 import { useRoutedChatSession } from "~/composable/chat"
 import { useSettingStore } from "~/composable/settings"
 import { TChatDirection, TChatMessage } from "~/constants/typing"
