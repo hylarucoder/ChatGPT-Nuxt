@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, reactive, watch, ref, defineEmits } from "vue"
+import { reactive, watch, ref } from "vue"
 
 const props = defineProps({
   modelValue: {

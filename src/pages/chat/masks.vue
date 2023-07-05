@@ -21,6 +21,33 @@ const newSessionAndNav = (mask: TPrompts) => {
 }
 const { t } = useTrans()
 
+const inputSearch = reactive({
+  q: "",
+  language: "all",
+})
+useThrottleFn(
+  () => {
+    maskUse.search({
+      q: inputSearch.q,
+    })
+  },
+  500,
+  true,
+  true
+  // TODO: revoke previous request if new request is sent
+)
+watch(
+  () => inputSearch,
+  (value) => {
+    maskUse.search({
+      q: value.q,
+    })
+  },
+  {
+    deep: true,
+  }
+)
+
 const visible = ref(false)
 </script>
 <template>
@@ -50,6 +77,7 @@ const visible = ref(false)
           <input
             type="text"
             :placeholder="t(`Mask.Page.Search`)"
+            v-model="inputSearch.q"
             class="h-10 flex-grow cursor-text rounded-xl border border-solid border-neutral-200 px-3 text-center text-[0.83rem]"
           />
           <div class="relative ml-3">
@@ -80,12 +108,12 @@ const visible = ref(false)
 
         <div class="divide-gray-200">
           <div
-            v-for="(mask, index) in maskUse.masks"
+            v-for="(mask, index) in maskUse.searchedMasks"
             style="border-color: rgb(222, 222, 222); border-style: solid"
             class="flex justify-between divide-gray-50 break-words border-b border-l border-r p-5"
             :class="{
               'rounded-tl-xl rounded-tr-xl border-t ': index === 0,
-              'rounded-bl-xl rounded-br-xl': index === maskUse.masks.length - 1,
+              'rounded-bl-xl rounded-br-xl': index === maskUse.searchedMasks.length - 1,
             }"
           >
             <div class="flex items-center overflow-auto text-ellipsis">

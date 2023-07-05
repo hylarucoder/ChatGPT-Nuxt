@@ -22,6 +22,7 @@ export const useMasks = defineStore(StoreKey.Mask, () => {
   const { settings } = useSettingStore()
   const masks = ref<TPrompts[]>([])
   const maskRows = ref<TPrompts[][]>([])
+  const searchedMasks = ref<TPrompts[]>([])
   const load = async () => {
     const newMasks = []
     const data = await $fetch<TPromptsJson>("/prompts.json")
@@ -46,6 +47,16 @@ export const useMasks = defineStore(StoreKey.Mask, () => {
       } else {
         return 1
       }
+    })
+    searchedMasks.value = masks.value
+  }
+  const search = ({ q, language }: { q?: string; language?: string }) => {
+    if (!q) {
+      searchedMasks.value = masks.value
+      return
+    }
+    searchedMasks.value = masks.value.filter((m) => {
+      return m.name.includes(q) || m.description.includes(q)
     })
   }
   const computeMaskRows = ({ width, height }: { width: number; height: number }) => {
@@ -79,5 +90,7 @@ export const useMasks = defineStore(StoreKey.Mask, () => {
     maskRows,
     load,
     computeMaskRows,
+    searchedMasks,
+    search,
   }
 })

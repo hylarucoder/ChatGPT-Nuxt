@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { defineComponent, ref, watchEffect } from "vue"
-import remarkEmoji from "remark-emoji"
+import { ref, watchEffect } from "vue"
 import { unified } from "unified"
 import remarkParse from "remark-parse"
 import remarkGfm from "remark-gfm"
@@ -12,10 +11,10 @@ import rehypeSanitize from "rehype-sanitize"
 
 const processor = unified()
   .use(remarkParse)
-  .use(remarkEmoji)
-  .use(remarkRehype)
-  .use(remarkSqueezeParagraphs)
   .use(remarkGfm)
+  .use(remarkRehype)
+  // .use(remarkEmoji)
+  .use(remarkSqueezeParagraphs)
   .use(rehypeHighlight)
   .use(rehypeSanitize)
   .use(rehypeStringify)
