@@ -26,15 +26,15 @@ const newSessionAndNav = (mask: TPrompts) => {
 const resizeMaskRows = useThrottleFn(
   ({ width, height }: { width: number; height: number }) => {
     if (!pageRef.value) return
-    if (!maskRef.value) return
     if (!masksUse.masks || masksUse.masks.length === 0) return
     masksUse.computeMaskRows({
       width,
       height,
     })
+    if (!maskRef.value) return
     maskRef.value.scrollLeft = (maskRef.value.scrollWidth - maskRef.value.clientWidth) / 2
   },
-  500,
+  200,
   true,
   true
 )
@@ -48,6 +48,7 @@ useResizeObserver(pageRef, (entries) => {
 })
 
 onMounted(() => {
+  console.log("on mounted")
   if (!pageRef.value) return
   resizeMaskRows({
     width: pageRef.value.clientWidth,
@@ -125,7 +126,7 @@ onMounted(() => {
       </button>
     </div>
     <div ref="maskRef" class="masks pt-5">
-      <div class="mask-row mb-3 flex" v-for="(row, i) in masksUse.maskGroups" :key="i">
+      <div class="mask-row mb-3 flex" v-for="(row, i) in masksUse.maskRows" :key="i">
         <MaskCard
           class="max-w-[200px]"
           @click="
