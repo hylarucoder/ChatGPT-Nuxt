@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, defineEmits, reactive, watch } from "vue"
+import { reactive, watch } from "vue"
 
 export interface UISelectOption {
   label: string

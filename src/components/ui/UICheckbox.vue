@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, reactive, defineEmits, watch } from "vue"
+import { reactive, watch } from "vue"
 
 const props = defineProps({
   checked: {
