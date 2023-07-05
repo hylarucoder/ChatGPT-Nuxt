@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted } from "vue"
 import MaskCard from "~/components/MaskCard.vue"
-import { TLang, TPrompts, useMasks } from "~/composable/mask"
+import { TPrompts, useMasks } from "~/composable/mask"
 import { getRandomEmoji } from "~/utils/emoji"
 import { useSidebarChatSessions } from "~/composable/chat"
 
 const router = useRouter()
 const chatStore = useSidebarChatSessions()
 const masksUse = useMasks()
-const masks = masksUse.masks
 
-const maskGroups = ref<TPrompts[][]>()
 const maskRef = ref<HTMLDivElement | null>(null)
+const pageRef = ref<HTMLDivElement | null>(null)
 
 const newSessionAndNav = (mask: TPrompts) => {
   const session = chatStore.newSession(undefined, {
@@ -24,59 +23,41 @@ const newSessionAndNav = (mask: TPrompts) => {
   })
 }
 
-const computeMaskGroup = () => {
-  const newMaskBody = document.getElementById("new-mask-body")
-  if (!newMaskBody || masks.length === 0) return
+const resizeMaskRows = useThrottleFn(
+  ({ width, height }: { width: number; height: number }) => {
+    if (!pageRef.value) return
+    if (!masksUse.masks || masksUse.masks.length === 0) return
+    masksUse.computeMaskRows({
+      width,
+      height,
+    })
+    if (!maskRef.value) return
+    maskRef.value.scrollLeft = (maskRef.value.scrollWidth - maskRef.value.clientWidth) / 2
+  },
+  200,
+  true,
+  true
+)
 
-  const rect = newMaskBody.getBoundingClientRect()
-  const maxWidth = rect.width
-  const maxHeight = rect.height * 0.6
-  const maskItemWidth = 120
-  const maskItemHeight = 50
-
-  const randomMask = () => masks[Math.floor(Math.random() * masks.length)]
-  let maskIndex = 0
-  const nextMask = () => masks[maskIndex++ % masks.length]
-
-  const rows = Math.ceil(maxHeight / maskItemHeight)
-  const cols = Math.ceil(maxWidth / maskItemWidth)
-
-  const newGroups = new Array(rows)
-    .fill(0)
-    .map((_, _i) => new Array(cols).fill(0).map((_, j) => (j < 1 || j > cols - 2 ? randomMask() : nextMask())))
-
-  maskGroups.value = newGroups
-}
+useResizeObserver(pageRef, (entries) => {
+  const { width, height } = entries[0].contentRect
+  resizeMaskRows({
+    width,
+    height,
+  })
+})
 
 onMounted(() => {
-  computeMaskGroup()
-  window.addEventListener("resize", computeMaskGroup)
+  console.log("on mounted")
+  if (!pageRef.value) return
+  resizeMaskRows({
+    width: pageRef.value.clientWidth,
+    height: pageRef.value.clientHeight,
+  })
 })
-
-onUnmounted(() => {
-  window.removeEventListener("resize", computeMaskGroup)
-})
-
-watch(
-  () => masks,
-  () => {
-    if (!!masks) computeMaskGroup()
-  },
-  { deep: true, flush: "post" }
-)
-
-watch(
-  () => maskGroups.value,
-  () => {
-    if (maskRef.value) {
-      maskRef.value.scrollLeft = (maskRef.value.scrollWidth - maskRef.value.clientWidth) / 2
-    }
-  },
-  { deep: true, flush: "post" }
-)
 </script>
 <template>
-  <div id="new-mask-body" class="flex w-full flex-shrink flex-col items-center overflow-hidden">
+  <div class="flex w-full flex-shrink flex-col items-center overflow-hidden" ref="pageRef">
     <div class="flex w-full justify-between p-3 text-zinc-800">
       <button
         class="flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-white p-3 text-center hover:bg-gray-200"
@@ -145,7 +126,7 @@ watch(
       </button>
     </div>
     <div ref="maskRef" class="masks pt-5">
-      <div class="mask-row mb-3 flex" v-for="(row, i) in maskGroups" :key="i">
+      <div class="mask-row mb-3 flex" v-for="(row, i) in masksUse.maskRows" :key="i">
         <MaskCard
           class="max-w-[200px]"
           @click="
