@@ -5,14 +5,14 @@
 <h1 align="center"> ChatGPT Nuxt </h1>
 
 <div align="center">
-[English](https://github.com/hylarucoder/ChatGPT-Nuxt)  
-<br>
-[简体中文](https://github.com/hylarucoder/ChatGPT-Nuxt/blob/main/README.zh-cn.md)
+  English
+  <a href="https://github.com/hylarucoder/ChatGPT-Nuxt/blob/main/README.zh-cn.md">简体中文</a>
 </div>
 
 One-Click to get well-designed cross-platform ChatGPT web UI.
 
-> Still in rapid development, the interfaces and project structure are constantly being adjusted. There are no documentation at this stage, and the code is relatively rough. Please make sure that you can understand the code.
+> Still in rapid development, the interfaces and project structure are constantly being adjusted. There are no
+> documentation at this stage, and the code is relatively rough. Please make sure that you can understand the code.
 > For serious use, please wait for version v0.1.
 
 ## Features

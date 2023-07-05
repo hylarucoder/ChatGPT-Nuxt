@@ -3,6 +3,10 @@
 </p>
 
 <h1 align="center"> ChatGPT Nuxt </h1>
+<div align="center">
+  <a href="https://github.com/hylarucoder/ChatGPT-Nuxt/blob/main/README.md">English</a>
+  简体中文
+</div>
 
 一键获取精心设计的跨平台的 ChatGPT Web UI
 
