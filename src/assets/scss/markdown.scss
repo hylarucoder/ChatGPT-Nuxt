@@ -49,8 +49,24 @@
     word-wrap: break-word;
   }
 
-  ul,
   ol {
+    padding-left: 1em;
+    margin-top: 0;
+    margin-bottom: 12px;
+    list-style: decimal;
+
+    ::marker {
+      user-select: all;
+    }
+
+    //li::before {
+    //  content: counter(li);
+    //  counter-increment: li;
+    //}
+  }
+
+  ul {
+    list-style: disc;
     padding-left: 1em;
     margin-top: 0;
     margin-bottom: 12px;
