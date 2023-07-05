@@ -21,6 +21,7 @@ export interface TPrompts {
 export const useMasks = defineStore(StoreKey.Mask, () => {
   const { settings } = useSettingStore()
   const masks = ref<TPrompts[]>([])
+  const maskRows = ref<TPrompts[][]>([])
   const load = async () => {
     const newMasks = []
     const data = await $fetch<TPromptsJson>("/prompts.json")
@@ -47,11 +48,36 @@ export const useMasks = defineStore(StoreKey.Mask, () => {
       }
     })
   }
+  const computeMaskRows = ({ width, height }: { width: number; height: number }) => {
+    if (!masks.value || masks.value.length === 0) return
+    console.log("doCompute, ", width)
+
+    const maxWidth = width
+    const maxHeight = height * 0.6
+    // why 120?
+    const maskItemWidth = 120
+    const maskItemHeight = 50
+
+    const randomMask = () => masks.value[Math.floor(Math.random() * masks.value.length)]
+    let maskIndex = 0
+    const nextMask = () => masks.value[maskIndex++ % masks.value.length]
+
+    const rows = Math.ceil(maxHeight / maskItemHeight)
+    const cols = Math.ceil(maxWidth / maskItemWidth)
+
+    maskRows.value = new Array(rows)
+      .fill(0)
+      .map((_, _i) => new Array(cols).fill(0).map((_, j) => (j < 1 || j > cols - 2 ? randomMask() : nextMask())))
+  }
+
   onMounted(() => {
     load().then((r) => {})
   })
+
   return {
     masks,
+    maskRows,
     load,
+    computeMaskRows,
   }
 })
