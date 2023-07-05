@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useTrans } from "~/composable/locales"
 import { TPrompts, useMasks } from "~/composable/mask"
+import { useSidebar } from "~/composable/useSidebar"
 import { getRandomEmoji } from "~/utils/emoji"
 import { ref } from "vue"
 import { useSidebarChatSessions } from "~/composable/chat"
@@ -8,6 +9,9 @@ import { useSidebarChatSessions } from "~/composable/chat"
 const router = useRouter()
 const chatStore = useSidebarChatSessions()
 const maskUse = useMasks()
+const sidebarUsed = useSidebar()
+const { isMobile } = useDevice()
+const visible = ref(false)
 
 const newSessionAndNav = (mask: TPrompts) => {
   const session = chatStore.newSession(undefined, {
@@ -15,6 +19,9 @@ const newSessionAndNav = (mask: TPrompts) => {
     description: mask.description,
     avatar: getRandomEmoji("a"),
   })
+  if (isMobile) {
+    sidebarUsed.hide()
+  }
   router.push({
     path: "/chat/session/" + session.id,
   })
@@ -47,13 +54,14 @@ watch(
     deep: true,
   }
 )
-
-const visible = ref(false)
 </script>
 <template>
   <ClientOnly>
     <div class="flex h-full flex-1 flex-col overflow-hidden">
       <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)" class="flex items-center justify-between px-5 py-3.5">
+        <div class="flex" v-if="isMobile">
+          <HeadIconButton icon="i-mdi-close-octagon-outline" size="1.3em" @click="sidebarUsed.show()" />
+        </div>
         <div class="overflow-hidden">
           <div class="overflow-hidden text-ellipsis text-xl font-bold">
             {{ t("Mask.Page.Title") }}
@@ -115,7 +123,7 @@ const visible = ref(false)
               'rounded-b-md ': index === maskUse.searchedMasks.length - 1,
             }"
           >
-            <div class="flex items-center overflow-auto text-ellipsis">
+            <div class="flex items-center overflow-hidden text-ellipsis">
               <div class="mr-3 flex items-center justify-center">
                 <div
                   style="border-bottom-color: rgb(222, 222, 222)"
@@ -131,23 +139,23 @@ const visible = ref(false)
             </div>
             <div class="flex">
               <button
-                class="flex h-9 w-20 cursor-pointer items-center justify-center overflow-hidden rounded-md p-3 text-center text-[0.83rem] hover:bg-gray-200"
+                class="flex h-9 cursor-pointer items-center justify-center overflow-hidden rounded-md py-3 text-center text-[0.83rem] hover:bg-gray-200 sm:w-20"
                 @click="newSessionAndNav(mask)"
               >
-                <div class="flex h-4 w-4 items-center justify-center">
-                  <span class="i-mdi-chat-outline h-4 w-4" />
+                <div class="flex items-center justify-center">
+                  <span class="i-mdi-chat-outline h-5 w-5 sm:h-4 sm:w-4" />
                 </div>
-                <div class="ml-1 overflow-hidden text-ellipsis text-xs">
+                <div class="ml-1 hidden overflow-hidden text-ellipsis text-xs sm:block">
                   {{ t(`Mask.Item.Chat`) }}
                 </div>
               </button>
               <button
-                class="flex h-9 w-20 cursor-pointer items-center justify-center overflow-hidden rounded-md p-3 text-center text-[0.83rem] hover:bg-gray-200"
+                class="flex h-9 cursor-pointer items-center justify-center overflow-hidden rounded-md py-3 text-center text-[0.83rem] hover:bg-gray-200 sm:w-20"
               >
-                <div class="flex h-6 w-6 items-center justify-center">
-                  <span class="i-mdi-eye-outline h-5 w-5" />
+                <div class="flex items-center justify-center">
+                  <span class="i-mdi-eye-outline h-5 w-5 sm:h-4 sm:w-4" />
                 </div>
-                <div class="ml-1 overflow-hidden text-ellipsis text-xs">
+                <div class="ml-1 hidden overflow-hidden text-ellipsis text-xs sm:block">
                   {{ t(`Mask.Item.View`) }}
                 </div>
               </button>

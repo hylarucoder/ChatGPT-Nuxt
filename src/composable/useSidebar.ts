@@ -1,29 +1,31 @@
 const routePrefix = ["/chat/session", "/chat/settings", "/chat/new", "/chat/plugins", "/chat/masks"]
+const visible = ref(true)
 
-export const useMobileFullScreen = () => {
+export const useSidebar = () => {
   const { isMobile } = useDevice()
-  const isMobileFullScreen = ref(false)
   const route = useRoute()
 
   const computeMobileFullScreen = () => {
     if (!isMobile) {
-      isMobileFullScreen.value = false
+      visible.value = true
       return
     }
-    isMobileFullScreen.value = routePrefix.some((prefix) => route.path.startsWith(prefix))
+    visible.value = routePrefix.some((prefix) => route.path.startsWith(prefix))
   }
 
   onMounted(() => {
     computeMobileFullScreen()
   })
-  watch(
-    () => route.path,
-    () => {
-      computeMobileFullScreen()
-    }
-  )
+  const show = () => {
+    visible.value = true
+  }
+  const hide = () => {
+    visible.value = false
+  }
 
   return {
-    isMobileFullScreen,
+    visible,
+    show,
+    hide,
   }
 }
