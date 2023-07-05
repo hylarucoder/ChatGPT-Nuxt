@@ -62,13 +62,13 @@ const visible = ref(false)
         </div>
         <div class="flex">
           <div>
-            <UButton icon="i-mdi-inbox-arrow-down" size="lg" color="gray" square variant="outline" />
+            <HeadIconButton icon="i-mdi-inbox-arrow-down" size="1.3em" />
           </div>
           <div class="ml-3">
-            <UButton icon="i-mdi-inbox-arrow-up" size="lg" color="gray" square variant="outline" />
+            <HeadIconButton icon="i-mdi-inbox-arrow-up" size="1.3em" />
           </div>
           <div class="ml-3">
-            <UButton icon="i-mdi-close-octagon-outline" size="lg" color="gray" square variant="outline" />
+            <HeadIconButton icon="i-mdi-close-octagon-outline" size="1.3em" />
           </div>
         </div>
       </div>
