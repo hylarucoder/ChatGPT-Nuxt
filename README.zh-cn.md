@@ -3,17 +3,15 @@
 </p>
 
 <h1 align="center"> ChatGPT Nuxt </h1>
-
 <div align="center">
-  English
-  <a href="https://github.com/hylarucoder/ChatGPT-Nuxt/blob/main/README.zh-cn.md">简体中文</a>
+  <a href="https://github.com/hylarucoder/ChatGPT-Nuxt/blob/main/README.md">English</a>
+  简体中文
 </div>
 
-One-Click to get well-designed cross-platform ChatGPT web UI.
+一键获取精心设计的跨平台的 ChatGPT Web UI
 
-> Still in rapid development, the interfaces and project structure are constantly being adjusted. There are no
-> documentation at this stage, and the code is relatively rough. Please make sure that you can understand the code.
-> For serious use, please wait for version v0.1.
+> 还在疯狂开发中，接口和项目结构还在疯狂调整，此阶段没有文档,代码也比较粗糙，请确保自己能读懂代码。
+> 正经使用请等待 v0.1 版本
 
 ## Features
 
@@ -34,10 +32,10 @@ One-Click to get well-designed cross-platform ChatGPT web UI.
 
 ## TODO
 
-- [ ] v0.1 🔥 Complete the migration of all features from ChatGPT-Next-Web
-- [ ] v0.2 Improve code quality, implement one-click deployment and one-click updates
-- [ ] v0.3 Complete responsiveness, adapt to mobile devices
-- [ ] v0.9 Support hybrid storage, support browser local storage (localStorage) and cloud storage for chat messages
+- [ ] v0.1 🔥 完成 ChatGPT-Next-Web 所有功能的迁移
+- [ ] v0.2 提升代码质量, 一键部署和一键更新
+- [ ] v0.3 完成响应式, 手机适配
+- [ ] v0.9 支持混合存储，支持聊天消息浏览器本地存储 localStorage 以及云端存储
 
 ## Tech Tack
 
