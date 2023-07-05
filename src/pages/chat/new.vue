@@ -57,7 +57,7 @@ onMounted(() => {
 })
 </script>
 <template>
-  <div class="flex w-full flex-shrink flex-col items-center overflow-hidden" ref="pageRef">
+  <div class="flex flex-shrink flex-col items-center overflow-hidden" ref="pageRef">
     <div class="flex w-full justify-between p-3 text-zinc-800">
       <button
         class="flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-white p-3 text-center hover:bg-gray-200"

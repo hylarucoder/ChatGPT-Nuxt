@@ -5,6 +5,8 @@ import { useTrans } from "~/composable/locales"
 import { languageOptions, modelOptions, sendKeyOptions, themeOptions, useSettingStore } from "~/composable/settings"
 import SettingItem from "~/pages/chat/settings/SettingItem.vue"
 
+const router = useRouter()
+
 const settingStore = useSettingStore()
 const settings = settingStore.settings
 onMounted(() => {
@@ -34,7 +36,7 @@ watch(
 </script>
 <template>
   <ClientOnly>
-    <div class="flex flex-1 flex-col">
+    <div class="flex w-screen flex-1 flex-col">
       <div class="flex items-center justify-between border-b border-gray-200 p-3.5">
         <div class="truncate">
           <div class="truncate text-[1.25rem] font-bold">
@@ -52,7 +54,7 @@ watch(
             <HeadIconButton icon="i-mdi-reload" size="1.3em" />
           </div>
           <div class="ml-3">
-            <HeadIconButton icon="i-mdi-close" size="1.3em" />
+            <HeadIconButton icon="i-mdi-close" size="1.3em" @click="router.back()" />
           </div>
         </div>
       </div>
