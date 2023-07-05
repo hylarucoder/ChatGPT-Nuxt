@@ -25,13 +25,16 @@ const isEmptyInput = (composeInput: string) => {
   return composeInput.trim().length === 0
 }
 
+const doMessaging = ref(false)
 const composeNewMessage = () => {
   const input = chatSession.session.composeInput
   if (isEmptyInput(input)) {
     return
   }
+  doMessaging.value = true
   chatSession.onNewMessage(input)
   chatSession.session.composeInput = ""
+  doMessaging.value = false
 }
 </script>
 <template>
@@ -52,22 +55,18 @@ const composeNewMessage = () => {
           @keydown="handleKeyDown"
         />
       </div>
-      <button
-        @click="composeNewMessage"
-        class="absolute bottom-4 right-4 flex h-10 cursor-pointer items-center justify-center truncate rounded-md px-4 py-4 text-center text-white"
-        :disabled="isEmptyInput(chatSession.session.composeInput)"
-        :class="{
-          'bg-emerald-400': !isEmptyInput(chatSession.session.composeInput),
-          'bg-gray-200': isEmptyInput(chatSession.session.composeInput),
-        }"
+      <div
+        class="absolute bottom-3 right-0 flex h-10 cursor-pointer items-center justify-center truncate rounded-md px-4 py-4 text-center text-white"
       >
-        <div class="flex items-center justify-center">
-          <span class="i-lucide-send" size="1.0em" />
-        </div>
-        <div class="ml-1 truncate text-[0.75rem]">
+        <UButton
+          :loading="doMessaging"
+          icon="i-lucide-send"
+          @click="composeNewMessage"
+          :disabled="isEmptyInput(chatSession.session.composeInput)"
+        >
           {{ t("Chat.Send") }}
-        </div>
-      </button>
+        </UButton>
+      </div>
     </div>
   </div>
 </template>

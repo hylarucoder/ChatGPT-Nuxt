@@ -26,7 +26,7 @@ const isHovered = useElementHover(messageRef)
       </div>
       <div
         style="user-select: text; word-break: break-word"
-        class="mt-1 rounded-md border p-3 text-[0.88rem] sm:w-11/12"
+        class="mt-1 rounded-md border p-3 text-[0.88rem]"
         :class="{
           'border-neutral-200': true,
           'bg-gray-100': !isSend,
