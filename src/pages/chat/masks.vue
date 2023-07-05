@@ -62,48 +62,47 @@ const visible = ref(false)
         </div>
         <div class="flex">
           <div>
-            <HeadIconButton icon="i-mdi-inbox-arrow-down" size="1.3em" />
+            <UButton icon="i-mdi-inbox-arrow-down" size="lg" color="gray" square variant="outline" />
           </div>
           <div class="ml-3">
-            <HeadIconButton icon="i-mdi-inbox-arrow-up" size="1.3em" />
+            <UButton icon="i-mdi-inbox-arrow-up" size="lg" color="gray" square variant="outline" />
           </div>
           <div class="ml-3">
-            <HeadIconButton icon="i-mdi-close-octagon-outline" size="1.3em" />
+            <UButton icon="i-mdi-close-octagon-outline" size="lg" color="gray" square variant="outline" />
           </div>
         </div>
       </div>
       <div class="max-h-full flex-grow overflow-scroll p-5">
-        <div class="mb-5 flex">
-          <input
-            type="text"
-            :placeholder="t(`Mask.Page.Search`)"
-            v-model="inputSearch.q"
-            class="h-10 flex-grow cursor-text rounded-xl border border-solid border-neutral-200 px-3 text-center text-[0.83rem]"
-          />
-          <div class="relative ml-3">
-            <select
-              class="inline-block h-10 cursor-pointer items-center rounded-xl border border-solid border-neutral-200 py-2 pl-3 pr-6 text-center text-[0.83rem]"
-            >
-              <option :value="t(`Settings.Lang.All`)" class="px-1">{{ t(`Settings.Lang.All`) }}</option>
-              <option value="cn" class="px-1">简体中文</option>
-              <option value="en" class="px-1">English</option>
-            </select>
+        <div class="mb-5 flex space-x-3">
+          <div class="w-full flex-grow">
+            <UInput size="md" type="text" :placeholder="t(`Mask.Page.Search`)" v-model="inputSearch.q" />
           </div>
-          <button
-            class="ml-3 flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-solid border-neutral-200 p-3 text-center text-[0.83rem] hover:bg-gray-200"
-          >
-            <div class="flex items-center justify-center">
-              <span class="i-mdi-add" size="1.1em" />
-            </div>
-            <div @click="visible = true" class="ml-1 overflow-hidden text-ellipsis text-xs">
+          <div>
+            <USelect
+              size="md"
+              :placeholder="t(`Settings.Lang.All`)"
+              :options="[
+                {
+                  label: `简体中文`,
+                  value: `zh_CN`,
+                },
+                {
+                  label: `English`,
+                  value: `en`,
+                },
+              ]"
+            />
+          </div>
+          <div>
+            <UButton size="md" color="white" variant="solid" @click="visible = true">
               {{ t(`Mask.Page.Create`) }}
-            </div>
-          </button>
-          <VModel :visible="visible" title="My Modal" @close="visible = false">
+            </UButton>
+          </div>
+          <UModal v-model="visible" @close="visible = false">
             <p>This is an example Modal.</p>
             <p>This is an example Modal.</p>
             <p>This is an example Modal.</p>
-          </VModel>
+          </UModal>
         </div>
 
         <div class="divide-gray-200">
@@ -112,15 +111,15 @@ const visible = ref(false)
             style="border-color: rgb(222, 222, 222); border-style: solid"
             class="flex justify-between divide-gray-50 break-words border-b border-l border-r p-5"
             :class="{
-              'rounded-tl-xl rounded-tr-xl border-t ': index === 0,
-              'rounded-bl-xl rounded-br-xl': index === maskUse.searchedMasks.length - 1,
+              'rounded-t-md border-t ': index === 0,
+              'rounded-b-md ': index === maskUse.searchedMasks.length - 1,
             }"
           >
             <div class="flex items-center overflow-auto text-ellipsis">
               <div class="mr-3 flex items-center justify-center">
                 <div
                   style="border-bottom-color: rgb(222, 222, 222)"
-                  class="flex items-center justify-center rounded-xl"
+                  class="flex items-center justify-center rounded-md"
                 >
                   <Icon size="1.4em" class="h-10 w-10 overflow-clip" :name="getRandomEmoji(mask.name)" />
                 </div>
@@ -132,7 +131,7 @@ const visible = ref(false)
             </div>
             <div class="flex">
               <button
-                class="flex h-9 w-20 cursor-pointer items-center justify-center overflow-hidden rounded-xl p-3 text-center text-[0.83rem] hover:bg-gray-200"
+                class="flex h-9 w-20 cursor-pointer items-center justify-center overflow-hidden rounded-md p-3 text-center text-[0.83rem] hover:bg-gray-200"
                 @click="newSessionAndNav(mask)"
               >
                 <div class="flex h-4 w-4 items-center justify-center">
@@ -143,7 +142,7 @@ const visible = ref(false)
                 </div>
               </button>
               <button
-                class="flex h-9 w-20 cursor-pointer items-center justify-center overflow-hidden rounded-xl p-3 text-center text-[0.83rem] hover:bg-gray-200"
+                class="flex h-9 w-20 cursor-pointer items-center justify-center overflow-hidden rounded-md p-3 text-center text-[0.83rem] hover:bg-gray-200"
               >
                 <div class="flex h-6 w-6 items-center justify-center">
                   <span class="i-mdi-eye-outline h-5 w-5" />

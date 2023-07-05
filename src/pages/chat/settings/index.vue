@@ -59,7 +59,7 @@ watch(
         </div>
       </div>
       <div class="overflow-scroll p-5">
-        <div class="mb-5 divide-y rounded-xl border shadow-sm">
+        <div class="mb-5 divide-y rounded-md border shadow-sm">
           <SettingItem :title="t('Settings.Avatar')">
             <VEmojiAvatar v-model="settings.avatar" />
           </SettingItem>
@@ -103,7 +103,7 @@ watch(
             <UCheckbox v-model="settings.maskLaunchPage" />
           </SettingItem>
         </div>
-        <div class="mb-5 divide-y rounded-xl border shadow-sm">
+        <div class="mb-5 divide-y rounded-md border shadow-sm">
           <SettingItem :title="t('Settings.Endpoint.Title')" :subtitle="t('Settings.Endpoint.SubTitle')">
             <div class="flex justify-end">
               <UInput v-model="settings.serverUrl" />
@@ -112,7 +112,7 @@ watch(
           <SettingItem :title="t('Settings.Token.Title')" :subtitle="t('Settings.Token.SubTitle')">
             <div class="flex justify-end">
               <button
-                class="mr-1 flex h-9 w-9 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center hover:bg-gray-200"
+                class="mr-1 flex h-9 w-9 cursor-pointer items-center justify-center truncate rounded-md p-3 text-center hover:bg-gray-200"
                 @click="apiKeyShow = !apiKeyShow"
               >
                 <div class="flex items-center justify-center">
@@ -134,7 +134,7 @@ watch(
           >
             <button
               @click="checkUsage()"
-              class="flex h-10 w-24 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center hover:bg-gray-200"
+              class="flex h-10 w-24 cursor-pointer items-center justify-center truncate rounded-md p-3 text-center hover:bg-gray-200"
             >
               <div :class="{ 'animate-spin': usageReloading }" class="flex items-center justify-center">
                 <span class="i-mdi-reload h-4 w-4" />
@@ -143,7 +143,7 @@ watch(
             </button>
           </SettingItem>
         </div>
-        <div class="mb-5 divide-y rounded-xl border shadow-sm">
+        <div class="mb-5 divide-y rounded-md border shadow-sm">
           <SettingItem :title="t('Settings.Prompt.Disable.Title')" :subtitle="t('Settings.Prompt.Disable.SubTitle')">
             <UCheckbox v-model="settings.disableAutoCompletePrompt" />
           </SettingItem>
@@ -153,7 +153,7 @@ watch(
             :subtitle="t('Settings.Prompt.ListCount', { builtin: 0, custom: 0 })"
           >
             <button
-              class="flex h-10 cursor-pointer items-center justify-center truncate rounded-xl p-3 text-center hover:bg-gray-200"
+              class="flex h-10 cursor-pointer items-center justify-center truncate rounded-md p-3 text-center hover:bg-gray-200"
             >
               <div class="flex items-center justify-center">
                 <span class="i-mdi-pen h-4 w-4" />
@@ -162,7 +162,7 @@ watch(
             </button>
           </SettingItem>
         </div>
-        <div class="mb-5 divide-y rounded-xl border shadow-sm">
+        <div class="mb-5 divide-y rounded-md border shadow-sm">
           <SettingItem :title="t('Settings.Model')">
             <USelect searchable :options="modelOptions" v-model="settings.model" />
           </SettingItem>

@@ -3,7 +3,7 @@
     v-model="inputRef.val"
     :placeholder="placeholder"
     type="number"
-    class="h-9 w-20 cursor-text rounded-xl border border-neutral-200 px-3 text-center"
+    class="h-9 w-20 cursor-text rounded-md border border-neutral-200 px-3 text-center"
   />
 </template>
 

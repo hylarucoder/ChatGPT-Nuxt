@@ -35,10 +35,10 @@ const composeNewMessage = () => {
 }
 </script>
 <template>
-  <div class="relative flex-col rounded-xl border-t p-3">
+  <div class="relative flex-col rounded-md border-t p-3">
     <div class="flex flex-wrap">
       <div
-        class="mb-3 mr-1 flex cursor-pointer items-center rounded-2xl border px-3 py-1 text-[0.75rem] hover:bg-gray-200"
+        class="mb-3 mr-1 flex cursor-pointer items-center rounded-md border px-3 py-1 text-[0.75rem] hover:bg-gray-200"
       >
         <span class="i-mdi-robot-excited-outline" size="1.4em" />
       </div>
@@ -54,7 +54,7 @@ const composeNewMessage = () => {
       </div>
       <button
         @click="composeNewMessage"
-        class="absolute bottom-4 right-4 flex h-10 cursor-pointer items-center justify-center truncate rounded-xl px-4 py-4 text-center text-white"
+        class="absolute bottom-4 right-4 flex h-10 cursor-pointer items-center justify-center truncate rounded-md px-4 py-4 text-center text-white"
         :disabled="isEmptyInput(chatSession.session.composeInput)"
         :class="{
           'bg-emerald-400': !isEmptyInput(chatSession.session.composeInput),

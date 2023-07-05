@@ -12,7 +12,7 @@ const { isMobileFullScreen } = useMobileFullScreen()
 
 <template>
   <div
-    class="flex h-screen w-screen truncate rounded-2xl border border-neutral-200 bg-white text-zinc-800 sm:h-[--window-height] sm:max-h-[--window-height] sm:min-h-[480px] sm:w-[--window-width] md:min-w-[600px] md:max-w-[1200px]"
+    class="flex h-screen w-screen truncate rounded-md border border-neutral-200 bg-white text-zinc-800 sm:h-[--window-height] sm:max-h-[--window-height] sm:min-h-[480px] sm:w-[--window-width] md:min-w-[600px] md:max-w-[1200px]"
   >
     <ClientOnly>
       <Sidebar v-show="!isMobileFullScreen" />
