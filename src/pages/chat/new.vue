@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted, onUnmounted } from "vue"
 import MaskCard from "~/components/MaskCard.vue"
 import { TLang, TPrompts, useMasks } from "~/composable/mask"
 import { getRandomEmoji } from "~/utils/emoji"
@@ -7,6 +8,10 @@ import { useSidebarChatSessions } from "~/composable/chat"
 const router = useRouter()
 const chatStore = useSidebarChatSessions()
 const masksUse = useMasks()
+const masks = masksUse.masks
+
+const maskGroups = ref<TPrompts[][]>()
+const maskRef = ref<HTMLDivElement | null>(null)
 
 const newSessionAndNav = (mask: TPrompts) => {
   const session = chatStore.newSession(undefined, {
@@ -19,24 +24,59 @@ const newSessionAndNav = (mask: TPrompts) => {
   })
 }
 
-function splitArrayIntoChunks<T>(arr: T[], rows: number, cols: number) {
-  const result = []
-  let index = 0
+const computeMaskGroup = () => {
+  const newMaskBody = document.getElementById("new-mask-body")
+  if (!newMaskBody || masks.length === 0) return
 
-  for (let row = 0; row < rows; row++) {
-    const rowData = []
-    for (let col = 0; col < cols && index < arr.length; col++) {
-      rowData.push(arr[index])
-      index++
-    }
-    result.push(rowData)
-  }
+  const rect = newMaskBody.getBoundingClientRect()
+  const maxWidth = rect.width
+  const maxHeight = rect.height * 0.6
+  const maskItemWidth = 120
+  const maskItemHeight = 50
 
-  return result
+  const randomMask = () => masks[Math.floor(Math.random() * masks.length)]
+  let maskIndex = 0
+  const nextMask = () => masks[maskIndex++ % masks.length]
+
+  const rows = Math.ceil(maxHeight / maskItemHeight)
+  const cols = Math.ceil(maxWidth / maskItemWidth)
+
+  const newGroups = new Array(rows)
+    .fill(0)
+    .map((_, _i) => new Array(cols).fill(0).map((_, j) => (j < 1 || j > cols - 2 ? randomMask() : nextMask())))
+
+  maskGroups.value = newGroups
 }
+
+onMounted(() => {
+  computeMaskGroup()
+  window.addEventListener("resize", computeMaskGroup)
+})
+
+onUnmounted(() => {
+  window.removeEventListener("resize", computeMaskGroup)
+})
+
+watch(
+  () => masks,
+  () => {
+    if (!!masks) computeMaskGroup()
+  },
+  { deep: true, flush: "post" }
+)
+
+watch(
+  () => maskGroups.value,
+  () => {
+    if (maskRef.value) {
+      maskRef.value.scrollLeft = (maskRef.value.scrollWidth - maskRef.value.clientWidth) / 2
+    }
+  },
+  { deep: true, flush: "post" }
+)
 </script>
 <template>
-  <div class="flex w-full flex-shrink flex-col items-center overflow-hidden">
+  <div id="new-mask-body" class="flex w-full flex-shrink flex-col items-center overflow-hidden">
     <div class="flex w-full justify-between p-3 text-zinc-800">
       <button
         class="flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-white p-3 text-center hover:bg-gray-200"
@@ -104,9 +144,10 @@ function splitArrayIntoChunks<T>(arr: T[], rows: number, cols: number) {
         </div>
       </button>
     </div>
-    <div class="flex-grow items-center overflow-x-hidden pt-5">
-      <div class="mb-3 flex" v-for="(row, index) in splitArrayIntoChunks(masksUse.masks, 8, 18)" :key="index">
+    <div ref="maskRef" class="masks pt-5">
+      <div class="mask-row mb-3 flex" v-for="(row, i) in maskGroups" :key="i">
         <MaskCard
+          class="max-w-[200px]"
           @click="
             newSessionAndNav({
               name: mask.name,
@@ -114,8 +155,8 @@ function splitArrayIntoChunks<T>(arr: T[], rows: number, cols: number) {
               lang: mask.lang,
             })
           "
-          v-for="mask in row"
-          :key="mask.name"
+          v-for="(mask, j) in row"
+          :key="j"
           :icon="getRandomEmoji(mask.name || '?')"
           :text="mask.name"
         />
@@ -123,3 +164,24 @@ function splitArrayIntoChunks<T>(arr: T[], rows: number, cols: number) {
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.masks {
+  flex-grow: 1;
+  width: 100%;
+  overflow: auto;
+
+  $linear: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+
+  -webkit-mask-image: $linear;
+  mask-image: $linear;
+
+  .mask-row {
+    @for $i from 1 to 10 {
+      &:nth-child(#{$i * 2}) {
+        margin-left: 60px;
+      }
+    }
+  }
+}
+</style>
