@@ -20,7 +20,7 @@ export default function useChatBot() {
     onStart: (message: TChatCompletionMessage) => void,
     onMessage: (message: TChatCompletionMessage) => void,
     onError: (message: TChatCompletionMessage) => void,
-    onDone: (message: TChatCompletionMessage) => void
+    onDone: (message: TChatCompletionMessage) => void,
   ) {
     const BASE_URL = settings.serverUrl
     const TOKEN = settings.apiKey
@@ -35,6 +35,7 @@ export default function useChatBot() {
       body: JSON.stringify({
         ...payload,
       }),
+      // eslint-disable-next-line require-await
       async onopen(res) {
         if (res.ok && res.status === 200) {
           console.log("Connection made ", res)
@@ -48,7 +49,7 @@ export default function useChatBot() {
         }
       },
       onmessage(ev) {
-        if ("[DONE]" == ev.data) {
+        if (ev.data === "[DONE]") {
           message.status = "done"
           onDone(message)
           return
@@ -58,7 +59,7 @@ export default function useChatBot() {
         }
         try {
           const parsedData = JSON.parse(ev.data)
-          let content = parsedData.choices[0]?.delta?.content
+          const content = parsedData.choices[0]?.delta?.content
           if (content) {
             message.content += content
             onMessage(message)

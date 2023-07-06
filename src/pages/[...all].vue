@@ -5,6 +5,8 @@ const router = useRouter()
 <template>
   <main>
     <div>Not found</div>
-    <button @click="router.back()">Back</button>
+    <button @click="router.back()">
+      Back
+    </button>
   </main>
 </template>

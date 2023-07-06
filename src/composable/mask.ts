@@ -40,7 +40,7 @@ export const useMasks = defineStore(StoreKey.Mask, () => {
         lang: "en",
       })
     }
-    masks.value.push(...newMasks.filter((m) => m.name))
+    masks.value.push(...newMasks.filter(m => m.name))
     masks.value.sort((a, b) => {
       if (a.lang === settings.language) {
         return -1
@@ -60,7 +60,7 @@ export const useMasks = defineStore(StoreKey.Mask, () => {
     })
   }
   const computeMaskRows = ({ width, height }: { width: number; height: number }) => {
-    if (!masks.value || masks.value.length === 0) return
+    if (!masks.value || masks.value.length === 0) { return }
     console.log("doCompute, ", width)
 
     const maxWidth = width

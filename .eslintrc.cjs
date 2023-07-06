@@ -1,15 +1,16 @@
-require("@rushstack/eslint-patch/modern-module-resolution")
+// require("@rushstack/eslint-patch/modern-module-resolution")
 
 module.exports = {
-  parser: "vue-eslint-parser",
-  "parserOptions": {
-    "parser": "@typescript-eslint/parser",
-    "sourceType": "module",
-  },
   extends: [
-    // ... other configs
-    "plugin:vue/base",
-    "@vue/eslint-config-prettier",
-    "plugin:nuxt/recommended",
+    "@nuxtjs/eslint-config-typescript",
   ],
+  rules: {
+    quotes: ["error", "double", { "allowTemplateLiterals": true }],
+    "comma-dangle": ["error", "always-multiline"],
+    "space-before-function-paren": "off",
+    "arrow-parens": "off",
+    "vue/valid-template-root": "off",
+    "vue/no-multiple-template-root": "off",
+    "no-console": "off",
+  },
 }

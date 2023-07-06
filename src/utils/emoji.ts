@@ -51,7 +51,7 @@ const commonEmojis: string[] = [
   "🍫",
 ]
 
-export function getRandomEmoji(str: string) {
+export function getRandomEmoji (str: string) {
   if (!str) {
     str = "."
   }

@@ -151,9 +151,9 @@ export type TMask = {
 }
 
 export enum TChatDirection {
-  // eslint-disable-next-line no-unused-vars
+
   SEND = "SEND",
-  // eslint-disable-next-line no-unused-vars
+
   RECEIVE = "RECEIVE",
 }
 

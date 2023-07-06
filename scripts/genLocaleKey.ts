@@ -1,7 +1,7 @@
-import en from "./src/locales/en"
 // write to file
 import fs from "fs"
 import path from "path"
+import en from "./src/locales/en"
 
 interface LocaleObject {
   [key: string]: LocaleObject | string
@@ -9,7 +9,7 @@ interface LocaleObject {
 
 type TLocaleKey = keyof LocaleObject
 
-function getLocaleKeys(obj: LocaleObject, parentKey?: string): TLocaleKey[] {
+function getLocaleKeys (obj: LocaleObject, parentKey?: string): TLocaleKey[] {
   const keys: TLocaleKey[] = []
 
   for (const key in obj) {
@@ -32,7 +32,7 @@ const keys = getLocaleKeys(en)
 const headerText = `\
 const localeKeys = [
 `
-const middleText = keys.map((key) => `  "${key}",`).join("\n")
+const middleText = keys.map(key => `  "${key}",`).join("\n")
 const footerText = `
 ] as const
 

@@ -1,5 +1,3 @@
-import { localePath } from "vue-i18n-routing"
-
 export const appName = "ChatGPT Nuxt"
 export const appDescription = "ChatGPT Nuxt"
 

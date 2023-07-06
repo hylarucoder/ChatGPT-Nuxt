@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { ref } from "vue"
 import { useTrans } from "~/composable/locales"
 import { TPrompts, useMasks } from "~/composable/mask"
 import { useSidebar } from "~/composable/useSidebar"
 import { getRandomEmoji } from "~/utils/emoji"
-import { ref } from "vue"
 import { useSidebarChatSessions } from "~/composable/chat"
 
 const router = useRouter()
@@ -40,7 +40,7 @@ useThrottleFn(
   },
   500,
   true,
-  true
+  true,
   // TODO: revoke previous request if new request is sent
 )
 watch(
@@ -52,14 +52,14 @@ watch(
   },
   {
     deep: true,
-  }
+  },
 )
 </script>
 <template>
   <ClientOnly>
     <div class="flex h-full flex-1 flex-col overflow-hidden">
       <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)" class="flex items-center justify-between px-5 py-3.5">
-        <div class="flex" v-if="isMobile">
+        <div v-if="isMobile" class="flex">
           <HeadIconButton icon="i-mdi-close-octagon-outline" size="1.3em" @click="sidebarUsed.show()" />
         </div>
         <div class="overflow-hidden">
@@ -83,7 +83,7 @@ watch(
       <div class="max-h-full flex-grow overflow-scroll p-5">
         <div class="mb-5 flex space-x-3">
           <div class="w-full flex-grow">
-            <UInput size="md" type="text" :placeholder="t(`Mask.Page.Search`)" v-model="inputSearch.q" />
+            <UInput v-model="inputSearch.q" size="md" type="text" :placeholder="t(`Mask.Page.Search`)" />
           </div>
           <div>
             <USelect
@@ -116,6 +116,7 @@ watch(
         <div class="divide-gray-200">
           <div
             v-for="(mask, index) in maskUse.searchedMasks"
+            :key="index"
             style="border-color: rgb(222, 222, 222); border-style: solid"
             class="flex justify-between divide-gray-50 break-words border-b border-l border-r p-5"
             :class="{
@@ -133,8 +134,12 @@ watch(
                 </div>
               </div>
               <div>
-                <div class="text-sm font-bold">{{ mask.name }}</div>
-                <p class="text-ellipsis text-xs">{{ mask.description }}</p>
+                <div class="text-sm font-bold">
+                  {{ mask.name }}
+                </div>
+                <p class="text-ellipsis text-xs">
+                  {{ mask.description }}
+                </p>
               </div>
             </div>
             <div class="flex">

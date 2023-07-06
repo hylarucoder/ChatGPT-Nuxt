@@ -1,9 +1,9 @@
 // Date utilities
-export function getUtcNow() {
+export function getUtcNow () {
   return new Date().toISOString().toString()
 }
 
-export function formatDateString(dateString: string): string {
+export function formatDateString (dateString: string): string {
   const date = new Date(dateString)
   const now = new Date()
 
