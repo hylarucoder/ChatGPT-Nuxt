@@ -1,7 +1,6 @@
 import { defineStore } from "pinia"
 import { ComputedRef, ref } from "vue"
 import { loadFromLocalStorage, saveSessionToLocalStorage, saveToLocalStorage } from "./storage"
-import { useSettingStore } from "~/composable/settings"
 import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
 import useChatBot from "~/composable/useChatBot"
 import { TChatDirection, TChatSession, TMask } from "~/constants/typing"
@@ -179,7 +178,6 @@ export const useChatSession = (sid: string): TUseChatSession => {
   if (cachedChatSession.has(sid)) {
     return cachedChatSession.get(sid) as TUseChatSession
   }
-  const { settings } = useSettingStore()
   const loaded = loadFromLocalStorage(StoreKey.ChatSession, {
     sessions: [] as TChatSession[],
     sessionGid: 10000,
@@ -214,6 +212,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
 
   const onNewMessage = (message: string) => {
     const { chat, message: currentMessage } = useChatBot()
+    console.log(currentMessage)
     // latest 4 messages
     const lastMessages = session.messages.slice(-4).map((message) => {
       return {

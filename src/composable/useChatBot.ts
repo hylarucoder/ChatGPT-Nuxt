@@ -43,8 +43,8 @@ export default function useChatBot() {
           message.status = "connected"
           onStart(message)
         } else if (res.status >= 400 && res.status < 500 && res.status !== 429) {
-          message.status = "client error"
-          message.errorMessage = `Client-side error ${res.status || res.statusText} ${res.type}`
+          message.status = "error"
+          message.errorMessage = `server side error ${res.status || res.statusText} ${res.type}`
           onError(message)
           console.log("Client-side error ", res)
         }
@@ -70,10 +70,11 @@ export default function useChatBot() {
           onError(message)
         }
       },
-      onerror(ev) {
+      onerror(err) {
         message.status = "error"
-        message.errorMessage = `error ${ev.status || ev.statusText || ""} ${ev.type || ""}`
+        message.errorMessage = `error ${err.status || err.statusText || ""} ${err.type || ""}`
         onError(message)
+        throw err
       },
     })
   }
