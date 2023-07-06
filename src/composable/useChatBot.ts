@@ -31,6 +31,7 @@ export default function useChatBot() {
       headers: {
         Accept: "text/event-stream",
         Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         ...payload,
@@ -64,7 +65,7 @@ export default function useChatBot() {
             onMessage(message)
           }
         } catch (e) {
-          message.content = String(s)
+          message.content = String(e)
           onError(message)
         }
       },
