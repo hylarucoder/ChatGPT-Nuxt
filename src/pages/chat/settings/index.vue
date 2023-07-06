@@ -31,7 +31,7 @@ watch(
   () => settings.language,
   () => {
     setLocale(settings.language)
-  }
+  },
 )
 </script>
 <template>
@@ -76,26 +76,27 @@ watch(
               target="_blank"
               href="https://github.com/hylarucoder/ChatGPT-Nuxt#keep-updated"
               class="cursor-pointer text-[0.75rem] text-emerald-400"
-              >{{ settings.hasNewVersion ? t("Settings.Update.GoToUpdate") : t("Settings.Update.IsLatest") }}
+            >
+              {{ settings.hasNewVersion ? t("Settings.Update.GoToUpdate") : t("Settings.Update.IsLatest") }}
             </NuxtLink>
           </SettingItem>
 
           <SettingItem :title="t('Settings.SendKey')">
-            <USelect class="min-w-100" :options="sendKeyOptions" v-model="settings.sendKey" />
+            <USelect v-model="settings.sendKey" class="min-w-100" :options="sendKeyOptions" />
           </SettingItem>
 
           <SettingItem :title="t('Settings.Theme')">
-            <USelect :options="themeOptions" v-model="settings.theme" />
+            <USelect v-model="settings.theme" :options="themeOptions" />
           </SettingItem>
 
           <SettingItem :title="t('Settings.Lang.Name')">
-            <USelect :options="languageOptions" v-model="settings.language" />
+            <USelect v-model="settings.language" :options="languageOptions" />
           </SettingItem>
 
           <SettingItem :title="t('Settings.FontSize.Title')" :subtitle="t('Settings.FontSize.SubTitle')">
             <div class="flex w-40 items-center justify-center">
               <span class="mr-2 w-6"> {{ settings.fontSize }}px </span>
-              <URange step="1" max="18" min="10" v-model="settings.fontSize" />
+              <URange v-model="settings.fontSize" step="1" max="18" min="10" />
             </div>
           </SettingItem>
 
@@ -116,8 +117,8 @@ watch(
                 @click="apiKeyShow = !apiKeyShow"
               >
                 <div class="flex items-center justify-center">
-                  <span class="i-mdi-eye-outline h-4 w-4" v-if="apiKeyShow" />
-                  <span class="i-mdi-eye-off-outline h-4 w-5" v-if="!apiKeyShow" />
+                  <span v-if="apiKeyShow" class="i-mdi-eye-outline h-4 w-4" />
+                  <span v-if="!apiKeyShow" class="i-mdi-eye-off-outline h-4 w-5" />
                 </div>
               </button>
               <UInput
@@ -133,13 +134,15 @@ watch(
             :subtitle="t('Settings.Usage.SubTitle', { used: `[?]`, total: `[?]` })"
           >
             <button
-              @click="checkUsage()"
               class="flex h-10 w-24 cursor-pointer items-center justify-center truncate rounded-md p-3 text-center hover:bg-gray-200"
+              @click="checkUsage()"
             >
               <div :class="{ 'animate-spin': usageReloading }" class="flex items-center justify-center">
                 <span class="i-mdi-reload h-4 w-4" />
               </div>
-              <div class="ml-1 truncate text-[0.75rem]">{{ t("Settings.Usage.Check") }}</div>
+              <div class="ml-1 truncate text-[0.75rem]">
+                {{ t("Settings.Usage.Check") }}
+              </div>
             </button>
           </SettingItem>
         </div>
@@ -158,25 +161,27 @@ watch(
               <div class="flex items-center justify-center">
                 <span class="i-mdi-pen h-4 w-4" />
               </div>
-              <div class="ml-1 truncate text-[0.75rem]">{{ t("Settings.Prompt.Edit") }}</div>
+              <div class="ml-1 truncate text-[0.75rem]">
+                {{ t("Settings.Prompt.Edit") }}
+              </div>
             </button>
           </SettingItem>
         </div>
         <div class="mb-5 divide-y rounded-md border shadow-sm">
           <SettingItem :title="t('Settings.Model')">
-            <USelect searchable :options="modelOptions" v-model="settings.model" />
+            <USelect v-model="settings.model" searchable :options="modelOptions" />
           </SettingItem>
 
           <SettingItem :title="t('Settings.Temperature.Title')" :subtitle="t('Settings.Temperature.SubTitle')">
             <div class="flex w-40 items-center justify-center">
               <span class="mr-2">{{ settings.temperature }}</span>
-              <URange min="0.0" max="1.0" step="0.1" v-model="settings.temperature" />
+              <URange v-model="settings.temperature" min="0.0" max="1.0" step="0.1" />
             </div>
           </SettingItem>
 
           <SettingItem :title="t('Settings.MaxTokens.Title')" :subtitle="t('Settings.MaxTokens.SubTitle')">
             <div class="w-20">
-              <UInput type="number" v-model="settings.maxTokens" />
+              <UInput v-model="settings.maxTokens" type="number" />
             </div>
           </SettingItem>
 
@@ -185,7 +190,7 @@ watch(
               <span class="mr-2">
                 {{ settings.presencePenalty }}
               </span>
-              <URange :min="-2.0" :max="2.0" :step="0.1" v-model="settings.presencePenalty" />
+              <URange v-model="settings.presencePenalty" :min="-2.0" :max="2.0" :step="0.1" />
             </div>
           </SettingItem>
 
@@ -197,7 +202,7 @@ watch(
               <span class="mr-2">
                 {{ settings.frequencyPenalty }}
               </span>
-              <URange :min="-2.0" :max="2.0" :step="0.1" v-model="settings.frequencyPenalty" />
+              <URange v-model="settings.frequencyPenalty" :min="-2.0" :max="2.0" :step="0.1" />
             </div>
           </SettingItem>
 
@@ -206,7 +211,7 @@ watch(
               <span class="mr-2">
                 {{ settings.historyMessagesCount }}
               </span>
-              <URange :min="0" :max="32" :step="1" v-model="settings.historyMessagesCount" />
+              <URange v-model="settings.historyMessagesCount" :min="0" :max="32" :step="1" />
             </div>
           </SettingItem>
 
@@ -215,7 +220,7 @@ watch(
             :subtitle="t('Settings.CompressThreshold.SubTitle')"
           >
             <div class="w-20">
-              <UInput type="number" v-model="settings.compressMessageLengthThreshold" />
+              <UInput v-model="settings.compressMessageLengthThreshold" type="number" />
             </div>
           </SettingItem>
 

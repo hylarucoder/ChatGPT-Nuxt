@@ -4,6 +4,7 @@ import { pwa } from "./src/config/pwa"
 import { appDescription } from "./src/constants"
 
 function getGitCommitDateYMD() {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { execSync } = require("child_process")
   const date = execSync("git show -s --format=%ci HEAD").toString()
   return date.slice(0, 10).replaceAll("-", "")

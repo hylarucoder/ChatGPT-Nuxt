@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { setMobileCssVariables } from "~/utils/css"
 import { appName } from "./constants"
+import { setMobileCssVariables } from "~/utils/css"
 
 useHead({
   title: appName,

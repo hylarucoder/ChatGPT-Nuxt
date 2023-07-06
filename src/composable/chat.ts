@@ -1,11 +1,28 @@
 import { defineStore } from "pinia"
 import { ComputedRef, ref } from "vue"
+import { loadFromLocalStorage, saveSessionToLocalStorage, saveToLocalStorage } from "./storage"
 import { useSettingStore } from "~/composable/settings"
 import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
 import useChatBot from "~/composable/useChatBot"
 import { TChatDirection, TChatSession, TMask } from "~/constants/typing"
 import { getUtcNow } from "~/utils/date"
-import { loadFromLocalStorage, saveSessionToLocalStorage, saveToLocalStorage } from "./storage"
+
+type TSimple = {
+  avatar: string
+  topic: string
+  description: string
+}
+
+interface TUseChatSession {
+  session: TChatSession
+  isEmptyInput: ComputedRef<boolean>
+  onUserInput: (content: string) => Promise<void>
+  rename: () => void
+  onNewMessage: (message: string) => void
+  deleteMessage: (id: number) => void
+}
+
+const cachedChatSession = new Map<string, TUseChatSession>()
 
 function makeEmptySession(s: number, simple: TSimple, mask?: TMask): TChatSession {
   const session: TChatSession = {
@@ -24,7 +41,7 @@ function makeEmptySession(s: number, simple: TSimple, mask?: TMask): TChatSessio
     },
     lastUpdate: getUtcNow(),
     lastSummarizeIndex: 0,
-    mask: mask,
+    mask,
     modelConfig: {
       model: "gpt-3.5-turbo",
       temperature: 0.5,
@@ -58,22 +75,17 @@ function makeEmptySession(s: number, simple: TSimple, mask?: TMask): TChatSessio
           isError: false,
           id: s,
         },
-      ]
+      ],
     )
   }
   return session
-}
-
-type TSimple = {
-  avatar: string
-  topic: string
-  description: string
 }
 
 export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
   const sessionGid = ref(0)
   const sessions = ref<TChatSession[]>([])
 
+  // eslint-disable-next-line require-await
   const loadAll = async () => {
     const loaded = loadFromLocalStorage(StoreKey.ChatSession, {
       sessions: [],
@@ -92,7 +104,7 @@ export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
     },
     1000,
     true,
-    true
+    true,
   )
 
   const clearSessions = () => {
@@ -104,7 +116,9 @@ export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
     sessions.value.splice(to, 0, session)
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const newSession = (mask?: TMask, simple?: TSimple): TChatSession => {
+    // @ts-ignore
     const session = makeEmptySession(++sessionGid.value, simple)
     sessions.value.unshift(session)
     saveAll()
@@ -123,6 +137,7 @@ export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
     console.log("nextSession", delta)
   }
 
+  // eslint-disable-next-line require-await
   const refreshSession = async (session: TChatSession) => {
     const s = sessions.value.filter((s) => s.id === session.id)[0]
     if (s) {
@@ -151,16 +166,6 @@ export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
 })
 
 // share chat session between routes and components
-const cachedChatSession = new Map<string, TUseChatSession>()
-
-interface TUseChatSession {
-  session: TChatSession
-  isEmptyInput: ComputedRef<boolean>
-  onUserInput: (content: string) => Promise<void>
-  rename: () => void
-  onNewMessage: (message: string) => void
-  deleteMessage: (id: number) => void
-}
 
 export const useRoutedChatSession = (): TUseChatSession => {
   const route = useRoute()
@@ -204,7 +209,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
     },
     1000,
     true,
-    true
+    true,
   )
 
   const onNewMessage = (message: string) => {
@@ -279,10 +284,11 @@ export const useChatSession = (sid: string): TUseChatSession => {
         nMessage.content = `Error occurred: ${message.errorMessage}`
         console.error("Error occurred:", message.errorMessage)
       },
-      () => {}
-    ).then((r) => {})
+      () => {},
+    ).then()
   }
 
+  // eslint-disable-next-line require-await
   const onUserInput = async (content: string) => {
     // Add your logic for handling user input
     console.log("nextSession", content)
@@ -303,7 +309,6 @@ export const useChatSession = (sid: string): TUseChatSession => {
     if (index !== -1) {
       session.messages.splice(index, 1)
       session.messagesCount = session.messages.length
-      console.log("--->", toRaw(session.messages))
     }
     // chatStore.saveAll()
   }

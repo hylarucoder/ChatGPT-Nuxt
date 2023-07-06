@@ -150,12 +150,12 @@ export const useSettingStore = defineStore(StoreKey.Setting, () => {
       settings.hasNewVersion = settings.latestCommitDate < settings.remoteLatestCommitDate
     }
     fetch(FETCH_COMMIT_URL)
-      .then((response) => response.json())
+      .then(response => response.json())
       .then((data) => {
         const date = data[0].commit.author.date
         settings.remoteLatestCommitDate = date.slice(0, 10).replace(/-/g, "")
       })
-      .catch((error) => console.error(error))
+      .catch(error => console.error(error))
   }
   watch(
     () => settings,
@@ -163,7 +163,7 @@ export const useSettingStore = defineStore(StoreKey.Setting, () => {
       document.documentElement.style.setProperty("--markdown-font-size", `${value.fontSize}px`)
       saveToLocalStorage(StoreKey.Setting, settings)
     },
-    { deep: true }
+    { deep: true },
   )
   return {
     settings,

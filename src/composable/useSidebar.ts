@@ -10,7 +10,7 @@ export const useSidebar = () => {
       visible.value = true
       return
     }
-    visible.value = routePrefix.some((prefix) => route.path.startsWith(prefix))
+    visible.value = routePrefix.some(prefix => route.path.startsWith(prefix))
   }
 
   onMounted(() => {

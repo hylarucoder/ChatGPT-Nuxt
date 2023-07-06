@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from "vue"
+import { onMounted } from "vue"
 import MaskCard from "~/components/MaskCard.vue"
 import { TPrompts, useMasks } from "~/composable/mask"
 import { useSettingStore } from "~/composable/settings"
@@ -35,18 +35,24 @@ const newDefaultSession = () => {
 
 const resizeMaskRows = useThrottleFn(
   ({ width, height }: { width: number; height: number }) => {
-    if (!pageRef.value) return
-    if (!masksUse.masks || masksUse.masks.length === 0) return
+    if (!pageRef.value) {
+      return
+    }
+    if (!masksUse.masks || masksUse.masks.length === 0) {
+      return
+    }
     masksUse.computeMaskRows({
       width,
       height,
     })
-    if (!maskRef.value) return
+    if (!maskRef.value) {
+      return
+    }
     maskRef.value.scrollLeft = (maskRef.value.scrollWidth - maskRef.value.clientWidth) / 2
   },
   200,
   true,
-  true
+  true,
 )
 
 useResizeObserver(pageRef, (entries) => {
@@ -58,7 +64,9 @@ useResizeObserver(pageRef, (entries) => {
 })
 
 onMounted(() => {
-  if (!pageRef.value) return
+  if (!pageRef.value) {
+    return
+  }
   resizeMaskRows({
     width: pageRef.value.clientWidth,
     height: pageRef.value.clientHeight,
@@ -71,7 +79,7 @@ const notShowAndNav = () => {
 }
 </script>
 <template>
-  <div class="flex flex-shrink flex-col items-center overflow-hidden" ref="pageRef">
+  <div ref="pageRef" class="flex flex-shrink flex-col items-center overflow-hidden">
     <div class="flex w-full justify-between p-3 text-zinc-800">
       <button
         class="flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-md bg-white p-3 text-center hover:bg-gray-200"
@@ -135,9 +143,13 @@ const notShowAndNav = () => {
       </button>
     </div>
     <div ref="maskRef" class="masks pt-5">
-      <div class="mask-row mb-3 flex" v-for="(row, i) in masksUse.maskRows" :key="i">
+      <div v-for="(row, i) in masksUse.maskRows" :key="i" class="mask-row mb-3 flex">
         <MaskCard
+          v-for="(mask, j) in row"
+          :key="j"
           class="max-w-[200px]"
+          :icon="getRandomEmoji(mask.name || '?')"
+          :text="mask.name"
           @click="
             newSessionAndNav({
               name: mask.name,
@@ -145,10 +157,6 @@ const notShowAndNav = () => {
               lang: mask.lang,
             })
           "
-          v-for="(mask, j) in row"
-          :key="j"
-          :icon="getRandomEmoji(mask.name || '?')"
-          :text="mask.name"
         />
       </div>
     </div>
