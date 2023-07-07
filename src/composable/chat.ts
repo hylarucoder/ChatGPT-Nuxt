@@ -213,7 +213,6 @@ export const useChatSession = (sid: string): TUseChatSession => {
   const onNewMessage = (message: string) => {
     const { chat, message: currentMessage } = useChatBot()
     console.log(currentMessage)
-    // latest 4 messages
     const lastMessages = session.messages.slice(-4).map((message) => {
       return {
         role: message.role,
