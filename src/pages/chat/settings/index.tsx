@@ -62,7 +62,7 @@ export default defineComponent({
       () => settings.language,
       () => {
         setLocale(settings.language)
-      },
+      }
     )
 
     return () => (
@@ -143,13 +143,11 @@ export default defineComponent({
                     onClick={() => (apiKeyShow.value = !apiKeyShow.value)}
                   >
                     <div class="flex items-center justify-center">
-                      {apiKeyShow.value
-                        ? (
+                      {apiKeyShow.value ? (
                         <span class="i-mdi-eye-outline h-4 w-4" />
-                          )
-                        : (
+                      ) : (
                         <span class="i-mdi-eye-off-outline h-4 w-5" />
-                          )}
+                      )}
                     </div>
                   </button>
                   <UInput
