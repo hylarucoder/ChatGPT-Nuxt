@@ -107,7 +107,7 @@
   line-height: 1.5;
   word-wrap: break-word;
   word-break: break-all;
-  white-space: pre-wrap;
+  //white-space: pre-wrap;
   overflow: hidden;
 }
 
@@ -404,10 +404,9 @@
 .markdown-body p {
   margin-top: 0;
   margin-bottom: 10px;
-  //word-wrap: break-word;
-  //word-break: break-all;
-  //white-space: pre-wrap;
-  //overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-wrap;
 }
 
 .markdown-body blockquote {

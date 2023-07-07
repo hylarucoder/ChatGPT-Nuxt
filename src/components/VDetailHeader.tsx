@@ -3,12 +3,12 @@ import HeadIconButton from "~/components/HeadIconButton.vue"
 import { useSidebar } from "~/composable/useSidebar"
 
 export default defineComponent({
-  name: "VDetailHeader",
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, { slots }) {
     const { show: showSidebar } = useSidebar()
     const { isMobile } = useDevice()
     return () => (
-      <div class="flex items-center justify-between border-b border-gray-200 p-3.5">
+      <div class="relative flex w-screen items-center justify-between border-b border-gray-200 px-5 py-3.5 sm:w-full">
         {isMobile && (
           <div class="flex">
             <HeadIconButton
