@@ -5,12 +5,12 @@ import { TPrompts, useMasks } from "~/composable/mask"
 import { useSidebar } from "~/composable/useSidebar"
 import { getRandomEmoji } from "~/utils/emoji"
 import { useSidebarChatSessions } from "~/composable/chat"
+import { MasksHeader } from "~/pages/chat/masks/MasksHeader"
 
 const router = useRouter()
 const chatStore = useSidebarChatSessions()
 const maskUse = useMasks()
 const sidebarUsed = useSidebar()
-const { isMobile } = useDevice()
 const visible = ref(false)
 
 const newSessionAndNav = (mask: TPrompts) => {
@@ -56,28 +56,7 @@ watch(
 <template>
   <ClientOnly>
     <div class="flex h-full flex-1 flex-col overflow-hidden">
-      <div style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)" class="flex items-center justify-between px-5 py-3.5">
-        <div v-if="isMobile" class="flex">
-          <HeadIconButton icon="i-mdi-close-octagon-outline" size="1.3em" @click="sidebarUsed.show()" />
-        </div>
-        <div class="overflow-hidden">
-          <div class="overflow-hidden text-ellipsis text-xl font-bold">
-            {{ t("Mask.Page.Title") }}
-          </div>
-          <div>{{ t("Mask.Page.SubTitle", { count: maskUse.masks.length }) }}</div>
-        </div>
-        <div class="flex">
-          <div>
-            <HeadIconButton icon="i-mdi-inbox-arrow-down" size="1.3em" />
-          </div>
-          <div class="ml-3">
-            <HeadIconButton icon="i-mdi-inbox-arrow-up" size="1.3em" />
-          </div>
-          <div class="ml-3">
-            <HeadIconButton icon="i-mdi-close-octagon-outline" size="1.3em" />
-          </div>
-        </div>
-      </div>
+      <MasksHeader :count="maskUse.searchedMasks.length" />
       <div class="max-h-full flex-grow overflow-scroll p-5">
         <div class="mb-5 flex space-x-3">
           <div class="w-full flex-grow">

@@ -25,7 +25,7 @@ const SettingItem = defineComponent({
         <div class="flex items-center">
           <div class="text-[0.88rem]">
             <div class="font-bold">{props.title}</div>
-            {props.subtitle && <div class="text-xs">{props.subtitle}</div>}
+            {props.subtitle && <div class="hidden text-xs sm:block">{props.subtitle}</div>}
           </div>
         </div>
         <div class="flex rounded-md border-neutral-200 px-3 py-1 pr-3.5 text-[0.75rem]">{slots?.default?.()}</div>
@@ -71,9 +71,11 @@ export default defineComponent({
           <VDetailHeader>
             {{
               default: () => (
-                <div class="truncate">
-                  <div class="truncate text-[1.25rem] font-bold">{t("Settings.Title")}</div>
-                  <div class="mt-1 text-[0.88rem]">{t("Settings.SubTitle")}</div>
+                <div class="max-w-1/2 truncate text-center">
+                  <div class="max-w-1/2 cursor-pointer truncate text-sm font-bold sm:text-lg">
+                    {t("Settings.Title")}
+                  </div>
+                  <div class="text-xs sm:text-sm">{t("Settings.SubTitle")}</div>
                 </div>
               ),
               rightIcons: () => (
@@ -85,7 +87,7 @@ export default defineComponent({
               ),
             }}
           </VDetailHeader>
-          <div class="overflow-scroll p-5">
+          <div class="w-full overflow-x-hidden overflow-y-scroll px-2 pt-5 sm:p-5">
             <div class="mb-5 divide-y rounded-md border shadow-sm">
               <SettingItem title={t("Settings.Avatar")}>
                 <VEmojiAvatar v-model={settings.avatar} />
