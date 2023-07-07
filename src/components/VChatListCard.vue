@@ -21,23 +21,29 @@ const onDeleteSession = () => {
 <template>
   <NuxtLink
     class="chat-list-card relative"
+    :to="`/chat/session/` + session.id"
+    active-class="chat-list-card__active"
     @mouseover="upHere = true"
     @mouseleave="upHere = false"
-    :to="`/chat/session/` + session.id"
-    @click="sidebarUsed.hide()"
-    active-class="chat-list-card__active"
+    @click="sidebarUsed.hideIfMobile()"
   >
-    <div class="truncate text-[0.88rem] font-bold">{{ session.topic }}</div>
+    <div class="truncate text-[0.88rem] font-bold">
+      {{ session.topic }}
+    </div>
     <div class="mt-2 flex justify-between text-[0.75rem] text-neutral-400">
-      <div class="truncate">{{ t("ChatItem.ChatItemCount", { count: session.messagesCount }) }}</div>
-      <div class="truncate">{{ formatDateString(session.lastUpdate) }}</div>
+      <div class="truncate">
+        {{ t("ChatItem.ChatItemCount", { count: session.messagesCount }) }}
+      </div>
+      <div class="truncate">
+        {{ formatDateString(session.lastUpdate) }}
+      </div>
     </div>
     <span
+      v-if="upHere"
       size="1.3em"
-      @click="onDeleteSession"
       class="i-mdi-close-circle-outline absolute right-2 top-2 h-5 w-5 cursor-pointer text-neutral-400 opacity-0 transition-opacity duration-200"
       :class="{ 'opacity-100': upHere }"
-      v-if="upHere"
+      @click="onDeleteSession"
     />
   </NuxtLink>
 </template>
