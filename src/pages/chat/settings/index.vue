@@ -31,33 +31,37 @@ watch(
   () => settings.language,
   () => {
     setLocale(settings.language)
-  },
+  }
 )
 </script>
 <template>
   <ClientOnly>
     <div class="flex w-screen flex-1 flex-col">
-      <div class="flex items-center justify-between border-b border-gray-200 p-3.5">
-        <div class="truncate">
-          <div class="truncate text-[1.25rem] font-bold">
-            {{ t("Settings.Title") }}
+      <VDetailHeader>
+        <template #default>
+          <div class="truncate">
+            <div class="truncate text-[1.25rem] font-bold">
+              {{ t("Settings.Title") }}
+            </div>
+            <div class="mt-1 text-[0.88rem]">
+              {{ t("Settings.SubTitle") }}
+            </div>
           </div>
-          <div class="mt-1 text-[0.88rem]">
-            {{ t("Settings.SubTitle") }}
+        </template>
+        <template #rightIcons>
+          <div class="flex w-[150px]">
+            <div class="ml-3">
+              <HeadIconButton icon="i-mdi-bin-outline" size="1.3em" />
+            </div>
+            <div class="ml-3">
+              <HeadIconButton icon="i-mdi-reload" size="1.3em" />
+            </div>
+            <div class="ml-3">
+              <HeadIconButton icon="i-mdi-close" size="1.3em" @click="router.back()" />
+            </div>
           </div>
-        </div>
-        <div class="flex">
-          <div class="ml-3">
-            <HeadIconButton icon="i-mdi-bin-outline" size="1.3em" />
-          </div>
-          <div class="ml-3">
-            <HeadIconButton icon="i-mdi-reload" size="1.3em" />
-          </div>
-          <div class="ml-3">
-            <HeadIconButton icon="i-mdi-close" size="1.3em" @click="router.back()" />
-          </div>
-        </div>
-      </div>
+        </template>
+      </VDetailHeader>
       <div class="overflow-scroll p-5">
         <div class="mb-5 divide-y rounded-md border shadow-sm">
           <SettingItem :title="t('Settings.Avatar')">

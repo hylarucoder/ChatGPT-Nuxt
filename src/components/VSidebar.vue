@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import { useTrans } from "~/composable/locales"
+import { useSidebar } from "~/composable/useSidebar"
+
+const { hideIfMobile } = useSidebar()
 
 const { t } = useTrans()
 </script>
@@ -14,10 +17,10 @@ const { t } = useTrans()
       </div>
     </div>
     <div class="mb-5 flex space-x-2">
-      <NuxtLink class="w-full flex-grow" :to="`/chat/masks`">
+      <NuxtLink class="w-full flex-grow" :to="`/chat/masks`" @click="hideIfMobile()">
         <IconButton class="w-full" icon="i-mdi-robot-happy-outline" :text="t(`Mask.Name`)" />
       </NuxtLink>
-      <NuxtLink class="w-full flex-grow" :to="`/chat/plugins`">
+      <NuxtLink class="w-full flex-grow" :to="`/chat/plugins`" @click="hideIfMobile()">
         <IconButton class="w-full" icon="i-mdi-folder-search-outline" :text="t(`Plugin.Name`)" />
       </NuxtLink>
     </div>
@@ -27,14 +30,14 @@ const { t } = useTrans()
     <div class="flex justify-between pt-5">
       <div class="flex">
         <div>
-          <NuxtLink to="/chat/settings" class="cursor-pointer">
+          <NuxtLink to="/chat/settings" class="cursor-pointer" @click="hideIfMobile()">
             <IconButton icon="i-mdi-cog-outline" />
           </NuxtLink>
         </div>
       </div>
       <div>
         <NuxtLink :to="`/chat/new`">
-          <IconButton icon="i-mdi-chat-outline" :text="t(`Home.NewChat`)" />
+          <IconButton icon="i-mdi-chat-outline" :text="t(`Home.NewChat`)" @click="hideIfMobile()" />
         </NuxtLink>
       </div>
     </div>

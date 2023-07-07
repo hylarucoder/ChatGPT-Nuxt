@@ -74,7 +74,7 @@ function makeEmptySession(s: number, simple: TSimple, mask?: TMask): TChatSessio
           isError: false,
           id: s,
         },
-      ],
+      ]
     )
   }
   return session
@@ -103,7 +103,7 @@ export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
     },
     1000,
     true,
-    true,
+    true
   )
 
   const clearSessions = () => {
@@ -207,7 +207,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
     },
     1000,
     true,
-    true,
+    true
   )
 
   const onNewMessage = (message: string) => {
@@ -282,7 +282,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
         nMessage.content = `Error occurred: ${message.errorMessage}`
         console.error("Error occurred:", message.errorMessage)
       },
-      () => {},
+      () => {}
     ).then()
   }
 
