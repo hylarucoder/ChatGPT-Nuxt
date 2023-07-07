@@ -14,7 +14,7 @@ onBeforeMount(async () => {
   >
     <ClientOnly>
       <Sidebar />
-      <div class="flex w-screen sm:w-[--window-content-width]">
+      <div class="flex w-full sm:w-[--window-content-width]">
         <NuxtPage />
       </div>
     </ClientOnly>

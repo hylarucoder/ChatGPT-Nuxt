@@ -38,7 +38,7 @@ useThrottleFn(
   },
   500,
   true,
-  true
+  true,
   // TODO: revoke previous request if new request is sent
 )
 watch(
@@ -50,12 +50,12 @@ watch(
   },
   {
     deep: true,
-  }
+  },
 )
 </script>
 <template>
   <ClientOnly>
-    <div class="flex h-full flex-1 flex-col overflow-hidden">
+    <div class="flex h-full w-full flex-1 flex-col overflow-hidden">
       <MasksHeader :count="maskUse.searchedMasks.length" />
       <div class="max-h-full flex-grow overflow-scroll p-5">
         <div class="mb-5 flex space-x-3">

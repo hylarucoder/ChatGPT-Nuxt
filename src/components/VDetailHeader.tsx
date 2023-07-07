@@ -7,8 +7,8 @@ export default defineComponent({
     const { show: showSidebar, visible } = useSidebar()
     const { isMobile } = useDevice()
     return () => (
-      <div class="h-[60px]">
-        <div class="relative flex h-[60px] w-full items-center justify-between border-b border-gray-200 px-0 py-0 sm:h-[200px] sm:w-full sm:px-5 sm:py-3.5">
+      <div class="relative h-[60px] sm:h-[80px]">
+        <div class="flex h-[60px] w-full items-center justify-between border-b border-gray-200 px-0 py-0 sm:h-[80px] sm:w-full sm:px-5 sm:py-3.5">
           {isMobile && (
             <div class="ml-3 flex text-gray-600">
               <span

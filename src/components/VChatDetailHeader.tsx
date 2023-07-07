@@ -12,12 +12,11 @@ export default defineComponent({
       <VDetailHeader>
         {{
           default: () => (
-            <div class="max-w-1/2 truncate text-center">
+            <div class="max-w-1/2 truncate text-center sm:text-left">
               <div class="max-w-1/2 cursor-pointer truncate text-sm font-bold sm:text-lg">
                 {chatSession.session.topic}
               </div>
-              <div class="text-xs sm:text-sm">
-                {t("Chat.SubTitle", { count: chatSession.session.messagesCount })}</div>
+              <div class="text-xs sm:text-sm">{t("Chat.SubTitle", { count: chatSession.session.messagesCount })}</div>
             </div>
           ),
           rightIcons: () => (
