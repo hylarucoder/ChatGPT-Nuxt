@@ -230,7 +230,8 @@ export const useChatSession = (sid: string): TUseChatSession => {
       ],
       model: "gpt-3.5-turbo",
       presence_penalty: session.modelConfig.presencePenalty,
-      stream: true,
+      // stream: true,
+      stream: false,
       temperature: session.modelConfig.temperature,
     }
     const latestMessage = session.messages[session.messages.length - 1]
