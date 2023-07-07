@@ -43,11 +43,11 @@ const printMessages = () => {
 <template>
   <div class="flex w-full flex-1 flex-col">
     <VChatDetailHeader @click="printMessages" />
-    <div class="flex-grow overflow-y-scroll p-5" ref="el">
+    <div ref="el" class="flex-grow overflow-y-scroll p-5">
       <VChatMessage
-        class="chat-message"
-        :key="message.id"
         v-for="message in currentSession.session.messages"
+        :key="message.id"
+        class="chat-message"
         :message="message"
       />
     </div>

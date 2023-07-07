@@ -38,7 +38,7 @@ useThrottleFn(
   },
   500,
   true,
-  true,
+  true
   // TODO: revoke previous request if new request is sent
 )
 watch(
@@ -50,7 +50,7 @@ watch(
   },
   {
     deep: true,
-  },
+  }
 )
 </script>
 <template>
