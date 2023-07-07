@@ -1,3 +1,4 @@
+import { defineComponent, onMounted, ref, watch } from "vue"
 import {
   ClientOnly,
   HeadIconButton,
@@ -13,7 +14,12 @@ import { useTrans } from "~/composable/locales"
 import { languageOptions, modelOptions, sendKeyOptions, themeOptions, useSettingStore } from "~/composable/settings"
 
 const SettingItem = defineComponent({
+  props: {
+    title: String,
+    subtitle: String,
+  },
   setup(props: { title: string; subtitle?: string }, { slots }) {
+    console.log(props)
     return () => (
       <div class="flex items-center justify-between border-gray-200 py-3 pl-5 pr-2">
         <div class="flex items-center">
@@ -71,16 +77,10 @@ export default defineComponent({
                 </div>
               ),
               rightIcons: () => (
-                <div class="flex w-[150px]">
-                  <div class="ml-3">
-                    <HeadIconButton icon="i-mdi-bin-outline" size="1.3em" />
-                  </div>
-                  <div class="ml-3">
-                    <HeadIconButton icon="i-mdi-reload" size="1.3em" />
-                  </div>
-                  <div class="ml-3">
-                    <HeadIconButton icon="i-mdi-close" size="1.3em" onClick={() => router.back()} />
-                  </div>
+                <div class="flex w-[150px] justify-end space-x-2">
+                  <HeadIconButton icon="i-mdi-bin-outline" size="1.3em" />
+                  <HeadIconButton icon="i-mdi-reload" size="1.3em" />
+                  <HeadIconButton icon="i-mdi-close" size="1.3em" onClick={() => router.back()} />
                 </div>
               ),
             }}
@@ -185,7 +185,7 @@ export default defineComponent({
             </div>
             <div class="mb-5 divide-y rounded-md border shadow-sm">
               <SettingItem title={t("Settings.Model")}>
-                <USelect v-model={settings.model} searchable options={modelOptions} />
+                <USelect v-model={settings.model} options={modelOptions} />
               </SettingItem>
 
               <SettingItem title={t("Settings.Temperature.Title")} subtitle={t("Settings.Temperature.SubTitle")}>
