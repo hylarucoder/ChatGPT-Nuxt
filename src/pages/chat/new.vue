@@ -50,7 +50,7 @@ const resizeMaskRows = useThrottleFn(
     }
     maskRef.value.scrollLeft = (maskRef.value.scrollWidth - maskRef.value.clientWidth) / 2
   },
-  200,
+  1000,
   true,
   true,
 )
@@ -79,7 +79,7 @@ const notShowAndNav = () => {
 }
 </script>
 <template>
-  <div ref="pageRef" class="flex flex-shrink flex-col items-center overflow-hidden">
+  <div ref="pageRef" class="flex flex-grow flex-col items-center overflow-hidden">
     <div class="flex w-full justify-between p-3 text-zinc-800">
       <button
         class="flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-md bg-white p-3 text-center hover:bg-gray-200"

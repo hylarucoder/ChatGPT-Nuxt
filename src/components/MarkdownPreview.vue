@@ -48,6 +48,6 @@ watchEffect(async () => {
 </script>
 <template>
   <ClientOnly>
-    <div class="markdown-body w-full" v-html="parsedMarkdown"></div>
+    <div class="markdown-body w-full overflow-scroll" v-html="parsedMarkdown"></div>
   </ClientOnly>
 </template>
