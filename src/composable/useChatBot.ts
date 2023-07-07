@@ -1,10 +1,19 @@
-import { fetchEventSource } from "@fortaine/fetch-event-source"
+import { EventStreamContentType, fetchEventSource } from "@fortaine/fetch-event-source"
 import { useSettingStore } from "~/composable/settings"
 
 type TChatCompletionMessage = {
   content: string
   status: "pending" | "connected" | "client error" | "messaging" | "error" | "done"
   errorMessage: string
+}
+
+function isJsonString(str: string) {
+  try {
+    JSON.parse(str)
+  } catch (e) {
+    return false
+  }
+  return true
 }
 
 export default function useChatBot() {
@@ -40,25 +49,31 @@ export default function useChatBot() {
         }),
         signal: controller.signal,
 
-        async onopen(res) {
-          if (res.ok && res.status === 200) {
-            console.log("Connection made ", res)
+        async onopen(resp) {
+          if (resp.ok && resp.headers.get("content-type") === EventStreamContentType) {
             message.status = "connected"
             onStart(message)
-            try {
-              const json = await res.json()
-              message.errorMessage = JSON.stringify(json.error)
-              onError(message)
-              controller.abort("Server Error")
-            } catch (e) {
-              controller.abort("Error parsing response")
-            }
-          } else if (res.status >= 400 && res.status < 500 && res.status !== 429) {
+            return // everything's good
+          }
+          if (resp.status >= 400 && resp.status < 500 && resp.status !== 429) {
             message.status = "error"
-            message.errorMessage = `server side error ${res.status || res.statusText} ${res.type}`
-            onError(message)
+            message.errorMessage = `server side error ${resp.status || resp.statusText} ${resp.type}`
             controller.abort("Error parsing response")
-            console.log("Client-side error ", res)
+            onError(message)
+            console.log("Client-side error ", resp)
+            return
+          }
+          const content = await resp.text()
+          console.log("Response content ", content)
+          try {
+            console.log("Error message ", content)
+            if (isJsonString(content)) {
+              message.errorMessage = content
+              controller.abort("Server Error")
+              onError(message)
+            }
+          } catch (e) {
+            controller.abort("Error parsing response")
           }
         },
         onmessage(ev) {
@@ -80,8 +95,8 @@ export default function useChatBot() {
             }
           } catch (e) {
             message.content = String(e)
-            onError(message)
             controller.abort("Error message response")
+            onError(message)
           }
         },
         onerror(err) {
