@@ -10,7 +10,7 @@ export const useSidebar = () => {
       visible.value = true
       return
     }
-    visible.value = routePrefix.some(prefix => route.path.startsWith(prefix))
+    visible.value = routePrefix.some((prefix) => route.path.startsWith(prefix))
   }
 
   onMounted(() => {
@@ -23,8 +23,17 @@ export const useSidebar = () => {
     visible.value = false
   }
 
+  const hideIfMobile = () => {
+    if (!isMobile) {
+      visible.value = true
+      return
+    }
+    visible.value = false
+  }
+
   return {
     visible,
+    hideIfMobile,
     show,
     hide,
   }

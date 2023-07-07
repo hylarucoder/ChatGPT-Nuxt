@@ -19,9 +19,7 @@ const newSessionAndNav = (mask: TPrompts) => {
     description: mask.description,
     avatar: getRandomEmoji("a"),
   })
-  if (isMobile) {
-    sidebarUsed.hide()
-  }
+  sidebarUsed.hideIfMobile()
   router.push({
     path: "/chat/session/" + session.id,
   })
