@@ -166,7 +166,7 @@ export default defineComponent({
                 >
                   <div
                     class={{
-                      "animate-spin": usageReloading,
+                      "animate-spin": usageReloading.value,
                       "flex items-center justify-center": true,
                     }}
                   >
