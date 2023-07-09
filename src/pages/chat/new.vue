@@ -33,6 +33,12 @@ const newDefaultSession = () => {
   })
 }
 
+onBeforeMount(() => {
+  if (!settings.maskLaunchPage) {
+    newDefaultSession()
+  }
+})
+
 const resizeMaskRows = useThrottleFn(
   ({ width, height }: { width: number; height: number }) => {
     if (!pageRef.value) {
