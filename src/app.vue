@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { appName } from "./constants"
-import { setMobileCssVariables } from "~/utils/css"
+import { useGlobalCssVar } from "~/composable/useGlobalCss"
 
 useHead({
   title: appName,
 })
 
 const { isMobile } = useDevice()
+
+const globalCssVar = useGlobalCssVar()
 
 onMounted(() => {
   if (isMobile) {
@@ -18,11 +20,7 @@ onMounted(() => {
         },
       ],
     })
-    setMobileCssVariables({
-      "--window-width": "100vw",
-      "--window-height": "100vh",
-      "--sidebar-width": "100vw",
-    })
+    globalCssVar.setupMobile()
   }
 })
 </script>

@@ -48,9 +48,11 @@ const resizeMaskRows = useThrottleFn(
     if (!maskRef.value) {
       return
     }
-    maskRef.value.scrollLeft = (maskRef.value.scrollWidth - maskRef.value.clientWidth) / 2
+    nextTick(() => {
+      maskRef.value.scrollLeft = (maskRef.value.scrollWidth - maskRef.value.clientWidth) / 2
+    })
   },
-  1000,
+  300,
   true,
   true,
 )
