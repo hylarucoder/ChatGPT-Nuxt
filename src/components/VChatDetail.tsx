@@ -34,7 +34,7 @@ export default defineComponent({
       },
       {
         deep: true,
-      },
+      }
     )
 
     onMounted(() => {
@@ -45,7 +45,13 @@ export default defineComponent({
 
     return () => (
       <div class="flex w-full flex-1 flex-col">
-        {visibleShareModal.value && <LazyVSharePreview />}
+        {visibleShareModal.value && (
+          <LazyVSharePreview
+            onClose={() => {
+              visibleShareModal.value = false
+            }}
+          />
+        )}
         <VDetailHeader
           title={chatSession.session.topic}
           subtitle={t("Chat.SubTitle", { count: chatSession.session.messagesCount })}

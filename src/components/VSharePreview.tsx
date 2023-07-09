@@ -5,9 +5,11 @@ import { useTrans } from "~/composable/locales"
 import { useRoutedChatSession } from "~/composable/chat"
 
 export default defineComponent({
-  setup() {
+  emits: ["onClose"],
+  setup(props, { emit }) {
+    console.log("VSharePreview setup")
     const elShare = ref<HTMLElement | null>(null)
-    const modalVisible = ref(true)
+    const visible = ref(true)
     // const shareLoading = ref(false)
     const chatSession = useRoutedChatSession()
     const { t } = useTrans()
@@ -29,11 +31,14 @@ export default defineComponent({
 
     return () => (
       <UModal
+        onClose={() => {
+          emit("onClose")
+        }}
         ui={{
           padding: "p-4 sm:p-0",
           width: "sm:max-w-lg min-w-[600px]",
         }}
-        v-model={modalVisible.value}
+        v-model={visible.value}
       >
         <div class="relative flex flex-col space-y-3">
           <div ref={elShare}>
