@@ -26,6 +26,9 @@ dependencies:
   '@types/unist':
     specifier: ^2.0.6
     version: registry.npmmirror.com/@types/unist@2.0.6
+  html-to-image:
+    specifier: ^1.11.11
+    version: registry.npmmirror.com/html-to-image@1.11.11
   pinia:
     specifier: ^2.1.4
     version: registry.npmmirror.com/pinia@2.1.4(typescript@5.0.3)(vue@3.3.4)
@@ -2505,10 +2508,10 @@ packages:
     engines: {node: '>= 14'}
     dev: true
 
-  registry.npmmirror.com/@intlify/shared@9.3.0-beta.21:
-    resolution: {integrity: sha512-VcE3XKBlQXHKRKAGP7YB/7n0TFH4EibJSGJ+t4rZuC8gTL6r/eqYM1fsw3JJFe70wamqx1oEmd2Hu/pnPlsfiQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@intlify/shared/-/shared-9.3.0-beta.21.tgz}
+  registry.npmmirror.com/@intlify/shared@9.3.0-beta.24:
+    resolution: {integrity: sha512-AKxJ8s7eKIQWkNaf4wyyoLRwf4puCuQgjSChlDJm5JBEt6T8HGgnYTJLRXu6LD/JACn3Qwu6hM/XRX1c9yvjmQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@intlify/shared/-/shared-9.3.0-beta.24.tgz}
     name: '@intlify/shared'
-    version: 9.3.0-beta.21
+    version: 9.3.0-beta.24
     engines: {node: '>= 16'}
     dev: true
 
@@ -8570,6 +8573,12 @@ packages:
     version: 3.3.1
     engines: {node: '>=8'}
     dev: true
+
+  registry.npmmirror.com/html-to-image@1.11.11:
+    resolution: {integrity: sha512-9gux8QhvjRO/erSnDPv28noDZcPZmYE7e1vFsBLKLlRlKDSqNJYebj6Qz1TGd5lsRV+X+xYyjCKjuZdABinWjA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/html-to-image/-/html-to-image-1.11.11.tgz}
+    name: html-to-image
+    version: 1.11.11
+    dev: false
 
   registry.npmmirror.com/html-void-elements@2.0.1:
     resolution: {integrity: sha512-0quDb7s97CfemeJAnW9wC0hw78MtW7NU3hqtCD75g2vFlDLt36llsYD7uB7SUzojLMP24N5IatXf7ylGXiGG9A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/html-void-elements/-/html-void-elements-2.0.1.tgz}
@@ -15431,7 +15440,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': registry.npmmirror.com/@intlify/shared@9.3.0-beta.21
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared@9.3.0-beta.24
       '@intlify/vue-i18n-bridge': registry.npmmirror.com/@intlify/vue-i18n-bridge@0.8.0(vue-i18n@9.3.0-beta.17)
       '@intlify/vue-router-bridge': registry.npmmirror.com/@intlify/vue-router-bridge@0.8.0(vue@3.3.4)
       ufo: registry.npmmirror.com/ufo@1.1.2

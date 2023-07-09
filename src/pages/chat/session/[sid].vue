@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ChatDetail from "~/components/VChatDetail.vue"
+import ChatDetail from "~/components/VChatDetail"
 </script>
 <template>
   <ClientOnly>
