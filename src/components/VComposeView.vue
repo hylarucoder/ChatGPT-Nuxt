@@ -38,10 +38,10 @@ const composeNewMessage = () => {
 }
 </script>
 <template>
-  <div class="relative flex-col rounded-md border-t p-3">
+  <div class="relative flex-col rounded-md border-t p-3 dark:border-gray-600">
     <div class="flex flex-wrap">
       <div
-        class="mb-3 mr-1 flex cursor-pointer items-center rounded-md border px-3 py-1 text-[0.75rem] hover:bg-gray-200"
+        class="mb-3 mr-1 flex cursor-pointer items-center rounded-md border px-3 py-1 text-[0.75rem] hover:bg-gray-200 dark:border-gray-600"
       >
         <span class="i-mdi-robot-excited-outline" size="1.4em" />
       </div>
@@ -49,9 +49,9 @@ const composeNewMessage = () => {
     <div class="flex flex-grow">
       <div class="min-h-24 w-full">
         <UTextarea
+          v-model="chatSession.session.composeInput"
           autoresize
           :placeholder="`[` + setting.sendKey + ']' + ' to Send'"
-          v-model="chatSession.session.composeInput"
           @keydown="handleKeyDown"
         />
       </div>
@@ -61,8 +61,8 @@ const composeNewMessage = () => {
         <UButton
           :loading="doMessaging"
           icon="i-lucide-send"
-          @click="composeNewMessage"
           :disabled="isEmptyInput(chatSession.session.composeInput)"
+          @click="composeNewMessage"
         >
           {{ t("Chat.Send") }}
         </UButton>

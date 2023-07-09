@@ -18,7 +18,7 @@ const { isMobile } = useDevice()
       'left-0': isMobile && visible,
     }"
   >
-    <div class="flex h-full flex-shrink-0 flex-col overflow-hidden bg-cyan-50 p-5 shadow">
+    <div class="flex h-full flex-shrink-0 flex-col overflow-hidden bg-cyan-50 p-5 shadow dark:bg-gray-700">
       <div class="relative py-5">
         <div class="text-[1.25rem] font-bold">
           ChatGPT Nuxt

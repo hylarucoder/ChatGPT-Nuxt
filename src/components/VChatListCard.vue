@@ -49,10 +49,10 @@ const onDeleteSession = () => {
 </template>
 <style>
 .chat-list-card {
-  @apply mb-3 block cursor-grab rounded-md border-2 border-white bg-white p-3 drop-shadow-sm hover:border-gray-200 hover:bg-gray-200;
+  @apply mb-3 block cursor-grab rounded-md   border-2 border-white bg-white p-3 drop-shadow-sm hover:border-gray-200 hover:bg-gray-200 dark:border-gray-800 dark:bg-gray-800;
 }
 
 .chat-list-card__active {
-  @apply border-green-500 !important;
+  @apply border-green-500 dark:bg-gray-800 !important;
 }
 </style>

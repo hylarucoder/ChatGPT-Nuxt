@@ -37,6 +37,7 @@ const SettingItem = defineComponent({
 export default defineComponent({
   setup() {
     const router = useRouter()
+    const colorMode = useColorMode()
 
     const settingStore = useSettingStore()
     const settings = settingStore.settings
@@ -62,7 +63,7 @@ export default defineComponent({
       () => settings.language,
       () => {
         setLocale(settings.language)
-      }
+      },
     )
 
     return () => (
@@ -88,7 +89,7 @@ export default defineComponent({
             }}
           </VDetailHeader>
           <div class="w-full overflow-x-hidden overflow-y-scroll px-2 pt-5 sm:p-5">
-            <div class="mb-5 divide-y rounded-md border shadow-sm">
+            <div class="mb-5 divide-y rounded-md border shadow-sm dark:divide-gray-600 dark:border-gray-600">
               <SettingItem title={t("Settings.Avatar")}>
                 <VEmojiAvatar v-model={settings.avatar} />
               </SettingItem>
@@ -115,7 +116,7 @@ export default defineComponent({
               </SettingItem>
 
               <SettingItem title={t("Settings.Theme")}>
-                <USelect v-model={settings.theme} options={themeOptions} />
+                <USelect v-model={colorMode.preference} options={themeOptions} />
               </SettingItem>
 
               <SettingItem title={t("Settings.Lang.Name")}>
@@ -132,7 +133,7 @@ export default defineComponent({
                 <UCheckbox v-model={settings.maskLaunchPage} />
               </SettingItem>
             </div>
-            <div class="mb-5 divide-y rounded-md border shadow-sm">
+            <div class="mb-5 divide-y rounded-md border shadow-sm dark:divide-gray-600 dark:border-gray-600">
               <SettingItem title={t("Settings.Endpoint.Title")} subtitle={t("Settings.Endpoint.SubTitle")}>
                 <div class="flex justify-end">
                   <UInput v-model={settings.serverUrl} />
@@ -145,11 +146,13 @@ export default defineComponent({
                     onClick={() => (apiKeyShow.value = !apiKeyShow.value)}
                   >
                     <div class="flex items-center justify-center">
-                      {apiKeyShow.value ? (
+                      {apiKeyShow.value
+                        ? (
                         <span class="i-mdi-eye-outline h-4 w-4" />
-                      ) : (
+                          )
+                        : (
                         <span class="i-mdi-eye-off-outline h-4 w-5" />
-                      )}
+                          )}
                     </div>
                   </button>
                   <UInput
@@ -183,7 +186,7 @@ export default defineComponent({
                 </button>
               </SettingItem>
             </div>
-            <div class="mb-5 divide-y rounded-md border shadow-sm">
+            <div class="mb-5 divide-y rounded-md border shadow-sm dark:divide-gray-600 dark:border-gray-600">
               <SettingItem title={t("Settings.Model")}>
                 <USelect v-model={settings.model} options={modelOptions} />
               </SettingItem>

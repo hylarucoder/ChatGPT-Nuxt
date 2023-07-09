@@ -40,15 +40,15 @@ export const sendKeyOptions: TSelectOption[] = keyMaps.map((keyMap) => {
 export const themeOptions: TSelectOption[] = [
   {
     label: "Auto",
-    value: "Auto",
-  },
-  {
-    label: "Dark",
-    value: "Dark",
+    value: "system",
   },
   {
     label: "Light",
-    value: "Light",
+    value: "light",
+  },
+  {
+    label: "Dark",
+    value: "dark",
   },
 ]
 
@@ -141,7 +141,7 @@ const defaultSettings = {
 export const useSettingStore = defineStore(StoreKey.Setting, () => {
   const settings = reactive(loadFromLocalStorage(StoreKey.Setting, defaultSettings))
   const runtimeConfig = useRuntimeConfig()
-  const { t, setLocale } = useTrans()
+  const { setLocale } = useTrans()
   setLocale(settings.language)
 
   const fetchRemoteLatestCommitDate = () => {
@@ -150,16 +150,16 @@ export const useSettingStore = defineStore(StoreKey.Setting, () => {
       settings.hasNewVersion = settings.latestCommitDate < settings.remoteLatestCommitDate
     }
     fetch(FETCH_COMMIT_URL)
-      .then(response => response.json())
+      .then((response) => response.json())
       .then((data) => {
         const date = data[0].commit.author.date
         settings.remoteLatestCommitDate = date.slice(0, 10).replace(/-/g, "")
       })
-      .catch(error => console.error(error))
+      .catch((error) => console.error(error))
   }
   watch(
     () => settings,
-    (value, oldValue) => {
+    (value) => {
       document.documentElement.style.setProperty("--markdown-font-size", `${value.fontSize}px`)
       saveToLocalStorage(StoreKey.Setting, settings)
     },

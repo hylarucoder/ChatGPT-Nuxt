@@ -22,7 +22,7 @@ export default defineComponent({
           rightIcons: () => (
             <div class="flex w-[150px] justify-end space-x-2">
               <HeadIconButton icon="i-mdi-circle-edit-outline" size="1.2em" onClick={chatSession.rename} />
-              <HeadIconButton icon="i-mdi-share-all-outline bg-black" size="1.2em" />
+              <HeadIconButton icon="i-mdi-share-all-outline" size="1.2em" />
               <HeadIconButton icon="i-mdi-window-maximize" size="1.2em" />
             </div>
           ),

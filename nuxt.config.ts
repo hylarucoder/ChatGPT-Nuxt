@@ -49,9 +49,9 @@ export default defineNuxtConfig({
     typedPages: true,
   },
 
-  // colorMode: {
-  //   classSuffix: '',
-  // },
+  colorMode: {
+    classSuffix: "",
+  },
 
   nitro: {
     esbuild: {
