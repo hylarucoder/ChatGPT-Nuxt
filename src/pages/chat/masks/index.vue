@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue"
-import { useTrans } from "~/composable/locales"
-import { TPrompts, useMasks } from "~/composable/mask"
-import { useSidebar } from "~/composable/useSidebar"
+import { useTrans } from "~/composables/locales"
+import { TPrompts, useMasks } from "~/composables/mask"
+import { useSidebar } from "~/composables/useSidebar"
 import { getRandomEmoji } from "~/utils/emoji"
-import { useSidebarChatSessions } from "~/composable/chat"
+import { useSidebarChatSessions } from "~/composables/chat"
 import { MasksHeader } from "~/pages/chat/masks/MasksHeader"
 
 const router = useRouter()

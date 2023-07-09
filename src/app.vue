@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { appName } from "./constants"
-import { useGlobalCssVar } from "~/composable/useGlobalCss"
+import { useGlobalCssVar } from "~/composables/useGlobalCss"
 
 useHead({
   title: appName,

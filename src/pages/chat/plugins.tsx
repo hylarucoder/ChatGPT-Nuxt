@@ -1,6 +1,6 @@
 import { defineComponent } from "vue"
 import { HeadIconButton, VDetailHeader } from "#components"
-import { useTrans } from "~/composable/locales"
+import { useTrans } from "~/composables/locales"
 
 const PagePlugin = defineComponent({
   props: {

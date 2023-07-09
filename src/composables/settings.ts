@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import { reactive } from "vue"
-import { useTrans } from "~/composable/locales"
-import { loadFromLocalStorage, saveToLocalStorage } from "~/composable/storage"
+import { useTrans } from "~/composables/locales"
+import { loadFromLocalStorage, saveToLocalStorage } from "~/composables/storage"
 import { ALL_MODELS, SubmitKey } from "~/constants/typing"
 import { FETCH_COMMIT_URL, StoreKey } from "~/constants"
 

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { onMounted } from "vue"
-import MaskCard from "~/components/MaskCard.vue"
-import { TPrompts, useMasks } from "~/composable/mask"
-import { useSettingStore } from "~/composable/settings"
+import MaskCard from "~/components/MaskCard"
+import { TPrompts, useMasks } from "~/composables/mask"
+import { useSettingStore } from "~/composables/settings"
 import { getRandomEmoji } from "~/utils/emoji"
-import { useSidebarChatSessions } from "~/composable/chat"
+import { useSidebarChatSessions } from "~/composables/chat"
 
 const router = useRouter()
 const { settings } = useSettingStore()

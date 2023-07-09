@@ -1,5 +1,5 @@
 import { defineComponent } from "vue"
-import { useSidebar } from "~/composable/useSidebar"
+import { useSidebar } from "~/composables/useSidebar"
 
 export default defineComponent({
   props: {

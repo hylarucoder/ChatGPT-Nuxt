@@ -1,6 +1,5 @@
-<script lang="ts">
 import { defineComponent } from "vue"
-// import iconUpload from "@/icons/upload.svg?component"
+// import iconUpload from '@/icons/upload.svg?component'
 
 const icons = {
   // upload: iconUpload,
@@ -18,12 +17,6 @@ export default defineComponent({
   setup(props) {
     const currentComponent = icons[props.icon]
 
-    return {
-      currentComponent,
-    }
+    return () => <component is={currentComponent} />
   },
 })
-</script>
-<template>
-  <component :is="currentComponent" />
-</template>

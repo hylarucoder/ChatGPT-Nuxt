@@ -1,5 +1,5 @@
 import { EventStreamContentType, fetchEventSource } from "@fortaine/fetch-event-source"
-import { useSettingStore } from "~/composable/settings"
+import { useSettingStore } from "~/composables/settings"
 
 type TChatCompletionMessage = {
   content: string

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { useSettingStore } from "~/composable/settings"
+import { useSettingStore } from "~/composables/settings"
 import { StoreKey } from "~/constants"
 
 interface TPromptsJson {
