@@ -244,6 +244,10 @@ const en = {
   },
   Plugin: {
     Name: "Plugin",
+    Page: {
+      Title: "Plugins",
+      SubTitle: "Some Plugins You May Like",
+    },
   },
   Mask: {
     Name: "Mask",

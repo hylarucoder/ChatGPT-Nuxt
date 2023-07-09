@@ -248,6 +248,10 @@ const cn: TLocale = {
   },
   Plugin: {
     Name: "插件",
+    Page: {
+      Title: "插件",
+      SubTitle: "一些有趣的插件",
+    },
   },
   Mask: {
     Name: "面具",

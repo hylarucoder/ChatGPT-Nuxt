@@ -63,22 +63,14 @@ export default defineComponent({
       () => settings.language,
       () => {
         setLocale(settings.language)
-      },
+      }
     )
 
     return () => (
       <ClientOnly>
         <div class="flex w-screen flex-1 flex-col">
-          <VDetailHeader>
+          <VDetailHeader title={t("Settings.Title")} subtitle={t("Settings.SubTitle")}>
             {{
-              default: () => (
-                <div class="max-w-1/2 truncate text-center">
-                  <div class="max-w-1/2 cursor-pointer truncate text-sm font-bold sm:text-lg">
-                    {t("Settings.Title")}
-                  </div>
-                  <div class="text-xs sm:text-sm">{t("Settings.SubTitle")}</div>
-                </div>
-              ),
               rightIcons: () => (
                 <div class="flex w-[150px] justify-end space-x-2">
                   <HeadIconButton icon="i-mdi-bin-outline" size="1.3em" />
@@ -146,13 +138,11 @@ export default defineComponent({
                     onClick={() => (apiKeyShow.value = !apiKeyShow.value)}
                   >
                     <div class="flex items-center justify-center">
-                      {apiKeyShow.value
-                        ? (
+                      {apiKeyShow.value ? (
                         <span class="i-mdi-eye-outline h-4 w-4" />
-                          )
-                        : (
+                      ) : (
                         <span class="i-mdi-eye-off-outline h-4 w-5" />
-                          )}
+                      )}
                     </div>
                   </button>
                   <UInput
@@ -176,7 +166,7 @@ export default defineComponent({
                 >
                   <div
                     class={{
-                      "animate-spin": usageReloading,
+                      "animate-spin": usageReloading.value,
                       "flex items-center justify-center": true,
                     }}
                   >

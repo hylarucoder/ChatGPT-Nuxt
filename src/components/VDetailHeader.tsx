@@ -2,6 +2,10 @@ import { defineComponent } from "vue"
 import { useSidebar } from "~/composable/useSidebar"
 
 export default defineComponent({
+  props: {
+    title: String,
+    subtitle: String,
+  },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, { slots }) {
     const { show: showSidebar, visible } = useSidebar()
@@ -23,7 +27,10 @@ export default defineComponent({
               />
             </div>
           )}
-          {slots?.default?.()}
+          <div class="max-w-1/2 truncate text-center sm:text-left">
+            <div class="max-w-1/2 cursor-pointer truncate text-sm font-bold sm:text-lg">{props.title}</div>
+            {props.subtitle && <div class="text-xs sm:text-sm">{props.subtitle}</div>}
+          </div>
           {!isMobile && slots?.rightIcons?.()}
           {isMobile && (
             <div class="mr-3 flex text-gray-600">
