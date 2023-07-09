@@ -1,4 +1,3 @@
-import { defineComponent } from "vue"
 import { toPng } from "html-to-image"
 import { HeadIconButton, UCard, UModal, VChatMessage } from "#components"
 import { useTrans } from "~/composables/locales"

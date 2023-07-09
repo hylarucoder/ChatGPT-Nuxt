@@ -1,4 +1,3 @@
-import { defineComponent, ref } from "vue"
 import { Icon, VEmojiPicker } from "#components"
 
 export default defineComponent({

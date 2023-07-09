@@ -1,6 +1,5 @@
 // VEmojiPicker.tsx
 import { Icon } from "#components"
-import { defineComponent, computed, ref } from "vue"
 
 type EmojiCategory = {
   title: string

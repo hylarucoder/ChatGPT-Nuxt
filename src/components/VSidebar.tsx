@@ -1,4 +1,3 @@
-import { defineComponent } from "vue"
 import { IconButton, NuxtLink, VChatList } from "#components"
 import { useTrans } from "~/composables/locales"
 import { useSidebar } from "~/composables/useSidebar"

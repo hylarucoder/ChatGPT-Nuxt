@@ -1,4 +1,3 @@
-import { defineComponent } from "vue"
 // import iconUpload from '@/icons/upload.svg?component'
 
 const icons = {

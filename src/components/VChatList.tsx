@@ -1,4 +1,3 @@
-import { defineComponent, ref } from "vue"
 import { VChatListCard } from "#components"
 import { useSidebarChatSessions } from "~/composables/chat"
 
