@@ -1,6 +1,5 @@
 // MarkdownRenderer.tsx
 import { ClientOnly } from "#components"
-import { defineComponent, PropType, ref, watchEffect } from "vue"
 import { unified } from "unified"
 import remarkParse from "remark-parse"
 import remarkGfm from "remark-gfm"

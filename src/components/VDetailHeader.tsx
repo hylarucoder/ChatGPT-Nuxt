@@ -1,4 +1,3 @@
-import { defineComponent } from "vue"
 import { useSidebar } from "~/composables/useSidebar"
 
 export default defineComponent({

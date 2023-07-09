@@ -1,4 +1,4 @@
-import { defineComponent, PropType } from "vue"
+import { PropType } from "vue"
 import { Icon } from "#components"
 import { getRandomEmoji } from "~/utils/emoji"
 

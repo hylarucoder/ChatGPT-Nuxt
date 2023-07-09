@@ -1,4 +1,3 @@
-import { defineComponent, ref } from "vue"
 import { UButton, UTextarea } from "#components"
 import { useRoutedChatSession } from "~/composables/chat"
 import { useTrans } from "~/composables/locales"

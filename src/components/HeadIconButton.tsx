@@ -1,5 +1,3 @@
-import { defineComponent } from "vue"
-
 interface Props {
   icon: string
   size: string

@@ -1,6 +1,3 @@
-// CustomButton.tsx
-import { defineComponent } from "vue"
-
 interface Props {
   icon: string
   text?: string
