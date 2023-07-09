@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from "vue"
-import MaskCard from "~/components/MaskCard.vue"
+import MaskCard from "~/components/MaskCard"
 import { TPrompts, useMasks } from "~/composable/mask"
 import { useSettingStore } from "~/composable/settings"
 import { getRandomEmoji } from "~/utils/emoji"
