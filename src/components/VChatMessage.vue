@@ -18,13 +18,14 @@ const isHovered = useElementHover(messageRef)
 </script>
 <template>
   <div class="flex w-full text-zinc-800" :class="{ 'flex-row-reverse': isSend }">
-    <div ref="messageRef" class="flex w-11/12 flex-col" :class="{ 'items-start': !isSend, 'items-end': isSend }">
+    <div class="flex w-11/12 flex-col" :class="{ 'items-start': !isSend, 'items-end': isSend }">
       <div class="mt-5 flex">
         <div class="flex h-8 w-8 items-center justify-center rounded-md border border-neutral-200 dark:bg-gray-200">
           <Icon size="1.3em" class="text-center" :name="isSend ? settings.avatar : currentSession.session.avatar" />
         </div>
       </div>
       <div
+        ref="messageRef"
         style="text-wrap: wrap; user-select: text; word-break: break-word"
         class="mt-1 break-words rounded-md border p-3 text-[0.88rem] dark:border-gray-500"
         :class="{
@@ -40,7 +41,7 @@ const isHovered = useElementHover(messageRef)
               enter-from-class="translate-x-[5%] opacity-0"
               leave-to-class="translate-x-[5%] opacity-0"
               enter-active-class="transition duration-300"
-              leave-active-class="transition duration-300"
+              leave-active-class="transition delay-300 duration-300"
             >
               <div
                 v-show="isHovered"
@@ -63,7 +64,7 @@ const isHovered = useElementHover(messageRef)
               enter-from-class="translate-x-[6%] opacity-0"
               leave-to-class="translate-x-[6%] opacity-0"
               enter-active-class="transition duration-300"
-              leave-active-class="transition duration-300"
+              leave-active-class="transition delay-300 duration-300"
             >
               <div v-show="isHovered" class="absolute -bottom-8 right-0 text-xs text-neutral-400">
                 {{ formatDateString(message.date) }}
