@@ -37,7 +37,7 @@ const SettingItem = defineComponent({
 export default defineComponent({
   setup() {
     const router = useRouter()
-    // const colorMode = useColorMode()
+    const colorMode = useColorMode()
 
     const settingStore = useSettingStore()
     const settings = settingStore.settings
@@ -116,7 +116,7 @@ export default defineComponent({
               </SettingItem>
 
               <SettingItem title={t("Settings.Theme")}>
-                <USelect v-model={settings.theme} options={themeOptions} />
+                <USelect v-model={colorMode.preference} options={themeOptions} />
               </SettingItem>
 
               <SettingItem title={t("Settings.Lang.Name")}>
