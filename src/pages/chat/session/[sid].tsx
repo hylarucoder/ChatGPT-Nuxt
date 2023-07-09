@@ -33,7 +33,7 @@ export default defineComponent({
       },
       {
         deep: true,
-      },
+      }
     )
 
     onMounted(() => {
