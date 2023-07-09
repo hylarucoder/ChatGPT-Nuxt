@@ -90,12 +90,11 @@ watch(
           </UModal>
         </div>
 
-        <div class="divide-gray-200">
+        <div class="divide-gray-200 dark:divide-gray-500">
           <div
             v-for="(mask, index) in maskUse.searchedMasks"
             :key="index"
-            style="border-color: rgb(222, 222, 222); border-style: solid"
-            class="flex justify-between divide-gray-50 break-words border-b border-l border-r p-5"
+            class="flex justify-between divide-gray-100 break-words border-b border-l border-r border-gray-200 p-5 dark:border-gray-500"
             :class="{
               'rounded-t-md border-t ': index === 0,
               'rounded-b-md ': index === maskUse.searchedMasks.length - 1,

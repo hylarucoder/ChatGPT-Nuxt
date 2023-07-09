@@ -82,7 +82,7 @@ const notShowAndNav = () => {
   <div ref="pageRef" class="flex flex-grow flex-col items-center overflow-hidden">
     <div class="flex w-full justify-between p-3 text-zinc-800">
       <button
-        class="flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-md bg-white p-3 text-center hover:bg-gray-200"
+        class="flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-md bg-white p-3 text-center hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200"
         @click="router.back()"
       >
         <div class="flex items-center justify-center">
@@ -93,7 +93,7 @@ const notShowAndNav = () => {
         </div>
       </button>
       <button
-        class="flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-md bg-white p-3 text-center hover:bg-gray-200"
+        class="flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-md bg-white p-3 text-center hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200"
         @click="notShowAndNav()"
       >
         <div class="ml-1 overflow-hidden text-ellipsis text-xs">

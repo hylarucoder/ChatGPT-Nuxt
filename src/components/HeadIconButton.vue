@@ -1,6 +1,6 @@
 <template>
   <button
-    class="flex h-10 w-10 cursor-pointer items-center justify-center truncate rounded-md border border-neutral-200 p-3 text-center hover:bg-gray-200"
+    class="flex h-10 w-10 cursor-pointer items-center justify-center truncate rounded-md border border-neutral-200 p-3 text-center hover:bg-gray-200 dark:border-gray-500 dark:hover:bg-gray-800"
     @click="$emit('click')"
   >
     <div class="flex items-center justify-center">
