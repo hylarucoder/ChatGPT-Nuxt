@@ -1,5 +1,5 @@
 import { defineComponent } from "vue"
-import { IconButton, VChatList } from "#components"
+import { IconButton, NuxtLink, VChatList } from "#components"
 import { useTrans } from "~/composables/locales"
 import { useSidebar } from "~/composables/useSidebar"
 
@@ -24,12 +24,12 @@ export default defineComponent({
             </div>
           </div>
           <div class="mb-5 flex space-x-2">
-            <nuxt-link class="w-full flex-grow" to={`/chat/masks`} onClick={hideIfMobile}>
+            <NuxtLink class="w-full flex-grow" to={`/chat/masks`} onClick={hideIfMobile}>
               <IconButton class="w-full" icon="i-mdi-robot-happy-outline" text={t(`Mask.Name`)} />
-            </nuxt-link>
-            <nuxt-link class="w-full flex-grow" to={`/chat/plugins`} onClick={hideIfMobile}>
+            </NuxtLink>
+            <NuxtLink class="w-full flex-grow" to={`/chat/plugins`} onClick={hideIfMobile}>
               <IconButton class="w-full" icon="i-mdi-folder-search-outline" text={t(`Plugin.Name`)} />
-            </nuxt-link>
+            </NuxtLink>
           </div>
           <div class="flex-grow overflow-x-hidden">
             <VChatList />
@@ -37,15 +37,15 @@ export default defineComponent({
           <div class="flex justify-between pt-5">
             <div class="flex">
               <div>
-                <nuxt-link to="/chat/settings" class="cursor-pointer" onClick={hideIfMobile}>
+                <NuxtLink to="/chat/settings" class="cursor-pointer" onClick={hideIfMobile}>
                   <IconButton icon="i-mdi-cog-outline" />
-                </nuxt-link>
+                </NuxtLink>
               </div>
             </div>
             <div>
-              <nuxt-link to={`/chat/new`}>
+              <NuxtLink to={`/chat/new`}>
                 <IconButton icon="i-mdi-chat-outline" text={t(`Home.NewChat`)} onClick={hideIfMobile} />
-              </nuxt-link>
+              </NuxtLink>
             </div>
           </div>
         </div>

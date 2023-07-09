@@ -1,4 +1,5 @@
 // VEmojiPicker.tsx
+import { Icon } from "#components"
 import { defineComponent, computed, ref } from "vue"
 
 type EmojiCategory = {
@@ -40,7 +41,7 @@ export default defineComponent({
           recentEmojis.value.pop()
         }
       }
-      emit("onSelected", emoji)
+      emit("selected", emoji)
     }
 
     return () => (

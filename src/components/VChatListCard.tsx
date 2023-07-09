@@ -12,17 +12,14 @@ export default defineComponent({
       required: true,
     },
   },
-  emits: ["onDeleteSession"],
+  emits: ["deleteSession"],
   setup(props, { emit }) {
     const { t } = useTrans()
     const sidebarUsed = useSidebar()
     const route = useRoute()
-    const active = route.path === `/chat/session/${props.session.id}`
-    console.log(route.path, active, `/chat/session/${props.session.id}`)
-
     const upHere = ref(false)
     const onDeleteSession = () => {
-      emit("onDeleteSession", props.session.id)
+      emit("deleteSession", props.session.id)
     }
 
     const isActive = computed(() => {

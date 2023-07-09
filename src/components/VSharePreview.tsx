@@ -5,7 +5,7 @@ import { useTrans } from "~/composables/locales"
 import { useRoutedChatSession } from "~/composables/chat"
 
 export default defineComponent({
-  emits: ["onClose"],
+  emits: ["close"],
   setup(props, { emit }) {
     const elShare = ref<HTMLElement | null>(null)
     const visible = ref(true)
@@ -31,7 +31,7 @@ export default defineComponent({
     return () => (
       <UModal
         onClose={() => {
-          emit("onClose")
+          emit("close")
         }}
         ui={{
           padding: "p-4 sm:p-0",
