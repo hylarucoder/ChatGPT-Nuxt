@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSidebarChatSessions } from "~/composable/chat"
+import { useSidebarChatSessions } from "~/composables/chat"
 
 const chatStore = useSidebarChatSessions()
 onBeforeMount(async () => {

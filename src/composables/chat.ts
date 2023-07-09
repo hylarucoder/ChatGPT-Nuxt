@@ -2,7 +2,7 @@ import { defineStore } from "pinia"
 import { ComputedRef, ref } from "vue"
 import { loadFromLocalStorage, saveSessionToLocalStorage, saveToLocalStorage } from "./storage"
 import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
-import useChatBot from "~/composable/useChatBot"
+import useChatBot from "~/composables/useChatBot"
 import { TChatDirection, TChatSession, TMask } from "~/constants/typing"
 import { getUtcNow } from "~/utils/date"
 

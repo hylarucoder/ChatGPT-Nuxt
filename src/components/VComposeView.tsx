@@ -1,8 +1,8 @@
-// ChatComposer.tsx
 import { defineComponent, ref } from "vue"
-import { useRoutedChatSession } from "~/composable/chat"
-import { useTrans } from "~/composable/locales"
-import { keyMaps, useSettingStore } from "~/composable/settings"
+import { UButton, UTextarea } from "#components"
+import { useRoutedChatSession } from "~/composables/chat"
+import { useTrans } from "~/composables/locales"
+import { keyMaps, useSettingStore } from "~/composables/settings"
 
 export default defineComponent({
   name: "ChatComposer",

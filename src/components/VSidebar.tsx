@@ -1,7 +1,7 @@
 import { defineComponent } from "vue"
 import { IconButton, VChatList } from "#components"
-import { useTrans } from "~/composable/locales"
-import { useSidebar } from "~/composable/useSidebar"
+import { useTrans } from "~/composables/locales"
+import { useSidebar } from "~/composables/useSidebar"
 
 export default defineComponent({
   setup() {

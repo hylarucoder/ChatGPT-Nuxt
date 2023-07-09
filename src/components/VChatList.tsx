@@ -1,7 +1,6 @@
 import { defineComponent, ref } from "vue"
-import { useRouter } from "vue-router"
 import { VChatListCard } from "#components"
-import { useSidebarChatSessions } from "~/composable/chat"
+import { useSidebarChatSessions } from "~/composables/chat"
 
 export default defineComponent({
   components: {
@@ -13,7 +12,9 @@ export default defineComponent({
     const chatStore = useSidebarChatSessions()
     const sessions = chatStore.sessions
     const onDeleteSession = (id: string) => {
-      if (sessions.length === 0) { return }
+      if (sessions.length === 0) {
+        return
+      }
       if (sessions.length === 1) {
         return
       }

@@ -1,7 +1,7 @@
 import { defineComponent } from "vue"
 import { HeadIconButton, LazyVSharePreview, VChatMessage, VComposeView, VDetailHeader } from "#components"
-import { useRoutedChatSession } from "~/composable/chat"
-import { useTrans } from "~/composable/locales"
+import { useRoutedChatSession } from "~/composables/chat"
+import { useTrans } from "~/composables/locales"
 
 export default defineComponent({
   setup() {

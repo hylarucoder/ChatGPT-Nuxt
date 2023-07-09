@@ -1,13 +1,12 @@
 import { defineComponent } from "vue"
 import { toPng } from "html-to-image"
 import { HeadIconButton, UCard, UModal, VChatMessage } from "#components"
-import { useTrans } from "~/composable/locales"
-import { useRoutedChatSession } from "~/composable/chat"
+import { useTrans } from "~/composables/locales"
+import { useRoutedChatSession } from "~/composables/chat"
 
 export default defineComponent({
   emits: ["onClose"],
   setup(props, { emit }) {
-    console.log("VSharePreview setup")
     const elShare = ref<HTMLElement | null>(null)
     const visible = ref(true)
     // const shareLoading = ref(false)

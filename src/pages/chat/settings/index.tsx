@@ -10,8 +10,8 @@ import {
   VDetailHeader,
   VEmojiAvatar,
 } from "#components"
-import { useTrans } from "~/composable/locales"
-import { languageOptions, modelOptions, sendKeyOptions, themeOptions, useSettingStore } from "~/composable/settings"
+import { useTrans } from "~/composables/locales"
+import { languageOptions, modelOptions, sendKeyOptions, themeOptions, useSettingStore } from "~/composables/settings"
 
 const SettingItem = defineComponent({
   props: {

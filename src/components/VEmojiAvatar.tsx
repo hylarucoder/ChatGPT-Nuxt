@@ -22,7 +22,7 @@ export default defineComponent({
     const elementRef = ref<HTMLElement | null>(null)
 
     onClickOutside(elementRef, (event) => {
-      if (!showEmojiPicker.value) return
+      if (!showEmojiPicker.value) {return}
       if (elementRef.value && !elementRef.value.contains(event.target as Node)) {
         showEmojiPicker.value = false
       }

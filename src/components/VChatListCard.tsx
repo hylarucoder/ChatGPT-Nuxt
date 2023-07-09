@@ -1,8 +1,7 @@
-// ChatItem.tsx
-import { NuxtLink } from "#components"
 import { defineComponent, PropType, ref } from "vue"
-import { useTrans } from "~/composable/locales"
-import { useSidebar } from "~/composable/useSidebar"
+import { NuxtLink } from "#components"
+import { useTrans } from "~/composables/locales"
+import { useSidebar } from "~/composables/useSidebar"
 import { TChatSession } from "~/constants/typing"
 import { formatDateString } from "~/utils/date"
 
@@ -17,17 +16,28 @@ export default defineComponent({
   setup(props, { emit }) {
     const { t } = useTrans()
     const sidebarUsed = useSidebar()
+    const route = useRoute()
+    const active = route.path === `/chat/session/${props.session.id}`
+    console.log(route.path, active, `/chat/session/${props.session.id}`)
 
     const upHere = ref(false)
     const onDeleteSession = () => {
       emit("onDeleteSession", props.session.id)
     }
 
+    const isActive = computed(() => {
+      return route.path !== `/chat/session/${props.session.id}`
+    })
+
     return () => (
       <NuxtLink
-        class="chat-list-card relative"
+        class={{
+          "mb-3 block cursor-grab rounded-md border-2 bg-white p-3 drop-shadow-sm hover:bg-gray-200 dark:border-gray-800 dark:bg-gray-800":
+            true,
+          "border-white hover:border-gray-200": isActive.value,
+          "border-green-500 dark:bg-gray-800": !isActive.value,
+        }}
         to={`/chat/session/${props.session.id}`}
-        activeClassName="chat-list-card__active"
         onMouseover={() => (upHere.value = true)}
         onMouseleave={() => (upHere.value = false)}
         onClick={sidebarUsed.hideIfMobile}
@@ -39,7 +49,6 @@ export default defineComponent({
         </div>
         {upHere.value && (
           <span
-            size="1.3em"
             class={[
               "i-mdi-close-circle-outline absolute right-2 top-2 h-5 w-5 cursor-pointer text-neutral-400 opacity-0 transition-opacity duration-200",
               upHere.value && "opacity-100",
@@ -51,12 +60,3 @@ export default defineComponent({
     )
   },
 })
-
-/* ChatItem.css */
-// .chat-list-card {
-//    @apply mb-3 block cursor-grab rounded-md border-2 border-white bg-white p-3 drop-shadow-sm hover:border-gray-200 hover:bg-gray-200 dark:border-gray-800 dark:bg-gray-800;
-// }
-//
-// .chat-list-card__active {
-//    @apply border-green-500 dark:bg-gray-800 !important;
-// }
