@@ -18,7 +18,6 @@ export default defineComponent({
         return
       }
       const newSession = sessions.filter((session) => session.id !== id)[0]
-      console.log("router new Session", newSession.id)
       router.push("/chat/session/" + newSession.id)
       chatStore.deleteSession(id)
     }

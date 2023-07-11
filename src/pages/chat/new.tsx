@@ -1,6 +1,5 @@
-import { Icon } from "#components"
 import MaskCard from "~/components/MaskCard"
-import { TPrompts, useMasks } from "~/composables/mask"
+import { useMasks } from "~/composables/mask"
 import { useSettingStore } from "~/composables/settings"
 import { getRandomEmoji } from "~/utils/emoji"
 import { useSidebarChatSessions } from "~/composables/chat"
@@ -16,22 +15,10 @@ export default defineComponent({
     const maskRef = ref<HTMLDivElement | null>(null)
     const pageRef = ref<HTMLDivElement | null>(null)
 
-    const newSessionAndNav = (mask: TPrompts) => {
-      const session = chatStore.newSession(undefined, {
-        topic: mask.name,
-        description: mask.description,
-        avatar: getRandomEmoji("a"),
-      })
+    const newDefaultSession = () => {
+      const session = chatStore.createEmptySession()
       router.push({
         path: "/chat/session/" + session.id,
-      })
-    }
-
-    const newDefaultSession = () => {
-      newSessionAndNav({
-        name: "New Chat",
-        description: `hello`,
-        lang: `en`,
       })
     }
 
@@ -107,13 +94,13 @@ export default defineComponent({
         </div>
         <div class="mb-5 mt-12 flex space-x-1">
           <div class="flex h-16 w-12 items-center justify-center rounded-md border border-neutral-200 bg-white px-3 py-5">
-            <Icon name="😆" size="1.4em" />
+            <span class="text-xl">😆</span>
           </div>
           <div class="flex h-16 w-12 items-center justify-center rounded-md border border-neutral-200 bg-white px-3 py-5">
-            <Icon name="🤖" size="1.4em" />
+            <span class="text-xl">🤖</span>
           </div>
           <div class="flex h-16 w-12 items-center justify-center rounded-md border border-neutral-200 bg-white px-3 py-5">
-            <Icon name="👹" size="1.4em" />
+            <span class="text-xl">👹</span>
           </div>
         </div>
         <div class="mb-2 text-[2.00rem] font-bold">{t("NewChat.Title")}</div>
@@ -124,7 +111,7 @@ export default defineComponent({
             onClick={() => router.push("/chat/masks")}
           >
             <div class="flex items-center justify-center">
-              <Icon size="1.3em" name="ph:eye" color="#000" />
+              <span class="i-mdi-eye-outline text-lg" />
             </div>
             <div class="ml-1 truncate text-black">{t("NewChat.More")}</div>
           </button>
@@ -133,12 +120,12 @@ export default defineComponent({
             onClick={newDefaultSession}
           >
             <div class="flex items-center justify-center">
-              <Icon color="#FFF" size="1.4em" name="typcn:flash-outline" />
+              <span class="i-mdi-lightning-bolt-outline text-lg" />
             </div>
             <div class="ml-1 truncate text-white">{t("NewChat.Skip")}</div>
           </button>
         </div>
-        <div ref={maskRef} class="masks pt-5">
+        <div ref={maskRef} class="masks-container pt-5">
           {masksUse.maskRows.map((row, i) => (
             <div key={i} class="mask-row mb-3 flex">
               {row.map((mask, j) => (
@@ -147,13 +134,16 @@ export default defineComponent({
                   class="max-w-[200px]"
                   icon={getRandomEmoji(mask.name || "?")}
                   text={mask.name}
-                  onClick={() =>
-                    newSessionAndNav({
-                      name: mask.name,
+                  onClick={() => {
+                    const session = chatStore.newSession(undefined, {
+                      topic: mask.name,
                       description: mask.description,
-                      lang: mask.lang,
+                      avatar: getRandomEmoji("a"),
                     })
-                  }
+                    router.push({
+                      path: "/chat/session/" + session.id,
+                    })
+                  }}
                 />
               ))}
             </div>
@@ -163,24 +153,3 @@ export default defineComponent({
     )
   },
 })
-
-// <style lang="scss" scoped>
-// .masks {
-//   flex-grow: 1;
-//   width: 100%;
-//   overflow: auto;
-//
-//   $linear: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-//
-//   -webkit-mask-image: $linear;
-//   mask-image: $linear;
-//
-//   .mask-row {
-//     @for $i from 1 to 10 {
-//       &:nth-child(#{$i * 2}) {
-//         margin-left: 60px;
-//       }
-//     }
-//   }
-// }
-// </style>

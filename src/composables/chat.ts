@@ -1,6 +1,8 @@
 import { defineStore } from "pinia"
 import { ComputedRef, ref } from "vue"
 import { loadFromLocalStorage, saveSessionToLocalStorage, saveToLocalStorage } from "./storage"
+import { useTrans } from "~/composables/locales"
+import { getRandomEmoji } from "~/utils/emoji"
 import { DEFAULT_INPUT_TEMPLATE, StoreKey } from "~/constants"
 import useChatBot from "~/composables/useChatBot"
 import { TChatDirection, TChatSession, TMask } from "~/constants/typing"
@@ -74,7 +76,7 @@ function makeEmptySession(s: number, simple: TSimple, mask?: TMask): TChatSessio
           isError: false,
           id: s,
         },
-      ]
+      ],
     )
   }
   return session
@@ -83,6 +85,7 @@ function makeEmptySession(s: number, simple: TSimple, mask?: TMask): TChatSessio
 export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
   const sessionGid = ref(0)
   const sessions = ref<TChatSession[]>([])
+  const { t } = useTrans()
 
   // eslint-disable-next-line require-await
   const loadAll = async () => {
@@ -103,11 +106,19 @@ export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
     },
     1000,
     true,
-    true
+    true,
   )
 
   const clearSessions = () => {
     sessions.value = []
+  }
+
+  const createEmptySession = () => {
+    return newSession(undefined, {
+      topic: t("Home.NewChat"),
+      description: `hello`,
+      avatar: getRandomEmoji("a"),
+    })
   }
 
   const moveSession = (from: any, to: any) => {
@@ -117,7 +128,6 @@ export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const newSession = (mask?: TMask, simple?: TSimple): TChatSession => {
-    // @ts-ignore
     const session = makeEmptySession(++sessionGid.value, simple)
     sessions.value.unshift(session)
     saveAll()
@@ -161,6 +171,7 @@ export const useSidebarChatSessions = defineStore(StoreKey.Chat, () => {
     nextSession,
     clearAllData,
     refreshSession,
+    createEmptySession,
   }
 })
 
@@ -207,7 +218,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
     },
     1000,
     true,
-    true
+    true,
   )
 
   const onNewMessage = (message: string) => {
@@ -282,7 +293,7 @@ export const useChatSession = (sid: string): TUseChatSession => {
         nMessage.content = `Error occurred: ${message.errorMessage}`
         console.error("Error occurred:", message.errorMessage)
       },
-      () => {}
+      () => {},
     ).then()
   }
 

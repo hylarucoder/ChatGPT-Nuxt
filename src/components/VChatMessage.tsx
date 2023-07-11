@@ -1,5 +1,5 @@
 import { defineComponent, PropType, ref } from "vue"
-import { Icon, MarkdownPreview } from "#components"
+import { MarkdownPreview } from "#components"
 import { useRoutedChatSession } from "~/composables/chat"
 import { useSettingStore } from "~/composables/settings"
 import { TChatDirection, TChatMessage } from "~/constants/typing"
@@ -36,7 +36,7 @@ export default defineComponent({
         >
           <div class="mt-5 flex">
             <div class="flex h-8 w-8 items-center justify-center rounded-md border border-neutral-200 dark:bg-gray-200">
-              <Icon size="1.3em" class="text-center" name={isSend ? settings.avatar : currentSession.session.avatar} />
+              <span class="text-l text-center">{isSend ? settings.avatar : currentSession.session.avatar} </span>
             </div>
           </div>
           <div
@@ -80,7 +80,7 @@ export default defineComponent({
                         >
                           Delete
                         </div>
-                        {/*<div class="cursor-pointer opacity-50 hover:opacity-80">Retry</div>*/}
+                        {/* <div class="cursor-pointer opacity-50 hover:opacity-80">Retry</div> */}
                       </div>
                     )}
                   </transition>

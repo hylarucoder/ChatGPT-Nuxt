@@ -18,6 +18,10 @@ export interface TPrompts {
   lang: string
 }
 
+function hasMatch(s: string, q?: string) {
+  return !q || s.toLowerCase().includes(q.toLowerCase())
+}
+
 export const useMasks = defineStore(StoreKey.Mask, () => {
   const { settings } = useSettingStore()
   const masks = ref<TPrompts[]>([])
@@ -40,8 +44,8 @@ export const useMasks = defineStore(StoreKey.Mask, () => {
         lang: "en",
       })
     }
-    masks.value.push(...newMasks.filter(m => m.name))
-    masks.value.sort((a, b) => {
+    masks.value.push(...newMasks.filter((m) => m.name))
+    masks.value.sort((a) => {
       if (a.lang === settings.language) {
         return -1
       } else {
@@ -51,18 +55,21 @@ export const useMasks = defineStore(StoreKey.Mask, () => {
     searchedMasks.value = masks.value
   }
   const search = ({ q, language }: { q?: string; language?: string }) => {
-    if (!q) {
-      searchedMasks.value = masks.value
-      return
-    }
+    // if (!q) {
+    //   searchedMasks.value = masks.value
+    //   return
+    // }
     searchedMasks.value = masks.value.filter((m) => {
-      return m.name.includes(q) || m.description.includes(q)
+      const hasMatchingName = hasMatch(m.name, q)
+      const hasMatchingDescription = hasMatch(m.description, q)
+      const hasMatchingLanguage = hasMatch(m.lang, language)
+      return (hasMatchingName || hasMatchingDescription) && hasMatchingLanguage
     })
   }
   const computeMaskRows = ({ width, height }: { width: number; height: number }) => {
-    if (!masks.value || masks.value.length === 0) { return }
-    console.log("doCompute, ", width)
-
+    if (!masks.value || masks.value.length === 0) {
+      return
+    }
     const maxWidth = width
     const maxHeight = height * 0.6
     // why 120?
@@ -82,7 +89,7 @@ export const useMasks = defineStore(StoreKey.Mask, () => {
   }
 
   onMounted(() => {
-    load().then((r) => {})
+    load().then(() => {})
   })
 
   return {

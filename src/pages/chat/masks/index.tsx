@@ -1,4 +1,4 @@
-import { Icon, UButton, UInput, UModal, USelect } from "#components"
+import { UButton, UInput, UModal, USelect } from "#components"
 import { useTrans } from "~/composables/locales"
 import { TPrompts, useMasks } from "~/composables/mask"
 import { useSidebar } from "~/composables/useSidebar"
@@ -30,7 +30,7 @@ export default defineComponent({
 
     const inputSearch = reactive({
       q: "",
-      language: "all",
+      language: "",
     })
 
     watch(
@@ -38,7 +38,9 @@ export default defineComponent({
       (value) => {
         maskUse.search({
           q: value.q,
+          language: value.language,
         })
+        console.log(value.q, value.language)
       },
       {
         deep: true,
@@ -56,6 +58,7 @@ export default defineComponent({
             <div>
               <USelect
                 size="md"
+                v-model={inputSearch.language}
                 placeholder={t("Settings.Lang.All")}
                 options={[
                   {
@@ -111,7 +114,7 @@ export default defineComponent({
                       style="border-bottom-color: rgb(222, 222, 222)"
                       class="flex items-center justify-center rounded-md"
                     >
-                      <Icon size="1.4em" class="h-10 w-10 overflow-clip" name={getRandomEmoji(mask.name)} />
+                      <span class="text-xl">{getRandomEmoji(mask.name)} </span>
                     </div>
                   </div>
                   <div>
@@ -129,12 +132,12 @@ export default defineComponent({
                     </div>
                     <div class="ml-1 hidden overflow-hidden text-ellipsis text-xs sm:block">{t("Mask.Item.Chat")}</div>
                   </button>
-                  <button class="flex h-9 cursor-pointer items-center justify-center overflow-hidden rounded-md py-3 text-center text-[0.83rem] hover:bg-gray-200 sm:w-20">
-                    <div class="flex items-center justify-center">
-                      <span class="i-mdi-eye-outline h-5 w-5 sm:h-4 sm:w-4" />
-                    </div>
-                    <div class="ml-1 hidden overflow-hidden text-ellipsis text-xs sm:block">{t("Mask.Item.View")}</div>
-                  </button>
+                  {/* <button class="flex h-9 cursor-pointer items-center justify-center overflow-hidden rounded-md py-3 text-center text-[0.83rem] hover:bg-gray-200 sm:w-20"> */}
+                  {/*   <div class="flex items-center justify-center"> */}
+                  {/*     <span class="i-mdi-eye-outline h-5 w-5 sm:h-4 sm:w-4" /> */}
+                  {/*   </div> */}
+                  {/*   <div class="ml-1 hidden overflow-hidden text-ellipsis text-xs sm:block">{t("Mask.Item.View")}</div> */}
+                  {/* </button> */}
                 </div>
               </div>
             ))}

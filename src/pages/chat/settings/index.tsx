@@ -19,7 +19,6 @@ const SettingItem = defineComponent({
     subtitle: String,
   },
   setup(props: { title: string; subtitle?: string }, { slots }) {
-    console.log(props)
     return () => (
       <div class="flex items-center justify-between border-gray-200 py-3 pl-5 pr-2">
         <div class="flex items-center">
@@ -63,7 +62,7 @@ export default defineComponent({
       () => settings.language,
       () => {
         setLocale(settings.language)
-      }
+      },
     )
 
     return () => (
@@ -138,11 +137,13 @@ export default defineComponent({
                     onClick={() => (apiKeyShow.value = !apiKeyShow.value)}
                   >
                     <div class="flex items-center justify-center">
-                      {apiKeyShow.value ? (
+                      {apiKeyShow.value
+                        ? (
                         <span class="i-mdi-eye-outline h-4 w-4" />
-                      ) : (
+                          )
+                        : (
                         <span class="i-mdi-eye-off-outline h-4 w-5" />
-                      )}
+                          )}
                     </div>
                   </button>
                   <UInput
