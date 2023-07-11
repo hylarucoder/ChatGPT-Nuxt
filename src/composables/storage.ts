@@ -13,7 +13,7 @@ const defaultChatSessionStorage: ChatSessionStorage = {
 
 export const loadSessionFromLocalStorage = (sid: string): TChatSession | null => {
   const chatSessionStorage = loadFromLocalStorage(StoreKey.ChatSession, defaultChatSessionStorage)
-  const session = chatSessionStorage.sessions.find(s => s.id === sid)
+  const session = chatSessionStorage.sessions.find((s) => s.id === sid)
   if (session) {
     return session
   }
@@ -22,14 +22,12 @@ export const loadSessionFromLocalStorage = (sid: string): TChatSession | null =>
 export const saveSessionToLocalStorage = (newSession: TChatSession): void => {
   const chatSessionStorage = loadFromLocalStorage(StoreKey.ChatSession, defaultChatSessionStorage)
 
-  const existingSessionIndex = chatSessionStorage.sessions.findIndex(s => s.id === newSession.id)
+  const existingSessionIndex = chatSessionStorage.sessions.findIndex((s) => s.id === newSession.id)
 
   if (existingSessionIndex !== -1) {
     chatSessionStorage.sessions[existingSessionIndex] = newSession
-    console.log("find", chatSessionStorage.sessions[existingSessionIndex])
   } else {
     chatSessionStorage.sessions.push(newSession)
-    console.log("reuse", chatSessionStorage.sessions[existingSessionIndex])
   }
 
   saveToLocalStorage(StoreKey.ChatSession, chatSessionStorage)

@@ -1,4 +1,4 @@
-import { Icon, VEmojiPicker } from "#components"
+import { VEmojiPicker } from "#components"
 
 export default defineComponent({
   name: "EmojiPicker",
@@ -21,7 +21,9 @@ export default defineComponent({
     const elementRef = ref<HTMLElement | null>(null)
 
     onClickOutside(elementRef, (event) => {
-      if (!showEmojiPicker.value) {return}
+      if (!showEmojiPicker.value) {
+        return
+      }
       if (elementRef.value && !elementRef.value.contains(event.target as Node)) {
         showEmojiPicker.value = false
       }
@@ -29,11 +31,9 @@ export default defineComponent({
 
     return () => (
       <div class="relative" ref={elementRef}>
-        <Icon
-          name={selectedEmoji.value}
-          size="1.5em"
-          onClick={() => (showEmojiPicker.value = !showEmojiPicker.value)}
-        />
+        <span class="text-xl" onClick={() => (showEmojiPicker.value = !showEmojiPicker.value)}>
+          {selectedEmoji.value}
+        </span>
         {showEmojiPicker.value && (
           <VEmojiPicker
             onSelected={selectEmoji}

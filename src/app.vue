@@ -32,7 +32,7 @@ onMounted(() => {
   </NuxtLayout>
 </template>
 
-<style>
+<style lang="scss">
 html,
 body,
 #__nuxt {
@@ -47,13 +47,22 @@ body,
   touch-action: pan-x pan-y;
 }
 
-html.light {
-  background: #f2f2f2;
-  color: black;
-}
+.masks-container {
+  flex-grow: 1;
+  width: 100%;
+  overflow: auto;
 
-html.dark {
-  background: #222;
-  color: white;
+  $linear: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+
+  -webkit-mask-image: $linear;
+  mask-image: $linear;
+
+  .mask-row {
+    @for $i from 1 to 10 {
+      &:nth-child(#{$i * 2}) {
+        margin-left: 60px;
+      }
+    }
+  }
 }
 </style>
