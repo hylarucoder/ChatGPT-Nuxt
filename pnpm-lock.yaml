@@ -71,11 +71,11 @@ devDependencies:
     specifier: ^2.7.0
     version: registry.npmmirror.com/@nuxt/content@2.7.0(rollup@2.79.1)
   '@nuxt/devtools':
-    specifier: ^0.6.6
-    version: registry.npmmirror.com/@nuxt/devtools@0.6.6(nuxt@3.6.1)(rollup@2.79.1)(vite@4.3.9)
+    specifier: ^0.6.7
+    version: registry.npmmirror.com/@nuxt/devtools@0.6.7(nuxt@3.6.1)(rollup@2.79.1)(vite@4.3.9)
   '@nuxthq/ui':
-    specifier: ^2.5.0
-    version: registry.npmmirror.com/@nuxthq/ui@2.5.0(rollup@2.79.1)(vue@3.3.4)(webpack@5.83.1)
+    specifier: ^2.6.0
+    version: registry.npmmirror.com/@nuxthq/ui@2.6.0(rollup@2.79.1)(vue@3.3.4)(webpack@5.83.1)
   '@nuxtjs/color-mode':
     specifier: ^3.3.0
     version: registry.npmmirror.com/@nuxtjs/color-mode@3.3.0(rollup@2.79.1)
@@ -93,7 +93,7 @@ devDependencies:
     version: 0.4.11(rollup@2.79.1)(typescript@5.0.3)(vue@3.3.4)
   '@vite-pwa/nuxt':
     specifier: ^0.1.0
-    version: 0.1.0(@nuxt/kit@3.6.1)(vite-plugin-pwa@0.16.4)
+    version: 0.1.0(@nuxt/kit@3.6.5)(vite-plugin-pwa@0.16.4)
   '@vueuse/nuxt':
     specifier: ^10.2.1
     version: registry.npmmirror.com/@vueuse/nuxt@10.2.1(nuxt@3.6.1)(rollup@2.79.1)(vue@3.3.4)
@@ -188,13 +188,13 @@ packages:
       - vue
     dev: true
 
-  /@vite-pwa/nuxt@0.1.0(@nuxt/kit@3.6.1)(vite-plugin-pwa@0.16.4):
+  /@vite-pwa/nuxt@0.1.0(@nuxt/kit@3.6.5)(vite-plugin-pwa@0.16.4):
     resolution: {integrity: sha512-w6wm/0Y9yIqo6UTj9LeQUMR+xuRTf2sRdUTffu03SbRyWBzF7SnQcTqTRkXQy+NK+XafZuIDDLC12VkhValg4g==}
     peerDependencies:
       '@nuxt/kit': ^3.5.3
       vite-plugin-pwa: '>=0.16.3 <1'
     dependencies:
-      '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.6.1(rollup@2.79.1)
+      '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.6.5(rollup@2.79.1)
       vite-plugin-pwa: registry.npmmirror.com/vite-plugin-pwa@0.16.4(vite@4.3.9)(workbox-build@7.0.0)(workbox-window@7.0.0)
     dev: true
 
@@ -1771,6 +1771,20 @@ packages:
       - supports-color
     dev: true
 
+  registry.npmmirror.com/@egoist/tailwindcss-icons@1.1.0(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-3zIBtwMH4viBDtDF7nDgGOFS/mxu4qtfhimeyyGlK+RHJu26YaLhHrJf6NaEK5Gwxt8chNntJwslklR+66AErg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@egoist/tailwindcss-icons/-/tailwindcss-icons-1.1.0.tgz}
+    id: registry.npmmirror.com/@egoist/tailwindcss-icons/1.1.0
+    name: '@egoist/tailwindcss-icons'
+    version: 1.1.0
+    peerDependencies:
+      tailwindcss: '*'
+    dependencies:
+      '@iconify/utils': registry.npmmirror.com/@iconify/utils@2.1.7
+      tailwindcss: registry.npmmirror.com/tailwindcss@3.3.3
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   registry.npmmirror.com/@esbuild-kit/cjs-loader@2.4.2:
     resolution: {integrity: sha512-BDXFbYOJzT/NBEtp71cvsrGPwGAMGRB/349rwKuoxNSiKjPraNNnlK6MIIabViCjqZugu6j+xeMDlEkWdHHJSg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@esbuild-kit/cjs-loader/-/cjs-loader-2.4.2.tgz}
     name: '@esbuild-kit/cjs-loader'
@@ -2905,16 +2919,16 @@ packages:
     version: 2.0.2
     dev: true
 
-  registry.npmmirror.com/@nuxt/devtools-kit@0.6.6(nuxt@3.6.1)(rollup@2.79.1)(vite@4.3.9):
-    resolution: {integrity: sha512-6P00gcvbGQVEzHr+Xvpymqsbhg1rU64wQDRG0oLBXW/pcuJO/hyppowGr8Tvt3Xn6TRYJcgk1wkBa1wL9U+Z+g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nuxt/devtools-kit/-/devtools-kit-0.6.6.tgz}
-    id: registry.npmmirror.com/@nuxt/devtools-kit/0.6.6
+  registry.npmmirror.com/@nuxt/devtools-kit@0.6.7(nuxt@3.6.1)(rollup@2.79.1)(vite@4.3.9):
+    resolution: {integrity: sha512-DEJBLspLRr3zFu/DAHs8Q1o9tgzELt24qDqsuqTEKqcw/2j1iu1TefvUdmXkJo6s8Qk3GI6e3QxrvtEE3mwKqA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nuxt/devtools-kit/-/devtools-kit-0.6.7.tgz}
+    id: registry.npmmirror.com/@nuxt/devtools-kit/0.6.7
     name: '@nuxt/devtools-kit'
-    version: 0.6.6
+    version: 0.6.7
     peerDependencies:
-      nuxt: ^3.5.1
+      nuxt: ^3.6.1
       vite: '*'
     dependencies:
-      '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.6.1(rollup@2.79.1)
+      '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.6.5(rollup@2.79.1)
       '@nuxt/schema': registry.npmmirror.com/@nuxt/schema@3.6.1(rollup@2.79.1)
       execa: registry.npmmirror.com/execa@7.1.1
       nuxt: registry.npmmirror.com/nuxt@3.6.1(@types/node@20.2.0)(eslint@8.44.0)(rollup@2.79.1)(sass@1.63.6)(typescript@5.0.3)(vue-tsc@1.8.3)
@@ -2924,10 +2938,10 @@ packages:
       - supports-color
     dev: true
 
-  registry.npmmirror.com/@nuxt/devtools-wizard@0.6.6:
-    resolution: {integrity: sha512-hzTVPaAd6PXyebk0bCjEwtdsXsoiSJnLCcZmlSLFmTNdVSmyb2tHNOuYTzZdobrl0iArjVIBaIqgFIWjYBQKNg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nuxt/devtools-wizard/-/devtools-wizard-0.6.6.tgz}
+  registry.npmmirror.com/@nuxt/devtools-wizard@0.6.7:
+    resolution: {integrity: sha512-dN+3UVxsGk3Vx0T6tN+UQ1b7FjWHk3N4WWmnKOACa4pHt77RYHFzndk60KDlKq9I/bn905pghsqwvXmPfbSpJA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nuxt/devtools-wizard/-/devtools-wizard-0.6.7.tgz}
     name: '@nuxt/devtools-wizard'
-    version: 0.6.6
+    version: 0.6.7
     hasBin: true
     dependencies:
       consola: registry.npmmirror.com/consola@3.2.2
@@ -2943,25 +2957,25 @@ packages:
       semver: registry.npmmirror.com/semver@7.5.3
     dev: true
 
-  registry.npmmirror.com/@nuxt/devtools@0.6.6(nuxt@3.6.1)(rollup@2.79.1)(vite@4.3.9):
-    resolution: {integrity: sha512-bYPKFbsHH6RQ9tXt15jwuw6UQqU4PMStEzO2VYxMrP+rw5tDOD4wdf8qoMVi17c3RrxjvL8TlS6roBSApndx3g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nuxt/devtools/-/devtools-0.6.6.tgz}
-    id: registry.npmmirror.com/@nuxt/devtools/0.6.6
+  registry.npmmirror.com/@nuxt/devtools@0.6.7(nuxt@3.6.1)(rollup@2.79.1)(vite@4.3.9):
+    resolution: {integrity: sha512-ATjkNfceG+8DQ8kR6O3UC9MjFfUd39aeFgKA+Z6pjG8Z7e3vwK92oZCSeQ8DQRi4/2kwa/UPjN8pNclyc6FlbQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nuxt/devtools/-/devtools-0.6.7.tgz}
+    id: registry.npmmirror.com/@nuxt/devtools/0.6.7
     name: '@nuxt/devtools'
-    version: 0.6.6
+    version: 0.6.7
     hasBin: true
     peerDependencies:
-      nuxt: ^3.5.1
+      nuxt: ^3.6.1
       vite: '*'
     dependencies:
-      '@nuxt/devtools-kit': registry.npmmirror.com/@nuxt/devtools-kit@0.6.6(nuxt@3.6.1)(rollup@2.79.1)(vite@4.3.9)
-      '@nuxt/devtools-wizard': registry.npmmirror.com/@nuxt/devtools-wizard@0.6.6
+      '@nuxt/devtools-kit': registry.npmmirror.com/@nuxt/devtools-kit@0.6.7(nuxt@3.6.1)(rollup@2.79.1)(vite@4.3.9)
+      '@nuxt/devtools-wizard': registry.npmmirror.com/@nuxt/devtools-wizard@0.6.7
       '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.6.1(rollup@2.79.1)
       birpc: registry.npmmirror.com/birpc@0.2.12
       boxen: registry.npmmirror.com/boxen@7.1.0
       consola: registry.npmmirror.com/consola@3.2.2
       execa: registry.npmmirror.com/execa@7.1.1
       fast-folder-size: registry.npmmirror.com/fast-folder-size@2.1.0
-      fast-glob: registry.npmmirror.com/fast-glob@3.2.12
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.0
       get-port-please: registry.npmmirror.com/get-port-please@3.0.1
       global-dirs: registry.npmmirror.com/global-dirs@3.0.1
       h3: registry.npmmirror.com/h3@1.7.1
@@ -2981,7 +2995,7 @@ packages:
       rc9: registry.npmmirror.com/rc9@2.1.1
       semver: registry.npmmirror.com/semver@7.5.3
       sirv: registry.npmmirror.com/sirv@2.0.3
-      unimport: registry.npmmirror.com/unimport@3.0.11(rollup@2.79.1)
+      unimport: registry.npmmirror.com/unimport@3.0.14(rollup@2.79.1)
       vite: registry.npmmirror.com/vite@4.3.9(@types/node@20.2.0)(sass@1.63.6)
       vite-plugin-inspect: registry.npmmirror.com/vite-plugin-inspect@0.7.32(rollup@2.79.1)(vite@4.3.9)
       vite-plugin-vue-inspector: registry.npmmirror.com/vite-plugin-vue-inspector@3.4.2(vite@4.3.9)
@@ -3082,6 +3096,35 @@ packages:
       - supports-color
     dev: true
 
+  registry.npmmirror.com/@nuxt/kit@3.6.5(rollup@2.79.1):
+    resolution: {integrity: sha512-uBI5I2Zx6sk+vRHU+nBmifwxg/nyXCGZ1g5hUKrUfgv1ZfiKB8JkN5T9iRoduDOaqbwM6XSnEl1ja73iloDcrw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nuxt/kit/-/kit-3.6.5.tgz}
+    id: registry.npmmirror.com/@nuxt/kit/3.6.5
+    name: '@nuxt/kit'
+    version: 3.6.5
+    engines: {node: ^14.18.0 || >=16.10.0}
+    dependencies:
+      '@nuxt/schema': registry.npmmirror.com/@nuxt/schema@3.6.5(rollup@2.79.1)
+      c12: registry.npmmirror.com/c12@1.4.2
+      consola: registry.npmmirror.com/consola@3.2.3
+      defu: registry.npmmirror.com/defu@6.1.2
+      globby: registry.npmmirror.com/globby@13.2.2
+      hash-sum: registry.npmmirror.com/hash-sum@2.0.0
+      ignore: registry.npmmirror.com/ignore@5.2.4
+      jiti: registry.npmmirror.com/jiti@1.19.1
+      knitwork: registry.npmmirror.com/knitwork@1.0.0
+      mlly: registry.npmmirror.com/mlly@1.4.0
+      pathe: registry.npmmirror.com/pathe@1.1.1
+      pkg-types: registry.npmmirror.com/pkg-types@1.0.3
+      scule: registry.npmmirror.com/scule@1.0.0
+      semver: registry.npmmirror.com/semver@7.5.3
+      unctx: registry.npmmirror.com/unctx@2.3.1
+      unimport: registry.npmmirror.com/unimport@3.0.14(rollup@2.79.1)
+      untyped: registry.npmmirror.com/untyped@1.3.2
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: true
+
   registry.npmmirror.com/@nuxt/postcss8@1.1.3(webpack@5.83.1):
     resolution: {integrity: sha512-CdHtErhvQwueNZPBOmlAAKrNCK7aIpZDYhtS7TzXlSgPHHox1g3cSlf+Ke9oB/8t4mNNjdB+prclme2ibuCOEA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nuxt/postcss8/-/postcss8-1.1.3.tgz}
     id: registry.npmmirror.com/@nuxt/postcss8/1.1.3
@@ -3134,7 +3177,7 @@ packages:
       postcss-import-resolver: registry.npmmirror.com/postcss-import-resolver@2.0.0
       std-env: registry.npmmirror.com/std-env@3.3.3
       ufo: registry.npmmirror.com/ufo@1.1.2
-      unimport: registry.npmmirror.com/unimport@3.0.11(rollup@2.79.1)
+      unimport: registry.npmmirror.com/unimport@3.0.14(rollup@2.79.1)
       untyped: registry.npmmirror.com/untyped@1.3.2
     transitivePeerDependencies:
       - rollup
@@ -3174,7 +3217,28 @@ packages:
       postcss-import-resolver: registry.npmmirror.com/postcss-import-resolver@2.0.0
       std-env: registry.npmmirror.com/std-env@3.3.3
       ufo: registry.npmmirror.com/ufo@1.1.2
-      unimport: registry.npmmirror.com/unimport@3.0.11(rollup@2.79.1)
+      unimport: registry.npmmirror.com/unimport@3.0.14(rollup@2.79.1)
+      untyped: registry.npmmirror.com/untyped@1.3.2
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: true
+
+  registry.npmmirror.com/@nuxt/schema@3.6.5(rollup@2.79.1):
+    resolution: {integrity: sha512-UPUnMB0W5TZ/Pi1fiF71EqIsPlj8LGZqzhSf8wOeh538KHwxbA9r7cuvEUU92eXRksOZaylbea3fJxZWhOITVw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nuxt/schema/-/schema-3.6.5.tgz}
+    id: registry.npmmirror.com/@nuxt/schema/3.6.5
+    name: '@nuxt/schema'
+    version: 3.6.5
+    engines: {node: ^14.18.0 || >=16.10.0}
+    dependencies:
+      defu: registry.npmmirror.com/defu@6.1.2
+      hookable: registry.npmmirror.com/hookable@5.5.3
+      pathe: registry.npmmirror.com/pathe@1.1.1
+      pkg-types: registry.npmmirror.com/pkg-types@1.0.3
+      postcss-import-resolver: registry.npmmirror.com/postcss-import-resolver@2.0.0
+      std-env: registry.npmmirror.com/std-env@3.3.3
+      ufo: registry.npmmirror.com/ufo@1.1.2
+      unimport: registry.npmmirror.com/unimport@3.0.14(rollup@2.79.1)
       untyped: registry.npmmirror.com/untyped@1.3.2
     transitivePeerDependencies:
       - rollup
@@ -3188,7 +3252,7 @@ packages:
     version: 2.2.0
     hasBin: true
     dependencies:
-      '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.6.1(rollup@2.79.1)
+      '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.6.5(rollup@2.79.1)
       chalk: registry.npmmirror.com/chalk@5.2.0
       ci-info: registry.npmmirror.com/ci-info@3.8.0
       consola: registry.npmmirror.com/consola@3.2.2
@@ -3283,31 +3347,31 @@ packages:
       - vue-tsc
     dev: true
 
-  registry.npmmirror.com/@nuxthq/ui@2.5.0(rollup@2.79.1)(vue@3.3.4)(webpack@5.83.1):
-    resolution: {integrity: sha512-KQ+bf8HyyIH1gvuja8NwNRZetyqrRT3fFDipohWlvCrOpds2kLUUhF6SMOaVTWWzugKLUhIDCsDFsAMX/4I9Nw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nuxthq/ui/-/ui-2.5.0.tgz}
-    id: registry.npmmirror.com/@nuxthq/ui/2.5.0
+  registry.npmmirror.com/@nuxthq/ui@2.6.0(rollup@2.79.1)(vue@3.3.4)(webpack@5.83.1):
+    resolution: {integrity: sha512-uTIkloPb+LLNsa2vfpDcDEzRnDY05GDnX/nRewPkNlWGjIIVhnl2gsyI40Dy/LJLtvmTJcJMT21QkMRHzIuybw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nuxthq/ui/-/ui-2.6.0.tgz}
+    id: registry.npmmirror.com/@nuxthq/ui/2.6.0
     name: '@nuxthq/ui'
-    version: 2.5.0
+    version: 2.6.0
     engines: {node: '>=v16.14.0'}
     dependencies:
-      '@egoist/tailwindcss-icons': registry.npmmirror.com/@egoist/tailwindcss-icons@1.1.0(tailwindcss@3.3.2)
+      '@egoist/tailwindcss-icons': registry.npmmirror.com/@egoist/tailwindcss-icons@1.1.0(tailwindcss@3.3.3)
       '@headlessui/vue': registry.npmmirror.com/@headlessui/vue@1.7.14(vue@3.3.4)
       '@iconify-json/heroicons': registry.npmmirror.com/@iconify-json/heroicons@1.1.11
-      '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.6.1(rollup@2.79.1)
+      '@nuxt/kit': registry.npmmirror.com/@nuxt/kit@3.6.5(rollup@2.79.1)
       '@nuxtjs/color-mode': registry.npmmirror.com/@nuxtjs/color-mode@3.3.0(rollup@2.79.1)
       '@nuxtjs/tailwindcss': registry.npmmirror.com/@nuxtjs/tailwindcss@6.8.0(rollup@2.79.1)(webpack@5.83.1)
       '@popperjs/core': registry.npmmirror.com/@popperjs/core@2.11.8
-      '@tailwindcss/aspect-ratio': registry.npmmirror.com/@tailwindcss/aspect-ratio@0.4.2(tailwindcss@3.3.2)
-      '@tailwindcss/container-queries': registry.npmmirror.com/@tailwindcss/container-queries@0.1.1(tailwindcss@3.3.2)
-      '@tailwindcss/forms': registry.npmmirror.com/@tailwindcss/forms@0.5.3(tailwindcss@3.3.2)
-      '@tailwindcss/typography': registry.npmmirror.com/@tailwindcss/typography@0.5.9(tailwindcss@3.3.2)
+      '@tailwindcss/aspect-ratio': registry.npmmirror.com/@tailwindcss/aspect-ratio@0.4.2(tailwindcss@3.3.3)
+      '@tailwindcss/container-queries': registry.npmmirror.com/@tailwindcss/container-queries@0.1.1(tailwindcss@3.3.3)
+      '@tailwindcss/forms': registry.npmmirror.com/@tailwindcss/forms@0.5.4(tailwindcss@3.3.3)
+      '@tailwindcss/typography': registry.npmmirror.com/@tailwindcss/typography@0.5.9(tailwindcss@3.3.3)
       '@vueuse/core': registry.npmmirror.com/@vueuse/core@10.2.1(vue@3.3.4)
       '@vueuse/integrations': registry.npmmirror.com/@vueuse/integrations@10.2.1(fuse.js@6.6.2)(vue@3.3.4)
       '@vueuse/math': registry.npmmirror.com/@vueuse/math@10.2.1(vue@3.3.4)
       defu: registry.npmmirror.com/defu@6.1.2
       fuse.js: registry.npmmirror.com/fuse.js@6.6.2
       lodash-es: registry.npmmirror.com/lodash-es@4.17.21
-      tailwindcss: registry.npmmirror.com/tailwindcss@3.3.2
+      tailwindcss: registry.npmmirror.com/tailwindcss@3.3.3
     transitivePeerDependencies:
       - '@vue/composition-api'
       - async-validator
@@ -3512,7 +3576,7 @@ packages:
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dependencies:
       cross-spawn: registry.npmmirror.com/cross-spawn@7.0.3
-      fast-glob: registry.npmmirror.com/fast-glob@3.2.12
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.0
       is-glob: registry.npmmirror.com/is-glob@4.0.3
       open: registry.npmmirror.com/open@9.1.0
       picocolors: registry.npmmirror.com/picocolors@1.0.0
@@ -3845,7 +3909,7 @@ packages:
       string.prototype.matchall: registry.npmmirror.com/string.prototype.matchall@4.0.8
     dev: true
 
-  registry.npmmirror.com/@tailwindcss/aspect-ratio@0.4.2(tailwindcss@3.3.2):
+  registry.npmmirror.com/@tailwindcss/aspect-ratio@0.4.2(tailwindcss@3.3.3):
     resolution: {integrity: sha512-8QPrypskfBa7QIMuKHg2TA7BqES6vhBrDLOv8Unb6FcFyd3TjKbc6lcmb9UPQHxfl24sXoJ41ux/H7qQQvfaSQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@tailwindcss/aspect-ratio/-/aspect-ratio-0.4.2.tgz}
     id: registry.npmmirror.com/@tailwindcss/aspect-ratio/0.4.2
     name: '@tailwindcss/aspect-ratio'
@@ -3853,10 +3917,10 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: registry.npmmirror.com/tailwindcss@3.3.2
+      tailwindcss: registry.npmmirror.com/tailwindcss@3.3.3
     dev: true
 
-  registry.npmmirror.com/@tailwindcss/container-queries@0.1.1(tailwindcss@3.3.2):
+  registry.npmmirror.com/@tailwindcss/container-queries@0.1.1(tailwindcss@3.3.3):
     resolution: {integrity: sha512-p18dswChx6WnTSaJCSGx6lTmrGzNNvm2FtXmiO6AuA1V4U5REyoqwmT6kgAsIMdjo07QdAfYXHJ4hnMtfHzWgA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@tailwindcss/container-queries/-/container-queries-0.1.1.tgz}
     id: registry.npmmirror.com/@tailwindcss/container-queries/0.1.1
     name: '@tailwindcss/container-queries'
@@ -3864,7 +3928,7 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.2.0'
     dependencies:
-      tailwindcss: registry.npmmirror.com/tailwindcss@3.3.2
+      tailwindcss: registry.npmmirror.com/tailwindcss@3.3.3
     dev: true
 
   registry.npmmirror.com/@tailwindcss/forms@0.5.3(tailwindcss@3.3.2):
@@ -3877,8 +3941,21 @@ packages:
     dependencies:
       mini-svg-data-uri: registry.npmmirror.com/mini-svg-data-uri@1.4.4
       tailwindcss: registry.npmmirror.com/tailwindcss@3.3.2
+    dev: false
 
-  registry.npmmirror.com/@tailwindcss/typography@0.5.9(tailwindcss@3.3.2):
+  registry.npmmirror.com/@tailwindcss/forms@0.5.4(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-YAm12D3R7/9Mh4jFbYSMnsd6jG++8KxogWgqs7hbdo/86aWjjlIEvL7+QYdVELmAI0InXTpZqFIg5e7aDVWI2Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@tailwindcss/forms/-/forms-0.5.4.tgz}
+    id: registry.npmmirror.com/@tailwindcss/forms/0.5.4
+    name: '@tailwindcss/forms'
+    version: 0.5.4
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: registry.npmmirror.com/mini-svg-data-uri@1.4.4
+      tailwindcss: registry.npmmirror.com/tailwindcss@3.3.3
+    dev: true
+
+  registry.npmmirror.com/@tailwindcss/typography@0.5.9(tailwindcss@3.3.3):
     resolution: {integrity: sha512-t8Sg3DyynFysV9f4JDOVISGsjazNb48AeIYQwcL+Bsq5uf4RYL75C1giZ43KISjeDGBaTN3Kxh7Xj/vRSMJUUg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@tailwindcss/typography/-/typography-0.5.9.tgz}
     id: registry.npmmirror.com/@tailwindcss/typography/0.5.9
     name: '@tailwindcss/typography'
@@ -3890,7 +3967,7 @@ packages:
       lodash.isplainobject: registry.npmmirror.com/lodash.isplainobject@4.0.6
       lodash.merge: registry.npmmirror.com/lodash.merge@4.6.2
       postcss-selector-parser: registry.npmmirror.com/postcss-selector-parser@6.0.10
-      tailwindcss: registry.npmmirror.com/tailwindcss@3.3.2
+      tailwindcss: registry.npmmirror.com/tailwindcss@3.3.3
     dev: true
 
   registry.npmmirror.com/@tootallnate/once@2.0.0:
@@ -6058,6 +6135,13 @@ packages:
     version: 3.2.2
     engines: {node: ^14.18.0 || >=16.10.0}
 
+  registry.npmmirror.com/consola@3.2.3:
+    resolution: {integrity: sha512-I5qxpzLv+sJhTVEoLYNcTW+bThDCPsit0vLNKShZx6rLtpilNpmmeTPaeqJb9ZE9dV3DGaeby6Vuhrw38WjeyQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/consola/-/consola-3.2.3.tgz}
+    name: consola
+    version: 3.2.3
+    engines: {node: ^14.18.0 || >=16.10.0}
+    dev: true
+
   registry.npmmirror.com/console-control-strings@1.1.0:
     resolution: {integrity: sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/console-control-strings/-/console-control-strings-1.1.0.tgz}
     name: console-control-strings
@@ -7648,6 +7732,18 @@ packages:
       merge2: registry.npmmirror.com/merge2@1.4.1
       micromatch: registry.npmmirror.com/micromatch@4.0.5
 
+  registry.npmmirror.com/fast-glob@3.3.0:
+    resolution: {integrity: sha512-ChDuvbOypPuNjO8yIDf36x7BlZX1smcUMTTcyoIjycexOxd6DFsKsg21qVBzEmr3G7fUKIRy2/psii+CIUt7FA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/fast-glob/-/fast-glob-3.3.0.tgz}
+    name: fast-glob
+    version: 3.3.0
+    engines: {node: '>=8.6.0'}
+    dependencies:
+      '@nodelib/fs.stat': registry.npmmirror.com/@nodelib/fs.stat@2.0.5
+      '@nodelib/fs.walk': registry.npmmirror.com/@nodelib/fs.walk@1.2.8
+      glob-parent: registry.npmmirror.com/glob-parent@5.1.2
+      merge2: registry.npmmirror.com/merge2@1.4.1
+      micromatch: registry.npmmirror.com/micromatch@4.0.5
+
   registry.npmmirror.com/fast-json-stable-stringify@2.1.0:
     resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/fast-json-stable-stringify/-/fast-json-stable-stringify-2.1.0.tgz}
     name: fast-json-stable-stringify
@@ -8224,7 +8320,7 @@ packages:
     dependencies:
       array-union: registry.npmmirror.com/array-union@2.1.0
       dir-glob: registry.npmmirror.com/dir-glob@3.0.1
-      fast-glob: registry.npmmirror.com/fast-glob@3.2.12
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.0
       ignore: registry.npmmirror.com/ignore@5.2.4
       merge2: registry.npmmirror.com/merge2@1.4.1
       slash: registry.npmmirror.com/slash@3.0.0
@@ -8237,7 +8333,7 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       dir-glob: registry.npmmirror.com/dir-glob@3.0.1
-      fast-glob: registry.npmmirror.com/fast-glob@3.2.12
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.0
       ignore: registry.npmmirror.com/ignore@5.2.4
       merge2: registry.npmmirror.com/merge2@1.4.1
       slash: registry.npmmirror.com/slash@4.0.0
@@ -8249,10 +8345,23 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       dir-glob: registry.npmmirror.com/dir-glob@3.0.1
-      fast-glob: registry.npmmirror.com/fast-glob@3.2.12
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.0
       ignore: registry.npmmirror.com/ignore@5.2.4
       merge2: registry.npmmirror.com/merge2@1.4.1
       slash: registry.npmmirror.com/slash@4.0.0
+
+  registry.npmmirror.com/globby@13.2.2:
+    resolution: {integrity: sha512-Y1zNGV+pzQdh7H39l9zgB4PJqjRNqydvdYCDG4HFXM4XuvSaQQlEc91IU1yALL8gUTDomgBAfz3XJdmUS+oo0w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/globby/-/globby-13.2.2.tgz}
+    name: globby
+    version: 13.2.2
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      dir-glob: registry.npmmirror.com/dir-glob@3.0.1
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.0
+      ignore: registry.npmmirror.com/ignore@5.2.4
+      merge2: registry.npmmirror.com/merge2@1.4.1
+      slash: registry.npmmirror.com/slash@4.0.0
+    dev: true
 
   registry.npmmirror.com/google-fonts-helper@3.3.0:
     resolution: {integrity: sha512-aFEVbmaavTY6wN3m6jZaWXQHfakMy6XNqdWN8YzHqHWCGpGma91zp8MiWsyb5i8gXQXYeGUWegb9ca/Jf/Q7Yw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/google-fonts-helper/-/google-fonts-helper-3.3.0.tgz}
@@ -9413,6 +9522,13 @@ packages:
     name: jiti
     version: 1.18.2
     hasBin: true
+
+  registry.npmmirror.com/jiti@1.19.1:
+    resolution: {integrity: sha512-oVhqoRDaBXf7sjkll95LHVS6Myyyb1zaunVwk4Z0+WPSW4gjS0pl01zYKHScTuyEhQsFxV5L4DR5r+YqSyqyyg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jiti/-/jiti-1.19.1.tgz}
+    name: jiti
+    version: 1.19.1
+    hasBin: true
+    dev: true
 
   registry.npmmirror.com/joi@17.9.2:
     resolution: {integrity: sha512-Itk/r+V4Dx0V3c7RLFdRh12IOjySm2/WGPMubBT92cQvRfYZhPM2W0hZlctjj72iES8jsRCwp7S/cRmWBnJ4nw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/joi/-/joi-17.9.2.tgz}
@@ -11023,7 +11139,7 @@ packages:
       ufo: registry.npmmirror.com/ufo@1.1.2
       uncrypto: registry.npmmirror.com/uncrypto@0.1.3
       unenv: registry.npmmirror.com/unenv@1.5.1
-      unimport: registry.npmmirror.com/unimport@3.0.11(rollup@3.25.2)
+      unimport: registry.npmmirror.com/unimport@3.0.14(rollup@3.25.2)
       unstorage: registry.npmmirror.com/unstorage@1.7.0
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -11600,7 +11716,7 @@ packages:
     hasBin: true
     dependencies:
       ansi-colors: registry.npmmirror.com/ansi-colors@4.1.3
-      fast-glob: registry.npmmirror.com/fast-glob@3.2.12
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.0
       js-yaml: registry.npmmirror.com/js-yaml@4.1.0
       supports-color: registry.npmmirror.com/supports-color@9.3.1
       undici: registry.npmmirror.com/undici@5.22.1
@@ -14204,6 +14320,39 @@ packages:
     transitivePeerDependencies:
       - ts-node
 
+  registry.npmmirror.com/tailwindcss@3.3.3:
+    resolution: {integrity: sha512-A0KgSkef7eE4Mf+nKJ83i75TMyq8HqY3qmFIJSWy8bNt0v1lG7jUcpGpoTFxAwYcWOphcTBLPPJg+bDfhDf52w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tailwindcss/-/tailwindcss-3.3.3.tgz}
+    name: tailwindcss
+    version: 3.3.3
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dependencies:
+      '@alloc/quick-lru': registry.npmmirror.com/@alloc/quick-lru@5.2.0
+      arg: registry.npmmirror.com/arg@5.0.2
+      chokidar: registry.npmmirror.com/chokidar@3.5.3
+      didyoumean: registry.npmmirror.com/didyoumean@1.2.2
+      dlv: registry.npmmirror.com/dlv@1.1.3
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.0
+      glob-parent: registry.npmmirror.com/glob-parent@6.0.2
+      is-glob: registry.npmmirror.com/is-glob@4.0.3
+      jiti: registry.npmmirror.com/jiti@1.18.2
+      lilconfig: registry.npmmirror.com/lilconfig@2.1.0
+      micromatch: registry.npmmirror.com/micromatch@4.0.5
+      normalize-path: registry.npmmirror.com/normalize-path@3.0.0
+      object-hash: registry.npmmirror.com/object-hash@3.0.0
+      picocolors: registry.npmmirror.com/picocolors@1.0.0
+      postcss: registry.npmmirror.com/postcss@8.4.24
+      postcss-import: registry.npmmirror.com/postcss-import@15.1.0(postcss@8.4.24)
+      postcss-js: registry.npmmirror.com/postcss-js@4.0.1(postcss@8.4.24)
+      postcss-load-config: registry.npmmirror.com/postcss-load-config@4.0.1(postcss@8.4.24)
+      postcss-nested: registry.npmmirror.com/postcss-nested@6.0.1(postcss@8.4.24)
+      postcss-selector-parser: registry.npmmirror.com/postcss-selector-parser@6.0.13
+      resolve: registry.npmmirror.com/resolve@1.22.2
+      sucrase: registry.npmmirror.com/sucrase@3.32.0
+    transitivePeerDependencies:
+      - ts-node
+    dev: true
+
   registry.npmmirror.com/tapable@1.1.3:
     resolution: {integrity: sha512-4WK/bYZmj8xLr+HUCODHGF1ZFzsYffasLUgEiMBY4fgtltdO6B4WJtlSbPaDTLpYTcGVwM2qLnFTICEcNxs3kA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tapable/-/tapable-1.1.3.tgz}
     name: tapable
@@ -14717,7 +14866,7 @@ packages:
     dependencies:
       '@rollup/pluginutils': registry.npmmirror.com/@rollup/pluginutils@5.0.2(rollup@2.79.1)
       escape-string-regexp: registry.npmmirror.com/escape-string-regexp@5.0.0
-      fast-glob: registry.npmmirror.com/fast-glob@3.2.12
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.0
       local-pkg: registry.npmmirror.com/local-pkg@0.4.3
       magic-string: registry.npmmirror.com/magic-string@0.30.0
       mlly: registry.npmmirror.com/mlly@1.4.0
@@ -14729,15 +14878,35 @@ packages:
     transitivePeerDependencies:
       - rollup
 
-  registry.npmmirror.com/unimport@3.0.11(rollup@3.25.2):
-    resolution: {integrity: sha512-UaaLu7TiqiEwjm5a9FGsL8RL87U65wyr1jBeIAAvLChgJZRMTTkknU9bkWjBsVGutXLT2Yq8/dPyWXSC3/ELRg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/unimport/-/unimport-3.0.11.tgz}
-    id: registry.npmmirror.com/unimport/3.0.11
+  registry.npmmirror.com/unimport@3.0.14(rollup@2.79.1):
+    resolution: {integrity: sha512-67Rh/sGpEuVqdHWkXaZ6NOq+I7sKt86o+DUtKeGB6dh4Hk1A8AQrzyVGg2+LaVEYotStH7HwvV9YSaRjyT7Uqg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/unimport/-/unimport-3.0.14.tgz}
+    id: registry.npmmirror.com/unimport/3.0.14
     name: unimport
-    version: 3.0.11
+    version: 3.0.14
+    dependencies:
+      '@rollup/pluginutils': registry.npmmirror.com/@rollup/pluginutils@5.0.2(rollup@2.79.1)
+      escape-string-regexp: registry.npmmirror.com/escape-string-regexp@5.0.0
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.0
+      local-pkg: registry.npmmirror.com/local-pkg@0.4.3
+      magic-string: registry.npmmirror.com/magic-string@0.30.0
+      mlly: registry.npmmirror.com/mlly@1.4.0
+      pathe: registry.npmmirror.com/pathe@1.1.1
+      pkg-types: registry.npmmirror.com/pkg-types@1.0.3
+      scule: registry.npmmirror.com/scule@1.0.0
+      strip-literal: registry.npmmirror.com/strip-literal@1.0.1
+      unplugin: registry.npmmirror.com/unplugin@1.3.1
+    transitivePeerDependencies:
+      - rollup
+
+  registry.npmmirror.com/unimport@3.0.14(rollup@3.25.2):
+    resolution: {integrity: sha512-67Rh/sGpEuVqdHWkXaZ6NOq+I7sKt86o+DUtKeGB6dh4Hk1A8AQrzyVGg2+LaVEYotStH7HwvV9YSaRjyT7Uqg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/unimport/-/unimport-3.0.14.tgz}
+    id: registry.npmmirror.com/unimport/3.0.14
+    name: unimport
+    version: 3.0.14
     dependencies:
       '@rollup/pluginutils': registry.npmmirror.com/@rollup/pluginutils@5.0.2(rollup@3.25.2)
       escape-string-regexp: registry.npmmirror.com/escape-string-regexp@5.0.0
-      fast-glob: registry.npmmirror.com/fast-glob@3.2.12
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.0
       local-pkg: registry.npmmirror.com/local-pkg@0.4.3
       magic-string: registry.npmmirror.com/magic-string@0.30.0
       mlly: registry.npmmirror.com/mlly@1.4.0
@@ -14897,7 +15066,7 @@ packages:
       '@vue-macros/common': registry.npmmirror.com/@vue-macros/common@1.3.1(rollup@2.79.1)(vue@3.3.4)
       ast-walker-scope: registry.npmmirror.com/ast-walker-scope@0.4.1
       chokidar: registry.npmmirror.com/chokidar@3.5.3
-      fast-glob: registry.npmmirror.com/fast-glob@3.2.12
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.0
       json5: registry.npmmirror.com/json5@2.2.3
       local-pkg: registry.npmmirror.com/local-pkg@0.4.3
       mlly: registry.npmmirror.com/mlly@1.4.0
@@ -15164,7 +15333,7 @@ packages:
       chokidar: registry.npmmirror.com/chokidar@3.5.3
       commander: registry.npmmirror.com/commander@8.3.0
       eslint: registry.npmmirror.com/eslint@8.44.0
-      fast-glob: registry.npmmirror.com/fast-glob@3.2.12
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.0
       fs-extra: registry.npmmirror.com/fs-extra@11.1.1
       lodash.debounce: registry.npmmirror.com/lodash.debounce@4.0.8
       lodash.pick: registry.npmmirror.com/lodash.pick@4.4.0
@@ -15215,7 +15384,7 @@ packages:
       workbox-window: ^7.0.0
     dependencies:
       debug: registry.npmmirror.com/debug@4.3.4
-      fast-glob: registry.npmmirror.com/fast-glob@3.2.12
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.0
       pretty-bytes: registry.npmmirror.com/pretty-bytes@6.1.0
       vite: registry.npmmirror.com/vite@4.3.9(@types/node@20.2.0)(sass@1.63.6)
       workbox-build: registry.npmmirror.com/workbox-build@7.0.0
