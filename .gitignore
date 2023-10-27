@@ -8,3 +8,4 @@ dist
 .DS_Store
 .vscode/
 .pnpm-store/
+dist-electron/
