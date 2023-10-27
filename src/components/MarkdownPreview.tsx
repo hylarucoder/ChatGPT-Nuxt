@@ -1,20 +1,20 @@
 // MarkdownRenderer.tsx
-import { ClientOnly } from "#components"
 import { unified } from "unified"
 import remarkParse from "remark-parse"
 import remarkGfm from "remark-gfm"
-import remarkSqueezeParagraphs from "remark-squeeze-paragraphs"
+// import remarkSqueezeParagraphs from "remark-squeeze-paragraphs"
 import remarkRehype from "remark-rehype"
 import rehypeHighlight from "rehype-highlight"
 import rehypeStringify from "rehype-stringify"
 import rehypeSanitize from "rehype-sanitize"
+import { ClientOnly } from "#components"
 
 const processor = unified()
   .use(remarkParse)
   .use(remarkGfm)
   .use(remarkRehype)
   // .use(remarkEmoji)
-  .use(remarkSqueezeParagraphs)
+  // .use(remarkSqueezeParagraphs)
   .use(rehypeHighlight)
   .use(rehypeSanitize)
   .use(rehypeStringify)
@@ -36,7 +36,7 @@ export default defineComponent({
       },
       80,
       true,
-      true
+      true,
     )
 
     watchEffect(async () => {
