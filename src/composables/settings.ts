@@ -122,7 +122,7 @@ const defaultSettings = {
   fontSize: 14,
   previewBubble: false,
   maskLaunchPage: false,
-  model: "gpt-4",
+  model: "gpt-3.5-turbo",
   apiKey: "",
   maxTokens: 2000,
   temperature: 0.5,

@@ -12,6 +12,12 @@ function getGitCommitDateYMD() {
 
 export default defineNuxtConfig({
   srcDir: "src/",
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   build: {
     transpile: ["trpc-nuxt"],
   },
@@ -34,7 +40,7 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@vite-pwa/nuxt",
     "@nuxt/content",
-    "@nuxthq/ui",
+    "@nuxt/ui",
   ],
   ui: {
     icons: ["mdi", "lucide"],
