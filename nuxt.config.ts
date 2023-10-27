@@ -1,5 +1,5 @@
 import { defineNuxtConfig } from "nuxt/config"
-import svgLoader from "vite-svg-loader"
+// import svgLoader from "vite-svg-loader"
 import { pwa } from "./src/config/pwa"
 import { appDescription } from "./src/constants"
 
@@ -9,6 +9,8 @@ function getGitCommitDateYMD() {
   const date = execSync("git show -s --format=%ci HEAD").toString()
   return date.slice(0, 10).replaceAll("-", "")
 }
+
+console.log(process.env.NUXT_ELECTRON)
 
 export default defineNuxtConfig({
   srcDir: "src/",
@@ -21,10 +23,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ["trpc-nuxt"],
   },
-  css: [
-    // "~/assets/css/globals.css",
-    "~/assets/scss/index.scss",
-  ],
+  css: ["~/assets/scss/index.scss"],
   runtimeConfig: {
     public: {
       LATEST_COMMIT_DATE: getGitCommitDateYMD(),
@@ -41,18 +40,29 @@ export default defineNuxtConfig({
     "@vite-pwa/nuxt",
     "@nuxt/content",
     "@nuxt/ui",
-  ],
+  ].concat(process.env.NUXT_ELECTRON ? ["nuxt-electron"] : []),
   ui: {
     icons: ["mdi", "lucide"],
   },
-
+  electron: {
+    build: [
+      {
+        // Main-Process entry file of the Electron App.
+        entry: "electron/main.ts",
+      },
+      {
+        entry: "electron/preload.ts",
+        onstart(options) {
+          // Notify the Renderer-Process to reload the page when the Preload-Scripts build is complete,
+          // instead of restarting the entire Electron App.
+          options.reload()
+        },
+      },
+    ],
+    renderer: {},
+  },
   experimental: {
-    // when using generate, payload js assets included in sw precache manifest
-    // but missing on offline, disabling extraction it until fixed
-    payloadExtraction: false,
-    inlineSSRStyles: false,
-    renderJsonPayloads: true,
-    typedPages: true,
+    appManifest: false,
   },
 
   colorMode: {
@@ -64,11 +74,6 @@ export default defineNuxtConfig({
       options: {
         target: "esnext",
       },
-    },
-    prerender: {
-      crawlLinks: false,
-      routes: ["/"],
-      ignore: ["/hi"],
     },
   },
 
@@ -111,13 +116,6 @@ export default defineNuxtConfig({
         },
       ],
     },
-  },
-  vite: {
-    plugins: [
-      svgLoader({
-        // Your settings.
-      }),
-    ],
   },
 
   i18n: {

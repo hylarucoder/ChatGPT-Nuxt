@@ -23,6 +23,15 @@ onMounted(() => {
     globalCssVar.setupMobile()
   }
 })
+const width = useCssVar("--window-width")
+const height = useCssVar("--window-height")
+const bodyDisplay = ref("flex")
+
+if (process.browser && window?.electron) {
+  width.value = "100vw"
+  height.value = "100vh"
+  bodyDisplay.value = "block"
+}
 </script>
 
 <template>
@@ -36,15 +45,19 @@ onMounted(() => {
 html,
 body,
 #__nuxt {
-  height: 100vh;
   margin: 0;
   padding: 0;
   color: black;
+  user-select: none;
+  touch-action: pan-x pan-y;
+}
+
+#__nuxt {
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  user-select: none;
-  touch-action: pan-x pan-y;
 }
 
 .masks-container {
