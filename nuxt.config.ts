@@ -20,9 +20,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  build: {
-    transpile: ["trpc-nuxt"],
-  },
+  build: {},
   css: ["~/assets/scss/index.scss"],
   runtimeConfig: {
     public: {
@@ -38,7 +36,6 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxtjs/color-mode",
     "@vite-pwa/nuxt",
-    "@nuxt/content",
     "@nuxt/ui",
   ].concat(process.env.NUXT_ELECTRON ? ["nuxt-electron"] : []),
   ui: {
