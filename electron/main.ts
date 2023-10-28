@@ -1,5 +1,9 @@
-import { join } from "path"
+import { fileURLToPath } from "url"
+import { join, dirname } from "path"
 import { app, BrowserWindow, Menu, Tray } from "electron"
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 process.env.DIST = join(__dirname, "../dist")
 process.env.PUBLIC = app.isPackaged ? process.env.DIST : join(process.env.DIST, "../public")
@@ -8,7 +12,7 @@ let win: BrowserWindow | null
 // Here, you can also use other preload
 const preload = join(__dirname, "./preload.js")
 // 🚧 Use ['ENV_NAME'] avoid vite:define plugin - Vite@2.x
-const url = process.env["VITE_DEV_SERVER_URL"]
+const url = process.env.VITE_DEV_SERVER_URL
 
 function setupMainWindow() {
   win = new BrowserWindow({

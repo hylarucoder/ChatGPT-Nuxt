@@ -46,6 +46,14 @@ export default defineNuxtConfig({
       {
         // Main-Process entry file of the Electron App.
         entry: "electron/main.ts",
+        vite: {
+          build: {
+            lib: {
+              entry: "electron/main.ts",
+              formats: ["es"],
+            },
+          },
+        },
       },
       {
         entry: "electron/preload.ts",
