@@ -1,12 +1,13 @@
 // MarkdownRenderer.tsx
 import { unified } from "unified"
-import remarkParse from "remark-parse"
-import remarkGfm from "remark-gfm"
+import * as remarkParse from "remark-parse"
+import * as remarkGfm from "remark-gfm"
 // import remarkSqueezeParagraphs from "remark-squeeze-paragraphs"
-import remarkRehype from "remark-rehype"
-import rehypeHighlight from "rehype-highlight"
-import rehypeStringify from "rehype-stringify"
-import rehypeSanitize from "rehype-sanitize"
+import * as remarkRehype from "remark-rehype"
+import * as rehypeHighlight from "rehype-highlight"
+import * as rehypeStringify from "rehype-stringify"
+import * as rehypeSanitize from "rehype-sanitize"
+import type { PropType } from "vue"
 import { ClientOnly } from "#components"
 
 const processor = unified()
