@@ -50,13 +50,23 @@ export default defineNuxtConfig({
           build: {
             lib: {
               entry: "electron/main.ts",
-              formats: ["es"],
+              formats: ["cjs"],
             },
+            outDir: "dist-electron",
           },
         },
       },
       {
         entry: "electron/preload.ts",
+        vite: {
+          build: {
+            lib: {
+              entry: "electron/preload.ts",
+              formats: ["cjs"],
+            },
+            outDir: "dist-electron",
+          },
+        },
         onstart(options) {
           // Notify the Renderer-Process to reload the page when the Preload-Scripts build is complete,
           // instead of restarting the entire Electron App.

@@ -1,12 +1,15 @@
 import { fileURLToPath } from "url"
 import { join, dirname } from "path"
-import { app, BrowserWindow, Menu, Tray } from "electron"
+import { app, nativeImage, screen, BrowserWindow, Menu, Tray } from "electron"
+// import { Store } from "./utils/store"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 process.env.DIST = join(__dirname, "../dist")
-process.env.PUBLIC = app.isPackaged ? process.env.DIST : join(process.env.DIST, "../public")
+process.env.PUBLIC = app.isPackaged ? process.env.DIST : join(process.env.DIST, "../src/public")
+
+// const store = new Store(app.getPath("userData"))
 
 let win: BrowserWindow | null
 // Here, you can also use other preload
@@ -42,10 +45,19 @@ function setupMainWindow() {
 
 function setupLogging() {}
 
+function createNativeImage() {
+  // const path = join(process.env.PUBLIC, "/assets/clock-icon.png")
+  const path = join(process.env.PUBLIC, "/assets/logo.png")
+  console.log("--->", path)
+  const image = nativeImage.createFromPath(path)
+  image.setTemplateImage(true)
+  return image
+}
+
 function createApp() {
   setupMainWindow()
   setupLogging()
-  const tray = new Tray(join(process.env.PUBLIC, "logo.svg"))
+  const tray = new Tray(createNativeImage())
   const contextMenu = Menu.buildFromTemplate([
     { label: "Item1", type: "radio" },
     { label: "Item2", type: "radio" },
@@ -60,4 +72,38 @@ app.on("window-all-closed", () => {
   win = null
 })
 
-app.whenReady().then(createApp)
+app.whenReady().then(createApp).then(createSuspensionWindow)
+
+let win2 // 悬浮球
+
+function createSuspensionWindow() {
+  win2 = new BrowserWindow({
+    width: 60,
+    height: 60,
+    type: "toolbar",
+    frame: false,
+    resizable: false,
+    transparent: true,
+    alwaysOnTop: true,
+    webPreferences: {
+      preload,
+    },
+  })
+  const { left, top } = {
+    left: screen.getPrimaryDisplay().workAreaSize.width - 160,
+    top: screen.getPrimaryDisplay().workAreaSize.height - 160,
+  }
+  win2.setPosition(left, top)
+
+  // win2.loadURL(`页面地址`)
+  console.log(url + "#suspension")
+  win2.loadURL(url + "#suspension")
+
+  win2.once("ready-to-show", () => {
+    win2.show()
+  })
+
+  win2.on("close", () => {
+    win2 = null
+  })
+}

@@ -25,9 +25,10 @@ onMounted(() => {
 })
 const width = useCssVar("--window-width")
 const height = useCssVar("--window-height")
-const bodyDisplay = ref("flex")
+const bodyDisplay = useCssVar("--body-display")
 
 if (process.browser && window?.electron) {
+  console.log("setting electron")
   width.value = "100vw"
   height.value = "100vh"
   bodyDisplay.value = "block"
@@ -43,8 +44,9 @@ if (process.browser && window?.electron) {
 
 <style lang="scss">
 html,
-body,
-#__nuxt {
+body {
+  height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
   color: black;
@@ -55,7 +57,7 @@ body,
 #__nuxt {
   height: 100%;
   width: 100%;
-  display: flex;
+  display: var(--body-display);
   justify-content: center;
   align-items: center;
 }
