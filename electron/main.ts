@@ -1,12 +1,15 @@
 import { fileURLToPath } from "url"
 import { join, dirname } from "path"
-import { app, BrowserWindow, Menu, Tray } from "electron"
+import { app, nativeImage, BrowserWindow, Menu, Tray } from "electron"
+// import { Store } from "./utils/store"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 process.env.DIST = join(__dirname, "../dist")
-process.env.PUBLIC = app.isPackaged ? process.env.DIST : join(process.env.DIST, "../public")
+process.env.PUBLIC = app.isPackaged ? process.env.DIST : join(process.env.DIST, "../src/public")
+
+// const store = new Store(app.getPath("userData"))
 
 let win: BrowserWindow | null
 // Here, you can also use other preload
@@ -42,10 +45,19 @@ function setupMainWindow() {
 
 function setupLogging() {}
 
+function createNativeImage() {
+  // const path = join(process.env.PUBLIC, "/assets/clock-icon.png")
+  const path = join(process.env.PUBLIC, "/assets/logo.png")
+  console.log("--->", path)
+  const image = nativeImage.createFromPath(path)
+  image.setTemplateImage(true)
+  return image
+}
+
 function createApp() {
   setupMainWindow()
   setupLogging()
-  const tray = new Tray(join(process.env.PUBLIC, "logo.svg"))
+  const tray = new Tray(createNativeImage())
   const contextMenu = Menu.buildFromTemplate([
     { label: "Item1", type: "radio" },
     { label: "Item2", type: "radio" },
