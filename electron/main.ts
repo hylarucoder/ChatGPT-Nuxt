@@ -1,6 +1,6 @@
 import { fileURLToPath } from "url"
 import { join, dirname } from "path"
-import { app, nativeImage, BrowserWindow, Menu, Tray } from "electron"
+import { app, nativeImage, screen, BrowserWindow, Menu, Tray } from "electron"
 // import { Store } from "./utils/store"
 
 const __filename = fileURLToPath(import.meta.url)
@@ -72,4 +72,38 @@ app.on("window-all-closed", () => {
   win = null
 })
 
-app.whenReady().then(createApp)
+app.whenReady().then(createApp).then(createSuspensionWindow)
+
+let win2 // 悬浮球
+
+function createSuspensionWindow() {
+  win2 = new BrowserWindow({
+    width: 60,
+    height: 60,
+    type: "toolbar",
+    frame: false,
+    resizable: false,
+    transparent: true,
+    alwaysOnTop: true,
+    webPreferences: {
+      preload,
+    },
+  })
+  const { left, top } = {
+    left: screen.getPrimaryDisplay().workAreaSize.width - 160,
+    top: screen.getPrimaryDisplay().workAreaSize.height - 160,
+  }
+  win2.setPosition(left, top)
+
+  // win2.loadURL(`页面地址`)
+  console.log(url + "#suspension")
+  win2.loadURL(url + "#suspension")
+
+  win2.once("ready-to-show", () => {
+    win2.show()
+  })
+
+  win2.on("close", () => {
+    win2 = null
+  })
+}
