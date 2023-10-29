@@ -1,6 +1,6 @@
 import { fileURLToPath } from "url"
 import { join, dirname } from "path"
-import { app, nativeImage, screen, BrowserWindow, Menu, Tray } from "electron"
+import { app, nativeImage, ipcMain, screen, BrowserWindow, Menu, Tray } from "electron"
 // import { Store } from "./utils/store"
 
 const __filename = fileURLToPath(import.meta.url)
@@ -42,6 +42,10 @@ function setupMainWindow() {
     win.loadFile(join(process.env.DIST, "index.html"))
   }
 }
+
+ipcMain.on("setMainWindowTop", () => {
+  win?.moveTop()
+})
 
 function setupLogging() {}
 

@@ -20,6 +20,9 @@ dependencies:
   '@types/unist':
     specifier: ^3.0.1
     version: registry.npmmirror.com/@types/unist@3.0.1
+  '@vueuse/electron':
+    specifier: ^10.5.0
+    version: registry.npmmirror.com/@vueuse/electron@10.5.0(electron@27.0.2)(vue@3.3.7)
   electron:
     specifier: ^27.0.2
     version: registry.npmmirror.com/electron@27.0.2
@@ -4803,6 +4806,22 @@ packages:
       - vue
     dev: true
 
+  registry.npmmirror.com/@vueuse/electron@10.5.0(electron@27.0.2)(vue@3.3.7):
+    resolution: {integrity: sha512-HWJsb9YkTynUhaJGGS3LODQz0hWQDhERqADEWl6KxEhP6BpQJj/SyM5gVz8rSI0SQG/vWOvmDqg+rStH+K5TMg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vueuse/electron/-/electron-10.5.0.tgz}
+    id: registry.npmmirror.com/@vueuse/electron/10.5.0
+    name: '@vueuse/electron'
+    version: 10.5.0
+    peerDependencies:
+      electron: '>=9.0.0'
+    dependencies:
+      '@vueuse/shared': registry.npmmirror.com/@vueuse/shared@10.5.0(vue@3.3.7)
+      electron: registry.npmmirror.com/electron@27.0.2
+      vue-demi: registry.npmmirror.com/vue-demi@0.14.6(vue@3.3.7)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
   registry.npmmirror.com/@vueuse/integrations@10.5.0(fuse.js@6.6.2)(vue@3.3.7):
     resolution: {integrity: sha512-fm5sXLCK0Ww3rRnzqnCQRmfjDURaI4xMsx+T+cec0ngQqHx/JgUtm8G0vRjwtonIeTBsH1Q8L3SucE+7K7upJQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vueuse/integrations/-/integrations-10.5.0.tgz}
     id: registry.npmmirror.com/@vueuse/integrations/10.5.0
@@ -4906,7 +4925,6 @@ packages:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
-    dev: true
 
   registry.npmmirror.com/@webassemblyjs/ast@1.11.6:
     resolution: {integrity: sha512-IN1xI7PwOvLPgjcf180gC1bqn3q/QaOCwYUahIOhbYUu8KA/3tw2RT/T0Gidi1l7Hhj5D/INhJxiICObqpMu4Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@webassemblyjs/ast/-/ast-1.11.6.tgz}
