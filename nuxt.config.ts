@@ -50,8 +50,9 @@ export default defineNuxtConfig({
           build: {
             lib: {
               entry: "electron/main.ts",
-              formats: ["es"],
+              formats: ["cjs"],
             },
+            outDir: "dist-electron",
           },
         },
       },
@@ -61,8 +62,9 @@ export default defineNuxtConfig({
           build: {
             lib: {
               entry: "electron/preload.ts",
-              formats: ["es"],
+              formats: ["cjs"],
             },
+            outDir: "dist-electron",
           },
         },
         onstart(options) {

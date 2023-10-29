@@ -27,7 +27,6 @@ const width = useCssVar("--window-width")
 const height = useCssVar("--window-height")
 const bodyDisplay = useCssVar("--body-display")
 
-console.log("br", process.browser, window?.electron)
 if (process.browser && window?.electron) {
   console.log("setting electron")
   width.value = "100vw"
